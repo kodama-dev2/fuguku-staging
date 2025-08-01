@@ -76,6 +76,9 @@ class FugukuGiftPostType {
         require_once FUGUKU_GIFT_PLUGIN_PATH . 'includes/class-gift-meta-boxes.php';
         require_once FUGUKU_GIFT_PLUGIN_PATH . 'includes/class-gift-elementor.php';
         require_once FUGUKU_GIFT_PLUGIN_PATH . 'includes/class-gift-gutenberg.php';
+        
+        // Include debug file for troubleshooting
+        require_once FUGUKU_GIFT_PLUGIN_PATH . 'debug.php';
     }
     
     /**
