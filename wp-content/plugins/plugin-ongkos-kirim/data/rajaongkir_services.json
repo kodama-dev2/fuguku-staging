@@ -1,0 +1,644 @@
+{
+  "jne":{
+    "reg":{
+      "name":"REG",
+      "desc":"Reguler",
+      "cat":"regular"
+    },
+    "oke":{
+      "name":"OKE",
+      "desc":"Ongkos Kirim Ekonomis",
+      "cat":"economy"
+    },
+    "yes":{
+      "name":"YES",
+      "desc":"Yakin Esok Sampai",
+      "cat":"nextday"
+    },
+    "sps":{
+      "name":"SPS",
+      "desc":"Super Speed",
+      "cat":"sameday"
+    },
+    "ctc":{
+      "name":"CTC",
+      "desc":"City to City Reguler",
+      "cat":"regular"
+    },
+    "ctcyes":{
+      "name":"CTCYES",
+      "desc":"City to City Nextday",
+      "cat":"nextday"
+    },
+    "ctcsps":{
+      "name":"CTCSPS",
+      "desc":"City to City Sameday",
+      "cat":"sameday"
+    },
+    "jtr":{
+      "name":"JTR",
+      "desc":"JNE Trucking (minimal 10kg)",
+      "cat":"cargo"
+    },
+    "pelikan":{
+      "name":"Pelikan",
+      "desc":"",
+      "cat":"document"
+    },
+    "popbox":{
+      "name":"Pop Box",
+      "desc":"",
+      "cat":"popbox"
+    },
+    "intl":{
+      "name":"INTL",
+      "desc":"",
+      "cat":"international"
+    }
+  },
+  "pos":{
+    "pos-regular":{
+      "name":"Regular",
+      "desc":"",
+      "cat":"regular"
+    },
+    "pos-nextday":{
+      "name":"Nextday",
+      "desc":"",
+      "cat":"nextday"
+    },
+    "pos-sameday":{
+      "name":"Sameday",
+      "desc":"",
+      "cat":"sameday"
+    },
+    "pos-kargo":{
+      "name":"Kargo",
+      "desc":"",
+      "cat":"cargo"
+    },
+    "ems-barang":{
+      "name":"EMS Barang",
+      "desc":"",
+      "cat":"international"
+    },
+    "paketpos-cepat":{
+      "name":"Paketpos Cepat",
+      "desc":"",
+      "cat":"international"
+    },
+    "paketpos-biasa":{
+      "name":"Paketpos Biasa",
+      "desc":"",
+      "cat":"international"
+    },
+    "epacket-lp-app":{
+      "name":"ePacket LP App",
+      "desc":"",
+      "cat":"international"
+    },
+    "post-ekspor":{
+      "name":"POS Ekspor",
+      "desc":"",
+      "cat":"international"
+    }
+  },
+  "tiki":{
+    "reg":{
+      "name":"REG",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "eco":{
+      "name":"ECO",
+      "desc":"Economy Service",
+      "cat":"economy"
+    },
+    "ons":{
+      "name":"ONS",
+      "desc":"One Night Service",
+      "cat":"nextday"
+    },
+    "sds":{
+      "name":"SDS",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "tds":{
+      "name":"TDS",
+      "desc":"Two Day Service",
+      "cat":"nextday"
+    },
+    "trc":{
+      "name":"TRC",
+      "desc":"Trucking Service (minimal 10kg)",
+      "cat":"cargo"
+    }
+  },
+  "jnt":{
+    "ez":{
+      "name":"EZ",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "jsd":{
+      "name":"JSD",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "jnd":{
+      "name":"JND",
+      "desc":"Next Day Service",
+      "cat":"nextday"
+    },
+    "eco":{
+      "name":"ECO",
+      "desc":"Economy Service",
+      "cat":"economy"
+    }
+  },
+  "wahana":{
+    "express":{
+      "name":"Express",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "nextday":{
+      "name":"NextDay",
+      "desc":"Next Day Service",
+      "cat":"nextday"
+    },
+    "ekonomis":{
+      "name":"Ekonomis",
+      "desc":"Economy Service",
+      "cat":"economy"
+    },
+    "popbox":{
+      "name":"PopBox",
+      "desc":"Pop Box (minimal 2kg)",
+      "cat":"popbox"
+    },
+    "kargo":{
+      "name":"Kargo",
+      "desc":"Cargo Service (minimal 10kg)",
+      "cat":"cargo"
+    }
+  },
+  "sicepat":{
+    "reg":{
+      "name":"REG",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "siunt":{
+      "name":"SIUNT",
+      "desc":"Siuntung",
+      "cat":"regular"
+    },
+    "best":{
+      "name":"BEST",
+      "desc":"Besok Sampai Tujuan",
+      "cat":"nextday"
+    },
+    "sds":{
+      "name":"SDS",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "gokil":{
+      "name":"GOKIL",
+      "desc":"Cargo Kilat (minimal 10kg)",
+      "cat":"cargo"
+    }
+  },
+  "lion":{
+    "jagopack":{
+      "name":"JAGOPACK",
+      "desc":"Layanan Reguler",
+      "cat":"regular"
+    },
+    "onepack":{
+      "name":"ONEPACK",
+      "desc":"One Day Service",
+      "cat":"nextday"
+    },
+    "regpack":{
+      "name":"REGPACK",
+      "desc":"Layanan Paket Darat",
+      "cat":"regular"
+    },
+    "bigpack":{
+      "name":"BIGPACK",
+      "desc":"Layanan Kargo",
+      "cat":"cargo"
+    },
+    "docupack":{
+      "name":"DOCUPACK",
+      "desc":"Layanan Dokumen",
+      "cat":"document"
+    }
+  },
+  "anteraja":{
+    "reg":{
+      "name":"REG",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "nd":{
+      "name":"ND",
+      "desc":"Next Day Service",
+      "cat":"nextday"
+    },
+    "sd":{
+      "name":"SD",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    }
+  },
+  "esl": {
+    "rpx-rdx": {
+      "name": "RPX/RDX",
+      "desc": "Paket Dokumen/Barang",
+      "cat": "regular"
+    }
+  },
+  "ncs": {
+    "nrs": {
+      "name": "NRS",
+      "desc": "Regular Service",
+      "cat": "regular"
+    },
+    "ons": {
+      "name": "ONS",
+      "desc": "Over Night Service",
+      "cat": "nextday"
+    },
+    "sds": {
+      "name": "SDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    },
+    "nfo": {
+      "name": "NFO",
+      "desc": "Food One Night Service",
+      "cat": "nextday"
+    },
+    "nfs": {
+      "name": "NFS",
+      "desc": "Food Same Day Service",
+      "cat": "sameday"
+    },
+    "drt": {
+      "name": "DRT",
+      "desc": "Regular Darat",
+      "cat": "economy"
+    },
+    "jmr": {
+      "name": "JMR",
+      "desc": "Jawa Murah",
+      "cat": "economy"
+    }
+  },
+  "rpx": {
+    "rgp": {
+      "name": "RGP",
+      "desc": "Regular Package",
+      "cat": "regular"
+    },
+    "ndp": {
+      "name": "NDP",
+      "desc": "Next Day Package",
+      "cat": "nextday"
+    },
+    "sdp": {
+      "name": "SDP",
+      "desc": "Same Day Package",
+      "cat": "sameday"
+    },
+    "mdp": {
+      "name": "MDP",
+      "desc": "Mid Day Package",
+      "cat": ""
+    },
+    "gdp": {
+      "name": "GDP",
+      "desc": "Gold Package",
+      "cat": ""
+    },
+    "bnp": {
+      "name": "BNP",
+      "desc": "Birdnest Package",
+      "cat": ""
+    }
+  },
+  "pahala": {
+    "reguler": {
+      "name": "Reguler",
+      "desc": "",
+      "cat": "reguler"
+    },
+    "express": {
+      "name": "Express",
+      "desc": "",
+      "cat": ""
+    },
+    "ons": {
+      "name": "ONS",
+      "desc": "Over Night Service",
+      "cat": "nextday"
+    },
+    "sds": {
+      "name": "SDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    }
+  },
+  "sap": {
+    "reg": {
+      "name": "REG",
+      "desc": "Regular Service",
+      "cat": "regular"
+    },
+    "sds": {
+      "name": "SDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    },
+    "ods": {
+      "name": "ODS",
+      "desc": "One Day Service",
+      "cat": "nextday"
+    },
+    "cargo-darat": {
+      "name": "CARGO DARAT",
+      "desc": "Cargo Service",
+      "cat": "cargo"
+    }
+  },
+  "dse": {
+    "eco": {
+      "name": "ECO",
+      "desc": "Regular Service",
+      "cat": "regular"
+    },
+    "ons": {
+      "name": "ONS",
+      "desc": "Over Night Service",
+      "cat": "nextday"
+    },
+    "sds": {
+      "name": "SDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    }
+  },
+  "slis": {
+    "regular": {
+      "name": "Regular",
+      "desc": "",
+      "cat": "regular"
+    },
+    "express": {
+      "name": "Express",
+      "desc": "",
+      "cat": ""
+    }
+  },
+  "first": {
+    "reg": {
+      "name": "REG",
+      "desc": "Regular Service",
+      "cat": "regular"
+    },
+    "ons": {
+      "name": "ONS",
+      "desc": "Over Night Service",
+      "cat": "nextday"
+    },
+    "sds": {
+      "name": "SDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    }
+  },
+  "star": {
+    "reguler": {
+      "name": "Reguler",
+      "desc": "",
+      "cat": "regular"
+    },
+    "dokumen": {
+      "name": "Dokumen",
+      "desc": "",
+      "cat": ""
+    }
+  },
+  "ninja": {
+    "standard": {
+      "name": "STANDARD",
+      "desc": "Standard Service",
+      "cat": "regular"
+    },
+    "nextday": {
+      "name": "NEXTDAY",
+      "desc": "Next Day Service",
+      "cat": "nextday"
+    }
+  },
+  "idl": {
+    "ireg": {
+      "name": "iREG",
+      "desc": "Regular",
+      "cat": "regular"
+    },
+    "isds": {
+      "name": "iSDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    },
+    "ions": {
+      "name": "iONS",
+      "desc": "One Day Service",
+      "cat": "nextday"
+    },
+    "iscf": {
+      "name": "iSCF",
+      "desc": "Special Fleet",
+      "cat": ""
+    },
+    "icon": {
+      "name": "iCon",
+      "desc": "Ekonomis",
+      "cat": "economy"
+    }
+  },
+  "rex": {
+    "reg": {
+      "name": "REGULAR",
+      "desc": "",
+      "cat": "regular"
+    },
+    "exp": {
+      "name": "EXPRESS",
+      "desc": "",
+      "cat": ""
+    },
+  	"rex-0": {
+      "name": "REX-0",
+      "desc": "",
+      "cat": ""
+    },
+  	"rex-1": {
+      "name": "REX-1",
+      "desc": "",
+      "cat": ""
+    },
+  	"rex-5": {
+      "name": "REX-5",
+      "desc": "",
+      "cat": ""
+    },
+  	"rex-10": {
+      "name": "REX-10",
+      "desc": "",
+      "cat": ""
+    },
+    "rex-50": {
+      "name": "REX-50",
+      "desc": "",
+      "cat": ""
+    }
+  },
+  "ide": {
+    "std": {
+      "name": "STD",
+      "desc": "Standard",
+      "cat": "regular"
+    }
+  },
+  "sentral": {
+    "darat-elektronik": {
+      "name": "Darat Elektronik",
+      "desc": "",
+      "cat": ""
+    },
+    "darat-non-elektronik": {
+      "name": "Darat Non Elektronik",
+      "desc": "",
+      "cat": ""
+    },
+    "udara-elektronik": {
+      "name": "Udara Elektronik",
+      "desc": "",
+      "cat": ""
+    },
+    "udara-non-elektronik": {
+      "name": "",
+      "desc": "",
+      "cat": ""
+    }
+  },
+  "jtl": {
+    "express-standart": {
+      "name": "Express Standart",
+      "desc": "Regular Service",
+      "cat": "regular"
+    },
+    "express-economy": {
+      "name": "Express Economy",
+      "desc": "Economy Service",
+      "cat": "economy"
+    },
+    "jtl-extra": {
+      "name": "JTL Extra",
+      "desc": "",
+      "cat": ""
+    },
+    "non-express": {
+      "name": "Non Express",
+      "desc": "Minimal 5 kg",
+      "cat": "cargo"
+    },
+    "jtlog": {
+      "name": "JTLOG",
+      "desc": "Minimal 10 kg",
+      "cat": "cargo"
+    },
+    "jtl-happy": {
+      "name": "JTL Happy",
+      "desc": "Minimal 100 kg",
+      "cat": "cargo"
+    }
+  },
+  "expedito": {
+    "dlink-forwarder":{
+      "name":"DLINK Forwarder",
+      "desc":"",
+      "cat":"international"
+    },
+    "citylink-express":{
+      "name":"CityLink Express",
+      "desc":"",
+      "cat":"international"
+    },
+    "citylink-promo":{
+      "name":"CityLink Promo",
+      "desc":"",
+      "cat":"international"
+    },
+    "gdex-jakarta":{
+      "name":"GDEX Jakarta",
+      "desc":"",
+      "cat":"international"
+    },
+    "moon-forwarder":{
+      "name":"Moon Forwarder",
+      "desc":"",
+      "cat":"international"
+    },
+    "skynet-worldwide":{
+      "name":"SkyNet Worldwide",
+      "desc":"",
+      "cat":"international"
+    },
+    "aramex-indonesia":{
+      "name":"ARAMEX Indonesia",
+      "desc":"",
+      "cat":"international"
+    },
+    "fedex-international-economy":{
+      "name":"FedEx International Economy",
+      "desc":"",
+      "cat":"international"
+    },
+    "tnt--fedex":{
+      "name":"TNT | FedEx",
+      "desc":"",
+      "cat":"international"
+    },
+    "dhl-e-commerce":{
+      "name":"DHL e-Commerce",
+      "desc":"",
+      "cat":"international"
+    },
+    "dhl-jkt":{
+      "name":"DHL JKT",
+      "desc":"",
+      "cat":"international"
+    }
+  },
+  "ray": {
+    "regular-service": {
+      "name":"Regular Service",
+      "desc":"",
+      "cat":"international"
+    },
+    "express-service": {
+      "name":"Express Service",
+      "desc":"",
+      "cat":"international"
+    }
+  },
+  "pandu": [],
+  "pcp": []
+}

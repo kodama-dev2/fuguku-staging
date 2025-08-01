@@ -1,0 +1,66 @@
+.pok-shipping-estimation-input .pok_shipping_qty {
+	text-align: center;
+	max-width: 80px;
+}
+.pok-shipping-estimation-input .shipping-destination span,
+.pok-shipping-estimation-input .shipping-destination select {
+	display: block;
+	width: 100%;
+}
+.pok-shipping-estimation-input .shipping-destination div {
+	margin-bottom: 5px;
+}
+.pok-shipping-estimation-input .shipping-destination div:last-child {
+	margin-bottom: 0;
+}
+.pok-shipping-estimation-input .shipping-destination .select2-container {
+	width: 100% !important;
+}
+.pok-shipping-estimation-result .pok-logo img {
+	max-width: 80px;
+}
+.pok-shipping-estimation-result .pok-logo {
+	white-space: nowrap;
+	width: 112px;
+	padding: 12px 16px;
+	vertical-align: middle;
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #eee;
+}
+.pok-shipping-estimation-result .pok-services {
+	padding: 16px 10px;
+	background-color: #fdfdfd;
+	border-bottom: 1px solid #eee;
+}
+.pok-shipping-estimation-result .pok-services table {
+	margin: 0;
+	border-collapse: collapse;
+	border: 0;
+	background: transparent;
+}
+.pok-shipping-estimation-result .pok-services td {
+	background: transparent;
+	padding: 5px 10px;
+	border: 0;
+}
+.pok-shipping-estimation-result > tr:last-child > td {
+	border-bottom: 0;
+}
+.pok-shipping-estimation-result .pok-services .pok-service {
+	width: 66.67%;
+}
+.pok-shipping-estimation-result .pok-services .pok-cost {
+	width: 33.33%;
+	font-weight: bold;
+	text-align: right;
+}
+.pok-shipping-estimation-result .pok-services .pok-cost h5 {
+	font-weight: normal;
+	color: inherit;
+	margin: 0;
+	line-height: 1;
+}
+.pok-shipping-estimation-result-wrapper > p {
+	text-align: center;
+	font-style: italic;
+}

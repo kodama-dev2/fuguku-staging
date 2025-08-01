@@ -1,0 +1,56 @@
+# Sensitive files
+wp-config.php
+.htaccess
+
+# Uploads directory (bisa sangat besar)
+wp-content/uploads/
+
+# Cache directories
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# Log files
+*.log
+wp-content/debug.log
+
+# Backup files
+*.bak
+*.backup
+*.sql
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (jika ada)
+node_modules/
+
+# Composer (jika ada)
+vendor/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Temporary files
+*.tmp
+*.temp
+
+# WordPress debug log
+debug.log
+
+# Hostinger specific
+wp-content/ai1wm-backups/

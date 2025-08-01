@@ -1,0 +1,2159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plugin Ongkos Kirim\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-29 02:36+0000\n"
+"PO-Revision-Date: 2025-03-21 10:00+0000\n"
+"Last-Translator: admin <gama@tonjoo.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id_ID\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.8.2"
+
+#: libs/tonjoo-license/view/license-manager.php:214
+#: libs/tonjoo-license/view/license-manager.php:217
+#, php-format
+msgid "(expired soon, <a href=\"%s\" target=\"_blank\">click to renew</a>)"
+msgstr ""
+"(segera berakhir, <a href=\"%s\" target=\"_blank\">klik untuk "
+"memperpanjang</a>)"
+
+#: views/admin-setting-cost.php:187
+#, php-format
+msgid "1 IDR to %s conversion rate"
+msgstr "Nilai konversi 1 IDR ke %s"
+
+#: classes/class-pok-hooks-addresses.php:606
+msgid "<b>Billing district</b> is required"
+msgstr "<b>Kecamatan</b> wajib diisi"
+
+#: classes/class-pok-hooks-addresses.php:617
+msgid "<b>Shipping district</b> is required"
+msgstr "<b>Kecamatan pengiriman</b> wajib diisi"
+
+#: classes/class-pok-admin.php:636
+#, php-format
+msgid ""
+"<strong>Plugin Ongkos Kirim</strong> API currently disabled by debugger, you "
+"can re-enable it on <a href=\"%s\">this page</a>"
+msgstr ""
+"API <strong>Plugin Ongkos Kirim</strong> saat ini dinon-aktifkan oleh "
+"debugger, Anda bisa mengaktifkannya kembali di <a href=\"%s\">halaman ini</a>"
+
+#: classes/class-pok-admin.php:609
+msgid ""
+"<strong>Plugin Ongkos Kirim</strong> is disabled due to the following errors:"
+msgstr ""
+"<strong>Plugin Ongkos Kirim</strong> tidak aktif karena masalah berikut:"
+
+#: classes/class-pok-admin.php:622
+msgid ""
+"<strong>Plugin Ongkos Kirim</strong> is not working properly because your "
+"site uses block-based checkout page. Please consider using classic checkout "
+"to get our plugin work on your checkout page."
+msgstr ""
+"<strong>Plugin Ongkos Kirim</strong> tidak dapat berjalan dengan semestinya "
+"dikarenakan situs Anda menggunakan halaman checkout berbasis block. Silahkan "
+"ubah halaman checkout Anda ke mode klasik agar plugin kami dapat berjalan "
+"lancar dengan semestinya."
+
+#: classes/class-pok-wizard.php:334
+msgid "Activate"
+msgstr "Aktivasi"
+
+#: classes/class-pok-wizard.php:320
+msgid "Activate Your License"
+msgstr "Aktivasi Lisensi Anda"
+
+#: libs/tonjoo-license/view/license-manager.php:173
+msgid "Activated"
+msgstr "Aktif"
+
+#: libs/tonjoo-license/tonjoo-license-handler.php:350
+msgid "Activation Success"
+msgstr "Aktivasi Sukses"
+
+#: classes/class-pok-admin.php:110 classes/class-pok-hooks-admin.php:232
+#: views/admin-custom.php:157
+msgid "Add"
+msgstr "Tambah"
+
+#: views/admin-setting-cost.php:116
+msgid "Add Cost Markup"
+msgstr "Tambah Markup Biaya"
+
+#: views/admin-setting-courier.php:167
+msgid "Add Custom Name"
+msgstr "Tambah Nama Layanan Kustom"
+
+#: classes/class-pok-hooks-admin.php:742
+msgid "Add Destination"
+msgstr "Tambah Tujuan"
+
+#: views/admin-setting-cost.php:4
+msgid "Add insurance fee to shipping cost"
+msgstr "Tambah biaya asuransi pengiriman ke ongkos kirim"
+
+#: classes/class-pok-hooks-admin.php:282
+msgid "Add Shipping (Ongkir)"
+msgstr "Tambah Ongkos Kirim"
+
+#: classes/class-pok-hooks-product.php:68
+msgid "Add shipping insurance fee on checkout"
+msgstr "Tambahkan biaya asuransi pengiriman di halaman checkout"
+
+#: classes/class-pok-hooks-addresses.php:259
+msgid "Add shipping insurance to this order"
+msgstr "Tambahkan asuransi pengiriman ke dalam pesanan ini"
+
+#: classes/class-pok-hooks-product.php:76
+msgid "Add timber packing fee on checkout"
+msgstr "Tambahkan biaya packing kayu di halaman checkout"
+
+#: views/admin-setting-cost.php:28
+msgid "Add timber packing fee to shipping cost."
+msgstr "Tambah biaya pengemasan dengan kayu ke ongkos kirim"
+
+#: views/admin-setting-miscellaneous.php:22
+msgid "Add Unique Number on Checkout"
+msgstr "Tambah Nomor Unik ketika Checkout"
+
+#: views/admin-setting-miscellaneous.php:23
+msgid ""
+"Add unique number to total purchase to easily differ an order from another"
+msgstr ""
+"Tambahkan nomor unik pada total pembelian untuk mempermudah mengidentifikasi "
+"pesanan"
+
+#: classes/class-pok-hooks-addresses.php:304
+msgid "Address"
+msgstr "Alamat"
+
+#: views/admin-setting-advanced.php:10
+msgid "Addresses Data (province list, city list, etc)"
+msgstr "Data Alamat (daftar provinsi, daftar kota, dll)"
+
+#: classes/class-pok-admin.php:286
+msgid "Advanced"
+msgstr "Advanced"
+
+#: classes/class-pok-admin.php:509
+msgid "All caches has been purged."
+msgstr "Semua cache telah berhasil dihapus."
+
+#: classes/class-pok-admin.php:105 classes/class-pok-hooks-admin.php:229
+#: classes/class-pok-hooks-admin.php:649 classes/class-pok-hooks-admin.php:676
+#: classes/class-pok-hooks-admin.php:727 views/admin-custom.php:125
+msgid "All City"
+msgstr "Semua Kota/Kab."
+
+#: classes/class-pok-hooks-admin.php:517
+#: classes/class-pok-report-table-hpos.php:178
+#: classes/class-pok-report-table.php:178 views/admin-setting-cost.php:70
+#: views/admin-setting-cost.php:98
+msgid "All Courier"
+msgstr "Semua Kurir"
+
+#: classes/class-pok-hooks-admin.php:606
+msgid "All couriers"
+msgstr "Semua kurir"
+
+#: classes/class-pok-admin.php:106 classes/class-pok-hooks-admin.php:230
+#: classes/class-pok-hooks-admin.php:654 classes/class-pok-hooks-admin.php:693
+#: classes/class-pok-hooks-admin.php:732 views/admin-custom.php:130
+msgid "All District"
+msgstr "Semua Kecamatan"
+
+#: classes/class-pok-report-table-hpos.php:305
+#: classes/class-pok-report-table.php:305
+msgid "All Order Status"
+msgstr "Semua Status Order"
+
+#: classes/class-pok-admin.php:104 classes/class-pok-hooks-admin.php:228
+#: classes/class-pok-hooks-admin.php:639 classes/class-pok-hooks-admin.php:666
+#: classes/class-pok-hooks-admin.php:717 views/admin-custom.php:115
+msgid "All Province"
+msgstr "Semua Provinsi"
+
+#: classes/class-pok-admin.php:107 classes/class-pok-report-table-hpos.php:313
+#: classes/class-pok-report-table.php:313 views/admin-setting-cost.php:78
+#: views/admin-setting-cost.php:106
+msgid "All Service"
+msgstr "Semua Layanan"
+
+#: classes/class-pok-hooks-admin.php:618
+msgid "All services"
+msgstr "Semua layanan"
+
+#: classes/class-pok-admin.php:517
+msgid "All settings has been reset."
+msgstr "Semua pengaturan telah direset."
+
+#: views/admin-setting-cost.php:16
+msgid "Always apply insurance fee"
+msgstr "Selalu tambahkan asuransi pengiriman"
+
+#: classes/api/class-pok-api-rajaongkir.php:120
+#: classes/api/class-pok-api-rajaongkir2.php:115
+#: classes/api/class-pok-api-tonjoo.php:158
+msgid "API disabled by debugger"
+msgstr "API dimatikan oleh debugger"
+
+#: views/admin-debugger.php:83
+msgid "API Error logs"
+msgstr "Log Error API"
+
+#: views/admin-setting-basic.php:46 views/admin-setting-basic.php:63
+msgid "API is active"
+msgstr "API aktif"
+
+#: views/admin-setting-basic.php:48 views/admin-setting-basic.php:65
+msgid "API is inactive"
+msgstr "API tidak aktif"
+
+#: views/admin-setting-basic.php:38 views/admin-setting-basic.php:55
+msgid "API Key"
+msgstr "API Key"
+
+#: classes/class-pok-admin.php:101 classes/class-pok-ajax.php:110
+#: classes/class-pok-ajax.php:140
+msgid "API key is empty"
+msgstr "API key kosong"
+
+#: classes/class-pok-ajax.php:116 classes/class-pok-ajax.php:144
+msgid "API Key is not valid"
+msgstr "API Key tidak valid"
+
+#: views/admin-debugger.php:18
+msgid "API Status"
+msgstr "Status API"
+
+#: classes/class-pok-ajax.php:112
+msgid "API type is not valid"
+msgstr "Tipe API tidak valid"
+
+#: views/admin-custom.php:27
+msgid "Append"
+msgstr "Gabung"
+
+#: views/admin-custom.php:31
+msgid ""
+"Append: Append custom shipping options to original options. <br/>Replace: "
+"Replace original options with custom cost if address match."
+msgstr ""
+"Gabung: Gabungkan ongkos kirim kustom dengan ongkos kirim asli. <br/>Ganti: "
+"Ganti ongkos kirim asli dengan ongkos kirim kustom."
+
+#: views/admin-setting-cost.php:9 views/admin-setting-cost.php:33
+msgid "Apply to all products"
+msgstr "Aplikasikan ke semua produk"
+
+#: classes/class-pok-admin.php:113
+msgid ""
+"Are you sure want to disable the API? This option is intended only for "
+"debugging, do not use this on the production site!"
+msgstr ""
+"Apakah Anda yakin ingin mematikan API? Opsi ini hanya digunakan untuk tujuan "
+"debugging, jangan aktifkan opsi ini pada production site!"
+
+#: views/admin-setting-advanced.php:20 views/admin-setting-advanced.php:29
+msgid "Are you sure?"
+msgstr "Apakah Anda yakin?"
+
+#: classes/class-pok-admin.php:98
+msgid ""
+"Are you sure? Switching base API will delete all cached data and custom "
+"shipping costs. Also, you might need to re-set your store location."
+msgstr ""
+"Apakah Anda yakin? Mengganti base API akan menghapus semua data yang "
+"tersimpan didalam cache dan ongkos kirim kustom. Dan juga Anda mungkin harus "
+"mengatur ulang lokasi toko Anda."
+
+#: views/admin-setting-checkout.php:23
+msgid "Auto Fill Address"
+msgstr "Isi Alamat Otomatis"
+
+#: views/admin-setting-weight.php:22
+msgid "Auto Round"
+msgstr "Otomatis"
+
+#: views/admin-setting-checkout.php:24
+msgid ""
+"Auto-fill checkout field with saved address if customer is a returning "
+"customer."
+msgstr ""
+"Isi alamat checkout otomatis dengan alamat yang sebelumnya telah tersimpan."
+
+#: views/admin-setting-courier.php:25
+#, php-format
+msgid ""
+"Available couriers depends on the base API you choose. <a href=\"%s\">Click "
+"here</a> to learn more."
+msgstr ""
+"Kurir yang dapat dipilih tergantung dengan base API yang Anda gunakan. <a "
+"href=\"%s\">Klik disini</a> untuk info lebih lanjut."
+
+#: views/admin-checker.php:9 views/admin-setting-basic.php:18
+msgid "Base API"
+msgstr "Base API"
+
+#: classes/class-pok-admin.php:500
+msgid "Base API are switched."
+msgstr "Base API telah diganti."
+
+#: classes/class-pok-admin.php:498
+msgid "Base API are switched. Please re-set your store location."
+msgstr "Base API telah diganti. Harap atur ulang lokasi toko Anda."
+
+#: views/admin-custom.php:45
+#, php-format
+msgid ""
+"Based on your current server configuration, only %1$d custom shipping costs "
+"are allowed to input. To increase this limitation please refer to this <a "
+"href=\"%2$s\" target=\"blank\">link</a>."
+msgstr ""
+"Berdasarkan pengaturan pada server Anda, hanya %1$d data yang diperbolehkan "
+"untuk disimpan. Untuk menambah batasan ini silahkan pelajari lebih lanjut di "
+"<a href=\"%2$s\" target=\"blank\">tautan ini</a>."
+
+#: classes/class-pok-admin.php:251 views/admin-setting-cost.php:143
+#: views/admin-setting-cost.php:160
+msgid "Basic"
+msgstr "Basic"
+
+#: views/admin-setting-vendors.php:8
+msgid "Buy Addon Now"
+msgstr "Beli Addon Sekarang"
+
+#: views/admin-setting-advanced.php:3
+msgid "Cache Expiration (in hours)"
+msgstr "Umur Cache (dalam jam)"
+
+#: views/admin-setting-advanced.php:4
+msgid ""
+"Cache expiration is a feature that keep your shipping costs data or "
+"addresses data as a stored cache. This feature will significally increase "
+"your website speed."
+msgstr ""
+"Umur cache adalah fitur untuk mengatur berapa lamanya data ongkos kirim atau "
+"alamat disimpan ke dalam cache. Fitur ini akan membantu meningkatkan "
+"kecepatan website Anda secara signifikan."
+
+#: views/admin-setting-weight.php:38
+msgid ""
+"Calculate shipping weight using product dimension. If the dimension is not "
+"set, it will use weight instead."
+msgstr ""
+"Hitung berat pengiriman menggunakan volume produk. Jika dimensi produk tidak "
+"diset, maka yang digunakan adalah berat produk."
+
+#: classes/class-pok-admin.php:102
+msgid "Can not connect server"
+msgstr "Tidak dapat terhubung dengan server"
+
+#: classes/api/class-pok-api.php:647 classes/api/class-pok-api.php:685
+msgid "can not connect server"
+msgstr "tidak dapat terhubung dengan server"
+
+#: libs/tonjoo-license/tonjoo-license-api.php:118
+msgid "Can't connect to server. Please try again."
+msgstr "Tidak dapat terhubung dengan server. Silahkan coba lagi."
+
+#: views/admin-setting-courier.php:94
+#, php-format
+msgid "Cargo services includes: %s."
+msgstr "Layanan kargo meliputi: %s."
+
+#: views/admin-setting-courier.php:101
+msgid "Change courier service name with your custom name."
+msgstr "Ganti nama layanan dengan nama kustom."
+
+#: classes/class-pok-hooks-admin.php:302
+msgid "Change Service"
+msgstr "Ganti Layanan"
+
+#: views/admin-setting-cost.php:153 views/admin-setting-cost.php:169
+msgid "Check API Status"
+msgstr "Cek Status API"
+
+#: libs/tonjoo-license/view/license-manager.php:205
+msgid "Check License"
+msgstr "Cek Lisensi"
+
+#: views/admin-debugger.php:72 views/admin-debugger.php:74
+msgid "Check My IP"
+msgstr "Cek IP Saya"
+
+#: views/admin-setting-basic.php:42 views/admin-setting-basic.php:59
+msgid "Check Rajaongkir Status"
+msgstr "Cek Status Rajaongkir"
+
+#: classes/class-pok-admin.php:271
+msgid "Checkout"
+msgstr "Checkout"
+
+#: classes/class-pok-hooks-addresses.php:196
+#: classes/class-pok-hooks-admin.php:113
+#: classes/class-pok-hooks-product.php:217
+msgid "City"
+msgstr "Kota/Kab."
+
+#: classes/class-pok-checker.php:91
+msgid "City not set"
+msgstr "Kota/Kab. tidak diset"
+
+#: views/admin-setting-cost.php:189
+#, php-format
+msgid ""
+"Click <a target='_blank' href='%s'>here</a> to get latest conversion rate"
+msgstr ""
+"Klik <a target='_blank' href='%s'>disini</a> untuk mendapatkan nilai "
+"konversi paling terkini"
+
+#: views/setting-wc.php:4
+msgid "Click here to configure"
+msgstr "Klik disini untuk melakukan pengaturan"
+
+#: classes/class-pok-wizard.php:129
+msgid "Compatibility"
+msgstr "Kompatibilitas"
+
+#: views/admin-help.php:44
+msgid ""
+"Confused with Plugin Ongkos Kirim configuration? Our documentation will "
+"assists you to discover all of the plugin's true potential."
+msgstr ""
+"Bingung dengan konfigurasi Plugin Ongkos Kirim? Dokumentasi kami akan "
+"membantu Anda untuk menemukan semua potensi plugin."
+
+#: classes/class-pok-admin.php:103
+msgid "Connecting server..."
+msgstr "Menghubungi server..."
+
+#: classes/class-pok-wizard.php:419 classes/class-pok-wizard.php:554
+msgid "Continue"
+msgstr "Lanjut"
+
+#: classes/class-pok-admin.php:266 classes/class-pok-cpr.php:90
+#: classes/class-pok-hooks-admin.php:272
+msgid "Cost"
+msgstr "Tarif"
+
+#: classes/class-pok-admin.php:208
+msgid "Cost Checker"
+msgstr "Cek Tarif"
+
+#: views/admin-setting-cost.php:61
+msgid "Cost Markup"
+msgstr "Markup Biaya"
+
+#: views/admin-custom.php:55
+msgid "Cost per Kg"
+msgstr "Tarif per Kg"
+
+#: classes/class-pok-hooks-addresses.php:188
+msgid "Country"
+msgstr "Negara"
+
+#: classes/class-pok-admin.php:256 classes/class-pok-cpr.php:58
+#: classes/class-pok-hooks-admin.php:269
+#: classes/class-pok-report-table-hpos.php:176
+#: classes/class-pok-report-table-hpos.php:220
+#: classes/class-pok-report-table.php:176
+#: classes/class-pok-report-table.php:220 views/admin-checker.php:72
+#: views/admin-custom.php:53 views/admin-setting-cost.php:55
+#: views/admin-setting-courier.php:108
+msgid "Courier"
+msgstr "Kurir"
+
+#: classes/class-pok-hooks-admin.php:605 classes/class-pok-wizard.php:124
+#: views/admin-setting-courier.php:3
+msgid "Couriers"
+msgstr "Kurir"
+
+#: views/admin-setting-cost.php:124
+msgid "Currency Conversion"
+msgstr "Konversi Mata Uang"
+
+#: views/admin-setting-cost.php:165
+msgid "Currency Layer API Key"
+msgstr "Currency Layer API Key"
+
+#: views/admin-setting-cost.php:158
+msgid "Currency Layer Subscription Plan"
+msgstr "Currency Layer Subscription Plan"
+
+#: views/admin-setting-cost.php:183
+#, php-format
+msgid ""
+"Current conversion rate on WPML's Multi-Currency setting: 1 IDR = %1$s %2$s. "
+"<a href='%3$s'>click here to configure</a>"
+msgstr ""
+"Nilai tukar rupiah pada pengaturan WPML's Multi-Currency saat ini: 1 IDR = "
+"%1$s %2$s. <a href='%3$s'>klik disini untuk mengubahnya</a>"
+
+#: classes/class-pok-hooks-admin.php:179
+msgid "Currently this feature only support shipping to Indonesia."
+msgstr ""
+"Untuk saat ini fitur ini hanya dapat digunakan untuk pengiriman di dalam "
+"Indonesia."
+
+#: classes/class-pok-admin.php:204
+msgid "Custom Costs"
+msgstr "Ongkir Kustom"
+
+#: classes/class-pok-admin.php:449
+msgid "Custom costs saved"
+msgstr "Ongkos kirim kustom berhasil disimpan"
+
+#: views/admin-custom.php:12
+msgid "Custom Courier Name"
+msgstr "Nama Kurir Kustom"
+
+#: views/admin-setting-courier.php:114
+msgid "Custom Name"
+msgstr "Nama Kustom"
+
+#: views/admin-setting-courier.php:100
+msgid "Custom Service Name"
+msgstr "Nama Layanan Kustom"
+
+#: classes/class-pok-core.php:475
+msgid "Custom Shipping"
+msgstr "Kurir Kustom"
+
+#: views/admin-custom.php:21
+msgid "Custom Shipping Cost Type"
+msgstr "Tipe Ongkos Kirim Kustom"
+
+#: classes/class-pok-report-table-hpos.php:146
+#: classes/class-pok-report-table.php:146
+msgid "Custom:"
+msgstr "Kustom:"
+
+#: classes/class-pok-helper.php:914 classes/class-pok-helper.php:918
+#: classes/class-pok-helper.php:920
+msgid "day"
+msgid_plural "days"
+msgstr[0] "hari"
+
+#: classes/class-pok-hooks-admin.php:376
+msgid "day(s)"
+msgstr "hari"
+
+#: classes/class-pok-helper.php:922
+msgid "days"
+msgstr "hari"
+
+#: libs/tonjoo-license/view/license-manager.php:203
+msgid "Deactivate"
+msgstr "Nonaktifkan"
+
+#: libs/tonjoo-license/tonjoo-license-handler.php:409
+msgid "Deactivation Success"
+msgstr "Berhasil dinonaktifkan"
+
+#: views/admin-setting-advanced.php:48
+msgid "Debug Mode"
+msgstr "Mode Debug"
+
+#: classes/class-pok-admin.php:214
+msgid "Debugger"
+msgstr "Debugger"
+
+#: views/admin-setting-weight.php:3
+msgid "Default Shipping Weight (kg)"
+msgstr "Berat Pengiriman Default (kg)"
+
+#: views/admin-setting-weight.php:4
+msgid "Default shipping weight if total weight is unknown."
+msgstr "Berat pengiriman default jika berat produk tidak diset."
+
+#: classes/class-pok-admin.php:109 classes/class-pok-hooks-admin.php:231
+#: classes/class-pok-hooks-admin.php:658 classes/class-pok-hooks-admin.php:709
+#: classes/class-pok-hooks-admin.php:736 views/admin-custom.php:103
+msgid "Delete"
+msgstr "Hapus"
+
+#: views/admin-setting-advanced.php:17
+msgid "Delete all cached data"
+msgstr "Hapus semua data di cache"
+
+#: views/admin-setting-advanced.php:26
+msgid "Delete all saved configuration just like fresh install."
+msgstr "Kembalikan pengaturan ke awal."
+
+#: classes/class-pok-hooks-admin.php:632
+#: classes/class-pok-hooks-product.php:196 views/admin-checker.php:41
+#: views/admin-custom.php:52
+msgid "Destination"
+msgstr "Tujuan"
+
+#: views/widget.php:16
+msgid "Destination City"
+msgstr "Kota/Kab. Tujuan"
+
+#: views/widget.php:22
+msgid "Destination District"
+msgstr "Kecamatan Tujuan"
+
+#: views/widget.php:7
+msgid "Destination Province"
+msgstr "Provinsi Tujuan"
+
+#: views/admin-setting-advanced.php:54
+msgid "Disable"
+msgstr "Matikan"
+
+#: views/admin-debugger.php:48 views/admin-debugger.php:63
+msgid "Disable API"
+msgstr "Matikan API"
+
+#: classes/class-pok-hooks-addresses.php:856
+msgid "disabled by Plugin Ongkos Kirim"
+msgstr "dimatikan oleh Plugin Ongkos Kirim"
+
+#: classes/class-pok-hooks-admin.php:776
+msgid "Discount amount"
+msgstr "Jumlah potongan"
+
+#: classes/class-pok-hooks-addresses.php:222
+#: classes/class-pok-hooks-admin.php:121
+#: classes/class-pok-hooks-product.php:229
+msgid "District"
+msgstr "Kecamatan"
+
+#: classes/class-pok-checker.php:85
+msgid "District not set"
+msgstr "Kecamatan tidak diset"
+
+#: views/admin-setting-cost.php:10
+msgid "Do not add insurance fee"
+msgstr "Jangan tambahkan"
+
+#: views/admin-setting-cost.php:34
+msgid "Do not add timber packing fee"
+msgstr "Jangan tambahkan"
+
+#: views/admin-setting-cost.php:131
+msgid "Do not convert"
+msgstr "Jangan konversi"
+
+#: views/admin-help.php:43
+msgid "Documentation"
+msgstr "Dokumentasi"
+
+#: views/admin-setting-weight.php:19
+msgid "Don't Round"
+msgstr "Jangan Bulatkan"
+
+#: views/admin-setting-cost.php:22
+#, php-format
+msgid ""
+"Each courier applies different rules for insurance calculations. For more "
+"info, <a href=\"%s\">check here</a>."
+msgstr ""
+"Setiap jasa pengiriman memiliki aturan sendiri dalam perhitungan asuransi. "
+"Untuk info lebih lengkap, <a href=\"%s\">baca disini</a>."
+
+#: classes/class-pok-hooks-addresses.php:178
+msgid "Email Address"
+msgstr "Alamat Email"
+
+#: views/admin-setting-advanced.php:56
+msgid "Enable"
+msgstr "Hidupkan"
+
+#: views/admin-setting-courier.php:174
+msgid "Enable International Shipping"
+msgstr "Aktifkan Pengiriman Internasional"
+
+#: views/admin-setting-basic.php:4
+msgid "Enable this shipping method?"
+msgstr "Aktifkan metode pengiriman ini?"
+
+#: views/admin-setting-basic.php:3
+msgid "Enabled"
+msgstr "Aktif"
+
+#: views/admin-setting-cost.php:146 views/admin-setting-cost.php:162
+msgid "Enterprise"
+msgstr "Enterprise"
+
+#: libs/tonjoo-license/tonjoo-license-api.php:145
+#: libs/tonjoo-license/tonjoo-license-api.php:176
+#: libs/tonjoo-license/tonjoo-license-api.php:223
+#: libs/tonjoo-license/tonjoo-license-api.php:280
+#: libs/tonjoo-license/tonjoo-license-api.php:346
+#, php-format
+msgid "Error: %s. Please contact us through the forum to resolve this."
+msgstr "Error: %s. Silahkan hubungi kami lewat forum untuk mengatasi ini."
+
+#: libs/tonjoo-license/tonjoo-license-api.php:133
+#: libs/tonjoo-license/tonjoo-license-api.php:156
+#: libs/tonjoo-license/tonjoo-license-api.php:210
+#: libs/tonjoo-license/tonjoo-license-api.php:267
+#, php-format
+msgid "Error: %s. Please try again."
+msgstr "Error: %s. Silahkan coba lagi."
+
+#: libs/tonjoo-license/tonjoo-license-handler.php:316
+#: libs/tonjoo-license/tonjoo-license-handler.php:396
+msgid "Error: Authentication Failed. Please try again"
+msgstr "Error: Autentikasi Gagal. Silahkan coba lagi"
+
+#: libs/tonjoo-license/tonjoo-license-api.php:258
+#: libs/tonjoo-license/tonjoo-license-api.php:286
+#: libs/tonjoo-license/tonjoo-license-api.php:326
+#: libs/tonjoo-license/tonjoo-license-handler.php:215
+#: libs/tonjoo-license/tonjoo-license-manager.php:299
+msgid "Error: Can't connect to server"
+msgstr "Error: Tidak dapat terhubung dengan server"
+
+#: libs/tonjoo-license/tonjoo-license-api.php:102
+#: libs/tonjoo-license/tonjoo-license-api.php:194
+#: libs/tonjoo-license/tonjoo-license-api.php:240
+#: libs/tonjoo-license/tonjoo-license-api.php:301
+msgid "Error: License key is empty"
+msgstr "Error: Kode lisensi kosong"
+
+#: libs/tonjoo-license/tonjoo-license-api.php:128
+msgid ""
+"Error: The license is already in use. If you sure this license is belongs to "
+"you and no other sites are using this license, please contact us at the "
+"forum."
+msgstr ""
+"Error: Lisensi telah digunakan. Jika Anda yakin lisensi ini adalah milik "
+"Anda dan tidak ada website lain yang menggunakannya, silahkan kontak kami "
+"melalui forum."
+
+#: classes/class-pok-hooks-admin.php:350
+msgid "Estimated"
+msgstr "Estimasi"
+
+#: classes/class-pok-hooks-admin.php:271
+msgid "Etd"
+msgstr "Etd"
+
+#: libs/tonjoo-license/view/license-manager.php:183
+msgid "Expired"
+msgstr "Berakhir"
+
+#: libs/tonjoo-license/view/license-manager.php:220
+#, php-format
+msgid "Expired at: %s"
+msgstr "Berakhir pada: %s"
+
+#: classes/class-pok-hooks-addresses.php:416
+#: classes/class-pok-hooks-admin.php:168
+#: classes/class-pok-hooks-product.php:260
+msgid "Failed to load city list. Try again?"
+msgstr "Gagal memuat data kota/kab. Coba lagi?"
+
+#: classes/class-pok-hooks-addresses.php:123
+msgid "Failed to load data. Please refresh the page."
+msgstr "Gagal memuat data. Silahkan muat ulang halaman."
+
+#: classes/class-pok-hooks-addresses.php:417
+#: classes/class-pok-hooks-admin.php:169
+#: classes/class-pok-hooks-product.php:261
+msgid "Failed to load district list. Try again?"
+msgstr "Gagal memuat data kecamatan. Coba lagi?"
+
+#: views/admin-help.php:57
+msgid "FAQ"
+msgstr "FAQ"
+
+#: views/admin-setting-courier.php:37
+msgid "Filter Courier Services"
+msgstr "Filter Layanan Kurir"
+
+#: views/admin-setting-cost.php:151 views/admin-setting-cost.php:167
+#, php-format
+msgid "Find your API key <a target=\"_blank\" href=\"%s\">here</a>"
+msgstr "Temukan API Key Anda <a target=\"_blank\" href=\"%s\">disini</a>"
+
+#: classes/class-pok-hooks-admin.php:766
+msgid "Fixed discount"
+msgstr "Diskon fix"
+
+#: views/admin-setting-cost.php:149
+msgid "Fixer API Key"
+msgstr "Fixer API Key"
+
+#: views/admin-setting-cost.php:141
+msgid "Fixer Subscription Plan"
+msgstr "Fixer Subscription Plan"
+
+#: views/admin-setting-advanced.php:16
+msgid "Flush Cache"
+msgstr "Hapus Cache"
+
+#: classes/class-pok-hooks-admin.php:765
+msgid "Free shipping"
+msgstr "Gratis ongkos kirim"
+
+#: views/admin-checker.php:13
+msgid "From"
+msgstr "Dari"
+
+#: views/widget.php:28
+msgid "Get Cost"
+msgstr "Cek Tarif"
+
+#: views/admin-checker.php:97
+msgid "Get cost"
+msgstr "Cek tarif"
+
+#: classes/class-pok-report-table-hpos.php:347
+#: classes/class-pok-report-table.php:347
+msgid "Get Report"
+msgstr "Lihat Laporan"
+
+#: classes/class-pok-wizard.php:328
+#, php-format
+msgid "Get your license key from <a href=\"%s\">here</a>"
+msgstr "Dapatkan kode lisensi Anda <a href=\"%s\">disini</a>"
+
+#: classes/class-pok-report-table-hpos.php:165
+#: classes/class-pok-report-table.php:165
+#: classes/class-pok-report-table.php:165
+msgid "Go"
+msgstr "Go"
+
+#: classes/class-pok-admin.php:613
+msgid "Go to Settings"
+msgstr "Ubah Pengaturan"
+
+#: views/admin-help.php:58
+msgid ""
+"Have a problem with Plugin Ongkos Kirim? Let's check our Frequently Asked "
+"Questions before you ask something to our support."
+msgstr ""
+"Punya kendala dengan Plugin Ongkos Kirim? Silahkan cek FAQ kami terlebih "
+"dulu sebelum mengajukan pertayaan ke tim support kami."
+
+#: libs/tonjoo-license/view/license-manager.php:246
+msgid "Have you tried our other cool stuffs?"
+msgstr "Sudahkah Anda mencoba produk kami lainnya?"
+
+#: views/admin-setting-weight.php:47
+msgid "height"
+msgstr "tinggi"
+
+#: classes/class-pok-admin.php:219
+#: libs/tonjoo-license/view/license-manager.php:257
+msgid "Help Center"
+msgstr "Pusat Bantuan"
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:157
+msgid "Hide Notice"
+msgstr "Jangan Tampilkan Lagi"
+
+#. Description of the plugin
+msgid ""
+"Hitung ongkos kirim seluruh Indonesia (JNE, POS, Tiki, JNT, Wahana, Lion "
+"Parcel, Sicepat, dll)"
+msgstr ""
+"Hitung ongkos kirim seluruh Indonesia (JNE, POS, Tiki, JNT, Wahana, Lion "
+"Parcel, Sicepat, dll)"
+
+#: views/admin-setting-cost.php:13
+msgid "How insurance fee will be applied to the cost?"
+msgstr "Bagaimana asuransi akan diaplikasikan ke ongkos kirim?"
+
+#: views/admin-setting-weight.php:13
+msgid "How shipping weight will be rounded"
+msgstr "Bagaimana berat pengiriman akan dibulatkan"
+
+#: views/admin-custom.php:22
+msgid "How your custom costs will be displayed on the checkout page"
+msgstr ""
+"Bagaimana ongkos kirim kustom Anda akan ditampilkan di halaman checkout"
+
+#. Author URI of the plugin
+msgid "https://tonjoostudio.com"
+msgstr "https://tonjoostudio.com"
+
+#. URI of the plugin
+msgid "https://tonjoostudio.com/addons/woo-ongkir/"
+msgstr "https://tonjoostudio.com/addons/woo-ongkir/"
+
+#: libs/tonjoo-license/view/license-manager.php:263
+msgid "I have a problem with my license"
+msgstr "Saya mempunayi masalah dengan lisensi saya"
+
+#: classes/class-pok-hooks-product.php:69
+msgid "If checked, the insurance fee will be added to the shipping cost."
+msgstr ""
+"Jika dicentang, maka biaya asuransi akan ditambahkan ke biaya pengiriman."
+
+#: classes/class-pok-hooks-product.php:77
+msgid "If checked, the timber packing fee will be added to the shipping cost."
+msgstr ""
+"Jika dicentang, maka biaya packing kayu akan ditambahkan ke dalam biaya "
+"pengiriman."
+
+#: views/admin-setting-checkout.php:4
+msgid ""
+"If enabled, the address fields (province, city, district) will be combined "
+"into 1 simplified field."
+msgstr ""
+"Jika diaktifkan, maka kolom alamat (provinsi, kota, kecamatan) akan dilebur "
+"jadi 1 kolom yang simple."
+
+#: views/admin-setting-courier.php:85
+msgid ""
+"If minimum weight is not reached, cargo services will be hidden from the "
+"result"
+msgstr ""
+"Jika berat kiriman belum mencapai berat minimal, opsi kargo akan "
+"disembunyikan dari pilihan ongkir"
+
+#: views/admin-setting-weight.php:31
+msgid ""
+"If shipping weight is less equal to the limit, it will rounding down. "
+"Otherwise, it will be rounding up."
+msgstr ""
+"Jika berat pengiriman kurang dari sama dengan batas yang ditentukan, maka "
+"akan dibulatkan ke bawah. Sebaliknya akan dibulatkan ke atas."
+
+#: views/admin-setting-cost.php:19
+msgid ""
+"If you let customer to decide, a checkbox will be shown on checkout page to "
+"let customer to choose to add insurance fee or not."
+msgstr ""
+"Jika Anda membiarkan kustomer untuk menentukan, di form checkout akan muncul "
+"checkbox untuk diisi kustomer untuk menentukan menggunakan asuransi atau "
+"tidak."
+
+#: classes/class-pok-wizard.php:616
+msgid ""
+"If you need an assist, click the link below to find a way that may you need."
+msgstr ""
+"Jika Anda butuh bantuan, klik link di bawah ini untuk menemukan solusi yang "
+"mungkin Anda butuhkan."
+
+#: views/admin-help.php:85
+msgid "Inaccurate Costs?"
+msgstr "Data Tidak Akurat?"
+
+#: views/admin-checker.php:101
+msgid "Input shipping information and click Get Cost to get the costs"
+msgstr ""
+"Masukkan detail asal dan tujuan lalu klik Cek Tarif untuk mendapatkan tarif"
+
+#: libs/tonjoo-license/view/license-manager.php:222
+msgid "Input your license key"
+msgstr "Masukkan kode lisensi"
+
+#: views/admin-checker.php:82
+msgid "Insurance"
+msgstr "Asuransi"
+
+#: classes/class-pok-report-table-hpos.php:222
+#: classes/class-pok-report-table.php:222
+msgid "Insurance Fee"
+msgstr "Biaya Asuransi"
+
+#: classes/class-pok-hooks-admin.php:352
+msgid "Insurance fee"
+msgstr "Biaya asuransi"
+
+#: views/admin-setting-courier.php:186
+msgid ""
+"International shipping costs only available on API Rajaongkir with Basic or "
+"Pro type."
+msgstr ""
+"Ongkos kirim internasional hanya tersedia jika Anda menggunakan API "
+"Rajaongkir dengan tipe Basic atau Pro."
+
+#: classes/class-pok-wizard.php:109
+msgid "Introduction"
+msgstr "Terima Kasih"
+
+#: classes/class-pok-report-table-hpos.php:122
+#: classes/class-pok-report-table.php:122
+msgid "Last 7 days"
+msgstr "Seminggu terakhir"
+
+#: libs/tonjoo-license/view/license-manager.php:230
+msgid "Last Check"
+msgstr "Terakhir Dicek"
+
+#: classes/class-pok-report-table-hpos.php:120
+#: classes/class-pok-report-table.php:120
+msgid "Last month"
+msgstr "Sebulan terakhir"
+
+#: classes/class-pok-wizard.php:593
+msgid "Learn more"
+msgstr "Pelajari lebih lanjut"
+
+#: classes/class-pok-hooks-admin.php:602
+msgid ""
+"Left this field empty if the coupon does not need a maximum shipping weight."
+msgstr "Kosongkan kolom ini jika kupon tidak memerlukan berat maksimal"
+
+#: classes/class-pok-hooks-admin.php:597
+msgid ""
+"Left this field empty if the coupon does not need a minimum shipping weight."
+msgstr "Kosongkan kolom ini jika kupon tidak memerlukan berat minimal"
+
+#: classes/class-pok-hooks-admin.php:613
+msgid "Left this field empty if the coupon is valid for all shipping couriers."
+msgstr "Kosongkan kolom ini jika kupon valid untuk semua kurir pengiriman"
+
+#: views/admin-setting-weight.php:47
+msgid "length"
+msgstr "panjang"
+
+#: views/admin-setting-miscellaneous.php:51
+msgid "Length of you unique number."
+msgstr "Panjang nomor unik"
+
+#: views/admin-setting-cost.php:15
+msgid "Let customer decide"
+msgstr "Biarkan kustomer menentukan"
+
+#: classes/class-pok-wizard.php:308
+msgid "Let's Go!"
+msgstr "Let's Go!"
+
+#: classes/class-pok-wizard.php:114
+msgid "License"
+msgstr "Lisensi"
+
+#: libs/tonjoo-license/tonjoo-license-handler.php:381
+#: libs/tonjoo-license/tonjoo-license-handler.php:427
+msgid "License key is empty"
+msgstr "Kode lisensi kosong"
+
+#: libs/tonjoo-license/view/license-manager.php:165
+msgid "License Status"
+msgstr "Status Lisensi"
+
+#: views/admin-debugger.php:8
+msgid "License status"
+msgstr "Status lisensi"
+
+#: views/admin-custom.php:159
+msgid "Limit reached"
+msgstr "Telah mencapai batas"
+
+#: classes/class-pok-hooks-addresses.php:419
+#: classes/class-pok-hooks-admin.php:173
+#: classes/class-pok-hooks-product.php:263
+msgid "Loading city options..."
+msgstr "Memuat data kota/kab..."
+
+#: classes/class-pok-hooks-addresses.php:421
+#: classes/class-pok-hooks-admin.php:175
+#: classes/class-pok-hooks-product.php:265
+msgid "Loading district options..."
+msgstr "Memuat data kecamatan..."
+
+#: classes/class-pok-hooks-admin.php:171
+msgid "Loading state options..."
+msgstr "Memuat pilihan provinsi..."
+
+#: classes/class-pok-hooks-product.php:268 views/admin-checker.php:102
+msgid "Loading..."
+msgstr "Memuat..."
+
+#: views/admin-setting-basic.php:87
+msgid "Location of your store"
+msgstr "Lokasi toko Anda"
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:156
+msgid "Manage License"
+msgstr "Kelola Lisensi"
+
+#: classes/class-pok-hooks-admin.php:601
+msgid "Maximum shipping weight"
+msgstr "Berat pengiriman maksimal"
+
+#: classes/class-pok-hooks-admin.php:600
+msgid "Maximum weight"
+msgstr "Berat maksimal"
+
+#: views/admin-custom.php:56
+msgid "Min/Max Weight (Kg)"
+msgstr "Berat Min/Maks (Kg)"
+
+#: classes/class-pok-hooks-admin.php:596
+msgid "Minimum shipping weight"
+msgstr "Berat pengiriman minimal"
+
+#: classes/class-pok-hooks-admin.php:595
+msgid "Minimum weight"
+msgstr "Berat minimal"
+
+#: classes/class-pok-admin.php:276
+msgid "Miscellaneous"
+msgstr "Lain-Lain"
+
+#: classes/class-pok-admin.php:281
+msgid "Multi Vendor"
+msgstr "Multi Vendor"
+
+#: libs/tonjoo-license/view/license-manager.php:260
+msgid "My Licenses"
+msgstr "Lisensi Saya"
+
+#: classes/class-pok-wizard.php:620
+msgid "Next Steps"
+msgstr "Langkah Selanjutnya"
+
+#: views/admin-setting-advanced.php:40 views/admin-setting-basic.php:9
+#: views/admin-setting-checkout.php:10 views/admin-setting-checkout.php:30
+#: views/admin-setting-checkout.php:47 views/admin-setting-checkout.php:61
+#: views/admin-setting-checkout.php:75 views/admin-setting-checkout.php:90
+#: views/admin-setting-courier.php:43 views/admin-setting-courier.php:90
+#: views/admin-setting-courier.php:181 views/admin-setting-miscellaneous.php:10
+#: views/admin-setting-miscellaneous.php:28 views/admin-setting-weight.php:43
+msgid "No"
+msgstr "Tidak"
+
+#: views/admin-debugger.php:112
+msgid "No logs to display."
+msgstr "Tidak ada logs untuk ditampilkan."
+
+#: classes/class-pok-report-table-hpos.php:100
+#: classes/class-pok-report-table.php:100
+msgid "No order found"
+msgstr "Tidak ada order ditemukan"
+
+#: classes/class-pok-admin.php:114 views/admin-setting-courier.php:62
+msgid "No service selected, click here to select services"
+msgstr "Tidak ada layanan yang dipilih, klik disini untuk memilihnya"
+
+#: classes/class-pok-hooks-admin.php:278
+msgid ""
+"No shipping service found or something wrong happens. Please check your "
+"setting."
+msgstr ""
+"Tidak ada layanan tersedia atau mungkin terjadi kesalahan. Silahkan cek "
+"pengaturan Anda."
+
+#: classes/class-pok-wizard.php:306
+msgid ""
+"No time right now? If you don’t want to go through the wizard, you can skip "
+"and return to the WordPress dashboard. Come back anytime if you change your "
+"mind!"
+msgstr ""
+"Tidak ada waktu saat ini? Jika Anda tidak ingin melalui wizard ini, Anda "
+"bisa lewati dan kembali ke dashboard WordPress. Anda tetap dapat melakukan "
+"pengaturan di halaman Ongkos Kirim &rsaquo; Pengaturan"
+
+#: libs/tonjoo-license/view/license-manager.php:189
+msgid "Not Activated"
+msgstr "Tidak Aktif"
+
+#: classes/class-pok-wizard.php:309 classes/class-pok-wizard.php:335
+msgid "Not right now"
+msgstr "Jangan sekarang"
+
+#: views/admin-setting-cost.php:8 views/admin-setting-cost.php:32
+msgid "Only apply on specific product (can be set via edit product)"
+msgstr "Hanya aplikasikan ke produk tertentu (dapat diatur ketika edit produk)"
+
+#: views/admin-setting-courier.php:84
+msgid "Only Show Cargo Services When Minimum Weight is Reached"
+msgstr "Hanya Tampilkan Opsi Kargo Jika Berat Kiriman Mencapai Syarat Minimal"
+
+#: views/admin-setting-inactive.php:2
+msgid "Options are unavailable until you activate Rajaongkir API Key"
+msgstr "Opsi ini tidak tersedia selama Anda belum mengaktifkan API Rajaongkir"
+
+#: views/admin-setting-miscellaneous.php:14
+#, php-format
+msgid ""
+"Or simply use %s shortcode on the product description. But make sure to set "
+"this option to 'No' first."
+msgstr ""
+"Atau Anda dapat menggunakan shortcode %s pada deskripsi produk. Namun "
+"pastikan Anda mematikan opsi ini terlebih dulu."
+
+#: classes/class-pok-report-table-hpos.php:217
+#: classes/class-pok-report-table.php:217
+msgid "Order"
+msgstr "Order"
+
+#: classes/class-pok-report-table-hpos.php:186
+#: classes/class-pok-report-table.php:186
+msgid "Order Count"
+msgstr "Jumlah Order"
+
+#: classes/class-pok-report-table-hpos.php:218
+#: classes/class-pok-report-table.php:218
+msgid "Order Date"
+msgstr "Tanggal Order"
+
+#: views/admin-help.php:86
+msgid ""
+"Our data are updated semi-automatically, some shipping costs may be "
+"inaccurate. Help us to find it by reporting them through provided form."
+msgstr ""
+"Data diupdate secara semi-otomatis, beberapa ongkos kirim mungkin tidak "
+"akurat. Bantu kami untuk menemukannya melalui form yang telah disediakan."
+
+#: views/admin-setting-advanced.php:34
+msgid "Override Default Location to Indonesia"
+msgstr "Ubah Default Negara ke Indonesia"
+
+#: views/admin-setting-advanced.php:35
+msgid "Override default location to Indonesia in checkout page."
+msgstr "Ubah default negara ke Indonesia di halaman checkout."
+
+#: classes/class-pok-hooks-admin.php:767
+msgid "Percentage discount"
+msgstr "Diskon persen"
+
+#: classes/class-pok-report-table-hpos.php:181
+#: classes/class-pok-report-table.php:181
+msgid "Period"
+msgstr "Periode"
+
+#: classes/class-pok-hooks-addresses.php:183
+msgid "Phone"
+msgstr "Telepon"
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:127
+#, php-format
+msgid "Please activate your <strong>%s</strong> license."
+msgstr "Harap aktivasi lisensi <strong>%s</strong> Anda."
+
+#: classes/class-pok-hooks-product.php:266
+msgid "Please insert quantity"
+msgstr "Mohon masukkan jumlah"
+
+#: classes/class-pok-hooks-product.php:267
+msgid "Please select your destination"
+msgstr "Pilih tujuan pengiriman"
+
+#. Name of the plugin
+#: classes/class-pok-shipping-method.php:50
+#: classes/class-pok-shipping-method.php:53
+msgid "Plugin Ongkos Kirim"
+msgstr "Plugin Ongkos Kirim"
+
+#: classes/class-pok-wizard.php:176
+msgid "Plugin Ongkos Kirim &rsaquo; Setup Wizard"
+msgstr "Plugin Ongkos Kirim &rsaquo; Setup Wizard"
+
+#: classes/class-pok-wizard.php:321
+msgid "Plugin Ongkos Kirim can not be used unless you activate the license"
+msgstr ""
+"Plugin Ongkos Kirim tidak dapat digunakan jika Anda tidak melakukan aktivasi"
+
+#: classes/class-pok-wizard.php:590
+msgid ""
+"Plugin Ongkos Kirim does not currently support block-based checkout page. To "
+"get our plugin working properly, you need to switch your checkout page to "
+"classic mode."
+msgstr ""
+"Plugin Ongkos Kirim saat ini belum mendukung halaman checkout berbasis block."
+" Agar plugin kami dapat berjalan dengan semestinya, silahkan ubah halaman "
+"checkout Anda ke mode klasik terlebih dulu."
+
+#: classes/class-pok-wizard.php:617
+msgid "Plugin Ongkos Kirim Help Center"
+msgstr "Pusat Bantuan Plugin Ongkos Kirim"
+
+#: classes/class-pok-admin.php:582
+msgid "Plugin Ongkos Kirim needs active CURL"
+msgstr "Plugin Ongkos Kirim membutuhkan fitur CURL aktif"
+
+#: classes/class-pok-hooks-addresses.php:320
+msgid "Postcode / ZIP"
+msgstr "Kode Pos"
+
+#: views/admin-setting-cost.php:144 views/admin-setting-cost.php:161
+msgid "Professional"
+msgstr "Professional"
+
+#: views/admin-setting-cost.php:145
+msgid "Professional Plus"
+msgstr "Professional Plus"
+
+#: classes/class-pok-hooks-addresses.php:311
+#: classes/class-pok-hooks-product.php:208
+msgid "Province"
+msgstr "Provinsi"
+
+#: classes/class-pok-hooks-product.php:189
+msgid "Quantity"
+msgstr "Jumlah"
+
+#: views/admin-setting-basic.php:26
+msgid "Rajaongkir"
+msgstr "Rajaongkir"
+
+#: classes/class-pok-admin.php:589
+msgid "RajaOngkir API Key is not active."
+msgstr "API Rajaongkir tidak aktif"
+
+#: views/admin-setting-basic.php:28
+msgid "Rajaongkir V2"
+msgstr "Rajaongkir V2"
+
+#: views/admin-debugger.php:46 views/admin-debugger.php:61
+msgid "Re-Enable API"
+msgstr "Hidupkan API"
+
+#: classes/class-pok-wizard.php:134
+msgid "Ready!"
+msgstr "Selesai!"
+
+#: libs/tonjoo-license/view/license-manager.php:205
+msgid "Renew License"
+msgstr "Perbarui Lisensi"
+
+#: views/admin-custom.php:29
+msgid "Replace"
+msgstr "Gantikan"
+
+#: views/admin-help.php:90
+msgid "Report"
+msgstr "Lapor"
+
+#: views/admin-checker.php:96
+msgid "Reset"
+msgstr "Reset"
+
+#: views/admin-setting-advanced.php:25
+msgid "Reset Configuration"
+msgstr "Reset Pengaturan"
+
+#: classes/class-pok-wizard.php:260
+msgid "Return to the WordPress Dashboard"
+msgstr "Kembali ke Dashboard WordPress"
+
+#: views/admin-setting-weight.php:26
+msgid "Round Down"
+msgstr "Kebawah"
+
+#: views/admin-setting-weight.php:12
+msgid "Round Shipping Weight"
+msgstr "Pembulatan Berat Pengiriman"
+
+#: views/admin-setting-weight.php:24
+msgid "Round Up"
+msgstr "Keatas"
+
+#: views/admin-custom.php:168
+msgid "Save Custom Costs"
+msgstr "Simpan Ongkos Kirim Kustom"
+
+#: views/admin-setting.php:21
+msgid "Save Settings"
+msgstr "Simpan Pengaturan"
+
+#: classes/class-pok-hooks-addresses.php:206
+#: classes/class-pok-hooks-addresses.php:208
+#: classes/class-pok-hooks-product.php:203
+msgid "Search Town / City"
+msgstr "Cari Kota / Kab."
+
+#: classes/class-pok-hooks-addresses.php:197
+#: classes/class-pok-hooks-addresses.php:200
+#: classes/class-pok-hooks-addresses.php:418
+#: classes/class-pok-hooks-admin.php:116 classes/class-pok-hooks-admin.php:172
+msgid "Select City"
+msgstr "Pilih Kota/Kab."
+
+#: classes/class-pok-admin.php:111 classes/class-pok-admin.php:153
+#: classes/class-pok-hooks-admin.php:233
+#: classes/class-pok-hooks-product.php:219
+#: classes/class-pok-hooks-product.php:262 views/admin-checker.php:16
+#: views/admin-checker.php:31 views/admin-checker.php:55
+#: views/admin-setting-basic.php:91 views/admin-setting-basic.php:107
+#: views/widget.php:18
+msgid "Select city"
+msgstr "Pilih kota/kab."
+
+#: views/admin-setting-courier.php:149
+msgid "Select Courier"
+msgstr "Pilih Kurir"
+
+#: views/admin-setting-courier.php:6
+msgid "Select couriers to display"
+msgstr "Pilih kurir untuk ditampilkan"
+
+#: views/admin-checker.php:45
+msgid "Select destination"
+msgstr "Pilih tujuan"
+
+#: classes/class-pok-hooks-addresses.php:223
+#: classes/class-pok-hooks-addresses.php:225
+#: classes/class-pok-hooks-addresses.php:420
+#: classes/class-pok-hooks-admin.php:124 classes/class-pok-hooks-admin.php:174
+msgid "Select District"
+msgstr "Pilih Kecamatan"
+
+#: classes/class-pok-admin.php:112 classes/class-pok-admin.php:154
+#: classes/class-pok-hooks-admin.php:234
+#: classes/class-pok-hooks-product.php:231
+#: classes/class-pok-hooks-product.php:264 views/admin-checker.php:59
+#: views/widget.php:24
+msgid "Select district"
+msgstr "Pilih kecamatan"
+
+#: classes/class-pok-hooks-addresses.php:312
+msgid "Select Province"
+msgstr "Pilih Provinsi"
+
+#: classes/class-pok-hooks-product.php:210 views/admin-checker.php:49
+#: views/widget.php:9
+msgid "Select province"
+msgstr "Pilih provinsi"
+
+#: classes/class-pok-admin.php:108 views/admin-setting-courier.php:157
+msgid "Select Service"
+msgstr "Pilih Layanan"
+
+#: classes/class-pok-hooks-admin.php:178
+msgid "Select shipping service"
+msgstr "Pilih layanan pengiriman"
+
+#: classes/class-pok-hooks-admin.php:170
+msgid "Select State"
+msgstr "Pilih Provinsi"
+
+#: classes/class-pok-wizard.php:539
+msgid "Select Your Couriers"
+msgstr "Pilih Kurir Anda"
+
+#: views/admin-checker.php:17 views/admin-checker.php:23
+#: views/admin-checker.php:27 views/admin-checker.php:44
+#: views/admin-setting-basic.php:92 views/admin-setting-basic.php:98
+#: views/admin-setting-basic.php:102
+msgid "Select your store location"
+msgstr "Pilih lokasi toko Anda"
+
+#: views/admin-debugger.php:13
+msgid "Selected API"
+msgstr "API Digunakan"
+
+#: classes/class-pok-admin.php:599
+msgid "Selected Couriers is empty."
+msgstr "Tidak ada kurir yang dipilih."
+
+#: classes/class-pok-cpr.php:73 classes/class-pok-hooks-admin.php:270
+#: classes/class-pok-report-table-hpos.php:221
+#: classes/class-pok-report-table.php:221 views/admin-setting-cost.php:58
+msgid "Service"
+msgstr "Layanan"
+
+#: views/admin-custom.php:54 views/admin-setting-courier.php:111
+msgid "Service Name"
+msgstr "Nama Layanan"
+
+#: classes/class-pok-hooks-admin.php:617
+msgid "Services"
+msgstr "Layanan"
+
+#: classes/class-pok-wizard.php:622
+msgid "Set up advanced settings"
+msgstr "Pengaturan Tambahan"
+
+#: classes/class-pok-admin.php:200
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: classes/class-pok-admin.php:430
+msgid "Settings saved"
+msgstr "Pengaturan berhasil disimpan"
+
+#: views/admin-inactive.php:5
+#, php-format
+msgid ""
+"Settings will show up here after you activate the license of Plugin Ongkos "
+"Kirim. <a href=\"%s\">Click here to activate</a>."
+msgstr ""
+"Pengaturan akan ditampilkan disini setelah Anda mengaktifkan lisensi Plugin "
+"Ongkos Kirim. <a href=\"%s\">Klik disini untuk aktivasi</a>."
+
+#: classes/class-pok-cpr.php:54 classes/class-pok-cpr.php:60
+#: classes/class-pok-cpr.php:75 classes/class-pok-cpr.php:92
+msgid "Shipping"
+msgstr "Shipping"
+
+#: classes/class-pok-hooks-product.php:185
+msgid "Shipping Calculator"
+msgstr "Kalkulator Ongkos Kirim"
+
+#: views/admin-checker.php:110
+msgid ""
+"Shipping checker will show up here after you activate the license of "
+"Rajaongkir."
+msgstr ""
+"Cek ongkos kirim akan muncul setelah Anda mengaktifkan lisensi Rajaongkir."
+
+#: views/admin-setting-cost.php:47
+msgid "Shipping Cost Markup"
+msgstr "Markup Ongkos Kirim"
+
+#: views/admin-setting-cost.php:37
+msgid "Shipping cost multiplier"
+msgstr "Pengali biaya pengiriman"
+
+#: views/admin-setting-advanced.php:7
+msgid "Shipping Costs Data"
+msgstr "Data Ongkos Kirim"
+
+#: classes/class-pok-hooks-admin.php:514
+msgid "Shipping Couriers"
+msgstr "Pengiriman"
+
+#: classes/class-pok-hooks-admin.php:360
+msgid "Shipping discount"
+msgstr "Diskon ongkos kirim"
+
+#: classes/class-pok-hooks-admin.php:557
+msgid "Shipping discount (by Plugin Ongkos Kirim)"
+msgstr "Diskon ongkos kirim (by Plugin Ongkos Kirim)"
+
+#: classes/class-pok-hooks-addresses.php:987
+msgid "Shipping discount coupon"
+msgstr "Kupon diskon pengiriman"
+
+#: classes/class-pok-hooks-admin.php:763
+msgid "Shipping discount type"
+msgstr "Tipe diskon pengiriman"
+
+#: classes/class-pok-hooks-product.php:115
+msgid "Shipping Estimation"
+msgstr "Estimasi Ongkos Kirim"
+
+#: views/admin-setting-cost.php:3
+msgid "Shipping Insurance"
+msgstr "Asuransi Pengiriman"
+
+#: classes/class-pok-hooks-product.php:66
+msgid "Shipping insurance"
+msgstr "Asuransi pengiriman"
+
+#: classes/class-pok-shipping-method.php:51
+msgid "Shipping Method for Indonesia Marketplace"
+msgstr "Metode Pengiriman untuk Marketplace Indonesia"
+
+#: classes/class-pok-wizard.php:119 classes/class-pok-wizard.php:387
+msgid "Shipping Origin"
+msgstr "Asal Pengiriman"
+
+#: classes/class-pok-hooks-admin.php:570
+msgid "Shipping restriction"
+msgstr "Batasan pengiriman"
+
+#: classes/class-pok-hooks-admin.php:358
+msgid "Shipping weight"
+msgstr "Berat pengiriman"
+
+#: classes/class-pok-hooks-admin.php:330
+msgid "Shipping weight:"
+msgstr "Berat pengiriman:"
+
+#: views/admin-setting-checkout.php:41
+msgid "Show Address Field on Virtual Products"
+msgstr "Tampilkan Kolom Alamat untuk Produk Virtual"
+
+#: views/admin-setting-courier.php:175
+msgid "Show international shipping costs on checkout page"
+msgstr "Tampilak ongkos kirim internasional pada halaman checkout"
+
+#: views/admin-setting-checkout.php:42
+msgid ""
+"Show PluginOngkosKirim's address fields even if the cart does not require "
+"shipping (virtual products)."
+msgstr ""
+"Tampilkan kolom alamat PluginOngkosKirim meski checkout tidak memerlukan "
+"pengiriman (produk virtual)"
+
+#: views/admin-setting-miscellaneous.php:3
+msgid "Show Shipping Calculator on Product Page"
+msgstr "Tampilkan Kalkulator Ongkos Kirim di Halaman Produk"
+
+#: views/admin-setting-miscellaneous.php:4
+msgid "Show shipping cost estimation calculator on product tabs"
+msgstr "Tampilkan kalkulator ongkos kirim di salah satu tab di halaman produk"
+
+#: views/admin-setting-checkout.php:69
+msgid "Show Shipping Estimation on Checkout"
+msgstr "Tampilkan Estimasi Lama Pengiriman"
+
+#: views/admin-setting-checkout.php:70
+msgid "Show shipping estimation on checkout"
+msgstr "Tampilkan estimasi lama pengiriman di halaman checkout"
+
+#: views/admin-setting-checkout.php:83
+msgid "Show Shipping Origin on Checkout"
+msgstr "Tampilkan Asal Pengiriman di Checkout"
+
+#: views/admin-setting-checkout.php:56
+msgid "Show total shipping weight on checkout page"
+msgstr "Tampilkan berat total pengiriman pada halaman checkout"
+
+#: views/admin-setting-checkout.php:55
+msgid "Show Total Weight on Checkout"
+msgstr "Tampilkan Berat Pengiriman"
+
+#: views/admin-setting-checkout.php:84
+msgid "Show your store location on checkout page"
+msgstr "Tampilkan lokasi toko Anda pada halaman checkout"
+
+#: views/admin-debugger.php:57
+msgid "Simulate Disable API Rajaongkir"
+msgstr "Simulasi Matikan API Rajaongkir"
+
+#: views/admin-debugger.php:42
+msgid "Simulate Disable API Tonjoo"
+msgstr "Simulasi Matikan API Tonjoo"
+
+#: classes/class-pok-wizard.php:420 classes/class-pok-wizard.php:555
+msgid "Skip this step"
+msgstr "Lewati"
+
+#: classes/class-pok-ajax.php:438 classes/class-pok-ajax.php:540
+msgid "Sorry, no shipping cost found for the destination."
+msgstr "Maaf, tidak ditemukan layanan pengiriman untuk tujuan tersebut."
+
+#: views/admin-custom.php:3
+msgid "Sorry, this feature is unavailable with API Rajaongkir v2"
+msgstr "Maaf, fitur ini tidak tersedia untuk API Rajaongkir v2"
+
+#: classes/class-pok-hooks-admin.php:745
+msgid "Specify the shipping destination where the discount should apply."
+msgstr "Tentukan tujuan pengiriman mana saja yang dapat diaplikasikan diskon."
+
+#: views/admin-setting-cost.php:135
+msgid "Static conversion rate"
+msgstr "Atur nilai tukar manual"
+
+#: classes/class-pok-report-table-hpos.php:225
+#: classes/class-pok-report-table.php:225 views/admin-debugger.php:3
+msgid "Status"
+msgstr "Status"
+
+#: views/admin-setting-basic.php:86
+msgid "Store Location"
+msgstr "Lokasi Toko"
+
+#: classes/class-pok-admin.php:595
+msgid "Store Location is empty."
+msgstr "Lokasi Toko belum ditentukan."
+
+#: views/admin-help.php:71 libs/tonjoo-license/view/license-manager.php:264
+msgid "Support Forum"
+msgstr "Support Forum"
+
+#: classes/class-pok-admin.php:623 classes/class-pok-wizard.php:592
+msgid "Switch to classic checkout"
+msgstr "Ubah ke checkout klasik"
+
+#: views/admin-setting-basic.php:74
+msgid ""
+"Switching the Base API will impact the deletion of previously stored data, "
+"including: Store Location (including the location of each vendor), Custom "
+"Shipping Costs, Customer Address Data, Courier Service Filters, Custom "
+"Service Names and Shipping Cost Data stored in the cache. We did this "
+"removal to adjust the chosen API because each API provides different courier "
+"and city data. So be wise in switching the Base API, only make changes if it "
+"is really needed."
+msgstr ""
+"Mengganti Base API akan berimbas pada terhapusnya data yang sebelumnya "
+"tersimpan, antara lain: Lokasi Toko (termasuk lokasi tiap vendor), Ongkos "
+"Kirim Kustom, Data Alamat Customer, Daftar Filter Layanan, Nama Layanan "
+"Kustom dan Data Ongkos Kirim yang tersimpan pada cache. Kami melakukan "
+"penghapusan ini untuk menyesuaikan API yang digunakan dimana tiap API "
+"menyediakan data kurir dan data kota yang berbeda. Jadi bijaklah dalam "
+"mengganti Base API, hanya lakukan pergantian pada saat sangat diperlukan."
+
+#: views/admin-setting-basic.php:76
+msgid ""
+"Switching the Base API will impact the deletion of previously stored data, "
+"including: Store Location, Custom Shipping Costs, Customer Address Data, "
+"Courier Service Filters, Custom Service Names and Shipping Cost Data stored "
+"in the cache. We did this removal to adjust the chosen API because each API "
+"provides different courier and city data. So be wise in switching the Base "
+"API, only make changes if it is really needed."
+msgstr ""
+"Mengganti Base API akan berimbas pada terhapusnya data yang sebelumnya "
+"tersimpan, antara lain: Lokasi Toko, Ongkos Kirim Kustom, Data Alamat "
+"Customer, Daftar Filter Layanan, Nama Layanan Kustom dan Data Ongkos Kirim "
+"yang tersimpan pada cache. Kami melakukan penghapusan ini untuk menyesuaikan "
+"API yang digunakan dimana tiap API menyediakan data kurir dan data kota yang "
+"berbeda. Jadi bijaklah dalam mengganti Base API, hanya lakukan pergantian "
+"pada saat sangat diperlukan."
+
+#: classes/class-pok-wizard.php:305
+msgid ""
+"Thank you for choosing Plugin Ongkos Kirim to power your online marketplace! "
+"This quick setup wizard will help you configure the basic settings of Ongkos "
+"Kirim until it ready to use."
+msgstr ""
+"Terima kasih telah memilih Plugin Ongkos Kirim untuk mendukung toko online "
+"Anda! Wizard pengaturan berikut akan membantu Anda untuk melakukan "
+"pengaturan dasar Plugin Ongkos Kirim hingga siap digunakan."
+
+#: classes/class-pok-wizard.php:615
+msgid "Thank you for using Plugin Ongkos Kirim."
+msgstr "Terima kasih telah menggunakan Plugin Ongkos Kirim."
+
+#: views/admin-debugger.php:117
+#, php-format
+msgid ""
+"The error logs can't be displayed because we can't access the file at %s. "
+"Consider to check your file permission and make sure that directory is "
+"writable."
+msgstr ""
+"Error logs tidak dapat ditampilkan karena kami tidak dapat mengakses file "
+"yang terdapat pada %s. Coba untuk mengecek hak akses file tersebut dan "
+"pastikan directorynya writable."
+
+#: views/admin-setting-cost.php:40
+msgid ""
+"The shipping cost multiplier is used to determine how much the timber "
+"packing fee is. The value \"1\" means the timber packing fee is equal to the "
+"selected shipping cost."
+msgstr ""
+"Pengali biaya pengiriman digunakan untuk menentukan biaya packing kayu. "
+"Isian \"1\" berarti biaya packing kayu sama dengan biaya pengiriman yang "
+"dipilih."
+
+#: views/admin-setting-weight.php:47
+msgid "The weight of the product will calculated with the formula:"
+msgstr "Berat produk akan dihitung dengan rumus:"
+
+#: views/admin-setting-basic.php:115
+#, php-format
+msgid ""
+"This is your main store location. To manage vendor store locations, <a "
+"href=\"%s\">click here</a>."
+msgstr ""
+"Ini adalah lokasi utama toko Anda. Untuk mengatur lokasi toko vendor, <a "
+"href=\"%s\">klik disini</a>."
+
+#: classes/class-pok-report-table-hpos.php:121
+#: classes/class-pok-report-table.php:121
+msgid "This month"
+msgstr "Bulan ini"
+
+#: views/admin-setting-checkout.php:15
+msgid "This option always active on API Rajaongkir v2."
+msgstr "Opsi ini selalu aktif pada API Rajaongkir v2"
+
+#: views/admin-setting-checkout.php:35 views/admin-setting-checkout.php:95
+#: views/admin-setting-miscellaneous.php:16
+msgid "This option is not available on API Rajaongkir v2."
+msgstr "Opsi ini tidak tersedia pada API Rajaongkir v2."
+
+#: views/admin-setting-checkout.php:17
+msgid "This option only available on API Tonjoo & Rajaongkir v2."
+msgstr "Opsi ini hanya tersedia pada API Tonjoo & Rajaongkir v2."
+
+#: classes/class-pok-wizard.php:589
+msgid "This plugin may not work properly!"
+msgstr "Plugin ini mungkin tidak dapat berjalan dengan semestinya!"
+
+#: classes/class-pok-hooks-product.php:74
+msgid "Timber packing"
+msgstr "Packing kayu"
+
+#: classes/class-pok-report-table-hpos.php:223
+#: classes/class-pok-report-table.php:223 views/admin-setting-cost.php:27
+msgid "Timber Packing Fee"
+msgstr "Biaya Packing Kayu"
+
+#: classes/class-pok-hooks-admin.php:354 classes/class-pok-hooks-admin.php:356
+msgid "Timber packing fee"
+msgstr "Biaya packing kayu"
+
+#: classes/class-pok-admin.php:100
+msgid ""
+"To activate Rajaongkir V2, provide the API key then click Check Rajaongkir "
+"Status."
+msgstr ""
+"Untuk mengaktifkan Rajaongkir V2, masukkan API Key dan pilih tipe API, lalu "
+"klik Cek Status Rajaongkir."
+
+#: classes/class-pok-admin.php:99
+msgid ""
+"To activate Rajaongkir, provide the API key and set the API type, then click "
+"Check Rajaongkir Status."
+msgstr ""
+"Untuk mengaktifkan Rajaongkir, masukkan API Key dan pilih tipe API, lalu "
+"klik Cek Status Rajaongkir."
+
+#: views/admin-setting-basic.php:24
+msgid "Tonjoo"
+msgstr "Tonjoo"
+
+#. Author of the plugin
+msgid "Tonjoo Studio"
+msgstr "Tonjoo Studio"
+
+#: views/admin-debugger.php:36
+msgid "Tools"
+msgstr "Tools"
+
+#: classes/class-pok-report-table-hpos.php:191
+#: classes/class-pok-report-table-hpos.php:224
+#: classes/class-pok-report-table.php:191
+#: classes/class-pok-report-table.php:224
+msgid "Total Cost"
+msgstr "Total Ongkos"
+
+#: views/admin-checker.php:88
+msgid "Total Price"
+msgstr "Total Harga"
+
+#: classes/class-pok-checker.php:114
+msgid "Total price must not empty"
+msgstr "Total harga tidak boleh kosong"
+
+#: classes/class-pok-report-table-hpos.php:196
+#: classes/class-pok-report-table.php:196
+msgid "Total Shipping Weight"
+msgstr "Total Berat"
+
+#: classes/class-pok-hooks-addresses.php:831
+msgid "Total shipping weight"
+msgstr "Berat total pengiriman"
+
+#: classes/class-pok-hooks-addresses.php:205
+msgid "Town / City"
+msgstr "Kota / Kab."
+
+#: libs/tonjoo-license/view/license-manager.php:171
+msgid "Trial Activated"
+msgstr "Trial Aktif"
+
+#: libs/tonjoo-license/view/license-manager.php:181
+msgid "Trial Expired"
+msgstr "Trial Berakhir"
+
+#: views/admin-help.php:23
+msgid "Tutorials"
+msgstr "Tutorial"
+
+#: views/admin-setting-basic.php:31
+msgid "Type"
+msgstr "Tipe"
+
+#: classes/class-pok-hooks-addresses.php:798
+msgid "Unique Number"
+msgstr "Nomor Unik"
+
+#: views/admin-setting-miscellaneous.php:33
+msgid "Unique Number Length"
+msgstr "Panjang Nomor Unik"
+
+#: classes/class-pok-wizard.php:363
+msgid "Unknown Error. Please Try Again"
+msgstr "Terjadi kesalahan. Silahkan coba lagi"
+
+#: views/admin-setting-cost.php:117
+msgid ""
+"Use a negative value on the Cost Markup to set a price decrease on cost."
+msgstr ""
+"Gunakan nilai negatif pada Markup Biaya untuk mengatur pengurangan ongkos."
+
+#: views/admin-setting-cost.php:133
+msgid "Use Currency Layer API"
+msgstr "Gunakan API Currency Layer"
+
+#: views/admin-setting-cost.php:132
+msgid "Use Fixer API"
+msgstr "Gunakan API Fixer"
+
+#: views/admin-setting-basic.php:19
+msgid "Use our default premium API, or Rajaongkir API "
+msgstr "Gunakan API premium dari kami, atau gunakan Rajaongkir"
+
+#: views/admin-setting-checkout.php:3
+msgid "Use Simple Address Field"
+msgstr "Gunakan Field Alamat Sederhana"
+
+#: views/admin-setting-courier.php:38
+msgid "Use specific services for each courier"
+msgstr "Hanya gunakan layanan tertentu untuk tiap jasa pengiriman"
+
+#: views/admin-setting-weight.php:37
+msgid "Use Volume Metric Calculation"
+msgstr "Gunakan Hitungan Volume"
+
+#: views/admin-setting-cost.php:134
+msgid "Use WPML's multi currency"
+msgstr "Gunakan WPML multi currency"
+
+#: libs/tonjoo-license/view/license-manager.php:211
+#, php-format
+msgid "Valid until: %s"
+msgstr "Aktif sampai: %s"
+
+#: classes/class-pok-hooks-admin.php:778
+msgid "Value of the coupon."
+msgstr "Jumlah potongan kupon."
+
+#: views/admin-help.php:19
+msgid "Version:"
+msgstr "Versi:"
+
+#: views/admin-help.php:19
+msgid "View Changelogs"
+msgstr "Lihat Changelogs"
+
+#: views/admin-help.php:48
+msgid "View Documentation"
+msgstr "Baca Dokumentasi"
+
+#: views/admin-help.php:62
+msgid "View FAQ"
+msgstr "Baca FAQ"
+
+#: views/admin-help.php:76
+msgid "Visit Forum"
+msgstr "Kunjungi Forum"
+
+#: views/admin-help.php:72
+msgid ""
+"We offer outstanding support through our forum. To get our support you need "
+"to register or login using Tonjoostudio account and start a thread."
+msgstr ""
+"Kami memberi dukungan penuh melalui forum kami. Untuk mendapat bantuan, "
+"daftar atau login dengan akun Tonjoostudio dan buat thread baru."
+
+#: views/admin-setting-cost.php:126
+msgid ""
+"We provide the shipping costs data in Indonesian Rupiah. You need to set up "
+"conversions to convert costs to your site's currency."
+msgstr ""
+"Kami menyediakan data ongkos kirim dalam Rupiah. Anda harus mengatur nilai "
+"tukar Rupiah untuk menampilkan ongkos kirim sesuai dengan mata uang yang "
+"digunakan di disitus Anda."
+
+#: views/admin-setting-courier.php:28
+msgid "We recommend to use only 3 of these couriers to optimize the load speed"
+msgstr ""
+"Kami menyarankan untuk hanya menggunakan 3 kurir untuk mengoptimalkan "
+"kecepatan website Anda"
+
+#: classes/class-pok-admin.php:261 classes/class-pok-cpr.php:53
+#: classes/class-pok-report-table-hpos.php:219
+#: classes/class-pok-report-table.php:219
+msgid "Weight"
+msgstr "Berat"
+
+#: views/admin-checker.php:66 views/widget.php:3
+msgid "Weight (kg)"
+msgstr "Berat (kg)"
+
+#: classes/class-pok-checker.php:110
+msgid "Weight must not empty"
+msgstr "Berat tidak boleh kosong"
+
+#: views/admin-setting-weight.php:29
+msgid "Weight Tolerance (gram)"
+msgstr "Toleransi Berat (gram)"
+
+#: classes/class-pok-wizard.php:304
+msgid "Welcome to Plugin Ongkos Kirim!"
+msgstr "Selamat datang di Plugin Ongkos Kirim!"
+
+#: libs/tonjoo-license/view/license-manager.php:259
+msgid "Where can I get my licenses?"
+msgstr "Dimana saya dapat melihat lisensi saya"
+
+#: views/admin-setting-weight.php:47
+msgid "width"
+msgstr "lebar"
+
+#: classes/class-pok-admin.php:578
+msgid "Woocommerce not active"
+msgstr "WooCommerce tidak aktif"
+
+#: classes/class-pok-report-table-hpos.php:119
+#: classes/class-pok-report-table.php:119
+msgid "Year"
+msgstr "Tahun"
+
+#: views/admin-setting-advanced.php:42 views/admin-setting-basic.php:11
+#: views/admin-setting-checkout.php:12 views/admin-setting-checkout.php:32
+#: views/admin-setting-checkout.php:49 views/admin-setting-checkout.php:63
+#: views/admin-setting-checkout.php:77 views/admin-setting-checkout.php:92
+#: views/admin-setting-courier.php:45 views/admin-setting-courier.php:92
+#: views/admin-setting-courier.php:183 views/admin-setting-miscellaneous.php:12
+#: views/admin-setting-miscellaneous.php:30 views/admin-setting-weight.php:45
+msgid "Yes"
+msgstr "Ya"
+
+#: views/admin-setting-cost.php:48
+msgid "You can mark-up/mark-down your shipping cost based on your need."
+msgstr "Anda bisa menambahkan/mengurangi ongkos kirim sesuai keinginan Anda."
+
+#: views/admin-setting-vendors.php:7
+msgid ""
+"You must install Multi Vendor Addon to activate this feature. Multi vendor "
+"mode allows you to set multiple shipping origins intead of one."
+msgstr ""
+"Anda harus menginstall Multi Vendor Addon untuk mengaktifkan fitur ini. Mode "
+"multi vendor memungkinkan Anda untuk melakukan perhitungan ongkos kirim "
+"lebih dari satu kota asal."
+
+#: views/admin-setting-cost.php:164
+#, php-format
+msgid ""
+"You need at least Basic subscription plan on Currency Layer to use this "
+"function. We store the rates from Currency Layer to cache, so you don't have "
+"to worry about API calls limitation. Cache expiration is based on update "
+"interval on your plan. <a target='_blank' href='%s'>learn more here</a>"
+msgstr ""
+"Anda paling tidak harus berlangganan Currency Layer dengan plan Basic untuk "
+"menggunakan fungsi ini. Kami menyimpan data nilai tukar dari Currency Layer "
+"ke dalam cache, jadi Anda tidak perlu khawatir dengan batasan API calls yang "
+"diberi Currency Layer. Berapa lama cache akan disimpan tergantung dengan "
+"update interval di plan yang Anda pilih. <a target='_blank' href='%s'>"
+"pelajari lebih lanjut</a>"
+
+#: views/admin-setting-cost.php:148
+#, php-format
+msgid ""
+"You need at least Basic subscription plan on Fixer to use this function. We "
+"store the rates from Fixer to cache, so you don't have to worry about API "
+"calls limitation. Cache expiration is based on update interval on your plan. "
+"<a target='_blank' href='%s'>learn more here</a>"
+msgstr ""
+"Anda paling tidak harus berlangganan Fixer dengan plan Basic untuk "
+"menggunakan fungsi ini. Kami menyimpan data nilai tukar dari Fixer ke dalam "
+"cache, jadi Anda tidak perlu khawatir dengan batasan API calls yang diberi "
+"Fixer. Berapa lama cache akan disimpan tergantung dengan update interval di "
+"plan yang Anda pilih. <a target='_blank' href='%s'>pelajari lebih lanjut</a>"
+
+#: views/admin-setting-cost.php:175
+msgid ""
+"You need to install WPML's WooCommerce Multilingual and enable the multi-"
+"currency mode to use this function"
+msgstr ""
+"Anda harus menginstall dan mengaktifkan WPML's WooCommerce Multilingual dan "
+"aktifkan mode multi-currency untuk menggunakan fungsi ini"
+
+#: classes/class-pok-hooks-admin.php:177
+msgid "You need to set customer's shipping city to get the costs"
+msgstr ""
+"Anda harus mengisi kota/kabupaten pengiriman customer untuk mendapatkan tarif"
+
+#: classes/class-pok-hooks-admin.php:176
+msgid "You need to set customer's shipping district to get the costs"
+msgstr ""
+"Anda harus mengisi kecamatan pengiriman customer untuk mendapatkan tarif"
+
+#: views/admin-setting-cost.php:179
+#, php-format
+msgid ""
+"You need to set your currency conversion rate to IDR to use this function. "
+"<a href='%s'>click here to configure</a>"
+msgstr ""
+"Anda perlu mendaftarkan dan mengatur nilai tukar Rupiah untuk menggunakan "
+"fungsi ini. <a href='%s'>klik disini untuk mengatur</a>"
+
+#: views/admin-setting-vendors.php:3
+msgid ""
+"You need to update your Multi Vendor Addon to the latest version to support "
+"current version of Plugin Ongkos Kirim."
+msgstr ""
+"Anda harus melakukan update pada Multi Vendor Addon ke versi terbaru agar "
+"dapat didukung oleh versi Plugin Ongkos Kirim yang Anda pakai sekarang"
+
+#: views/admin-setting-advanced.php:49
+msgid ""
+"You will be able to access the error logs on the new menu tab that will show "
+"up after you enable this option. Be careful, this option will disable "
+"caching feature!"
+msgstr ""
+"Anda dapat mengakses log error pada tab baru yang akan muncul setelah Anda "
+"mengaktifkan opsi ini. Hati-hati, dengan mengaktifkan opsi ini maka sistem "
+"cache akan dimatikan."
+
+#: views/admin-custom.php:13
+msgid "Your custom courier name"
+msgstr "Nama kurir kustom Anda"
+
+#: classes/class-pok-hooks-addresses.php:812
+msgid "Your items will be shipped from"
+msgstr "Produk akan dikirim dari"
+
+#: libs/tonjoo-license/view/license-manager.php:196
+msgid "Your License Code"
+msgstr "Kode Lisensi Anda"
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:124
+#, php-format
+msgid "Your license for <strong>%s</strong> has expired."
+msgstr "Lisensi Anda untuk <strong>%s</strong> telah berakhir."
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:131
+#, php-format
+msgid "Your license for <strong>%s</strong> will ended soon."
+msgstr "Lisensi Anda untuk <strong>%s</strong> akan segera berakhir."
+
+#: views/admin-debugger.php:51
+msgid ""
+"Your license for Plugin Ongkos Kirim is not activated, please activate it on "
+"the License page."
+msgstr ""
+"Lisensi Plugin Ongkos Kirim Anda tidak aktif, silahkan aktivasi pada halaman "
+"Lisensi."
+
+#: libs/tonjoo-license/tonjoo-license-handler.php:333
+#, php-format
+msgid "Your license has expired at %s"
+msgstr "Lisensi Anda telah berakhir pada %s"
+
+#: classes/class-pok-wizard.php:325
+msgid "Your License Key"
+msgstr "Kode Lisensi Anda"
+
+#: views/admin-debugger.php:66
+msgid ""
+"Your Rajaongkir API is currently inactive, please activate it on the setting "
+"tab."
+msgstr ""
+"API Rajaongkir saat ini sedang tidak aktif, silahkan aktifkan pada tab "
+"pengaturan."
+
+#: views/admin-setting-cost.php:138
+msgid ""
+"Your site is currently using IDR as the currency. So this option is not "
+"required."
+msgstr ""
+"Situs Anda menggunakan Rupiah sebagai mata uang. Sehingga pengaturan ini "
+"tidak diperlukan."
+
+#: classes/class-pok-wizard.php:611
+msgid "Your Site is Ready!"
+msgstr "Situs Anda telah siap!"
+
+#: classes/class-pok-admin.php:532
+msgid "Your site's checkout page was switched to classic successfully."
+msgstr ""
+"Halaman checkout situs Anda berhasil diubah ke mode klasik dengan sukses."
+
+#: classes/class-pok-wizard.php:391
+msgid "Your Store Location"
+msgstr "Lokasi Toko Anda"
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:122
+#, php-format
+msgid "Your trial for <strong>%s</strong> has ended."
+msgstr "Trial Anda untuk <strong>%s</strong> telah berakhir."
+
+#: libs/tonjoo-license/tonjoo-license-manager.php:133
+#, php-format
+msgid "Your trial license for <strong>%s</strong> will ended soon."
+msgstr "Trial Anda untuk <strong>%s</strong> akan segera berakhir."

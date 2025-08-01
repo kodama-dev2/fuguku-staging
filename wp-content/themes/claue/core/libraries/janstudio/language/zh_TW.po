@@ -1,0 +1,3874 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Claue\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-16 05:38+0300\n"
+"PO-Revision-Date: 2021-07-16 05:41+0300\n"
+"Last-Translator: yigejizhi@gmail.com <yigejizhi@gmail.com>\n"
+"Language-Team: Chinese (Taiwan)\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: 404.php:14
+msgid "404"
+msgstr "錯誤 404"
+
+#: 404.php:15
+msgid "Sorry! Page you are looking can&rsquo;t be found."
+msgstr "抱歉 ！找不到您正在查看的頁面。"
+
+#: 404.php:16
+msgid "Go back to the "
+msgstr "返回到"
+
+#: 404.php:16
+msgid "homepage"
+msgstr "主頁"
+
+#: comments.php:21
+#, fuzzy
+#| msgid "% Comments"
+msgid "Post Comments"
+msgstr "% 評論"
+
+#: comments.php:38
+msgid "Comment Navigation Above"
+msgstr ""
+
+#: comments.php:39 comments.php:59
+#, fuzzy
+#| msgid "Comment count"
+msgid "Comment navigation"
+msgstr "評論統計"
+
+#: comments.php:40 comments.php:60
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:41 comments.php:61
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:58
+msgid "Comment Navigation Below"
+msgstr ""
+
+#: comments.php:70
+msgid "Comments are closed."
+msgstr "評論已關閉。"
+
+#: core/admin/classes/framework.class.php:175
+msgid "Success. Imported backup options."
+msgstr "成功導入備份選項。"
+
+#: core/admin/classes/framework.class.php:180
+msgid "Default options restored."
+msgstr "默認選項已恢復"
+
+#: core/admin/classes/framework.class.php:199
+msgid "Default options restored for only this section."
+msgstr "當前節點已恢復到默認選項。"
+
+#: core/admin/classes/framework.class.php:368
+msgid "Settings saved."
+msgstr "設置已保存。"
+
+#: core/admin/classes/framework.class.php:371
+msgid "Save"
+msgstr "保存修改"
+
+#: core/admin/classes/framework.class.php:371
+msgid "Saving..."
+msgstr "正在儲存..."
+
+#: core/admin/classes/framework.class.php:372
+msgid "Restore"
+msgstr "還原"
+
+#: core/admin/classes/framework.class.php:374
+msgid "Reset All Options"
+msgstr "重置所有選項"
+
+#: core/admin/classes/framework.class.php:377
+msgid "show all options"
+msgstr "顯示所有"
+
+#: core/admin/classes/options.class.php:125
+msgid "CONFIG"
+msgstr "配置"
+
+#: core/admin/classes/options.class.php:131
+#: core/admin/classes/options.class.php:151
+msgid "USAGE"
+msgstr "使用"
+
+#: core/admin/classes/options.class.php:137
+msgid "VALUE"
+msgstr "值"
+
+#: core/admin/classes/options.class.php:155
+#: core/libraries/vendors/elementor/widgets/products.php:151
+#: core/libraries/vendors/visual-composer/maps/products.php:61
+msgid "ID"
+msgstr "使用者 ID"
+
+#: core/admin/classes/shortcode.class.php:82
+#: core/admin/classes/shortcode.class.php:90
+#: core/admin/fields/textarea/textarea.php:27
+msgid "Add Shortcode"
+msgstr "添加簡碼"
+
+#: core/admin/classes/shortcode.class.php:92
+msgid "Select a shortcode"
+msgstr "選擇一個短代碼"
+
+#: core/admin/classes/shortcode.class.php:108
+msgid "Insert Shortcode"
+msgstr "插入短代碼"
+
+#: core/admin/config/framework.config.php:9
+msgid "Theme Options"
+msgstr "主題設置"
+
+#: core/admin/config/framework.config.php:38
+msgid "General Layout"
+msgstr "常規布局"
+
+#: core/admin/config/framework.config.php:44
+msgid "Content Width"
+msgstr "內容寬度"
+
+#: core/admin/config/framework.config.php:45
+#, fuzzy
+#| msgid "Set the maximum allowed width for content"
+msgid ""
+"Set the maximum allowed width for content, include unit. Example for: px or %"
+msgstr "設置最大允許寬度的內容"
+
+#: core/admin/config/framework.config.php:51
+msgid "Enable Boxed Layout"
+msgstr "啟用方框佈局"
+
+#: core/admin/config/framework.config.php:56
+#: core/admin/config/framework.config.php:127
+#: core/admin/config/framework.config.php:1317
+msgid "Background"
+msgstr "背景"
+
+#: core/admin/config/framework.config.php:62
+msgid "Enable Preloader"
+msgstr "啟用預加載"
+
+#: core/admin/config/framework.config.php:67
+msgid "Animation type"
+msgstr "動畫類型"
+
+#: core/admin/config/framework.config.php:69
+msgid "CSS"
+msgstr "CSS"
+
+#: core/admin/config/framework.config.php:70
+#: core/libraries/vendors/elementor/widgets/banner.php:76
+#: core/libraries/vendors/elementor/widgets/promotion.php:76
+#: core/libraries/vendors/visual-composer/maps/banner.php:19
+#: core/libraries/vendors/visual-composer/maps/promotion.php:19
+msgid "Image"
+msgstr "圖片"
+
+#: core/admin/config/framework.config.php:77
+msgid "Preloader Image"
+msgstr "預載圖像"
+
+#: core/admin/config/framework.config.php:78
+msgid "Upload Your Image"
+msgstr "上傳圖片"
+
+#: core/admin/config/framework.config.php:84
+msgid "Custom CSS Style"
+msgstr "自定義CSS 和樣式設置"
+
+#: core/admin/config/framework.config.php:85
+msgid ""
+"Paste your CSS code here. Do not place any &lt;style&gt; tags in these areas "
+"as they are already added for your convenience"
+msgstr ""
+"粘貼你的 CSS 代碼在這裡。不要把任何 &lt; 樣式 &gt; 標記在這些領域已經添加為您"
+"提供便利"
+
+#: core/admin/config/framework.config.php:91
+msgid "Custom JS Code"
+msgstr "自定義JS"
+
+#: core/admin/config/framework.config.php:92
+msgid ""
+"Paste your Javscript code here. You can add your Google Analytics Code here. "
+"Do not place any &lt;script&gt; tags in these areas as they are already "
+"added for your convenience."
+msgstr ""
+"粘貼你的 Javscript 代碼在這裡。您可以添加您的 Google Analytics 代碼。不要在這"
+"些領域中放置任何 &lt; 腳本 &gt; 標記，因為他們已添加為您提供便利。"
+
+#: core/admin/config/framework.config.php:104
+msgid "Header"
+msgstr "標題"
+
+#: core/admin/config/framework.config.php:110
+#: core/admin/config/framework.config.php:272
+#: core/admin/config/framework.config.php:490
+#: core/admin/config/framework.config.php:593
+#: core/admin/config/framework.config.php:617
+#: core/admin/config/framework.config.php:801
+#: core/admin/config/framework.config.php:824
+msgid "Layout"
+msgstr "佈局"
+
+#: core/admin/config/framework.config.php:133
+msgid "Enable Header Sticky"
+msgstr "啟用標題粘性"
+
+#: core/admin/config/framework.config.php:140
+msgid "Enable Header Transparent"
+msgstr "啟用頁眉透明"
+
+#: core/admin/config/framework.config.php:147
+msgid "Enable Header Boxed"
+msgstr "啟用標頭盒裝"
+
+#: core/admin/config/framework.config.php:153
+msgid "Logo Settings"
+msgstr "Logo設置"
+
+#: core/admin/config/framework.config.php:158
+msgid "Logo"
+msgstr "Logo"
+
+#: core/admin/config/framework.config.php:159
+#: core/admin/config/framework.config.php:167
+#: core/admin/config/framework.config.php:175
+#: core/admin/config/framework.config.php:183
+#: core/admin/config/framework.config.php:191
+#: core/admin/config/framework.config.php:256
+#: core/admin/fields/background/background.php:33
+#: core/admin/fields/background/background.php:34
+#: core/admin/fields/upload/upload.php:23
+#: core/admin/fields/upload/upload.php:24
+msgid "Upload"
+msgstr "上傳"
+
+#: core/admin/config/framework.config.php:165
+msgid "Logo Retina"
+msgstr "LOGO | 高清"
+
+#: core/admin/config/framework.config.php:166
+msgid "Upload logo for retina devices, mobile devices"
+msgstr "上傳為視網膜設備，行動裝置的徽標"
+
+#: core/admin/config/framework.config.php:173
+msgid "Transparent Header Logo"
+msgstr "透明導航LOGO"
+
+#: core/admin/config/framework.config.php:174
+msgid "Add logo for transparent header layout"
+msgstr "添加透明的標題版式的標誌"
+
+#: core/admin/config/framework.config.php:181
+msgid "Transparent Header Logo Retina"
+msgstr "透明的標題徽標視網膜"
+
+#: core/admin/config/framework.config.php:182
+msgid ""
+"Add logo for transparent header layout for retina devices, mobile devices"
+msgstr "添加透明的標題佈局對於視網膜設備，行動裝置的徽標"
+
+#: core/admin/config/framework.config.php:189
+#, fuzzy
+#| msgid "Transparent Header Logo"
+msgid "Sticky Header Logo"
+msgstr "透明導航LOGO"
+
+#: core/admin/config/framework.config.php:190
+msgid "Add logo for sticky header. It work when you upload regular logo."
+msgstr ""
+
+#: core/admin/config/framework.config.php:197
+msgid "Logo Max Width"
+msgstr "Logo 最大寬度"
+
+#: core/admin/config/framework.config.php:199
+#: core/libraries/vendors/elementor/widgets/promotion.php:170
+#: core/libraries/vendors/elementor/widgets/promotion.php:201
+#: core/libraries/vendors/elementor/widgets/promotion.php:226
+#: core/libraries/vendors/elementor/widgets/promotion.php:257
+#: core/libraries/vendors/elementor/widgets/promotion.php:282
+#: core/libraries/vendors/visual-composer/maps/promotion.php:65
+#: core/libraries/vendors/visual-composer/maps/promotion.php:84
+#: core/libraries/vendors/visual-composer/maps/promotion.php:97
+#: core/libraries/vendors/visual-composer/maps/promotion.php:116
+#: core/libraries/vendors/visual-composer/maps/promotion.php:129
+msgid "Defined in pixels. Do not add the 'px' unit."
+msgstr "定義以圖元為單位。請不要添加 px 單位。"
+
+#: core/admin/config/framework.config.php:203
+msgid "Header Top Settings"
+msgstr "頭頂部設置"
+
+#: core/admin/config/framework.config.php:208
+msgid "Header left content"
+msgstr "標題左邊的內容"
+
+#: core/admin/config/framework.config.php:209
+#: core/admin/config/framework.config.php:216
+#: core/admin/config/framework.config.php:223
+msgid "HTML, shortcode is allowed"
+msgstr "HTML，簡碼被允許"
+
+#: core/admin/config/framework.config.php:215
+msgid "Center promo text"
+msgstr "促銷文本居中"
+
+#: core/admin/config/framework.config.php:222
+msgid "Header right content"
+msgstr "標題頂部右側內容"
+
+#: core/admin/config/framework.config.php:229
+#, fuzzy
+#| msgid "Enable Currency"
+msgid "Enable currency"
+msgstr "使貨幣"
+
+#: core/admin/config/framework.config.php:234
+#, fuzzy
+#| msgid "Header Top Settings"
+msgid "Header main settings"
+msgstr "頭頂部設置"
+
+#: core/admin/config/framework.config.php:239
+#, fuzzy
+#| msgid "Enable Header Sticky"
+msgid "Enable search icon"
+msgstr "啟用標題粘性"
+
+#: core/admin/config/framework.config.php:245
+#, fuzzy
+#| msgid "Enable Countdown"
+msgid "Enable my account icon"
+msgstr "啟用倒計時"
+
+#: core/admin/config/framework.config.php:250
+#, fuzzy
+#| msgid "Mobile Settings"
+msgid "Mobile settings"
+msgstr "手機設定"
+
+#: core/admin/config/framework.config.php:255
+msgid "Mobile icon"
+msgstr "手機圖標"
+
+#: core/admin/config/framework.config.php:266
+msgid "Footer"
+msgstr "頁腳"
+
+#: core/admin/config/framework.config.php:285
+msgid "Copyright Text"
+msgstr "版權文本"
+
+#: core/admin/config/framework.config.php:286
+#: core/admin/config/framework.config.php:677
+msgid "HTML is allowed"
+msgstr "允許HTML"
+
+#: core/admin/config/framework.config.php:303
+#: core/libraries/vendors/tgmpa/init.php:52
+#: core/libraries/vendors/visual-composer/maps/product.php:17
+#: core/libraries/vendors/visual-composer/maps/products.php:24
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:15
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: core/admin/config/framework.config.php:310
+#, fuzzy
+#| msgid "General Setting"
+msgid "General Settings"
+msgstr "通用設置"
+
+#: core/admin/config/framework.config.php:315
+msgid "General Setting"
+msgstr "通用設置"
+
+#: core/admin/config/framework.config.php:320
+msgid "Enable Page Title"
+msgstr "啟用頁面標題"
+
+#: core/admin/config/framework.config.php:326
+#: core/admin/config/framework.config.php:858
+msgid "Page Title"
+msgstr "頁面標題"
+
+#: core/admin/config/framework.config.php:327
+msgid "claue"
+msgstr "claue"
+
+#: core/admin/config/framework.config.php:333
+msgid "Description"
+msgstr "描述"
+
+#: core/admin/config/framework.config.php:334
+msgid "Online fashion, furniture, handmade... store"
+msgstr "線上的時裝、 傢俱、 手工...存儲"
+
+#: core/admin/config/framework.config.php:340
+#: core/admin/config/framework.config.php:870
+msgid "Page Title Background"
+msgstr "頁面標題欄背景"
+
+#: core/admin/config/framework.config.php:346
+msgid "Enable Catalog Mode"
+msgstr "啟用目錄模式"
+
+#: core/admin/config/framework.config.php:352
+msgid "Sale Badge Type"
+msgstr "出售徽章類型"
+
+#: core/admin/config/framework.config.php:353
+msgid "Apply for product simple only"
+msgstr "只適用於簡單的產品"
+
+#: core/admin/config/framework.config.php:355
+#: core/libraries/vendors/elementor/widgets/banner.php:84
+#: core/libraries/vendors/visual-composer/maps/banner.php:24
+#: core/libraries/vendors/visual-composer/maps/promotion.php:56
+#: core/libraries/vendors/visual-composer/maps/promotion.php:88
+#: core/libraries/vendors/visual-composer/maps/promotion.php:120
+msgid "Text"
+msgstr "文字"
+
+#: core/admin/config/framework.config.php:356
+msgid "Discount percent"
+msgstr "折扣百分比"
+
+#: core/admin/config/framework.config.php:366
+#, fuzzy
+#| msgid "Sub Category Setting"
+msgid "Sub Category Settings"
+msgstr "子類別設置"
+
+#: core/admin/config/framework.config.php:371
+msgid "Sub Category"
+msgstr "子類別"
+
+#: core/admin/config/framework.config.php:376
+msgid "Sub-Categories Layout"
+msgstr "子類別佈局"
+
+#: core/admin/config/framework.config.php:377
+msgid "Display sub-categories as grid or masonry"
+msgstr "將子類別顯示為網格或砌體"
+
+#: core/admin/config/framework.config.php:388
+#: core/admin/config/framework.config.php:788
+#: core/admin/config/framework.config.php:875
+#: core/libraries/vendors/elementor/widgets/blog.php:129
+#: core/libraries/vendors/elementor/widgets/portfolio.php:88
+#: core/libraries/vendors/elementor/widgets/products.php:276
+#: core/libraries/vendors/visual-composer/maps/blog.php:47
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:30
+#: core/libraries/vendors/visual-composer/maps/products.php:188
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:29
+msgid "Columns"
+msgstr "列"
+
+#: core/admin/config/framework.config.php:389
+msgid "Display number of sub-category per row"
+msgstr "顯示每行的子類別編號"
+
+#: core/admin/config/framework.config.php:405
+#, fuzzy
+#| msgid "Product Listing Setting"
+msgid "Product Listing Settings"
+msgstr "產品清單設置"
+
+#: core/admin/config/framework.config.php:410
+msgid "Product Listing"
+msgstr "產品上市"
+
+#: core/admin/config/framework.config.php:415
+msgid "Enable Full-Width"
+msgstr "使用全幅寬度"
+
+#: core/admin/config/framework.config.php:421
+#: core/admin/config/framework.config.php:777
+#: core/libraries/vendors/elementor/widgets/blog.php:105
+#: core/libraries/vendors/visual-composer/maps/blog.php:31
+msgid "Style"
+msgstr "風格"
+
+#: core/admin/config/framework.config.php:422
+msgid "Display product listing as grid or masonry or metro"
+msgstr "將產品清單顯示為網格或砌體或地鐵"
+
+#: core/admin/config/framework.config.php:434
+msgid "Pagination Style"
+msgstr "分頁導航樣式"
+
+#: core/admin/config/framework.config.php:436
+msgid "Number"
+msgstr "數字"
+
+#: core/admin/config/framework.config.php:437
+#: core/libraries/janstudio/hooks/helper.php:1408
+#: core/libraries/vendors/woocommerce/templates/loop/pagination.php:33
+msgid "Load More"
+msgstr "加載更多"
+
+#: core/admin/config/framework.config.php:444
+msgid "Enable Infinite Scroll"
+msgstr "啟用無限加載"
+
+#: core/admin/config/framework.config.php:451
+msgid "Flip Product Thumbnail"
+msgstr "翻轉產品縮略圖"
+
+#: core/admin/config/framework.config.php:457
+#, fuzzy
+#| msgid "Enable AJAX add to cart buttons on product detail"
+msgid "Enable add to cart button"
+msgstr "啟用 AJAX 添加到購物車上產品詳細資訊按鈕"
+
+#: core/admin/config/framework.config.php:463
+#, fuzzy
+#| msgid "Make it as button"
+msgid "Enable quick shop button"
+msgstr "使它作為按鈕"
+
+#: core/admin/config/framework.config.php:469
+msgid "Number Of Column"
+msgstr "列數"
+
+#: core/admin/config/framework.config.php:470
+msgid "Display number of product per row"
+msgstr "顯示每行的產品的數量"
+
+#: core/admin/config/framework.config.php:483
+#: core/admin/config/framework.config.php:888
+#: core/libraries/vendors/elementor/widgets/blog.php:143
+#: core/libraries/vendors/elementor/widgets/portfolio.php:102
+#: core/libraries/vendors/elementor/widgets/products.php:201
+#: core/libraries/vendors/visual-composer/maps/blog.php:58
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:40
+#: core/libraries/vendors/visual-composer/maps/products.php:126
+msgid "Per Page"
+msgstr "每頁"
+
+#: core/admin/config/framework.config.php:484
+#: core/libraries/vendors/elementor/widgets/blog.php:144
+#: core/libraries/vendors/elementor/widgets/products.php:202
+#: core/libraries/vendors/visual-composer/maps/products.php:127
+msgid "How much items per page to show (-1 to show all products)"
+msgstr "多少種商品每頁顯示 (-1，以顯示所有產品)"
+
+#: core/admin/config/framework.config.php:502
+#: core/admin/config/framework.config.php:631
+#: core/admin/config/framework.config.php:813
+#: core/admin/config/framework.config.php:836
+#: core/admin/config/metabox.config.php:39
+#: core/admin/config/taxonomy.config.php:29
+msgid "Select Sidebar"
+msgstr "選擇側邊欄"
+
+#: core/admin/config/framework.config.php:509
+msgid "Enable Sidebar Filter"
+msgstr "啟用邊欄篩選器"
+
+#: core/admin/config/framework.config.php:516
+msgid "Sidebar Filter Position"
+msgstr "側邊欄篩選器位置"
+
+#: core/admin/config/framework.config.php:518
+#: core/admin/config/framework.config.php:578
+#: core/admin/config/metabox.config.php:111
+#: core/libraries/vendors/elementor/widgets/promotion.php:115
+#: core/libraries/vendors/elementor/widgets/service.php:117
+#: core/libraries/vendors/visual-composer/maps/promotion.php:42
+#: core/libraries/vendors/visual-composer/maps/service.php:54
+msgid "Left"
+msgstr "左邊"
+
+#: core/admin/config/framework.config.php:519
+#: core/admin/config/framework.config.php:580
+#: core/admin/config/metabox.config.php:113
+#: core/libraries/vendors/elementor/widgets/promotion.php:117
+#: core/libraries/vendors/elementor/widgets/service.php:116
+#: core/libraries/vendors/visual-composer/maps/promotion.php:44
+#: core/libraries/vendors/visual-composer/maps/service.php:53
+msgid "Right"
+msgstr "右邊"
+
+#: core/admin/config/framework.config.php:527
+#, fuzzy
+#| msgid "Enable Countdown"
+msgid "Enable Column Switcher"
+msgstr "啟用倒計時"
+
+#: core/admin/config/framework.config.php:533
+msgid "Enable Products Attribute On Product List"
+msgstr "使產品在產品清單中的屬性"
+
+#: core/admin/config/framework.config.php:539
+msgid "Products Attribute Background Color when hover"
+msgstr ""
+
+#: core/admin/config/framework.config.php:547
+#, fuzzy
+#| msgid "Product Detail Setting"
+msgid "Product Detail Settings"
+msgstr "產品詳細設置"
+
+#: core/admin/config/framework.config.php:552
+#, fuzzy
+#| msgid "Product Detail"
+msgid "Product detail"
+msgstr "商品詳細頁面"
+
+#: core/admin/config/framework.config.php:557
+#, fuzzy
+#| msgid "Enable Full-Width"
+msgid "Enable full width"
+msgstr "使用全幅寬度"
+
+#: core/admin/config/framework.config.php:563
+#, fuzzy
+#| msgid "Product Detail Style"
+msgid "Product detail style"
+msgstr "產品詳細樣式"
+
+#: core/admin/config/framework.config.php:576
+#, fuzzy
+#| msgid "Thumbnail Position"
+msgid "Thumbnail position"
+msgstr "縮略圖位置"
+
+#: core/admin/config/framework.config.php:579
+#: core/admin/config/metabox.config.php:112
+#: core/libraries/vendors/elementor/widgets/promotion.php:103
+#: core/libraries/vendors/visual-composer/maps/promotion.php:34
+msgid "Bottom"
+msgstr "下部"
+
+#: core/admin/config/framework.config.php:581
+#: core/admin/config/metabox.config.php:114
+msgid "Outside"
+msgstr "外部"
+
+#: core/admin/config/framework.config.php:588
+#, fuzzy
+#| msgid "Extra Infomation"
+msgid "Extra infomation"
+msgstr "補充信息"
+
+#: core/admin/config/framework.config.php:595
+msgid "Tab"
+msgstr "選項卡"
+
+#: core/admin/config/framework.config.php:596
+msgid "Accordion"
+msgstr "手風琴"
+
+#: core/admin/config/framework.config.php:602
+msgid "Position"
+msgstr "位置"
+
+#: core/admin/config/framework.config.php:604
+#, fuzzy
+#| msgid "Above Extra Products"
+msgid "Above extra products"
+msgstr "上述額外產品"
+
+#: core/admin/config/framework.config.php:605
+#, fuzzy
+#| msgid "Below Product Description"
+msgid "Below product description"
+msgstr "以下產品描述"
+
+#: core/admin/config/framework.config.php:612
+#, fuzzy
+#| msgid "Product Detail Style"
+msgid "Product Detail Sidebar"
+msgstr "產品詳細樣式"
+
+#: core/admin/config/framework.config.php:618
+#, fuzzy
+#| msgid "Apply for product simple only"
+msgid "Apply for product detail layout 1-2-4"
+msgstr "只適用於簡單的產品"
+
+#: core/admin/config/framework.config.php:638
+msgid "Miscellaneous"
+msgstr "其他"
+
+#: core/admin/config/framework.config.php:643
+msgid "Add to cart behavior"
+msgstr ""
+
+#: core/admin/config/framework.config.php:645
+#, fuzzy
+#| msgid "Select a sidebar"
+msgid "Slide sidebar"
+msgstr "選擇一個側邊欄"
+
+#: core/admin/config/framework.config.php:646
+msgid "Popup included upsell products"
+msgstr ""
+
+#: core/admin/config/framework.config.php:653
+msgid "Enable sticky add to cart"
+msgstr ""
+
+#: core/admin/config/framework.config.php:659
+#, fuzzy
+#| msgid "Enable Preloader"
+msgid "Enable zoom image"
+msgstr "啟用預加載"
+
+#: core/admin/config/framework.config.php:663
+#: core/admin/config/framework.config.php:1337
+msgid "Extra Content"
+msgstr "額外的內容"
+
+#: core/admin/config/framework.config.php:666
+#, fuzzy
+#| msgid "This content will be put at right bottom, HTML is allowed"
+msgid ""
+"This text will be displayed right below add to cart button, HTML allowed."
+msgstr "此內容將放在右下角，被允許的 HTML"
+
+#: core/admin/config/framework.config.php:670
+#, fuzzy
+#| msgid "Size Guide Image"
+msgid "Size guide image"
+msgstr "尺寸指南圖像"
+
+#: core/admin/config/framework.config.php:675
+#, fuzzy
+#| msgid "Shipping & Return Content"
+msgid "Shipping & Return content"
+msgstr "航運與返回的內容"
+
+#: core/admin/config/framework.config.php:681
+#, fuzzy
+#| msgid "Sale products"
+msgid "Other products"
+msgstr "產品銷售"
+
+#: core/admin/config/framework.config.php:686
+msgid "Number of product want to show on a slide"
+msgstr ""
+
+#: core/admin/config/framework.config.php:687
+msgid "Apply for related products and up-sell products"
+msgstr ""
+
+#: core/admin/config/framework.config.php:699
+#, fuzzy
+#| msgid "Display number of product per row"
+msgid "Number of product want to show"
+msgstr "顯示每行的產品的數量"
+
+#: core/admin/config/framework.config.php:700
+msgid ""
+"Type number only, the number should be equal or bigger than number of "
+"product per slider"
+msgstr ""
+
+#: core/admin/config/framework.config.php:708
+#, fuzzy
+#| msgid "Header Top Settings"
+msgid "Cart & Checkout Settings"
+msgstr "頭頂部設置"
+
+#: core/admin/config/framework.config.php:713
+#, fuzzy
+#| msgid "Heading Font Settings"
+msgid "Mini cart Setting"
+msgstr "標題字體設置"
+
+#: core/admin/config/framework.config.php:717
+#, fuzzy
+#| msgid "Wrap Content"
+msgid "MiniCart Content"
+msgstr "包裝內容"
+
+#: core/admin/config/framework.config.php:719
+#: core/admin/config/framework.config.php:739
+#, fuzzy
+#| msgid "This content will be put at right bottom, HTML is allowed"
+msgid "This text will be displayed right below checkout button, HTML allowed."
+msgstr "此內容將放在右下角，被允許的 HTML"
+
+#: core/admin/config/framework.config.php:723
+#, fuzzy
+#| msgid "Sub Category Setting"
+msgid "Cart Setting"
+msgstr "子類別設置"
+
+#: core/admin/config/framework.config.php:727
+#, fuzzy
+#| msgid "Wrap Content"
+msgid "Cart Content"
+msgstr "包裝內容"
+
+#: core/admin/config/framework.config.php:729
+#, fuzzy
+#| msgid "This content will be put at right bottom, HTML is allowed"
+msgid "This text will be displayed right below cart total, HTML allowed."
+msgstr "此內容將放在右下角，被允許的 HTML"
+
+#: core/admin/config/framework.config.php:733
+#, fuzzy
+#| msgid "Checkout"
+msgid "Checkout Setting"
+msgstr "結賬"
+
+#: core/admin/config/framework.config.php:737
+#, fuzzy
+#| msgid "Checkout"
+msgid "Checkout Content"
+msgstr "結賬"
+
+#: core/admin/config/framework.config.php:752
+#: core/libraries/janstudio/hooks/helper.php:288
+#: core/libraries/vendors/elementor/widgets/blog.php:26
+#: core/libraries/vendors/visual-composer/maps/blog.php:12
+msgid "Blog"
+msgstr "博客"
+
+#: core/admin/config/framework.config.php:757
+msgid "Blog listing layout"
+msgstr ""
+
+#: core/admin/config/framework.config.php:762
+msgid "Enable latest post slider"
+msgstr "啟用最新郵政滑塊"
+
+#: core/admin/config/framework.config.php:768
+msgid "Content display on blog list"
+msgstr "對博客清單的內容顯示"
+
+#: core/admin/config/framework.config.php:770
+#: core/libraries/vendors/elementor/widgets/banner.php:68
+#: core/libraries/vendors/elementor/widgets/blog.php:86
+#: core/libraries/vendors/elementor/widgets/heading.php:68
+#: core/libraries/vendors/elementor/widgets/member.php:68
+#: core/libraries/vendors/elementor/widgets/portfolio.php:80
+#: core/libraries/vendors/elementor/widgets/product.php:86
+#: core/libraries/vendors/elementor/widgets/products.php:105
+#: core/libraries/vendors/elementor/widgets/promotion.php:68
+#: core/libraries/vendors/elementor/widgets/service.php:68
+#: core/libraries/vendors/elementor/widgets/service.php:136
+#: core/libraries/vendors/visual-composer/maps/banner.php:15
+#: core/libraries/vendors/visual-composer/maps/blog.php:16
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:16
+#: core/libraries/vendors/visual-composer/maps/member.php:15
+#: core/libraries/vendors/visual-composer/maps/meta-slider.php:38
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:26
+#: core/libraries/vendors/visual-composer/maps/promotion.php:15
+#: core/libraries/vendors/visual-composer/maps/service.php:15
+#: core/libraries/vendors/visual-composer/maps/service.php:65
+msgid "Content"
+msgstr "內容"
+
+#: core/admin/config/framework.config.php:771
+msgid "Excerpt"
+msgstr "文章摘要"
+
+#: core/admin/config/framework.config.php:789
+#: core/admin/config/framework.config.php:876
+msgid "Display number of post per row"
+msgstr "顯示每行帖子的數"
+
+#: core/admin/config/framework.config.php:819
+msgid "Blog detail layout"
+msgstr ""
+
+#: core/admin/config/framework.config.php:848
+#: core/admin/config/framework.config.php:859
+#: core/libraries/janstudio/hooks/helper.php:1467
+#: core/libraries/vendors/elementor/widgets/portfolio.php:26
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:23
+msgid "Portfolio"
+msgstr "組合"
+
+#: core/admin/config/framework.config.php:853
+msgid "Portfolio Listing"
+msgstr "投資組合上市"
+
+#: core/admin/config/framework.config.php:864
+#: core/admin/config/metabox.config.php:60
+msgid "Sub Title"
+msgstr "子標題"
+
+#: core/admin/config/framework.config.php:865
+msgid "See our recent projects"
+msgstr "看看我們最近的專案"
+
+#: core/admin/config/framework.config.php:889
+#: core/libraries/vendors/elementor/widgets/portfolio.php:103
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:41
+msgid "How much items per page to show (-1 to show all portfolio)"
+msgstr "多少種商品每頁顯示 (-1，以顯示所有組合)"
+
+#: core/admin/config/framework.config.php:901
+msgid "Typography"
+msgstr "排版"
+
+#: core/admin/config/framework.config.php:907
+#, fuzzy
+#| msgid "Google Fonts"
+msgid "Enable Google font"
+msgstr "谷歌字體"
+
+#: core/admin/config/framework.config.php:912
+msgid "Body Font Settings"
+msgstr "正文字體設置"
+
+#: core/admin/config/framework.config.php:917
+#: core/admin/config/framework.config.php:938
+msgid "Font Family"
+msgstr "字體系列"
+
+#: core/admin/config/framework.config.php:927
+msgid "Font Size"
+msgstr "字體大小"
+
+#: core/admin/config/framework.config.php:933
+msgid "Heading Font Settings"
+msgstr "標題字體設置"
+
+#: core/admin/config/framework.config.php:948
+msgid "H1 Font Size"
+msgstr "H1字體尺寸"
+
+#: core/admin/config/framework.config.php:955
+msgid "H2 Font Size"
+msgstr "H2字體尺寸"
+
+#: core/admin/config/framework.config.php:962
+msgid "H3 Font Size"
+msgstr "H3字體尺寸"
+
+#: core/admin/config/framework.config.php:969
+msgid "H4 Font Size"
+msgstr "H4字體尺寸"
+
+#: core/admin/config/framework.config.php:976
+msgid "H5 Font Size"
+msgstr "H5字體尺寸"
+
+#: core/admin/config/framework.config.php:983
+msgid "H6 Font Size"
+msgstr "H6字體尺寸"
+
+#: core/admin/config/framework.config.php:995
+msgid "Color Scheme"
+msgstr "配色方案"
+
+#: core/admin/config/framework.config.php:1000
+msgid "General Color"
+msgstr "一般顏色"
+
+#: core/admin/config/framework.config.php:1005
+msgid "Primary Color"
+msgstr "主色調"
+
+#: core/admin/config/framework.config.php:1006
+msgid "Main Color Scheme"
+msgstr "主要配色方案"
+
+#: core/admin/config/framework.config.php:1012
+msgid "Secondary Color"
+msgstr "次色調"
+
+#: core/admin/config/framework.config.php:1013
+msgid "Secondary Color Scheme"
+msgstr "自定義次色調"
+
+#: core/admin/config/framework.config.php:1018
+msgid "Section Color"
+msgstr "部分顏色"
+
+#: core/admin/config/framework.config.php:1023
+msgid "Body Background Color"
+msgstr "背景顏色"
+
+#: core/admin/config/framework.config.php:1029
+msgid "Body Color"
+msgstr "內容文字顏色"
+
+#: core/admin/config/framework.config.php:1035
+msgid "Heading Color"
+msgstr "標題顏色"
+
+#: core/admin/config/framework.config.php:1040
+msgid "Header Color"
+msgstr "頁首顏色"
+
+#: core/admin/config/framework.config.php:1045
+msgid "Header Background Color"
+msgstr "頁首背景顏色"
+
+#: core/admin/config/framework.config.php:1050
+msgid "Header Top Background Color"
+msgstr "頁首頂部背景顏色"
+
+#: core/admin/config/framework.config.php:1055
+msgid "Header Top Color"
+msgstr "標題上面的顏色"
+
+#: core/admin/config/framework.config.php:1061
+#: core/admin/config/framework.config.php:1095
+msgid "Main Menu Color"
+msgstr "主菜單顏色"
+
+#: core/admin/config/framework.config.php:1067
+#: core/admin/config/framework.config.php:1101
+msgid "Main Menu Hover Color"
+msgstr "主菜單懸停顏色"
+
+#: core/admin/config/framework.config.php:1073
+msgid "Sub Menu Color"
+msgstr "子選單的文字顏色"
+
+#: core/admin/config/framework.config.php:1079
+msgid "Sub Menu Hover Color"
+msgstr "子菜單文字懸停顏色"
+
+#: core/admin/config/framework.config.php:1085
+msgid "Sub Menu Background Color"
+msgstr "子菜單背景顏色"
+
+#: core/admin/config/framework.config.php:1090
+#, fuzzy
+#| msgid "Header Top Color"
+msgid "Header Transparent Color"
+msgstr "標題上面的顏色"
+
+#: core/admin/config/framework.config.php:1106
+#, fuzzy
+#| msgid "Header Color"
+msgid "Header Sticky Color"
+msgstr "頁首顏色"
+
+#: core/admin/config/framework.config.php:1111
+#, fuzzy
+#| msgid "Header Background Color"
+msgid "Header Sticky Background"
+msgstr "頁首背景顏色"
+
+#: core/admin/config/framework.config.php:1117
+#, fuzzy
+#| msgid "Main Menu Color"
+msgid "Header Sticky Main Menu Color"
+msgstr "主菜單顏色"
+
+#: core/admin/config/framework.config.php:1123
+#, fuzzy
+#| msgid "Main Menu Hover Color"
+msgid "Header Sticky Main Menu Hover Color"
+msgstr "主菜單懸停顏色"
+
+#: core/admin/config/framework.config.php:1129
+#, fuzzy
+#| msgid "Sub Menu Background Color"
+msgid "Header Sticky Sub Menu Background Color"
+msgstr "子菜單背景顏色"
+
+#: core/admin/config/framework.config.php:1135
+#, fuzzy
+#| msgid "Sub Menu Color"
+msgid "Header Sticky Sub Menu Color"
+msgstr "子選單的文字顏色"
+
+#: core/admin/config/framework.config.php:1141
+#, fuzzy
+#| msgid "Sub Menu Hover Color"
+msgid "Header Sticky Sub Menu Hover Color"
+msgstr "子菜單文字懸停顏色"
+
+#: core/admin/config/framework.config.php:1146
+msgid "Footer Color"
+msgstr "頁腳顏色"
+
+#: core/admin/config/framework.config.php:1151
+msgid "Footer Background Color"
+msgstr "頁尾背景色"
+
+#: core/admin/config/framework.config.php:1157
+msgid "Footer Primary Color"
+msgstr "頁腳原色"
+
+#: core/admin/config/framework.config.php:1163
+#, fuzzy
+#| msgid "Footer Link Color"
+msgid "Footer Widget Title Color"
+msgstr "頁腳鏈接顏色"
+
+#: core/admin/config/framework.config.php:1169
+msgid "Footer Link Color"
+msgstr "頁腳鏈接顏色"
+
+#: core/admin/config/framework.config.php:1175
+msgid "Footer Link Hover Color"
+msgstr "網頁底部鼠標碰到鏈接時的顏色"
+
+#: core/admin/config/framework.config.php:1180
+#, fuzzy
+#| msgid "Product Category"
+msgid "Product Badge Color"
+msgstr "商品類別"
+
+#: core/admin/config/framework.config.php:1185
+#, fuzzy
+#| msgid "Header Background Color"
+msgid "Product Sale Badge Background Color"
+msgstr "頁首背景顏色"
+
+#: core/admin/config/framework.config.php:1191
+#, fuzzy
+#| msgid "Header Background Color"
+msgid "Product New Badge Background Color"
+msgstr "頁首背景顏色"
+
+#: core/admin/config/framework.config.php:1197
+#, fuzzy
+#| msgid "Product Category"
+msgid "Product Badge Text Color"
+msgstr "商品類別"
+
+#: core/admin/config/framework.config.php:1209
+#: core/libraries/vendors/visual-composer/maps/member.php:36
+#: core/libraries/vendors/visual-composer/maps/member.php:42
+#: core/libraries/vendors/visual-composer/maps/member.php:48
+#: core/libraries/vendors/visual-composer/maps/member.php:54
+#: core/libraries/vendors/visual-composer/maps/member.php:60
+#: core/libraries/vendors/visual-composer/maps/member.php:66
+#: core/libraries/vendors/visual-composer/maps/member.php:72
+#: core/libraries/vendors/visual-composer/maps/member.php:78
+#: core/libraries/vendors/visual-composer/maps/member.php:84
+msgid "Social Network"
+msgstr "社交網絡"
+
+#: core/admin/config/framework.config.php:1215
+msgid "Social Account"
+msgstr "社會帳戶"
+
+#: core/admin/config/framework.config.php:1216
+msgid "Add New"
+msgstr "添加新規則"
+
+#: core/admin/config/framework.config.php:1217
+msgid "Add New Social Network"
+msgstr "添加新的社交網路"
+
+#: core/admin/config/framework.config.php:1222
+msgid "URL"
+msgstr "網址 URL"
+
+#: core/admin/config/framework.config.php:1227
+#: core/libraries/vendors/elementor/widgets/service.php:76
+#: core/libraries/vendors/visual-composer/maps/service.php:19
+msgid "Icon"
+msgstr "圖標"
+
+#: core/admin/config/framework.config.php:1233
+#: core/admin/config/framework.config.php:1238
+#, fuzzy
+#| msgid "Enable Slider"
+msgid "Enable Social Share"
+msgstr "啟用幻燈"
+
+#: core/admin/config/framework.config.php:1244
+msgid "Enable Facebook Share"
+msgstr ""
+
+#: core/admin/config/framework.config.php:1251
+#, fuzzy
+#| msgid "Enable Filter?"
+msgid "Enable Twitter Share"
+msgstr "啟用過濾器"
+
+#: core/admin/config/framework.config.php:1258
+#, fuzzy
+#| msgid "Enable Infinite Scroll"
+msgid "Enable Pinterest Share"
+msgstr "啟用無限加載"
+
+#: core/admin/config/framework.config.php:1265
+#, fuzzy
+#| msgid "Enable Currency"
+msgid "Enable Tumblr Share"
+msgstr "使貨幣"
+
+#: core/admin/config/framework.config.php:1272
+#, fuzzy
+#| msgid "Enable Slider"
+msgid "Enable VK Share"
+msgstr "啟用幻燈"
+
+#: core/admin/config/framework.config.php:1279
+#, fuzzy
+#| msgid "Enable Infinite Scroll"
+msgid "Enable LinkedIn Share"
+msgstr "啟用無限加載"
+
+#: core/admin/config/framework.config.php:1286
+msgid "Enable WhatsApp Share"
+msgstr ""
+
+#: core/admin/config/framework.config.php:1293
+#, fuzzy
+#| msgid "Enable Header Transparent"
+msgid "Enable Telegram Share"
+msgstr "啟用頁眉透明"
+
+#: core/admin/config/framework.config.php:1305
+msgid "Maintenance Mode"
+msgstr "維護模式"
+
+#: core/admin/config/framework.config.php:1311
+msgid "Enable Maintenance Mode"
+msgstr "啟動 維護模式"
+
+#: core/admin/config/framework.config.php:1312
+msgid ""
+"Put your site is undergoing maintenance, only admin can see the front end"
+msgstr "把你的網站正在進行維護，只有管理員可以看到的前端"
+
+#: core/admin/config/framework.config.php:1323
+#: core/libraries/vendors/elementor/widgets/heading.php:76
+#: core/libraries/vendors/elementor/widgets/products.php:149
+#: core/libraries/vendors/elementor/widgets/service.php:126
+#: core/libraries/vendors/visual-composer/maps/products.php:59
+#: core/libraries/vendors/visual-composer/maps/service.php:59
+msgid "Title"
+msgstr "標題"
+
+#: core/admin/config/framework.config.php:1324
+msgid "Sorry, we down for maintenance."
+msgstr "抱歉，我們下來進行維修工程。"
+
+#: core/admin/config/framework.config.php:1330
+msgid "Message"
+msgstr "信息"
+
+#: core/admin/config/framework.config.php:1331
+msgid "Fortunately only for a short while."
+msgstr "幸運的是隻為一小會兒。"
+
+#: core/admin/config/framework.config.php:1338
+msgid "This content will be put at right bottom, HTML is allowed"
+msgstr "此內容將放在右下角，被允許的 HTML"
+
+#: core/admin/config/framework.config.php:1344
+msgid "Enable Countdown"
+msgstr "啟用倒計時"
+
+#: core/admin/config/framework.config.php:1350
+msgid "Remaining Time - Date"
+msgstr "剩餘時間-日期"
+
+#: core/admin/config/framework.config.php:1390
+msgid "Remaining Time - Month"
+msgstr "剩餘時間-月"
+
+#: core/admin/config/framework.config.php:1411
+msgid "Remaining Time - Year"
+msgstr "剩餘時間-年"
+
+#: core/admin/config/framework.config.php:1430
+#, fuzzy
+#| msgid "Background"
+msgid "Backup"
+msgstr "背景"
+
+#: core/admin/config/framework.config.php:1436
+msgid "You can save your current options. Download a Backup and Import."
+msgstr "您可以保存您的當前選擇。下載一個備份和導入。"
+
+#: core/admin/config/metabox.config.php:16
+msgid "Page Layout Options"
+msgstr "頁面配置選項"
+
+#: core/admin/config/metabox.config.php:27
+msgid "Page Layout"
+msgstr "頁面布局"
+
+#: core/admin/config/metabox.config.php:47
+msgid "Enable page title"
+msgstr "啟用頁面標題"
+
+#: core/admin/config/metabox.config.php:53
+msgid "Enable sub-title"
+msgstr "啟用子標題"
+
+#: core/admin/config/metabox.config.php:62
+msgid "Do Stuff"
+msgstr "做的東西"
+
+#: core/admin/config/metabox.config.php:69
+msgid "Enable breadcrumb"
+msgstr "啟用零碎小選單"
+
+#: core/admin/config/metabox.config.php:86
+msgid "Product Detail Layout Options"
+msgstr "產品詳細資訊佈局選項"
+
+#: core/admin/config/metabox.config.php:97
+msgid "Product Detail Style"
+msgstr "產品詳細樣式"
+
+#: core/admin/config/metabox.config.php:98
+#, php-format
+msgid ""
+"Change layout for only this product. You can setup global for all product "
+"page layout at <a target=\"_blank\" href=\"%1$s\">here</a> (WooCommerce "
+"section)."
+msgstr ""
+"只有這種產品的佈局進行更改。您可以設置為在<a target=\"_blank\" href=\"%1$s\">"
+"這裡</a>（WooCommerce 節） 的所有產品頁面配置全球。"
+
+#: core/admin/config/metabox.config.php:109
+msgid "Thumbnail Position"
+msgstr "縮略圖位置"
+
+#: core/admin/config/metabox.config.php:120
+msgid "Video Thumbnail"
+msgstr "視頻縮略圖"
+
+#: core/admin/config/metabox.config.php:121
+msgid "Support Vimeo & Youtube"
+msgstr "支援 Vimeo & Youtube"
+
+#: core/admin/config/metabox.config.php:125
+msgid "Url"
+msgstr "網址 URL"
+
+#: core/admin/config/metabox.config.php:126
+msgid "Self Hosted"
+msgstr "有頂部形狀分隔"
+
+#: core/admin/config/metabox.config.php:132
+msgid "Upload Video Thumbnail"
+msgstr "上傳視頻縮略圖"
+
+#: core/admin/config/metabox.config.php:136
+msgid "Video"
+msgstr "視頻"
+
+#: core/admin/config/metabox.config.php:137
+msgid "Select a video"
+msgstr "選擇視頻..."
+
+#: core/admin/config/metabox.config.php:138
+msgid "Use this video"
+msgstr "使用這個視頻"
+
+#: core/admin/config/metabox.config.php:144
+msgid "Video Thumbnail Link"
+msgstr "視頻縮略圖連結"
+
+#: core/admin/config/metabox.config.php:148
+msgid "New Arrival Product"
+msgstr "新到貨產品"
+
+#: core/admin/config/metabox.config.php:152
+msgid "Set number of days display new arrivals badge for product."
+msgstr "設置的天數顯示產品的新來港定居人士徽章。"
+
+#: core/admin/config/metabox.config.php:155
+msgid "Size Guide Image"
+msgstr "尺寸指南圖像"
+
+#: core/admin/config/metabox.config.php:158
+#, php-format
+msgid ""
+"Upload size guide image for only this product. You can use image size guide "
+"for all product at <a target=\"_blank\" href=\"%1$s\">here</a> (WooCommerce "
+"section)."
+msgstr ""
+"上傳僅此產品尺寸指南形象。你可以在<a target=\"_blank\" href=\"%1$s\">這裡</"
+"a>（WooCommerce 節） 的所有產品使用圖像大小指南。"
+
+#: core/admin/config/metabox.config.php:166
+msgid "Thumbnail Size"
+msgstr "縮略圖大小"
+
+#: core/admin/config/metabox.config.php:177
+msgid "Enable Large Thumbnail"
+msgstr "啟用大的縮略圖"
+
+#: core/admin/config/metabox.config.php:178
+msgid "Apply for Product Layout Metro only"
+msgstr "只申請產品佈局地鐵"
+
+#: core/admin/config/taxonomy.config.php:19
+msgid "Product Category Layout"
+msgstr "產品分類頁面布局"
+
+#: core/admin/fields/background/background.php:35
+#: core/admin/fields/upload/upload.php:25
+msgid "Use Image"
+msgstr "使用圖片"
+
+#: core/admin/fields/backup/backup.php:21
+msgid "Import a Backup"
+msgstr "導入備份"
+
+#: core/admin/fields/backup/backup.php:22
+msgid "copy-paste your backup string here"
+msgstr "複製粘貼您的備份字符串在這裡"
+
+#: core/admin/fields/backup/backup.php:27
+msgid "Export and Download Backup"
+msgstr "導出並下載備份"
+
+#: core/admin/fields/backup/backup.php:28
+msgid "or"
+msgstr "或"
+
+#: core/admin/fields/backup/backup.php:29
+msgid "!!! Reset All Options !!!"
+msgstr "！！！重置所有選項！！！"
+
+#: core/admin/fields/backup/backup.php:30
+msgid "Please be sure for reset all of framework options."
+msgstr "確定要重置所有的選項嗎？"
+
+#: core/admin/fields/gallery/gallery.php:21
+msgid "Add Gallery"
+msgstr "添加到圖庫"
+
+#: core/admin/fields/gallery/gallery.php:22
+msgid "Edit Gallery"
+msgstr "編輯圖片庫"
+
+#: core/admin/fields/gallery/gallery.php:23
+#: core/libraries/vendors/woocommerce/templates/single-product/add-to-cart/variable.php:44
+msgid "Clear"
+msgstr "清除"
+
+#: core/admin/fields/group/group.php:21
+msgid "Adding"
+msgstr "新增中"
+
+#: core/admin/fields/group/group.php:43 core/admin/fields/group/group.php:75
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:348
+msgid "Remove"
+msgstr "刪除"
+
+#: core/admin/fields/icon/icon.php:25 core/admin/functions/actions.php:82
+msgid "Add Icon"
+msgstr "添加圖標"
+
+#: core/admin/fields/icon/icon.php:26
+msgid "Remove Icon"
+msgstr "刪除圖標"
+
+#: core/admin/fields/image/image.php:22
+msgid "Add Image"
+msgstr "添加圖像"
+
+#: core/admin/fields/sorter/sorter.php:24
+msgid "Enabled Modules"
+msgstr "啟用的模塊"
+
+#: core/admin/fields/sorter/sorter.php:25
+msgid "Disabled Modules"
+msgstr "停用的模塊"
+
+#: core/admin/fields/switcher/switcher.php:20
+msgid "on"
+msgstr "開啟"
+
+#: core/admin/fields/switcher/switcher.php:20
+msgid "off"
+msgstr "關閉"
+
+#: core/admin/fields/typography/typography.php:73
+msgid "Web Safe Fonts"
+msgstr "網頁安全字體"
+
+#: core/admin/fields/typography/typography.php:79
+msgid "Google Fonts"
+msgstr "谷歌字體"
+
+#: core/admin/fields/typography/typography.php:107
+#: core/admin/functions/actions.php:32
+msgid "Error! Can not load json file."
+msgstr "錯誤，無法加載Json文件。"
+
+#: core/admin/functions/actions.php:83
+msgid "Search a Icon..."
+msgstr "搜索圖標..."
+
+#: core/admin/functions/actions.php:84
+msgid "Loading..."
+msgstr "加載."
+
+#: core/admin/functions/helpers.php:48
+msgid "This field class is not available!"
+msgstr "此字段類不可用！"
+
+#: core/admin/functions/validate.php:14
+msgid "Please write a valid email address!"
+msgstr "請寫一個有效的電子郵件地址！"
+
+#: core/admin/functions/validate.php:33
+msgid "Please write a numeric data!"
+msgstr "請填寫有效的數據！"
+
+#: core/admin/functions/validate.php:51
+msgid "Fatal Error! This field is required!"
+msgstr "錯誤！ 這是必填欄！"
+
+#: core/libraries/janstudio/hooks/action.php:56
+msgid "Primary Menu"
+msgstr "主菜單"
+
+#: core/libraries/janstudio/hooks/action.php:57
+msgid "Left Menu"
+msgstr "左側菜單"
+
+#: core/libraries/janstudio/hooks/action.php:58
+msgid "Right Menu"
+msgstr "右側菜單"
+
+#: core/libraries/janstudio/hooks/action.php:59
+msgid "Footer Menu"
+msgstr "頁腳菜單"
+
+#: core/libraries/janstudio/hooks/action.php:78
+msgid "Primary Sidebar"
+msgstr "主要側邊欄"
+
+#: core/libraries/janstudio/hooks/action.php:80
+msgid "The Primary Sidebar"
+msgstr "主側邊欄"
+
+#: core/libraries/janstudio/hooks/action.php:90
+msgid "Footer Area #"
+msgstr "頁尾區"
+
+#: core/libraries/janstudio/hooks/action.php:92
+#, php-format
+msgid "The #%s column in footer area"
+msgstr "頁腳區域中的 #%s 列"
+
+#: core/libraries/janstudio/hooks/action.php:116
+msgid "Claue"
+msgstr "Claue"
+
+#: core/libraries/janstudio/hooks/helper.php:153
+#: core/libraries/janstudio/hooks/helper.php:205
+#, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: core/libraries/janstudio/hooks/helper.php:154
+msgid "By "
+msgstr "通過"
+
+#: core/libraries/janstudio/hooks/helper.php:159
+#: core/libraries/janstudio/hooks/helper.php:203
+#: core/libraries/janstudio/hooks/helper.php:1561
+msgid ", "
+msgstr ","
+
+#: core/libraries/janstudio/hooks/helper.php:162
+#, php-format
+msgid "In %1$s"
+msgstr "在%1$s"
+
+#: core/libraries/janstudio/hooks/helper.php:171
+#: core/libraries/janstudio/hooks/helper.php:1579
+#, fuzzy
+#| msgid "1 Comment"
+msgctxt "comments title"
+msgid "1 Comment"
+msgstr "1條評論"
+
+#: core/libraries/janstudio/hooks/helper.php:268
+msgid "Prev"
+msgstr "上一個"
+
+#: core/libraries/janstudio/hooks/helper.php:269
+msgid "Next"
+msgstr "下一個"
+
+#: core/libraries/janstudio/hooks/helper.php:287
+msgid "Home"
+msgstr "首頁"
+
+#: core/libraries/janstudio/hooks/helper.php:289
+msgid "Shop"
+msgstr "商店"
+
+#: core/libraries/janstudio/hooks/helper.php:331
+#: core/libraries/vendors/elementor/widgets/portfolio.php:114
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:47
+msgid "Category"
+msgstr "分類"
+
+#: core/libraries/janstudio/hooks/helper.php:339
+msgid "Tag"
+msgstr "標籤"
+
+#: core/libraries/janstudio/hooks/helper.php:425
+#: core/libraries/janstudio/hooks/helper.php:429
+#: core/libraries/janstudio/hooks/helper.php:433
+#: core/libraries/janstudio/hooks/helper.php:440
+#: core/libraries/janstudio/hooks/helper.php:444
+msgid " Archives"
+msgstr "彙整"
+
+#: core/libraries/janstudio/hooks/helper.php:449
+msgid "Archives"
+msgstr "檔案"
+
+#: core/libraries/janstudio/hooks/helper.php:460
+msgid "Author: "
+msgstr "作者："
+
+#: core/libraries/janstudio/hooks/helper.php:465 single.php:40
+msgid "Page"
+msgstr "頁"
+
+#: core/libraries/janstudio/hooks/helper.php:470
+msgid "Search results for: "
+msgstr "搜索結果："
+
+#: core/libraries/janstudio/hooks/helper.php:477
+msgid "Error 404"
+msgstr "錯誤 404"
+
+#: core/libraries/janstudio/hooks/helper.php:481
+msgid "Front Page"
+msgstr "主頁"
+
+#: core/libraries/janstudio/hooks/helper.php:503
+msgid "Share this post on Facebook"
+msgstr "分享到Facebook"
+
+#: core/libraries/janstudio/hooks/helper.php:508
+msgid "Share this post on Twitter"
+msgstr "分享到Twitter"
+
+#: core/libraries/janstudio/hooks/helper.php:513
+msgid "Share this post on Pinterest"
+msgstr "分享到Pinterest"
+
+#: core/libraries/janstudio/hooks/helper.php:518
+#, fuzzy
+#| msgid "Share this post on Tumbr"
+msgid "Share this post on Tumblr"
+msgstr "分享到Tumbr"
+
+#: core/libraries/janstudio/hooks/helper.php:523
+#, fuzzy
+#| msgid "Share this post on Tumbr"
+msgid "Share this post on VK"
+msgstr "分享到Tumbr"
+
+#: core/libraries/janstudio/hooks/helper.php:528
+#, fuzzy
+#| msgid "Share this post on Pinterest"
+msgid "Share this post on LinkedIn"
+msgstr "分享到Pinterest"
+
+#: core/libraries/janstudio/hooks/helper.php:533
+#, fuzzy
+#| msgid "Share this post on Pinterest"
+msgid "Share this post on WhatsApp"
+msgstr "分享到Pinterest"
+
+#: core/libraries/janstudio/hooks/helper.php:538
+#, fuzzy
+#| msgid "Share this post on Twitter"
+msgid "Share this post on Telegram"
+msgstr "分享到Twitter"
+
+#: core/libraries/janstudio/hooks/helper.php:579
+msgid "About Author"
+msgstr "關於作者"
+
+#: core/libraries/janstudio/hooks/helper.php:622
+msgid "Related Articles"
+msgstr "相關文章"
+
+#: core/libraries/janstudio/hooks/helper.php:639
+msgid "The photos should be at least 370px x 210px"
+msgstr "這些照片至少應為 370px x 210px"
+
+#: core/libraries/janstudio/hooks/helper.php:678
+msgid "Pingback:"
+msgstr "通告:"
+
+#: core/libraries/janstudio/hooks/helper.php:680
+#: core/libraries/janstudio/hooks/helper.php:720
+msgid "Edit"
+msgstr "編輯"
+
+#: core/libraries/janstudio/hooks/helper.php:695
+msgid "Your comment is awaiting moderation."
+msgstr "你的評論正在發表。"
+
+#: core/libraries/janstudio/hooks/helper.php:702
+msgid "Post author"
+msgstr "文章作者"
+
+#: core/libraries/janstudio/hooks/helper.php:716
+#, fuzzy
+#| msgid "Date"
+msgid "at"
+msgstr "日期"
+
+#: core/libraries/janstudio/hooks/helper.php:725
+msgid "Reply"
+msgstr "回覆"
+
+#: core/libraries/janstudio/hooks/helper.php:1409
+msgid "No More Items To Show"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1410
+msgid "days"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1411
+msgid "hrs"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1412
+msgid "mins"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1413
+msgid "secs"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1414
+msgid "Removed from the cart"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1415
+msgid "Undo?"
+msgstr ""
+
+#: core/libraries/janstudio/hooks/helper.php:1459
+msgid "Article"
+msgstr "文章"
+
+#: core/libraries/janstudio/hooks/helper.php:1572
+#, fuzzy, php-format
+#| msgid "In %1$s"
+msgid "In %1$s "
+msgstr "在%1$s"
+
+#: core/libraries/janstudio/hooks/helper.php:1619
+msgid "Select a sidebar"
+msgstr "選擇一個側邊欄"
+
+#: core/libraries/vendors/elementor/init.php:33
+#, fuzzy
+#| msgid "Claue"
+msgid "Claue Theme"
+msgstr "Claue"
+
+#: core/libraries/vendors/elementor/init.php:310
+#, fuzzy
+#| msgid "Mobile icon"
+msgid "Stroke icons"
+msgstr "手機圖標"
+
+#: core/libraries/vendors/elementor/widgets/banner.php:26
+msgid "Banner"
+msgstr ""
+
+#: core/libraries/vendors/elementor/widgets/banner.php:93
+#: core/libraries/vendors/elementor/widgets/promotion.php:84
+#: core/libraries/vendors/visual-composer/maps/banner.php:29
+#: core/libraries/vendors/visual-composer/maps/promotion.php:24
+msgid "Link to"
+msgstr "鏈接到"
+
+#: core/libraries/vendors/elementor/widgets/banner.php:109
+#: core/libraries/vendors/elementor/widgets/blog.php:205
+#: core/libraries/vendors/elementor/widgets/heading.php:110
+#: core/libraries/vendors/elementor/widgets/member.php:108
+#: core/libraries/vendors/elementor/widgets/portfolio.php:136
+#: core/libraries/vendors/elementor/widgets/product.php:130
+#: core/libraries/vendors/elementor/widgets/products.php:317
+#: core/libraries/vendors/elementor/widgets/promotion.php:128
+#: core/libraries/vendors/elementor/widgets/service.php:174
+#, fuzzy
+#| msgid "Animation type"
+msgid "CSS Animation"
+msgstr "動畫類型"
+
+#: core/libraries/vendors/elementor/widgets/banner.php:112
+#: core/libraries/vendors/elementor/widgets/blog.php:208
+#: core/libraries/vendors/elementor/widgets/heading.php:113
+#: core/libraries/vendors/elementor/widgets/member.php:111
+#: core/libraries/vendors/elementor/widgets/portfolio.php:139
+#: core/libraries/vendors/elementor/widgets/product.php:133
+#: core/libraries/vendors/elementor/widgets/products.php:320
+#: core/libraries/vendors/elementor/widgets/promotion.php:131
+#: core/libraries/vendors/elementor/widgets/service.php:177
+msgid "Top to bottom"
+msgstr ""
+
+#: core/libraries/vendors/elementor/widgets/banner.php:113
+#: core/libraries/vendors/elementor/widgets/blog.php:209
+#: core/libraries/vendors/elementor/widgets/heading.php:114
+#: core/libraries/vendors/elementor/widgets/member.php:112
+#: core/libraries/vendors/elementor/widgets/portfolio.php:140
+#: core/libraries/vendors/elementor/widgets/product.php:134
+#: core/libraries/vendors/elementor/widgets/products.php:321
+#: core/libraries/vendors/elementor/widgets/promotion.php:132
+#: core/libraries/vendors/elementor/widgets/service.php:178
+#, fuzzy
+#| msgid "Bottom"
+msgid "Bottom to top"
+msgstr "下部"
+
+#: core/libraries/vendors/elementor/widgets/banner.php:114
+#: core/libraries/vendors/elementor/widgets/blog.php:210
+#: core/libraries/vendors/elementor/widgets/heading.php:115
+#: core/libraries/vendors/elementor/widgets/member.php:113
+#: core/libraries/vendors/elementor/widgets/portfolio.php:141
+#: core/libraries/vendors/elementor/widgets/product.php:135
+#: core/libraries/vendors/elementor/widgets/products.php:322
+#: core/libraries/vendors/elementor/widgets/promotion.php:133
+#: core/libraries/vendors/elementor/widgets/service.php:179
+msgid "Left to right"
+msgstr ""
+
+#: core/libraries/vendors/elementor/widgets/banner.php:115
+#: core/libraries/vendors/elementor/widgets/blog.php:211
+#: core/libraries/vendors/elementor/widgets/heading.php:116
+#: core/libraries/vendors/elementor/widgets/member.php:114
+#: core/libraries/vendors/elementor/widgets/portfolio.php:142
+#: core/libraries/vendors/elementor/widgets/product.php:136
+#: core/libraries/vendors/elementor/widgets/products.php:323
+#: core/libraries/vendors/elementor/widgets/promotion.php:134
+#: core/libraries/vendors/elementor/widgets/service.php:180
+#, fuzzy
+#| msgid "Right Center"
+msgid "Right to left"
+msgstr "右側局中"
+
+#: core/libraries/vendors/elementor/widgets/banner.php:116
+#: core/libraries/vendors/elementor/widgets/blog.php:212
+#: core/libraries/vendors/elementor/widgets/heading.php:117
+#: core/libraries/vendors/elementor/widgets/member.php:115
+#: core/libraries/vendors/elementor/widgets/portfolio.php:143
+#: core/libraries/vendors/elementor/widgets/product.php:137
+#: core/libraries/vendors/elementor/widgets/products.php:324
+#: core/libraries/vendors/elementor/widgets/promotion.php:135
+#: core/libraries/vendors/elementor/widgets/service.php:181
+msgid "Appear from center"
+msgstr ""
+
+#: core/libraries/vendors/elementor/widgets/banner.php:125
+#: core/libraries/vendors/elementor/widgets/blog.php:221
+#: core/libraries/vendors/elementor/widgets/heading.php:126
+#: core/libraries/vendors/elementor/widgets/member.php:124
+#: core/libraries/vendors/elementor/widgets/portfolio.php:152
+#: core/libraries/vendors/elementor/widgets/product.php:146
+#: core/libraries/vendors/elementor/widgets/products.php:333
+#: core/libraries/vendors/elementor/widgets/promotion.php:144
+#: core/libraries/vendors/elementor/widgets/service.php:190
+#: core/libraries/vendors/visual-composer/maps/banner.php:35
+#: core/libraries/vendors/visual-composer/maps/blog.php:98
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:160
+#: core/libraries/vendors/visual-composer/maps/member.php:89
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:59
+#: core/libraries/vendors/visual-composer/maps/product.php:48
+#: core/libraries/vendors/visual-composer/maps/products.php:216
+#: core/libraries/vendors/visual-composer/maps/promotion.php:50
+#: core/libraries/vendors/visual-composer/maps/service.php:89
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:57
+msgid "Extra class name"
+msgstr "額外CSS名稱"
+
+#: core/libraries/vendors/elementor/widgets/banner.php:126
+#: core/libraries/vendors/elementor/widgets/blog.php:222
+#: core/libraries/vendors/elementor/widgets/heading.php:127
+#: core/libraries/vendors/elementor/widgets/member.php:125
+#: core/libraries/vendors/elementor/widgets/portfolio.php:153
+#: core/libraries/vendors/elementor/widgets/product.php:147
+#: core/libraries/vendors/elementor/widgets/products.php:334
+#: core/libraries/vendors/elementor/widgets/promotion.php:145
+#: core/libraries/vendors/elementor/widgets/service.php:191
+#: core/libraries/vendors/visual-composer/maps/banner.php:36
+#: core/libraries/vendors/visual-composer/maps/blog.php:99
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:161
+#: core/libraries/vendors/visual-composer/maps/member.php:90
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:60
+#: core/libraries/vendors/visual-composer/maps/product.php:49
+#: core/libraries/vendors/visual-composer/maps/products.php:217
+#: core/libraries/vendors/visual-composer/maps/promotion.php:51
+#: core/libraries/vendors/visual-composer/maps/service.php:90
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:58
+msgid ""
+"Style particular content element differently - add a class name and refer to "
+"it in custom CSS."
+msgstr "風格不同的內容元素-添加一個類名，並在自定義CSS中引用它。"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:94
+#: core/libraries/vendors/visual-composer/maps/blog.php:20
+msgid "Include special posts"
+msgstr "包括特殊崗位"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:95
+#: core/libraries/vendors/visual-composer/maps/blog.php:21
+msgid "Enter posts title to display only those records."
+msgstr "輸入職位標題，以便只顯示這些記錄。"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:108
+#: core/libraries/vendors/visual-composer/maps/blog.php:34
+msgid "Content Outside Thumbnail"
+msgstr "內容外縮略圖"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:109
+#: core/libraries/vendors/visual-composer/maps/blog.php:35
+msgid "Content Inside Thumbnail"
+msgstr "內容裡面縮略圖"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:118
+#: core/libraries/vendors/visual-composer/maps/blog.php:41
+msgid "Thumbnail size"
+msgstr "縮略圖大小"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:119
+#: core/libraries/vendors/visual-composer/maps/blog.php:42
+msgid "width x height, example: 570x320"
+msgstr "寬度 x 高度，示例︰ 570 x 320"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:132
+#: core/libraries/vendors/elementor/widgets/portfolio.php:91
+#: core/libraries/vendors/elementor/widgets/products.php:280
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:33
+msgid "2 Columns"
+msgstr "2 列"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:133
+#: core/libraries/vendors/elementor/widgets/portfolio.php:92
+#: core/libraries/vendors/elementor/widgets/products.php:281
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:34
+msgid "3 Columns"
+msgstr "3 列"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:134
+#: core/libraries/vendors/elementor/widgets/portfolio.php:93
+#: core/libraries/vendors/elementor/widgets/products.php:282
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:35
+msgid "4 Columns"
+msgstr "4 列"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:157
+#: core/libraries/vendors/elementor/widgets/products.php:215
+#: core/libraries/vendors/visual-composer/maps/blog.php:65
+#: core/libraries/vendors/visual-composer/maps/products.php:133
+msgid "Enable Slider"
+msgstr "啟用幻燈"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:159
+#: core/libraries/vendors/elementor/widgets/blog.php:171
+#: core/libraries/vendors/elementor/widgets/blog.php:182
+#: core/libraries/vendors/elementor/widgets/blog.php:193
+#: core/libraries/vendors/elementor/widgets/heading.php:99
+#: core/libraries/vendors/elementor/widgets/product.php:108
+#: core/libraries/vendors/elementor/widgets/product.php:119
+#: core/libraries/vendors/elementor/widgets/products.php:217
+#: core/libraries/vendors/elementor/widgets/products.php:242
+#: core/libraries/vendors/elementor/widgets/products.php:253
+#: core/libraries/vendors/elementor/widgets/products.php:264
+#: core/libraries/vendors/elementor/widgets/products.php:294
+#: core/libraries/vendors/elementor/widgets/products.php:305
+#: core/libraries/vendors/elementor/widgets/promotion.php:314
+#: core/libraries/vendors/visual-composer/maps/products.php:136
+msgid "No"
+msgstr "No"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:160
+#: core/libraries/vendors/elementor/widgets/blog.php:172
+#: core/libraries/vendors/elementor/widgets/blog.php:183
+#: core/libraries/vendors/elementor/widgets/blog.php:194
+#: core/libraries/vendors/elementor/widgets/heading.php:100
+#: core/libraries/vendors/elementor/widgets/product.php:109
+#: core/libraries/vendors/elementor/widgets/product.php:120
+#: core/libraries/vendors/elementor/widgets/products.php:218
+#: core/libraries/vendors/elementor/widgets/products.php:243
+#: core/libraries/vendors/elementor/widgets/products.php:254
+#: core/libraries/vendors/elementor/widgets/products.php:265
+#: core/libraries/vendors/elementor/widgets/products.php:295
+#: core/libraries/vendors/elementor/widgets/products.php:306
+#: core/libraries/vendors/elementor/widgets/promotion.php:315
+#: core/libraries/vendors/visual-composer/maps/heading.php:20
+#: core/libraries/vendors/visual-composer/maps/products.php:137
+#: core/libraries/vendors/visual-composer/maps/row.php:22
+#: core/libraries/vendors/visual-composer/maps/row.php:32
+msgid "Yes"
+msgstr "Yes"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:169
+#: core/libraries/vendors/elementor/widgets/products.php:240
+#: core/libraries/vendors/visual-composer/maps/blog.php:70
+#: core/libraries/vendors/visual-composer/maps/products.php:158
+msgid "Enable Auto play"
+msgstr "啟用自動播放"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:180
+#: core/libraries/vendors/elementor/widgets/products.php:251
+#: core/libraries/vendors/visual-composer/maps/blog.php:79
+#: core/libraries/vendors/visual-composer/maps/products.php:168
+msgid "Enable Navigation"
+msgstr "啟用導航條"
+
+#: core/libraries/vendors/elementor/widgets/blog.php:191
+#: core/libraries/vendors/elementor/widgets/products.php:262
+#: core/libraries/vendors/visual-composer/maps/blog.php:88
+#: core/libraries/vendors/visual-composer/maps/products.php:178
+msgid "Enable Pagination"
+msgstr "啟用分頁"
+
+#: core/libraries/vendors/elementor/widgets/heading.php:26
+#, fuzzy
+#| msgid "Heading Color"
+msgid "Heading"
+msgstr "標題顏色"
+
+#: core/libraries/vendors/elementor/widgets/heading.php:86
+#: core/libraries/vendors/visual-composer/maps/heading.php:25
+msgid "Small text"
+msgstr "小號文本"
+
+#: core/libraries/vendors/elementor/widgets/heading.php:87
+#: core/libraries/vendors/visual-composer/maps/heading.php:26
+msgid "It shows below the Text"
+msgstr "它顯示了下方的文本"
+
+#: core/libraries/vendors/elementor/widgets/heading.php:96
+#: core/libraries/vendors/visual-composer/maps/heading.php:14
+msgid "Enable divider?"
+msgstr "使用分頻器嗎？"
+
+#: core/libraries/vendors/elementor/widgets/heading.php:97
+#: core/libraries/vendors/visual-composer/maps/heading.php:15
+msgid "Add a thin line to left and right of heading."
+msgstr "向左和右的標題添加一條細線。"
+
+#: core/libraries/vendors/elementor/widgets/member.php:26
+#: core/libraries/vendors/visual-composer/maps/member.php:12
+msgid "Member"
+msgstr "會員"
+
+#: core/libraries/vendors/elementor/widgets/member.php:76
+#: core/libraries/vendors/visual-composer/maps/member.php:19
+msgid "Avatar"
+msgstr "頭像"
+
+#: core/libraries/vendors/elementor/widgets/member.php:86
+#: core/libraries/vendors/visual-composer/maps/member.php:24
+msgid "Name"
+msgstr "姓名"
+
+#: core/libraries/vendors/elementor/widgets/member.php:97
+#: core/libraries/vendors/visual-composer/maps/member.php:29
+msgid "Job"
+msgstr "職稱"
+
+#: core/libraries/vendors/elementor/widgets/portfolio.php:66
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:11
+#, fuzzy
+#| msgid "Category"
+msgid "All category"
+msgstr "分類"
+
+#: core/libraries/vendors/elementor/widgets/portfolio.php:124
+#: core/libraries/vendors/visual-composer/maps/portfolio.php:54
+msgid "Enable Filter?"
+msgstr "啟用過濾器"
+
+#: core/libraries/vendors/elementor/widgets/portfolio.php:126
+#, fuzzy
+#| msgid "off"
+msgid "Off"
+msgstr "關閉"
+
+#: core/libraries/vendors/elementor/widgets/portfolio.php:127
+msgid "On"
+msgstr ""
+
+#: core/libraries/vendors/elementor/widgets/product.php:26
+#: core/libraries/vendors/elementor/widgets/product.php:94
+#: core/libraries/vendors/visual-composer/maps/product.php:13
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:30
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:74
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:117
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:238
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:344
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:389
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:412
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:566
+msgid "Product"
+msgstr "商品"
+
+#: core/libraries/vendors/elementor/widgets/product.php:95
+#: core/libraries/vendors/elementor/widgets/products.php:180
+#, fuzzy
+#| msgid "Input product ID or product SKU or product title to see suggestions"
+msgid "Input product title to see suggestions"
+msgstr "輸入產品ID或產品SKU或產品標題以查看建議"
+
+#: core/libraries/vendors/elementor/widgets/product.php:105
+#: core/libraries/vendors/visual-composer/maps/product.php:35
+msgid "Enable countdown for sale product"
+msgstr "使銷售產品為倒計時"
+
+#: core/libraries/vendors/elementor/widgets/product.php:106
+#: core/libraries/vendors/visual-composer/maps/product.php:36
+msgid ""
+"Setup sale schedule in product page first. Only work with product type simple"
+msgstr "第一次安裝銷售附表在產品頁面中。只能使用簡單的產品類型"
+
+#: core/libraries/vendors/elementor/widgets/product.php:117
+#: core/libraries/vendors/elementor/widgets/products.php:303
+#: core/libraries/vendors/visual-composer/maps/product.php:42
+#: core/libraries/vendors/visual-composer/maps/products.php:210
+msgid "Enable Flip Product Thumbnail"
+msgstr "啟用翻轉產品縮略圖"
+
+#: core/libraries/vendors/elementor/widgets/products.php:36
+#: core/libraries/vendors/elementor/widgets/products.php:179
+#: core/libraries/vendors/visual-composer/maps/products.php:20
+#: core/libraries/vendors/visual-composer/maps/products.php:91
+msgid "Products"
+msgstr "產品"
+
+#: core/libraries/vendors/elementor/widgets/products.php:113
+#: core/libraries/vendors/visual-composer/maps/products.php:28
+msgid "List product style"
+msgstr "產品風格"
+
+#: core/libraries/vendors/elementor/widgets/products.php:116
+#: core/libraries/vendors/visual-composer/maps/products.php:31
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:23
+msgid "Grid"
+msgstr "網格"
+
+#: core/libraries/vendors/elementor/widgets/products.php:117
+#: core/libraries/vendors/visual-composer/maps/products.php:32
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:24
+msgid "Masonry"
+msgstr "瀑布流"
+
+#: core/libraries/vendors/elementor/widgets/products.php:118
+#: core/libraries/vendors/visual-composer/maps/products.php:33
+msgid "Metro"
+msgstr "麥德龍"
+
+#: core/libraries/vendors/elementor/widgets/products.php:127
+#: core/libraries/vendors/visual-composer/maps/products.php:39
+msgid "Display"
+msgstr "開始顯示"
+
+#: core/libraries/vendors/elementor/widgets/products.php:130
+#: core/libraries/vendors/visual-composer/maps/products.php:42
+msgid "All products"
+msgstr "所有商品"
+
+#: core/libraries/vendors/elementor/widgets/products.php:131
+#: core/libraries/vendors/visual-composer/maps/products.php:43
+msgid "Recent products"
+msgstr "最新產品"
+
+#: core/libraries/vendors/elementor/widgets/products.php:132
+#: core/libraries/vendors/visual-composer/maps/products.php:44
+msgid "Featured products"
+msgstr "特色商品"
+
+#: core/libraries/vendors/elementor/widgets/products.php:133
+#: core/libraries/vendors/visual-composer/maps/products.php:45
+msgid "Sale products"
+msgstr "產品銷售"
+
+#: core/libraries/vendors/elementor/widgets/products.php:134
+#: core/libraries/vendors/visual-composer/maps/products.php:46
+msgid "Best selling products"
+msgstr "熱銷產品"
+
+#: core/libraries/vendors/elementor/widgets/products.php:135
+#: core/libraries/vendors/visual-composer/maps/products.php:47
+msgid "Top Rated Products"
+msgstr "一流的產品"
+
+#: core/libraries/vendors/elementor/widgets/products.php:136
+#: core/libraries/vendors/visual-composer/maps/products.php:48
+msgid "Products by category"
+msgstr "產品按類別"
+
+#: core/libraries/vendors/elementor/widgets/products.php:145
+#: core/libraries/vendors/visual-composer/maps/products.php:55
+msgid "Order By"
+msgstr "排序："
+
+#: core/libraries/vendors/elementor/widgets/products.php:150
+#: core/libraries/vendors/visual-composer/maps/products.php:60
+msgid "Date"
+msgstr "日期"
+
+#: core/libraries/vendors/elementor/widgets/products.php:152
+#: core/libraries/vendors/visual-composer/maps/products.php:62
+msgid "Author"
+msgstr "作者"
+
+#: core/libraries/vendors/elementor/widgets/products.php:153
+#: core/libraries/vendors/visual-composer/maps/products.php:63
+msgid "Modified"
+msgstr "修改"
+
+#: core/libraries/vendors/elementor/widgets/products.php:154
+#: core/libraries/vendors/visual-composer/maps/products.php:64
+msgid "Random"
+msgstr "隨機"
+
+#: core/libraries/vendors/elementor/widgets/products.php:155
+#: core/libraries/vendors/visual-composer/maps/products.php:65
+msgid "Comment count"
+msgstr "評論統計"
+
+#: core/libraries/vendors/elementor/widgets/products.php:156
+#: core/libraries/vendors/visual-composer/maps/products.php:66
+msgid "Menu order"
+msgstr "菜單的順序"
+
+#: core/libraries/vendors/elementor/widgets/products.php:165
+#: core/libraries/vendors/visual-composer/maps/products.php:76
+msgid "Order"
+msgstr "訂單"
+
+#: core/libraries/vendors/elementor/widgets/products.php:166
+#: core/libraries/vendors/visual-composer/maps/products.php:77
+#, php-format
+msgid ""
+"Designates the ascending or descending order. More at %s. Default by ASC"
+msgstr "指定升序或降序。 更多在%s。 默認按升序"
+
+#: core/libraries/vendors/elementor/widgets/products.php:169
+#: core/libraries/vendors/visual-composer/maps/products.php:80
+msgid "Ascending"
+msgstr "升序"
+
+#: core/libraries/vendors/elementor/widgets/products.php:170
+#: core/libraries/vendors/visual-composer/maps/products.php:81
+msgid "Descending"
+msgstr "降序"
+
+#: core/libraries/vendors/elementor/widgets/products.php:191
+#: core/libraries/vendors/visual-composer/maps/products.php:114
+msgid "Product Category"
+msgstr "商品類別"
+
+#: core/libraries/vendors/elementor/widgets/products.php:227
+#: core/libraries/vendors/visual-composer/maps/products.php:146
+msgid "Items (Number only)"
+msgstr "項目（僅數）"
+
+#: core/libraries/vendors/elementor/widgets/products.php:228
+#: core/libraries/vendors/visual-composer/maps/products.php:148
+msgid ""
+"Set the maximum amount of items displayed at a time with the widest browser "
+"width"
+msgstr "設置最大的一次最廣泛的瀏覽器寬度顯示的專案"
+
+#: core/libraries/vendors/elementor/widgets/products.php:277
+#: core/libraries/vendors/visual-composer/maps/products.php:189
+msgid "This parameter will not working if slider has enabled"
+msgstr "此參數將不工作如果滑塊已啟用"
+
+#: core/libraries/vendors/elementor/widgets/products.php:283
+#, fuzzy
+#| msgid "2 Columns"
+msgid "6 Columns"
+msgstr "2 列"
+
+#: core/libraries/vendors/elementor/widgets/products.php:292
+#: core/libraries/vendors/visual-composer/maps/products.php:201
+msgid "Enable Isotope Category Filter"
+msgstr "啟用同位素類別篩選器"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:26
+#: core/libraries/vendors/visual-composer/maps/promotion.php:12
+msgid "Promotion Banner"
+msgstr "宣傳橫幅"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:98
+#: core/libraries/vendors/visual-composer/maps/promotion.php:29
+msgid "Text vertical align"
+msgstr "文字垂直對齊"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:101
+#: core/libraries/vendors/elementor/widgets/service.php:115
+#: core/libraries/vendors/visual-composer/maps/promotion.php:32
+#: core/libraries/vendors/visual-composer/maps/service.php:52
+msgid "Top"
+msgstr "頂部"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:102
+#: core/libraries/vendors/visual-composer/maps/promotion.php:33
+msgid "Middle"
+msgstr "中"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:112
+#: core/libraries/vendors/visual-composer/maps/promotion.php:39
+msgid "Text horizontal align"
+msgstr "文字水平對齊"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:116
+#: core/libraries/vendors/visual-composer/maps/promotion.php:43
+msgid "Center"
+msgstr "置中"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:157
+#: core/libraries/vendors/visual-composer/maps/promotion.php:58
+#: core/libraries/vendors/visual-composer/maps/promotion.php:64
+#: core/libraries/vendors/visual-composer/maps/promotion.php:71
+#: core/libraries/vendors/visual-composer/maps/promotion.php:77
+#: core/libraries/vendors/visual-composer/maps/promotion.php:83
+msgid "Text 1"
+msgstr "文本 1"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:169
+#, fuzzy
+#| msgid "Font size"
+msgid "Font size 1"
+msgstr "字體大小"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:180
+#, fuzzy
+#| msgid "Line height"
+msgid "Line height 1"
+msgstr "行高"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:191
+#, fuzzy
+#| msgid "Color"
+msgid "Color 1"
+msgstr "顏色"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:200
+#, fuzzy
+#| msgid "Margin bottom"
+msgid "Margin bottom 1"
+msgstr "邊距底部"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:213
+#: core/libraries/vendors/visual-composer/maps/promotion.php:90
+#: core/libraries/vendors/visual-composer/maps/promotion.php:96
+#: core/libraries/vendors/visual-composer/maps/promotion.php:103
+#: core/libraries/vendors/visual-composer/maps/promotion.php:109
+#: core/libraries/vendors/visual-composer/maps/promotion.php:115
+msgid "Text 2"
+msgstr "文本 2"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:225
+#, fuzzy
+#| msgid "Font size"
+msgid "Font size 2"
+msgstr "字體大小"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:236
+#, fuzzy
+#| msgid "Line height"
+msgid "Line height 2"
+msgstr "行高"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:247
+#, fuzzy
+#| msgid "Color"
+msgid "Color 2"
+msgstr "顏色"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:256
+#, fuzzy
+#| msgid "Margin bottom"
+msgid "Margin bottom 2"
+msgstr "邊距底部"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:269
+#: core/libraries/vendors/visual-composer/maps/promotion.php:122
+#: core/libraries/vendors/visual-composer/maps/promotion.php:128
+#: core/libraries/vendors/visual-composer/maps/promotion.php:135
+#: core/libraries/vendors/visual-composer/maps/promotion.php:141
+#: core/libraries/vendors/visual-composer/maps/promotion.php:147
+msgid "Text 3"
+msgstr "文本 3"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:281
+#, fuzzy
+#| msgid "Font size"
+msgid "Font size 3"
+msgstr "字體大小"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:292
+#, fuzzy
+#| msgid "Line height"
+msgid "Line height 3"
+msgstr "行高"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:303
+#, fuzzy
+#| msgid "Color"
+msgid "Color 3"
+msgstr "顏色"
+
+#: core/libraries/vendors/elementor/widgets/promotion.php:312
+#: core/libraries/vendors/visual-composer/maps/promotion.php:145
+msgid "Make it as button"
+msgstr "使它作為按鈕"
+
+#: core/libraries/vendors/elementor/widgets/service.php:26
+#: core/libraries/vendors/visual-composer/maps/service.php:12
+msgid "Icon and Text"
+msgstr "圖示和文本"
+
+#: core/libraries/vendors/elementor/widgets/service.php:84
+#: core/libraries/vendors/visual-composer/maps/service.php:29
+msgid "Icon Style"
+msgstr "圖標樣式"
+
+#: core/libraries/vendors/elementor/widgets/service.php:87
+#: core/libraries/vendors/visual-composer/maps/service.php:32
+msgid "Default"
+msgstr "默認"
+
+#: core/libraries/vendors/elementor/widgets/service.php:88
+#: core/libraries/vendors/visual-composer/maps/service.php:33
+msgid "Square"
+msgstr "方形"
+
+#: core/libraries/vendors/elementor/widgets/service.php:89
+#: core/libraries/vendors/visual-composer/maps/service.php:34
+msgid "Circle"
+msgstr "圓形"
+
+#: core/libraries/vendors/elementor/widgets/service.php:98
+#: core/libraries/vendors/visual-composer/maps/service.php:39
+msgid "Icon Size"
+msgstr "圖示尺寸"
+
+#: core/libraries/vendors/elementor/widgets/service.php:101
+#: core/libraries/vendors/visual-composer/maps/service.php:42
+msgid "Small"
+msgstr "小"
+
+#: core/libraries/vendors/elementor/widgets/service.php:102
+#: core/libraries/vendors/visual-composer/maps/service.php:43
+msgid "Medium"
+msgstr "中"
+
+#: core/libraries/vendors/elementor/widgets/service.php:103
+#: core/libraries/vendors/visual-composer/maps/service.php:44
+msgid "Large"
+msgstr "大"
+
+#: core/libraries/vendors/elementor/widgets/service.php:112
+#: core/libraries/vendors/visual-composer/maps/service.php:49
+msgid "Icon Position"
+msgstr "圖標的位置"
+
+#: core/libraries/vendors/elementor/widgets/service.php:145
+#: core/libraries/vendors/visual-composer/maps/service.php:70
+msgid "Icon Color"
+msgstr "圖標顏色"
+
+#: core/libraries/vendors/elementor/widgets/service.php:154
+#: core/libraries/vendors/visual-composer/maps/service.php:76
+msgid "Title Color"
+msgstr "標題顏色"
+
+#: core/libraries/vendors/elementor/widgets/service.php:163
+#: core/libraries/vendors/visual-composer/maps/service.php:82
+msgid "Content Color"
+msgstr "內容顏色"
+
+#: core/libraries/vendors/openswatch/templates/variable.php:34
+#: core/libraries/vendors/woocommerce/templates/single-product/add-to-cart/variable.php:30
+msgid "This product is currently out of stock and unavailable."
+msgstr "當前產品已下架不可購買"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:339
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:393
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:912
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2618
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3665
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:394
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3244
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:395
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:397
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:399
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:608
+#, fuzzy
+#| msgid "Update Cart"
+msgid "Update Required"
+msgstr "更新購物車"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:1019
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:1019
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:1022
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:1022
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2067
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2358
+msgid "Required"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2361
+msgid "Recommended"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2377
+msgid "WordPress Repository"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2380
+msgid "External Source"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2383
+msgid "Pre-Packaged"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2400
+msgid "Not Installed"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2404
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2406
+msgid "Active"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2412
+msgid "Required Update not Available"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2415
+msgid "Requires Update"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2418
+msgid "Update recommended"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2427
+#, php-format
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2567
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2575
+msgid "Installed version:"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2583
+msgid "Minimum required version:"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2595
+#, fuzzy
+#| msgid "Available on backorder"
+msgid "Available version:"
+msgstr "缺貨中"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2618
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2632
+msgid "Plugin"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2633
+msgid "Source"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2634
+#, fuzzy
+#| msgid "Map Type"
+msgid "Type"
+msgstr "地圖樣式"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2638
+msgid "Version"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2639
+msgid "Status"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2688
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2693
+#, fuzzy, php-format
+#| msgid "Update Cart"
+msgid "Update %2$s"
+msgstr "更新購物車"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2699
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2769
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2802
+#, fuzzy
+#| msgid "Instagram"
+msgid "Install"
+msgstr "Instagram"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2808
+#, fuzzy
+#| msgid "Update Cart"
+msgid "Update"
+msgstr "更新購物車"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2811
+msgid "Activate"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2842
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2844
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2885
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2887
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:2993
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3019
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3243
+msgid "Plugin activation failed."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3583
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3586
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3588
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3592
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3594
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3602
+#, fuzzy
+#| msgid "Product Detail"
+msgid "Show Details"
+msgstr "商品詳細頁面"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3594
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3602
+#, fuzzy
+#| msgid "Billing Details"
+msgid "Hide Details"
+msgstr "發票備註"
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3595
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3597
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3600
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3603
+msgid "All installations have been completed."
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/init.php:20
+msgid "Claue Addons"
+msgstr "Claue 外掛程式"
+
+#: core/libraries/vendors/tgmpa/init.php:27
+msgid "Claue Sample Data"
+msgstr "Claue 示例資料"
+
+#: core/libraries/vendors/tgmpa/init.php:34
+msgid "Pin Maker"
+msgstr "Pin 製造商"
+
+#: core/libraries/vendors/tgmpa/init.php:40
+msgid "Envato Market"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/init.php:45
+#, fuzzy
+#| msgid "WooCommerce Product Bundle"
+msgid "WPA WooCommerce Product Bundle"
+msgstr "WooCommerce 產品包"
+
+#: core/libraries/vendors/tgmpa/init.php:57
+msgid "Instagram Shop"
+msgstr "Instagram 店"
+
+#: core/libraries/vendors/tgmpa/init.php:62
+msgid "MailChimp"
+msgstr "MailChimp"
+
+#: core/libraries/vendors/tgmpa/init.php:67
+msgid "YITH WooCommerce Wishlist"
+msgstr "YITH WooCommerce願望清單"
+
+#: core/libraries/vendors/tgmpa/init.php:72
+msgid "YITH WooCommerce Newsletter Popup"
+msgstr "YITH WooCommerce 通訊彈出式功能表"
+
+#: core/libraries/vendors/tgmpa/init.php:77
+msgid "YITH WooCommerce Ajax Product Filter"
+msgstr "YITH WooCommerce Ajax產品搜索"
+
+#: core/libraries/vendors/tgmpa/init.php:82
+msgid "YIKES Custom Product Tabs"
+msgstr "YIKES 自訂產品選項卡"
+
+#: core/libraries/vendors/tgmpa/init.php:87
+msgid "Smash Balloon Instagram Feed"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/init.php:92
+msgid "Elementor"
+msgstr ""
+
+#: core/libraries/vendors/tgmpa/init.php:97
+msgid "Visual Composer"
+msgstr "可視化編輯器"
+
+#: core/libraries/vendors/tgmpa/init.php:107
+#, fuzzy
+#| msgid "WooCommerce Filter Sidebar"
+msgid "WooCommerce Variation Swatch"
+msgstr "WooCommerce 篩選器側邊欄"
+
+#: core/libraries/vendors/tgmpa/init.php:115
+#, fuzzy
+#| msgid "Meta Slider"
+msgid "Smart Slider"
+msgstr "Meta幻燈片"
+
+#: core/libraries/vendors/tgmpa/init.php:122
+#: core/libraries/vendors/visual-composer/maps/meta-slider.php:35
+msgid "Meta Slider"
+msgstr "Meta幻燈片"
+
+#: core/libraries/vendors/tgmpa/init.php:129
+#, fuzzy
+#| msgid "Contact Form 7"
+msgid "Contact Form by WPForms"
+msgstr "Contact Form 7"
+
+#: core/libraries/vendors/tgmpa/init.php:136
+msgid "Contact Form 7"
+msgstr "Contact Form 7"
+
+#: core/libraries/vendors/visual-composer/maps/banner.php:12
+msgid "Image and Text"
+msgstr "圖像和文本"
+
+#: core/libraries/vendors/visual-composer/maps/blog.php:13
+msgid "Show blog post by ID or title"
+msgstr "顯示按 ID 或標題的博客帖子"
+
+#: core/libraries/vendors/visual-composer/maps/blog.php:50
+#: core/libraries/vendors/visual-composer/maps/products.php:192
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:32
+msgid "2 columns"
+msgstr "2 列"
+
+#: core/libraries/vendors/visual-composer/maps/blog.php:51
+#: core/libraries/vendors/visual-composer/maps/products.php:193
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:33
+msgid "3 columns"
+msgstr "3 列"
+
+#: core/libraries/vendors/visual-composer/maps/blog.php:52
+#: core/libraries/vendors/visual-composer/maps/products.php:194
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:34
+msgid "4 columns"
+msgstr "4 列"
+
+#: core/libraries/vendors/visual-composer/maps/blog.php:59
+msgid "How much items per page to show (-1 to show all posts)"
+msgstr "多少種商品每頁顯示 (-1，以顯示所有產品)"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:15
+#: core/libraries/vendors/visual-composer/maps/column.php:40
+msgid "Background  Position"
+msgstr "背景位置"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:16
+#: core/libraries/vendors/visual-composer/maps/column.php:41
+#: core/libraries/vendors/visual-composer/maps/row.php:41
+#: core/libraries/vendors/visual-composer/maps/row.php:66
+msgid "Sets the starting position of a background image."
+msgstr "設置背景圖像的起始位置。"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:17
+#: core/libraries/vendors/visual-composer/maps/column.php:42
+#: core/libraries/vendors/visual-composer/maps/row.php:42
+#: core/libraries/vendors/visual-composer/maps/row.php:67
+msgid "Design Options"
+msgstr "設計選項"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:22
+#: core/libraries/vendors/visual-composer/maps/column.php:47
+#: core/libraries/vendors/visual-composer/maps/row.php:47
+#: core/libraries/vendors/visual-composer/maps/row.php:72
+msgid "Left Top"
+msgstr "左上"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:23
+#: core/libraries/vendors/visual-composer/maps/column.php:48
+#: core/libraries/vendors/visual-composer/maps/row.php:48
+#: core/libraries/vendors/visual-composer/maps/row.php:73
+msgid "Left Center"
+msgstr "左側局中"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:24
+#: core/libraries/vendors/visual-composer/maps/column.php:49
+#: core/libraries/vendors/visual-composer/maps/row.php:49
+#: core/libraries/vendors/visual-composer/maps/row.php:74
+msgid "Left Bottom"
+msgstr "左下方"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:25
+#: core/libraries/vendors/visual-composer/maps/column.php:50
+#: core/libraries/vendors/visual-composer/maps/row.php:50
+#: core/libraries/vendors/visual-composer/maps/row.php:75
+msgid "Right Top"
+msgstr "右側頂部"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:26
+#: core/libraries/vendors/visual-composer/maps/column.php:51
+#: core/libraries/vendors/visual-composer/maps/row.php:51
+#: core/libraries/vendors/visual-composer/maps/row.php:76
+msgid "Right Center"
+msgstr "右側局中"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:27
+#: core/libraries/vendors/visual-composer/maps/column.php:52
+#: core/libraries/vendors/visual-composer/maps/row.php:52
+#: core/libraries/vendors/visual-composer/maps/row.php:77
+msgid "Right Bottom"
+msgstr "右側底部"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:28
+#: core/libraries/vendors/visual-composer/maps/column.php:53
+#: core/libraries/vendors/visual-composer/maps/row.php:53
+#: core/libraries/vendors/visual-composer/maps/row.php:78
+msgid "Center Top"
+msgstr "中心頂部"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:29
+#: core/libraries/vendors/visual-composer/maps/column.php:54
+#: core/libraries/vendors/visual-composer/maps/row.php:54
+#: core/libraries/vendors/visual-composer/maps/row.php:79
+msgid "Center Center"
+msgstr "中心"
+
+#: core/libraries/vendors/visual-composer/maps/column.php:30
+#: core/libraries/vendors/visual-composer/maps/column.php:55
+#: core/libraries/vendors/visual-composer/maps/row.php:55
+#: core/libraries/vendors/visual-composer/maps/row.php:80
+msgid "Center Bottom"
+msgstr "中心底部"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:14
+msgid "Google Maps"
+msgstr "谷歌地圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:21
+msgid "Address"
+msgstr "地址"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:27
+msgid "Zoom Level ( 0 -> 20 )"
+msgstr "縮放級別 （0 網站-> 20）"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:33
+msgid "Latitude"
+msgstr "緯度"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:39
+msgid "Longitude"
+msgstr "經度"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:45
+msgid "Width"
+msgstr "寬度"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:46
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:53
+msgid "Numeric value only, Unit is Pixel."
+msgstr "數位值，單位是圖元。"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:52
+msgid "Height"
+msgstr "高度"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:59
+msgid "Marker"
+msgstr "標記"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:69
+msgid "Marker Image"
+msgstr "標記圖像"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:70
+msgid "Change default Marker."
+msgstr "更改預設標記。"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:79
+msgid "Content Info Map"
+msgstr "內容資訊地圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:80
+msgid "Strong, br are accepted."
+msgstr "強，BR被接受。"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:89
+msgid "Show content info map"
+msgstr "顯示內容資訊地圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:101
+msgid "Show Traffic"
+msgstr "顯示路況信息"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:109
+msgid "Draggable"
+msgstr "可移動"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:121
+msgid "Hide Control"
+msgstr "隱藏控件"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:129
+msgid "Scroll wheel zooming"
+msgstr "滾動滾輪縮放"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:137
+msgid "Map Type"
+msgstr "地圖樣式"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:140
+msgid "ROADMAP"
+msgstr "路線圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:141
+msgid "SATELLITE"
+msgstr "衛星圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:142
+msgid "HYBRID"
+msgstr "混合圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:143
+msgid "TERRAIN"
+msgstr "地形圖"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:148
+msgid "Map style"
+msgstr "地圖類型"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:151
+msgid "None"
+msgstr "無"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:152
+msgid "Subtle Grayscale"
+msgstr "淺灰"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:153
+msgid "Blue water"
+msgstr "藍色"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:154
+msgid "Pale Dawn"
+msgstr "蒼白"
+
+#: core/libraries/vendors/visual-composer/maps/google-maps.php:155
+msgid "Shades of Grey"
+msgstr "灰度陰影"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:34
+msgid "Facebook Link"
+msgstr "Facebook 連結:"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:40
+msgid "Twitter Link"
+msgstr "推特 連結"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:46
+#, fuzzy
+#| msgid "Instagram"
+msgid "Instagram Link"
+msgstr "Instagram"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:52
+msgid "Dribbble Link"
+msgstr "Dribbble 連結"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:58
+msgid "Behance Link"
+msgstr "Behance 連結"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:64
+msgid "Linkedin Link"
+msgstr "LinkedIn 連結"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:70
+msgid "Tumblr Link"
+msgstr "Tumblr 連結"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:76
+msgid "Pinterest Link"
+msgstr "Pinterest 連結"
+
+#: core/libraries/vendors/visual-composer/maps/member.php:82
+msgid "Google Plus Link"
+msgstr "Google Plus 連結"
+
+#: core/libraries/vendors/visual-composer/maps/meta-slider.php:42
+msgid "Choose slide"
+msgstr "選擇"
+
+#: core/libraries/vendors/visual-composer/maps/product.php:14
+msgid "Show a single product by ID or SKU"
+msgstr "按ID或SKU顯示單個產品"
+
+#: core/libraries/vendors/visual-composer/maps/product.php:21
+msgid "Select identificator"
+msgstr "選擇標識符"
+
+#: core/libraries/vendors/visual-composer/maps/product.php:23
+#: core/libraries/vendors/visual-composer/maps/products.php:92
+msgid "Input product ID or product SKU or product title to see suggestions"
+msgstr "輸入產品ID或產品SKU或產品標題以查看建議"
+
+#: core/libraries/vendors/visual-composer/maps/products.php:21
+msgid "Show multiple products by ID or SKU."
+msgstr "按ID或SKU顯示多個產品。"
+
+#: core/libraries/vendors/visual-composer/maps/products.php:147
+#: core/libraries/vendors/visual-composer/maps/products.php:159
+#: core/libraries/vendors/visual-composer/maps/products.php:169
+#: core/libraries/vendors/visual-composer/maps/products.php:179
+msgid "Slider Settings"
+msgstr "滑塊設置"
+
+#: core/libraries/vendors/visual-composer/maps/products.php:195
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:35
+msgid "6 columns"
+msgstr "6 列"
+
+#: core/libraries/vendors/visual-composer/maps/promotion.php:62
+#: core/libraries/vendors/visual-composer/maps/promotion.php:94
+#: core/libraries/vendors/visual-composer/maps/promotion.php:126
+msgid "Font size"
+msgstr "字體大小"
+
+#: core/libraries/vendors/visual-composer/maps/promotion.php:69
+#: core/libraries/vendors/visual-composer/maps/promotion.php:101
+#: core/libraries/vendors/visual-composer/maps/promotion.php:133
+msgid "Line height"
+msgstr "行高"
+
+#: core/libraries/vendors/visual-composer/maps/promotion.php:75
+#: core/libraries/vendors/visual-composer/maps/promotion.php:107
+#: core/libraries/vendors/visual-composer/maps/promotion.php:139
+msgid "Color"
+msgstr "顏色"
+
+#: core/libraries/vendors/visual-composer/maps/promotion.php:81
+#: core/libraries/vendors/visual-composer/maps/promotion.php:113
+msgid "Margin bottom"
+msgstr "邊距底部"
+
+#: core/libraries/vendors/visual-composer/maps/row.php:16
+msgid "Full width row?"
+msgstr "全部寬度"
+
+#: core/libraries/vendors/visual-composer/maps/row.php:17
+msgid "If checked row will be set to full width."
+msgstr "如果選中該行將設置為全寬。"
+
+#: core/libraries/vendors/visual-composer/maps/row.php:26
+msgid "Wrap Content"
+msgstr "包裝內容"
+
+#: core/libraries/vendors/visual-composer/maps/row.php:27
+msgid ""
+"Wrap content to 1170px (You can change wrapper's width in theme options."
+msgstr "包裝內容到 1170px （您可以更改在主題選項中的包裝器的寬度。"
+
+#: core/libraries/vendors/visual-composer/maps/row.php:40
+#: core/libraries/vendors/visual-composer/maps/row.php:65
+msgid "Background Position"
+msgstr "背景位置"
+
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:13
+msgid "Product Categories"
+msgstr "創建分類"
+
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:20
+msgid "Categories Layout"
+msgstr "類別布局"
+
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:41
+msgid "Exclude"
+msgstr "排除"
+
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:42
+msgid "Enter category id to exclude (Note: separate values by commas \",\")."
+msgstr "輸入要排除的類別 id (注︰ 逗號分隔值\"，\")。"
+
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:47
+msgid "Item Large"
+msgstr "大型專案"
+
+#: core/libraries/vendors/visual-composer/maps/wc-categories.php:48
+msgid ""
+"Number of item you want to set larger (Note: separate values by commas \",\")"
+msgstr "你想要設置較大的專案數目 (注︰ 逗號分隔值\"、\")"
+
+#: core/libraries/vendors/wcvs/init.php:142
+#: core/libraries/vendors/wcvs/init.php:144
+#: core/libraries/vendors/woocommerce/templates/single-product/product-image.php:140
+#: core/libraries/vendors/woocommerce/templates/single-product/product-image.php:142
+msgid "View Video"
+msgstr "查看視頻"
+
+#: core/libraries/vendors/woocommerce/init.php:161
+msgid "Size Guide"
+msgstr "尺碼指南"
+
+#: core/libraries/vendors/woocommerce/init.php:165
+msgid "Delivery & Return"
+msgstr "商品運送與退貨流程"
+
+#: core/libraries/vendors/woocommerce/init.php:234
+msgid "Limited time offer"
+msgstr ""
+
+#: core/libraries/vendors/woocommerce/init.php:251
+msgid "WooCommerce Categories Menu Sidebar"
+msgstr "WooCommerce 類別功能表列"
+
+#: core/libraries/vendors/woocommerce/init.php:253
+msgid ""
+"The woocommerce categories menu sidebar, It will display in archive product "
+"page on top"
+msgstr "Woocommerce 類別功能表列，它將顯示在存檔產品頁上"
+
+#: core/libraries/vendors/woocommerce/init.php:262
+msgid "WooCommerce Filter Sidebar"
+msgstr "WooCommerce 篩選器側邊欄"
+
+#: core/libraries/vendors/woocommerce/init.php:264
+msgid ""
+"The sidebar area for woocommerce, It will display on archive product page"
+msgstr "用於woocommerce的側邊區域，它將顯示在存檔產品頁面上"
+
+#: core/libraries/vendors/woocommerce/init.php:274
+msgid "WooCommerce Sidebar"
+msgstr "WooCommerce側欄"
+
+#: core/libraries/vendors/woocommerce/init.php:276
+msgid ""
+"The woocommerce sidebar, It will display in archive product page on left or "
+"right"
+msgstr "Woocommerce 側邊欄，它將顯示在存檔產品頁上左或向右"
+
+#: core/libraries/vendors/woocommerce/init.php:449
+msgid "Dashboard"
+msgstr "返回我的帳戶"
+
+#: core/libraries/vendors/woocommerce/init.php:450
+#, fuzzy
+#| msgid "Order"
+msgid "My Orders"
+msgstr "訂單"
+
+#: core/libraries/vendors/woocommerce/init.php:451
+msgid "Logout"
+msgstr "登出"
+
+#: core/libraries/vendors/woocommerce/init.php:453
+msgid "Login / Register"
+msgstr "登錄/註冊"
+
+#: core/libraries/vendors/woocommerce/init.php:471
+msgid "View your shopping cart"
+msgstr "查看購物車"
+
+#: core/libraries/vendors/woocommerce/init.php:625
+#, fuzzy, php-format
+#| msgid "Search results for: "
+msgid "Search Results for: %s"
+msgstr "搜索結果："
+
+#: core/libraries/vendors/woocommerce/init.php:795
+msgid "Enable AJAX add to cart buttons on product detail"
+msgstr "啟用 AJAX 添加到購物車上產品詳細資訊按鈕"
+
+#: core/libraries/vendors/woocommerce/init.php:965
+#: core/libraries/vendors/woocommerce/templates/checkout/form-checkout.php:54
+msgid "Your order"
+msgstr "您的訂單"
+
+#: core/libraries/vendors/woocommerce/init.php:1002
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:91
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:134
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:255
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:406
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:429
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:583
+msgid "Available on backorder"
+msgstr "缺貨中"
+
+#: core/libraries/vendors/woocommerce/init.php:1077
+msgid "Subtotal"
+msgstr "小計："
+
+#: core/libraries/vendors/woocommerce/init.php:1081
+#, fuzzy
+#| msgid "Continue Shopping"
+msgid "Continue shopping"
+msgstr "繼續購物"
+
+#: core/libraries/vendors/woocommerce/init.php:1084
+#, fuzzy
+#| msgid "You must be logged in to checkout."
+msgid "Proceed to checkout"
+msgstr "您必須先登錄才能結帳。"
+
+#: core/libraries/vendors/woocommerce/init.php:1121
+#, fuzzy
+#| msgid "You may also like"
+msgid "You might also like"
+msgstr "你可能也會喜歡"
+
+#: core/libraries/vendors/woocommerce/templates/archive-product.php:116
+msgid "Filter"
+msgstr "篩選"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:32
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:140
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:280
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:347
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:468
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:612
+msgid "Total"
+msgstr "合 計"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:55
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:370
+msgid "Product bundles"
+msgstr "產品捆綁"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:151
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:159
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:291
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:299
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:479
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:487
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:623
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:631
+#: core/libraries/vendors/woocommerce/templates/cart/mini-cart.php:46
+#: core/libraries/vendors/woocommerce/templates/cart/mini-cart.php:54
+msgid "Remove this item"
+msgstr "移除這項商品"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:321
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:653
+msgid "Coupon:"
+msgstr "優惠券："
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:321
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:653
+msgid "Coupon code"
+msgstr "優惠代碼"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:321
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:653
+msgid "Apply Coupon"
+msgstr "使用優惠券"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:321
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:653
+#, fuzzy
+#| msgid "Apply Coupon"
+msgid "Apply coupon"
+msgstr "使用優惠券"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:327
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:659
+msgid "Update Cart"
+msgstr "更新購物車"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:345
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:435
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:588
+msgid "Price"
+msgstr "價格"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:346
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:443
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:461
+#: core/libraries/vendors/woocommerce/templates/cart/cart.php:594
+msgid "Quantity"
+msgstr "數量"
+
+#: core/libraries/vendors/woocommerce/templates/cart/cross-sells.php:26
+msgid "You may be interested in&hellip;"
+msgstr "您可能感興趣的"
+
+#: core/libraries/vendors/woocommerce/templates/cart/mini-cart.php:146
+msgid "Continue Shopping"
+msgstr "繼續購物"
+
+#: core/libraries/vendors/woocommerce/templates/cart/mini-cart.php:151
+msgid "No products in the cart."
+msgstr "購物車中所有選中的產品"
+
+#: core/libraries/vendors/woocommerce/templates/checkout/form-billing.php:29
+msgid "Billing &amp; Shipping"
+msgstr "賬單 &amp; 配送"
+
+#: core/libraries/vendors/woocommerce/templates/checkout/form-billing.php:33
+#, fuzzy
+#| msgid "Billing Details"
+msgid "Billing details"
+msgstr "發票備註"
+
+#: core/libraries/vendors/woocommerce/templates/checkout/form-billing.php:58
+msgid "Create an account?"
+msgstr "創建一個帳戶？"
+
+#: core/libraries/vendors/woocommerce/templates/checkout/form-checkout.php:28
+msgid "You must be logged in to checkout."
+msgstr "您必須先登錄才能結帳。"
+
+#: core/libraries/vendors/woocommerce/templates/checkout/form-shipping.php:29
+msgid "Ship to a different address?"
+msgstr "運送到不同的地址？"
+
+#: core/libraries/vendors/woocommerce/templates/checkout/form-shipping.php:60
+#, fuzzy
+#| msgid "Additional Information"
+msgid "Additional information"
+msgstr "附加訊息"
+
+#: core/libraries/vendors/woocommerce/templates/content-product-image.php:41
+msgid "Placeholder"
+msgstr "標記"
+
+#: core/libraries/vendors/woocommerce/templates/content-product.php:115
+msgid "Quick Shop"
+msgstr "立即購買"
+
+#: core/libraries/vendors/woocommerce/templates/content-quickview-product.php:41
+#: core/libraries/vendors/woocommerce/templates/single-product/product-image.php:93
+msgid "Awaiting product image"
+msgstr "等待商品圖像"
+
+#: core/libraries/vendors/woocommerce/templates/content-quickview-product.php:100
+#, fuzzy
+#| msgid "View Video"
+msgid "View details"
+msgstr "查看視頻"
+
+#: core/libraries/vendors/woocommerce/templates/emails/woo-preview-emails.php:85
+msgid "Preview Email Templates"
+msgstr "預覽電子郵件範本"
+
+#: core/libraries/vendors/woocommerce/templates/emails/woo-preview-emails.php:87
+msgid "Click Here to preview all of your Email Templates with Orders"
+msgstr "預覽所有寄送訂單的電子郵件範本"
+
+#: core/libraries/vendors/woocommerce/templates/global/quantity-input.php:42
+#, fuzzy, php-format
+#| msgid "Quantity"
+msgid "%s quantity"
+msgstr "數量"
+
+#: core/libraries/vendors/woocommerce/templates/loop/sale-flash.php:43
+#: core/libraries/vendors/woocommerce/templates/single-product/sale-flash.php:32
+msgid "Sale"
+msgstr "特價!"
+
+#: core/libraries/vendors/woocommerce/templates/loop/sale-flash.php:50
+#: core/libraries/vendors/woocommerce/templates/loop/sale-flash.php:64
+#: core/libraries/vendors/woocommerce/templates/single-product/sale-flash.php:39
+#: core/libraries/vendors/woocommerce/templates/single-product/sale-flash.php:53
+#, php-format
+msgid "-%s"
+msgstr ""
+
+#: core/libraries/vendors/woocommerce/templates/loop/sale-flash.php:70
+#: core/libraries/vendors/woocommerce/templates/single-product/sale-flash.php:59
+msgid "Sold Out"
+msgstr "售完"
+
+#: core/libraries/vendors/woocommerce/templates/loop/sale-flash.php:73
+#: core/libraries/vendors/woocommerce/templates/single-product/sale-flash.php:71
+msgid "New"
+msgstr "新"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:35
+msgid "Login"
+msgstr "登入"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:42
+msgid "Username or email address"
+msgstr "用戶名或電子郵件 *"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:46
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:98
+msgid "Password"
+msgstr "密碼"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:54
+msgid "Log in"
+msgstr ""
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:57
+msgid "Remember me"
+msgstr "記住密碼"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:61
+msgid "Lost your password?"
+msgstr "忘記密碼？"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:75
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:112
+msgid "Register"
+msgstr "註冊"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:84
+msgid "Username"
+msgstr "用戶名"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:91
+msgid "Email address"
+msgstr "電子郵件地址"
+
+#: core/libraries/vendors/woocommerce/templates/myaccount/form-login.php:104
+msgid "A password will be sent to your email address."
+msgstr ""
+
+#: core/libraries/vendors/woocommerce/templates/single-product/related.php:27
+#, fuzzy
+#| msgid "Related product"
+msgid "Related products"
+msgstr "熱銷商品"
+
+#: core/libraries/vendors/woocommerce/templates/single-product/up-sells.php:28
+msgid "You may also like"
+msgstr "你可能也會喜歡"
+
+#: single.php:36
+msgid "Pages:"
+msgstr "頁次:"
+
+#: single.php:47
+msgid "Leave a comment"
+msgstr "留下一條回覆"
+
+#: single.php:47 views/post/content-masonry.php:34
+msgid "1 Comment"
+msgstr "1條評論"
+
+#: single.php:47 views/post/content-masonry.php:34
+msgid "% Comments"
+msgstr "% 評論"
+
+#: views/header/layout-1.php:60 views/header/layout-2.php:102
+#: views/header/layout-3.php:80 views/header/layout-4.php:62
+#: views/header/layout-5.php:15
+#, fuzzy
+#| msgid "Search for..."
+msgid "Search"
+msgstr "站內搜尋..."
+
+#: views/header/layout-1.php:69 views/header/layout-2.php:110
+#: views/header/layout-3.php:88 views/header/layout-4.php:71
+#: views/header/layout-5.php:22
+#, fuzzy
+#| msgid "View your shopping cart"
+msgid "View your Wishlist"
+msgstr "查看購物車"
+
+#: views/header/layout-1.php:81 views/header/layout-2.php:123
+#: views/header/layout-3.php:100 views/header/layout-4.php:103
+#: views/header/layout-5.php:59
+msgid "Search for..."
+msgstr "站內搜尋..."
+
+#: views/header/layout-1.php:87 views/header/layout-2.php:130
+#: views/header/layout-3.php:107 views/header/layout-4.php:110
+msgid "Menu"
+msgstr "菜單"
+
+#: views/header/layout-1.php:130 views/header/layout-2.php:174
+#: views/header/layout-3.php:149 views/header/layout-4.php:155
+#: views/header/layout-5.php:51
+msgid "Mini Cart"
+msgstr "迷你購物車"
+
+#: views/header/layout-2.php:72 views/header/layout-2.php:93
+#: views/header/layout-3.php:72 views/header/layout-4.php:94
+msgid "Add Menu"
+msgstr "添加菜單"
+
+#: views/post/content-masonry.php:24 views/post/content-single.php:14
+#: views/post/content.php:19
+#, php-format
+msgid "Continue Reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "繼續閱讀<span class=\"screen-reader-text\">\"%s\"</span>"
+
+#: views/post/content-masonry.php:34
+msgid "0 Comment"
+msgstr "0評論"
+
+#: views/post/content-masonry.php:36 views/post/content.php:24
+msgid "Continue Reading"
+msgstr "繼續瀏覽"
+
+#: views/post/content-none.php:19
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr "很抱歉，找不到你想要的內容，請換一個關鍵詞再次搜尋。"
+
+#: views/post/content-none.php:25
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr "找不到你要的內容，也許搜尋功能能幫到你！"
+
+#: views/post/latest.php:23
+#, fuzzy
+#| msgid "The photos should be at least 640px x 210px"
+msgid "The photos should be at least 640px x 310px"
+msgstr "這些照片至少應為 640px x 210px"
+
+#: wc-vendors/store/store-ratings.php:27
+msgid "Customer Ratings"
+msgstr ""
+
+#: wc-vendors/store/store-ratings.php:50
+#, fuzzy
+#| msgid "Product"
+msgid "Product:"
+msgstr "商品"
+
+#: wc-vendors/store/store-ratings.php:51
+#, fuzzy
+#| msgid "Post author"
+msgid "Posted on"
+msgstr "文章作者"
+
+#: wc-vendors/store/store-ratings.php:51
+msgid "by"
+msgstr ""
+
+#: wc-vendors/store/store-ratings.php:57
+msgid "No ratings have been submitted for this vendor yet."
+msgstr ""
+
+#: wc-vendors/store/store-ratings.php:59
+msgid "<span>&larr;</span> Return to store"
+msgstr ""
+
+#~ msgctxt "comments title"
+#~ msgid "Comment (1)"
+#~ msgstr "1 條評論"
+
+#~ msgctxt "comments title"
+#~ msgid "Comment (%1$s)"
+#~ msgid_plural "Comments (%1$s)"
+#~ msgstr[0] "評論 (%1$s)"
+
+#~ msgid "Your comment *"
+#~ msgstr "您的評論 *"
+
+#~ msgid "Your name *"
+#~ msgstr "你的名字"
+
+#~ msgid "Your email *"
+#~ msgstr "您的電子郵箱"
+
+#~ msgid "Your website"
+#~ msgstr "您的網站"
+
+#~ msgid "Leave your comment"
+#~ msgstr "留下您的評論"
+
+#~ msgid "Submit"
+#~ msgstr "提交"
+
+#~ msgid "HTML allowed"
+#~ msgstr "允許HTML"
+
+#~ msgid "Order Tracking"
+#~ msgstr "訂單"
+
+#~ msgid "%s has been added to your cart."
+#~ msgid_plural "%s have been added to your cart."
+#~ msgstr[0] "%s 已加入您的購物車"
+
+#~ msgid "View Cart"
+#~ msgstr "查看購物車"
+
+#~ msgid "Open Swatch"
+#~ msgstr "打開色板"
+
+#~ msgid "Share this post on Google Plus"
+#~ msgstr "分享到Google+"
+
+#~ msgid "Show off your favorite Instagram photos"
+#~ msgstr "炫耀你最喜歡的 Instagram 照片"
+
+#~ msgid "Claue - Instagram"
+#~ msgstr "Claue-Instagram"
+
+#~ msgid "Title:"
+#~ msgstr "標題"
+
+#~ msgid "Number of Photos:"
+#~ msgstr "照片數:"
+
+#~ msgid "Columns (1-4):"
+#~ msgstr "列 (1-4):"
+
+#~ msgid "Social"
+#~ msgstr "社會"
+
+#~ msgid "User ID"
+#~ msgstr "使用者 ID"
+
+#~ msgid "Link to Instagram"
+#~ msgstr "Instagram 的連結"
+
+#~ msgid "Access Token"
+#~ msgstr "通行憑證"
+
+#~ msgid "How much items per page to show"
+#~ msgstr "每頁顯示多少項目"
+
+#~ msgid "This parameter is not working if slider has enabled"
+#~ msgstr "此參數不工作如果滑塊已啟用"
+
+#~ msgid "5 columns"
+#~ msgstr "5 列"
+
+#~ msgid "7 columns"
+#~ msgstr "7 列"
+
+#~ msgid "8 columns"
+#~ msgstr "8 列"
+
+#~ msgid "9 columns"
+#~ msgstr "9 列"
+
+#~ msgid "10 columns"
+#~ msgstr "10 列"
+
+#~ msgid "Gutter Width"
+#~ msgstr "格寬間距"
+
+#~ msgid ""
+#~ "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms "
+#~ "&amp; conditions</a>"
+#~ msgstr ""
+#~ "已經閱讀並接受條款及;細則 <a href=\"%s\" target=\"_blank\">terms &amp; "
+#~ "conditions</a>"
+
+#~ msgid ""
+#~ "Create an account by entering the information below. If you are a "
+#~ "returning customer please login at the top of the page."
+#~ msgstr "填寫以下信息完成註冊。如果已有賬戶，請選擇上面登錄功能，登錄"
+
+#~ msgid "Anti-spam"
+#~ msgstr "反垃圾郵件"
+
+#~ msgctxt "Product quantity input tooltip"
+#~ msgid "Qty"
+#~ msgstr "數量"
+
+#~ msgid "All"
+#~ msgstr "全部"
+
+#~ msgid "claue/claue/claue"
+#~ msgstr "claue/claue/claue"

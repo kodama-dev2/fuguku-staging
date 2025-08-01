@@ -1,0 +1,333 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: WooCommerce Product Bundle\n"
+"POT-Creation-Date: 2019-07-12 11:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: init.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Language: "
+
+#: init.php:64
+msgid ""
+"WooCommerce Product Bundle is enabled but not effective. It requires "
+"WooCommerce in order to work."
+msgstr ""
+
+#: includes/class-wcpb-frontend.php:93 includes/admin/class-wcpb-admin.php:161
+msgid "Data not isset."
+msgstr ""
+
+#: includes/class-wcpb-frontend.php:105 includes/admin/class-wcpb-admin.php:66 
+#: includes/admin/class-wcpb-admin.php:156
+msgid "The nonce check wrong."
+msgstr ""
+
+#: includes/class-wcpb-frontend.php:367 includes/admin/class-wcpb-admin.php:252
+msgid "Product Bundles"
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:207 includes/admin/class-wcpb-admin.php:480
+msgid "This product"
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:255
+msgid "Out of stock"
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:302
+msgid "Price for all"
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:303
+msgid "save"
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:316
+msgid ""
+"Please select some product options before adding this product to your cart."
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:317
+msgid "Product bundle already add to cart, "
+msgstr ""
+
+#: includes/wcpb-template-hooks.php:317
+msgid "View cart"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:71
+msgid "Product not isset."
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:136 
+#: includes/admin/class-wcpb-admin.php:374
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:143
+msgid "Wrong."
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:196
+msgid "No results."
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:281
+msgid "Enter product name"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:287
+msgid "Select products to include in the bundle"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:462
+msgid "Bundle saved"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:463
+msgid ""
+"You can only specify a discount percentage. The discount percent will be "
+"applied to total price"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:467
+msgid "Bundle"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:503
+msgid "Enter Discount on total product "
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:505
+msgid "Enter Discount per item"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:521 
+#: includes/admin/class-wcpb-settings.php:251
+msgid "Amount off"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:539
+msgid "Edit bundle title and description"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:542
+msgid ""
+"When you enable this option. This setting will orverride global setting of "
+"plugin at Settings > Product Bundle"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:551
+msgid "Bundles Widget Title"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:552 
+#: includes/admin/class-wcpb-settings.php:135
+#, php-format
+msgid "Buy this bundle and get 25% off"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:555
+msgid "Bundles Description"
+msgstr ""
+
+#: includes/admin/class-wcpb-admin.php:556
+msgid ""
+"Buy more save more. Save 15% when you purchase 4 products, save 10% when you "
+"purchase 3 products"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:95
+msgid "Product Bundle Settings"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:121
+msgid "General Settings"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:129
+msgid "Bundle title"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:141
+msgid "Bundle description"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:147
+#, php-format
+msgid ""
+"Buy more save more. Save 15% off when you purchase 4 products, save 10% off "
+"when you purchase 3 products"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:153
+msgid "Button label"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:159
+msgid "Add all to cart"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:165
+msgid "Button background"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:177
+msgid "Button background hover"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:189
+msgid "Button text"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:201
+msgid "Button text hover"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:213
+msgid "Product image size"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:225
+msgid "Position"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:233
+msgid "Below product summary"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:234
+msgid "Above product tab"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:235
+msgid "Below product tab"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:242
+msgid "Display bundle save"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:250
+msgid "Percent off (%)"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:258
+msgid "Type of discount"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:266
+msgid "Discount for total"
+msgstr ""
+
+#: includes/admin/class-wcpb-settings.php:355
+msgid ""
+"Ex: 70x70 or can use product size defalut: shop_thumbnail, shop_catalog, "
+"shop_single"
+msgstr ""
+
+#: includes/woocommerce/cart/cart-shipping.php:50 
+#: includes/woocommerce/cart/cart-shipping.php:52
+msgid ""
+"There are no shipping methods available. Please ensure that your address has "
+"been entered correctly, or contact us if you need any help."
+msgstr ""
+
+#: includes/woocommerce/cart/cart-shipping.php:56
+msgid "Enter your full address to see shipping costs."
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:30 includes/woocommerce/cart/cart.php:75 
+#: includes/woocommerce/cart/cart.php:98 includes/woocommerce/cart/cart.php:252
+msgid "Product"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:31 
+#: includes/woocommerce/cart/cart.php:121 
+#: includes/woocommerce/cart/cart.php:274
+msgid "Price"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:32 
+#: includes/woocommerce/cart/cart.php:129 
+#: includes/woocommerce/cart/cart.php:147 
+#: includes/woocommerce/cart/cart.php:280
+msgid "Quantity"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:33 
+#: includes/woocommerce/cart/cart.php:154 
+#: includes/woocommerce/cart/cart.php:298
+msgid "Total"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:56
+msgid "Product bundles"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:92 
+#: includes/woocommerce/cart/cart.php:115 
+#: includes/woocommerce/cart/cart.php:269
+msgid "Available on backorder"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:165 
+#: includes/woocommerce/cart/cart.php:173 
+#: includes/woocommerce/cart/cart.php:309 
+#: includes/woocommerce/cart/cart.php:317
+msgid "Remove this item"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:339
+msgid "Coupon:"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:339
+msgid "Coupon code"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:339
+msgid "Apply Coupon"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:339
+msgid "Apply coupon"
+msgstr ""
+
+#: includes/woocommerce/cart/cart.php:345
+msgid "Update Cart"
+msgstr ""
+
+#. Name of the plugin
+msgid "WPA WooCommerce Product Bundle"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Boost your sale with bundle product, frequently bought together."
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpaddon.net/wc-product-bundle"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WPAddon"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://wpaddon.net"
+msgstr ""

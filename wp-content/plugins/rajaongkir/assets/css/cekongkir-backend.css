@@ -1,0 +1,240 @@
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir th.titledesc {
+  vertical-align: top;
+  background-color: #f8f8f8; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features {
+  table-layout: fixed; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features-wrap {
+    margin-top: 10px;
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features th,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features td {
+    white-space: nowrap; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features th:first-child,
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features td:first-child {
+      border-left: 1px solid #ccd0d4; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features th:last-child,
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features td:last-child {
+      border-right: 1px solid #ccd0d4; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features th + th,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features th + td,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features td + th,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features td + td {
+    border-left: 1px solid #ccd0d4; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features thead td,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features thead th {
+    border-top: 1px solid #ccd0d4;
+    background-color: #f8f8f8; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features thead th {
+    border-bottom: 1px solid #ccd0d4; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features thead th:first-child {
+      width: auto !important; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features thead th:not(:first-child) {
+      text-align: center;
+      width: 90px; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody tr:nth-child(even) td,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody tr:nth-child(even) th {
+    background-color: #f8f8f8; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody tr:hover td,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody tr:hover th {
+    background-color: #fbfbfb; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody tr:last-child td,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody tr:last-child th {
+    border-bottom: 1px solid #ccd0d4; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody td {
+    text-align: center; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody th,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tbody td {
+    padding: 0.6em 1em; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tfoot td,
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tfoot th {
+    border-bottom: 1px solid #ccd0d4;
+    background-color: #f8f8f8; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-features tfoot td {
+    text-align: center; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers {
+  margin: 0; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item {
+    border: 1px solid #ccd0d4;
+    margin: 0 0 3px 0;
+    background-color: #f8f8f8; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info {
+      position: relative;
+      height: 40px;
+      cursor: move; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-title {
+        display: inline-block;
+        line-height: 40px;
+        height: 40px;
+        font-weight: bold;
+        padding-left: 12px; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-toggle, .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-link {
+        position: absolute;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        border-left: 1px solid #ccd0d4;
+        text-align: center; }
+        .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-toggle a, .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-link a {
+          text-decoration: none;
+          display: block;
+          height: 40px;
+          line-height: 40px;
+          padding-top: 10px; }
+          .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-toggle a:hover, .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-link a:hover {
+            background-color: #fbfbfb; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-toggle {
+        right: 0; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item-info-link {
+        right: 40px;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item:not(.expanded) {
+      background-color: #fff; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item:not(.expanded):hover {
+        background-color: #fbfbfb; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item:not(.expanded) .cekongkir-couriers-item-info-link,
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers-item:not(.expanded) .cekongkir-services {
+        -webkit-transform: scale(0);
+                transform: scale(0);
+        height: 0; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers--selected:before {
+    content: " ("; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers--selected::after {
+    content: " / "; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-couriers--available:after {
+    content: ")"; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-services {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  background-color: #fff;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-services-item {
+    margin: 0;
+    padding: 7px 0 7px 36px;
+    border-top: 1px solid #ccd0d4; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-services-item:first-child {
+      border-top: 1px solid #ccd0d4; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-services-item:nth-child(even) {
+      background-color: #f8f8f8; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-services-item:hover {
+      background-color: #fbfbfb; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-container {
+  border-radius: 0;
+  margin-bottom: 24px; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav {
+  display: block;
+  padding: 0;
+  margin: 0; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav:after {
+    display: block;
+    clear: both;
+    content: ""; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li {
+    float: left;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    display: block;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 50%;
+    border-top: 1px solid #ccd0d4;
+    border-right: 1px solid #ccd0d4;
+    border-left: 1px solid #ccd0d4; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li + li {
+      border-left: none; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li a {
+      padding: 1em 2em;
+      display: block;
+      text-decoration: none;
+      outline: none;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      color: unset;
+      position: relative;
+      font-weight: 700;
+      border-bottom: 1px solid #ccd0d4; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li a.active {
+        background-color: #f8f8f8;
+        border-bottom: 1px solid #f8f8f8; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li a:not(.active) {
+        opacity: 0.7; }
+        .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li a:not(.active):hover {
+          background-color: #fbfbfb;
+          opacity: 1; }
+      .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li a:active, .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-nav li a:focus {
+        outline: none;
+        -webkit-box-shadow: none;
+                box-shadow: none; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-content {
+  display: block;
+  padding: 1em;
+  min-height: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: 1px solid #ccd0d4;
+  border-bottom: 1px solid #ccd0d4;
+  border-left: 1px solid #ccd0d4;
+  background-color: #f8f8f8; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-tab-content:not(.active) {
+    display: none; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-api-key-input {
+  max-width: calc(100% - 42px);
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-api-key-view {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  margin-left: -2px; }
+
+.wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style-type: none;
+  padding: 0; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-item {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    text-align: center;
+    border: 1px solid #ccd0d4;
+    padding: 10px; }
+    .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-item-label {
+      display: block;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 6px; }
+  .wc-modal-shipping-method-settings.wc-modal-shipping-method-settings--cekongkir .cekongkir-account-type {
+    min-width: unset !important;
+    width: 16px !important;
+    height: 16px !important; }
+
+/**
+ * Style for WooCommerce 8.4.0 and later
+ */
+.wc-shipping-zone-method-fields .cekongkir-api-key-input {
+  width: calc(100% - 42px) !important; }
+
+.wc-shipping-zone-method-fields .cekongkir-api-key-view {
+  margin-top: 6px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important; }
+
+  .select2-container {
+    width: 100% !important;
+}

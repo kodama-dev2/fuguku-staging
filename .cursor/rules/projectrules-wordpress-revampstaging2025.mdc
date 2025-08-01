@@ -1,0 +1,133 @@
+---
+description: WordPress development rules for Fuguku.com staging environment with Claue theme, WooCommerce, and custom post types development
+alwaysApply: true
+---
+
+# WordPress Development Project Rules - Fuguku.com Staging
+
+## Project Overview
+- **Project**: Fuguku.com WordPress Revamp
+- **WordPress Version**: 6.4.5
+- **Theme**: Claue (JanStudio) - WooCommerce Fashion Theme v2.2.1
+- **Staging URL**: https://revampstaging2025.fuguku.com/
+- **Git Repository**: https://github.com/kodama-dev2/fuguku-staging
+- **Branch Strategy**: Single branch (masterstaging)
+- **Hosting**: Hostinger
+- **Database**: Remote MySQL (staging online)
+
+## Database Configuration
+- **DB Name**: u719516980_qMpQd
+- **DB User**: u719516980_yGme6
+- **DB Password**: pbHuuyhjAc
+- **Connection**: Remote MySQL to staging database
+
+## Development Workflow
+1. **Local Development** → **Git Push** → **Staging Deploy** → **Production Deploy**
+2. **Database**: Remote MySQL connection to staging database
+3. **Deployment**: Managed through Hostinger dashboard
+
+## WordPress Development Standards
+
+### File Structure & Naming
+- Follow WordPress directory structure conventions
+- Use lowercase with hyphens for directory names (e.g., `wp-content/themes/my-theme`)
+- Maintain WordPress core file integrity
+- Never modify core WordPress files directly
+- Use child themes for customizations (recommended: create claue-child theme)
+
+### PHP Coding Standards
+- Use PHP 7.4+ features where applicable
+- Follow WordPress PHP coding standards
+- Add `declare(strict_types=1);` at file top
+- Use WordPress hooks (actions and filters) for extensions
+- Implement proper error handling with `WP_DEBUG_LOG`
+- Always sanitize and validate data using WordPress functions
+- Use `$wpdb->prepare()` for database queries
+
+### Security Practices
+- Verify nonces in form submissions
+- Use WordPress user roles and capabilities
+- Apply proper input sanitization and output escaping
+- Store sensitive data using WordPress Options API
+- Use transients API for caching
+
+### Theme Development (Claue Theme)
+- **Theme Name**: Claue by JanStudio
+- **Version**: 2.2.1
+- **Features**: WooCommerce, Fashion Store, Personal Blog
+- **Customization**: Use child theme for modifications
+- **CSS Framework**: Custom grid system (jas-* classes)
+- **Responsive**: Mobile-first approach with breakpoints
+
+### Custom Post Types Development
+- Create custom post types for new content types
+- Use proper WordPress post type registration
+- Implement custom taxonomies when needed
+- Follow WordPress naming conventions
+- Add proper meta boxes and custom fields
+
+### Plugin Development
+- Use WordPress plugin API
+- Follow plugin directory structure
+- Implement activation/deactivation hooks
+- Use WordPress AJAX for backend requests
+- Apply proper uninstall procedures
+
+### Database Operations
+- Use `$wpdb` abstraction layer
+- Apply `dbDelta()` for schema changes
+- Use WordPress Options API for configuration
+- Implement proper backup strategies
+
+### Performance Optimization
+- Use WordPress transients for caching
+- Implement background processing with `wp_cron()`
+- Optimize database queries
+- Use pagination with `paginate_links()`
+
+## Git Workflow
+- **Branch**: masterstaging only
+- **Commit Messages**: Descriptive and follow conventional commits
+- **Push Strategy**: Local → Git → Staging → Production
+- **File Tracking**: Exclude sensitive files (wp-config.php, .env)
+
+## Environment Configuration
+- **Local**: Development environment
+- **Staging**: https://revampstaging2025.fuguku.com/
+- **Production**: https://fuguku.com/
+- **Database**: Remote MySQL connection to staging
+
+## Deployment Process
+1. Develop locally
+2. Push to Git repository
+3. Deploy to staging via Hostinger dashboard
+4. Test on staging environment
+5. Deploy to production via Hostinger dashboard
+
+## Testing Requirements
+- Test all features before claiming completion
+- Verify functionality on staging before production
+- Check responsive design across devices
+- Validate form submissions and data handling
+- Test database operations and caching
+
+## Documentation
+- Comment code thoroughly
+- Document custom functions and hooks
+- Maintain README for project setup
+- Document deployment procedures
+
+## Theme-Specific Guidelines (Claue)
+- **CSS Classes**: Use jas-* prefix for custom classes
+- **Grid System**: Utilize jas-container, jas-row, jas-col-* classes
+- **Responsive**: Follow existing breakpoints (xs, sm, md, lg)
+- **Typography**: Use f__pop (Poppins) and f__libre (Libre Baskerville)
+- **Colors**: Follow theme color scheme (#56cfe1 primary, #222 dark, etc.)
+- **Icons**: Use FontAwesome icons with fa class
+
+## Custom Development Focus
+- **Tampilan**: UI/UX improvements and custom layouts
+- **Custom Post Types**: New content types for specific needs
+- **WooCommerce**: E-commerce functionality enhancements
+- **Performance**: Optimization for better loading times
+- **Responsive**: Mobile-first design approach
