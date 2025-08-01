@@ -6,8 +6,11 @@
 class FugukuGiftPostType_Register {
     
     public function __construct() {
-        add_action('init', array($this, 'register_post_type'));
-        add_action('init', array($this, 'register_taxonomies'));
+        // Register post type and taxonomies on init hook
+        add_action('init', array($this, 'register_post_type'), 0);
+        add_action('init', array($this, 'register_taxonomies'), 0);
+        
+        // Add admin filters
         add_filter('manage_gift_posts_columns', array($this, 'set_custom_columns'));
         add_action('manage_gift_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
         add_filter('manage_edit-gift_sortable_columns', array($this, 'sortable_columns'));

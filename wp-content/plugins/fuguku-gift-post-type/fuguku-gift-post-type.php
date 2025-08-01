@@ -92,7 +92,7 @@ class FugukuGiftPostType {
      * Initialize plugin
      */
     public function init() {
-        // Initialize components
+        // Initialize components immediately
         new FugukuGiftPostType_Register();
         new FugukuGiftPostType_Taxonomies();
         new FugukuGiftPostType_MetaBoxes();

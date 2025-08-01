@@ -14,6 +14,13 @@ function fuguku_gift_debug() {
         echo '<div style="background: #fff; padding: 20px; margin: 20px; border: 1px solid #ccc;">';
         echo '<h3>Fuguku Gift Plugin Debug</h3>';
         
+        // Check if plugin is active
+        if (is_plugin_active('fuguku-gift-post-type/fuguku-gift-post-type.php')) {
+            echo '<p style="color: green;"><strong>✅ Plugin is ACTIVE!</strong></p>';
+        } else {
+            echo '<p style="color: red;"><strong>❌ Plugin is NOT ACTIVE!</strong></p>';
+        }
+        
         // Check if post type exists
         $post_types = get_post_types(array(), 'names');
         echo '<p><strong>Registered Post Types:</strong> ' . implode(', ', $post_types) . '</p>';
@@ -39,6 +46,13 @@ function fuguku_gift_debug() {
             echo '<p style="color: green;"><strong>✅ Gift tag taxonomy is registered!</strong></p>';
         } else {
             echo '<p style="color: red;"><strong>❌ Gift tag taxonomy is NOT registered!</strong></p>';
+        }
+        
+        // Check if classes exist
+        if (class_exists('FugukuGiftPostType_Register')) {
+            echo '<p style="color: green;"><strong>✅ FugukuGiftPostType_Register class exists!</strong></p>';
+        } else {
+            echo '<p style="color: red;"><strong>❌ FugukuGiftPostType_Register class NOT found!</strong></p>';
         }
         
         echo '</div>';
