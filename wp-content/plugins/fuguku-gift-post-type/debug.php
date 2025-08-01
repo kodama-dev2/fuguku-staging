@@ -55,6 +55,24 @@ function fuguku_gift_debug() {
             echo '<p style="color: red;"><strong>❌ FugukuGiftPostType_Register class NOT found!</strong></p>';
         }
         
+        // Check if method exists
+        if (method_exists('FugukuGiftPostType_Register', 'register_post_type')) {
+            echo '<p style="color: green;"><strong>✅ register_post_type method exists!</strong></p>';
+        } else {
+            echo '<p style="color: red;"><strong>❌ register_post_type method NOT found!</strong></p>';
+        }
+        
+        // Check if post type is being registered
+        global $wp_post_types;
+        if (isset($wp_post_types['gift'])) {
+            echo '<p style="color: green;"><strong>✅ Gift post type is in global $wp_post_types!</strong></p>';
+        } else {
+            echo '<p style="color: red;"><strong>❌ Gift post type is NOT in global $wp_post_types!</strong></p>';
+        }
+        
+        // Check current hook
+        echo '<p><strong>Current Hook:</strong> ' . current_filter() . '</p>';
+        
         echo '</div>';
     }
 }

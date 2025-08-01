@@ -6,9 +6,9 @@
 class FugukuGiftPostType_Register {
     
     public function __construct() {
-        // Register post type and taxonomies on init hook
-        add_action('init', array($this, 'register_post_type'), 0);
-        add_action('init', array($this, 'register_taxonomies'), 0);
+        // Register post type and taxonomies on init hook with high priority
+        add_action('init', array($this, 'register_post_type'), 1);
+        add_action('init', array($this, 'register_taxonomies'), 1);
         
         // Add admin filters
         add_filter('manage_gift_posts_columns', array($this, 'set_custom_columns'));
@@ -20,53 +20,62 @@ class FugukuGiftPostType_Register {
      * Register Gift Post Type
      */
     public function register_post_type() {
-        $labels = array(
-            'name'                  => _x('Gifts', 'Post type general name', 'fuguku-gift'),
-            'singular_name'         => _x('Gift', 'Post type singular name', 'fuguku-gift'),
-            'menu_name'             => _x('Gifts', 'Admin Menu text', 'fuguku-gift'),
-            'name_admin_bar'        => _x('Gift', 'Add New on Toolbar', 'fuguku-gift'),
-            'add_new'               => __('Add New', 'fuguku-gift'),
-            'add_new_item'          => __('Add New Gift', 'fuguku-gift'),
-            'new_item'              => __('New Gift', 'fuguku-gift'),
-            'edit_item'             => __('Edit Gift', 'fuguku-gift'),
-            'view_item'             => __('View Gift', 'fuguku-gift'),
-            'all_items'             => __('All Gifts', 'fuguku-gift'),
-            'search_items'          => __('Search Gifts', 'fuguku-gift'),
-            'parent_item_colon'     => __('Parent Gifts:', 'fuguku-gift'),
-            'not_found'             => __('No gifts found.', 'fuguku-gift'),
-            'not_found_in_trash'    => __('No gifts found in Trash.', 'fuguku-gift'),
-            'featured_image'        => _x('Gift Cover Image', 'Overrides the "Featured Image" phrase for this post type.', 'fuguku-gift'),
-            'set_featured_image'    => _x('Set cover image', 'Overrides the "Set featured image" phrase for this post type.', 'fuguku-gift'),
-            'remove_featured_image' => _x('Remove cover image', 'Overrides the "Remove featured image" phrase for this post type.', 'fuguku-gift'),
-            'use_featured_image'    => _x('Use as cover image', 'Overrides the "Use as featured image" phrase for this post type.', 'fuguku-gift'),
-            'archives'              => _x('Gift archives', 'The post type archive label used in nav menus. Default "Post Archives".', 'fuguku-gift'),
-            'insert_into_item'      => _x('Insert into gift', 'Overrides the "Insert into post"/"Insert into page" phrase (used when inserting media into a post).', 'fuguku-gift'),
-            'uploaded_to_this_item' => _x('Uploaded to this gift', 'Overrides the "Uploaded to this post"/"Uploaded to this page" phrase (used when viewing media attached to a post).', 'fuguku-gift'),
-            'filter_items_list'     => _x('Filter gifts list', 'Screen reader text for the filter links.', 'fuguku-gift'),
-            'items_list_navigation' => _x('Gifts list navigation', 'Screen reader text for the pagination.', 'fuguku-gift'),
-            'items_list'            => _x('Gifts list', 'Screen reader text for the items list.', 'fuguku-gift'),
-        );
-        
-        $args = array(
-            'labels'             => $labels,
-            'public'             => true,
-            'publicly_queryable' => true,
-            'show_ui'            => true,
-            'show_in_menu'       => true,
-            'query_var'          => true,
-            'rewrite'            => array('slug' => 'gifts'),
-            'capability_type'    => 'post',
-            'has_archive'        => true,
-            'hierarchical'       => false,
-            'menu_position'      => 20,
-            'menu_icon'          => 'dashicons-gift',
-            'supports'           => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'revisions'),
-            'show_in_rest'       => true, // Enable Gutenberg editor
-            'rest_base'          => 'gifts',
-            'rest_controller_class' => 'WP_REST_Posts_Controller',
-        );
-        
-        register_post_type('gift', $args);
+        try {
+            $labels = array(
+                'name'                  => _x('Gifts', 'Post type general name', 'fuguku-gift'),
+                'singular_name'         => _x('Gift', 'Post type singular name', 'fuguku-gift'),
+                'menu_name'             => _x('Gifts', 'Admin Menu text', 'fuguku-gift'),
+                'name_admin_bar'        => _x('Gift', 'Add New on Toolbar', 'fuguku-gift'),
+                'add_new'               => __('Add New', 'fuguku-gift'),
+                'add_new_item'          => __('Add New Gift', 'fuguku-gift'),
+                'new_item'              => __('New Gift', 'fuguku-gift'),
+                'edit_item'             => __('Edit Gift', 'fuguku-gift'),
+                'view_item'             => __('View Gift', 'fuguku-gift'),
+                'all_items'             => __('All Gifts', 'fuguku-gift'),
+                'search_items'          => __('Search Gifts', 'fuguku-gift'),
+                'parent_item_colon'     => __('Parent Gifts:', 'fuguku-gift'),
+                'not_found'             => __('No gifts found.', 'fuguku-gift'),
+                'not_found_in_trash'    => __('No gifts found in Trash.', 'fuguku-gift'),
+                'featured_image'        => _x('Gift Cover Image', 'Overrides the "Featured Image" phrase for this post type.', 'fuguku-gift'),
+                'set_featured_image'    => _x('Set cover image', 'Overrides the "Set featured image" phrase for this post type.', 'fuguku-gift'),
+                'remove_featured_image' => _x('Remove cover image', 'Overrides the "Remove featured image" phrase for this post type.', 'fuguku-gift'),
+                'use_featured_image'    => _x('Use as cover image', 'Overrides the "Use as featured image" phrase for this post type.', 'fuguku-gift'),
+                'archives'              => _x('Gift archives', 'The post type archive label used in nav menus. Default "Post Archives".', 'fuguku-gift'),
+                'insert_into_item'      => _x('Insert into gift', 'Overrides the "Insert into post"/"Insert into page" phrase (used when inserting media into a post).', 'fuguku-gift'),
+                'uploaded_to_this_item' => _x('Uploaded to this gift', 'Overrides the "Uploaded to this post"/"Uploaded to this page" phrase (used when viewing media attached to a post).', 'fuguku-gift'),
+                'filter_items_list'     => _x('Filter gifts list', 'Screen reader text for the filter links.', 'fuguku-gift'),
+                'items_list_navigation' => _x('Gifts list navigation', 'Screen reader text for the pagination.', 'fuguku-gift'),
+                'items_list'            => _x('Gifts list', 'Screen reader text for the items list.', 'fuguku-gift'),
+            );
+            
+            $args = array(
+                'labels'             => $labels,
+                'public'             => true,
+                'publicly_queryable' => true,
+                'show_ui'            => true,
+                'show_in_menu'       => true,
+                'query_var'          => true,
+                'rewrite'            => array('slug' => 'gifts'),
+                'capability_type'    => 'post',
+                'has_archive'        => true,
+                'hierarchical'       => false,
+                'menu_position'      => 20,
+                'menu_icon'          => 'dashicons-gift',
+                'supports'           => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'revisions'),
+                'show_in_rest'       => true, // Enable Gutenberg editor
+                'rest_base'          => 'gifts',
+                'rest_controller_class' => 'WP_REST_Posts_Controller',
+            );
+            
+            $result = register_post_type('gift', $args);
+            
+            if (is_wp_error($result)) {
+                error_log('Fuguku Gift Plugin Error: ' . $result->get_error_message());
+            }
+            
+        } catch (Exception $e) {
+            error_log('Fuguku Gift Plugin Exception: ' . $e->getMessage());
+        }
     }
     
     /**
