@@ -2,12 +2,18 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired
- * Version: 1.1.1
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, and Elementor compatibility.
+ * Version: 1.1.2
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 16:15
+ * Last Updated: 2025-01-27 16:45
+ * 
+ * Version History:
+ * v1.0.0 - Initial plugin creation with basic post type
+ * v1.1.0 - Added meta fields and basic templates
+ * v1.1.1 - Enhanced layout with Louis Vuitton inspired design
+ * v1.1.2 - Enhanced description and documentation
  */
 
 // Prevent direct access
