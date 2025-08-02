@@ -1,9 +1,9 @@
 <?php
 /**
- * Template for displaying gift archives - Louis Vuitton Style Mixed Grid
+ * Template for displaying gift archives - Louis Vuitton Style 14-Card Layout
  * 
  * @package Claue
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 get_header(); ?>
@@ -11,6 +11,7 @@ get_header(); ?>
 <div class="jas-container">
     <div class="jas-row">
         <div class="jas-col-md-12">
+            
             <!-- Page Header -->
             <div class="gifts-header">
                 <h1 class="gifts-title"><?php echo esc_html__('Gifts Collection', 'claue'); ?></h1>
@@ -40,6 +41,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
+                
                 <div class="filter-right">
                     <button class="filter-btn">
                         <i class="fa fa-filter"></i>
@@ -48,24 +50,40 @@ get_header(); ?>
                 </div>
             </div>
 
-            <!-- Gifts Grid - Mixed LV Style -->
+            <!-- Gifts Grid - 14 Card Layout -->
             <div class="gifts-grid gifts-grid-lv">
                 <?php 
+                // Query gifts ordered by modified date
+                $gifts_query = new WP_Query(array(
+                    'post_type' => 'gifts',
+                    'posts_per_page' => 14,
+                    'orderby' => 'modified',
+                    'order' => 'DESC',
+                    'post_status' => 'publish',
+                ));
+
                 $counter = 0;
-                if (have_posts()) : 
-                    while (have_posts()) : the_post(); 
+                if ($gifts_query->have_posts()) : 
+                    while ($gifts_query->have_posts()) : $gifts_query->the_post(); 
                         $counter++;
                         $is_featured = get_post_meta(get_the_ID(), '_featured_gift', true);
-                        $card_class = 'gift-card';
-                        if ($is_featured) {
-                            $card_class .= ' featured-lv';
-                        } elseif ($counter % 6 == 0) {
-                            $card_class .= ' medium-lv';
+                        
+                        // Determine card class based on position
+                        if ($counter == 1 || $counter == 4 || $counter == 8 || $counter == 11) {
+                            $card_class = 'gift-card portrait-large';
+                        } elseif ($counter == 2 || $counter == 3 || $counter == 9 || $counter == 10) {
+                            $card_class = 'gift-card regular';
+                        } elseif ($counter == 5 || $counter == 7 || $counter == 12 || $counter == 14) {
+                            $card_class = 'gift-card landscape-wide';
+                        } elseif ($counter == 6 || $counter == 13) {
+                            $card_class = 'gift-card portrait-tall';
                         } else {
-                            $card_class .= ' regular-lv';
+                            $card_class = 'gift-card regular';
                         }
                         ?>
+                        
                         <article class="<?php echo esc_attr($card_class); ?>">
+                            
                             <!-- Gift Image -->
                             <div class="gift-image">
                                 <?php if (has_post_thumbnail()) : ?>
@@ -79,17 +97,22 @@ get_header(); ?>
                                         </div>
                                     </a>
                                 <?php endif; ?>
+                                
+                                <!-- Featured Badge -->
                                 <?php if ($is_featured) : ?>
                                     <div class="featured-badge">
                                         <i class="fa fa-star"></i>
                                     </div>
                                 <?php endif; ?>
                             </div>
+
                             <!-- Gift Info -->
                             <div class="gift-info">
                                 <h3 class="gift-title">
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h3>
+                                
+                                <!-- Gift Price -->
                                 <?php 
                                 $gift_price = get_post_meta(get_the_ID(), '_gift_price', true);
                                 if ($gift_price) : ?>
@@ -98,6 +121,8 @@ get_header(); ?>
                                         <span class="price"><?php echo esc_html(number_format($gift_price, 0, ',', '.')); ?></span>
                                     </div>
                                 <?php endif; ?>
+                                
+                                <!-- Gift Brand -->
                                 <?php 
                                 $gift_brand = get_post_meta(get_the_ID(), '_gift_brand', true);
                                 if ($gift_brand) : ?>
@@ -105,6 +130,8 @@ get_header(); ?>
                                         <?php echo esc_html($gift_brand); ?>
                                     </div>
                                 <?php endif; ?>
+                                
+                                <!-- Gift Availability -->
                                 <?php 
                                 $gift_availability = get_post_meta(get_the_ID(), '_gift_availability', true);
                                 if ($gift_availability) : ?>
@@ -125,9 +152,53 @@ get_header(); ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
+
                         </article>
+
                     <?php endwhile; ?>
+                    
+                    <?php
+                    // Add placeholders if needed
+                    $total_items = $gifts_query->found_posts;
+                    $placeholders_needed = max(0, 14 - $total_items);
+                    
+                    for ($i = 0; $i < $placeholders_needed; $i++) {
+                        $counter++;
+                        
+                        // Determine placeholder card class based on position
+                        if ($counter == 1 || $counter == 4 || $counter == 8 || $counter == 11) {
+                            $card_class = 'gift-card portrait-large placeholder';
+                        } elseif ($counter == 2 || $counter == 3 || $counter == 9 || $counter == 10) {
+                            $card_class = 'gift-card regular placeholder';
+                        } elseif ($counter == 5 || $counter == 7 || $counter == 12 || $counter == 14) {
+                            $card_class = 'gift-card landscape-wide placeholder';
+                        } elseif ($counter == 6 || $counter == 13) {
+                            $card_class = 'gift-card portrait-tall placeholder';
+                        } else {
+                            $card_class = 'gift-card regular placeholder';
+                        }
+                        ?>
+                        
+                        <article class="<?php echo esc_attr($card_class); ?>">
+                            <div class="gift-image">
+                                <div class="gift-placeholder">
+                                    <i class="fa fa-gift"></i>
+                                </div>
+                            </div>
+                            <div class="gift-info">
+                                <h3 class="gift-title">Coming Soon</h3>
+                                <div class="gift-price">
+                                    <span class="currency">IDR</span>
+                                    <span class="price">-</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                    <?php } ?>
+                    
                 <?php else : ?>
+                    
+                    <!-- No Gifts Found -->
                     <div class="no-gifts-found">
                         <div class="no-gifts-icon">
                             <i class="fa fa-gift"></i>
@@ -138,11 +209,12 @@ get_header(); ?>
                             <?php echo esc_html__('View All Gifts', 'claue'); ?>
                         </a>
                     </div>
+
                 <?php endif; ?>
             </div>
 
             <!-- Pagination -->
-            <?php if (have_posts()) : ?>
+            <?php if ($gifts_query->have_posts()) : ?>
                 <div class="gifts-pagination">
                     <?php
                     echo paginate_links(array(
@@ -153,6 +225,7 @@ get_header(); ?>
                     ?>
                 </div>
             <?php endif; ?>
+
         </div>
     </div>
 </div>
