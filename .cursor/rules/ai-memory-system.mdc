@@ -1,5 +1,16 @@
 # AI Memory System - Fuguku Project
 
+description: Permanent memory system to prevent basic mistakes and ensure consistent quality in WordPress development. Contains mandatory checklists, zero tolerance rules, and workflow templates that must be followed for every update.
+
+globs:
+  - "**/*.php"
+  - "**/*.css"
+  - "**/*.js"
+  - "**/*.md"
+alwaysApply: true
+
+---
+
 ## 🧠 PERMANENT MEMORY RULES
 
 ### 🚨 MANDATORY CHECKS (Setiap Update):
@@ -61,7 +72,3 @@
 - ✅ Fitur berfungsi dengan baik
 - ✅ Version + timestamp selalu update
 - ✅ Project rules selalu sync
-description:
-globs:
-alwaysApply: false
----

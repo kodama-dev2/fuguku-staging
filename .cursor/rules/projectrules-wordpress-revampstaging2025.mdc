@@ -1,6 +1,17 @@
 
 # WordPress Development Project Rules - Fuguku Staging 2025
 
+description: Comprehensive WordPress development rules for Fuguku.com staging project. Contains mandatory checklists, coding standards, deployment procedures, and quality assurance processes. Must be followed for all WordPress development tasks including custom post types, themes, plugins, and Elementor integrations.
+
+globs:
+  - "**/*.php"
+  - "**/*.css"
+  - "**/*.js"
+  - "wp-content/**/*"
+alwaysApply: true
+
+---
+
 ## 🚨 MANDATORY CHECKLIST - JANGAN LUPA!
 
 ### ✅ OBLIGATORY UPDATES (Setiap Perubahan):
