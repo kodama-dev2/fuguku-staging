@@ -2,18 +2,19 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, and Elementor compatibility. This plugin is updated on 2025-01-27 16:45, version 1.1.2
- * Version: 1.1.2
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, and Elementor compatibility with custom widgets (Grid, Slider, Filter, Single). This plugin is updated on 2025-01-27 17:00, version 1.2.0
+ * Version: 1.2.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 16:45
+ * Last Updated: 2025-01-27 17:00
  * 
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
  * v1.1.0 - Added meta fields and basic templates
  * v1.1.1 - Enhanced layout with Louis Vuitton inspired design
  * v1.1.2 - Enhanced description and documentation
+ * v1.2.0 - Added Elementor integration with custom widgets
  */
 
 // Prevent direct access
@@ -233,6 +234,20 @@ function fuguku_save_gift_meta_box($post_id) {
     update_post_meta($post_id, '_featured_gift', $featured_gift);
 }
 add_action('save_post', 'fuguku_save_gift_meta_box');
+
+/**
+ * Elementor Integration
+ */
+function fuguku_elementor_integration() {
+    // Check if Elementor is installed and activated
+    if (!did_action('elementor/loaded')) {
+        return;
+    }
+
+    // Include Elementor widgets
+    require_once(__DIR__ . '/includes/class-elementor-gifts-widgets.php');
+}
+add_action('plugins_loaded', 'fuguku_elementor_integration');
 
 /**
  * Flush rewrite rules on activation
