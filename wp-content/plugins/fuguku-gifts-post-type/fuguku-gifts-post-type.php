@@ -111,6 +111,123 @@ function fuguku_register_gift_taxonomies() {
 add_action('init', 'fuguku_register_gift_taxonomies');
 
 /**
+ * Add Meta Boxes for Gift Fields
+ */
+function fuguku_add_gift_meta_boxes() {
+    add_meta_box(
+        'gift_details',
+        __('Gift Details', 'fuguku-gift'),
+        'fuguku_gift_details_callback',
+        'gifts',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'fuguku_add_gift_meta_boxes');
+
+/**
+ * Meta Box Callback Function
+ */
+function fuguku_gift_details_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('fuguku_gift_meta_box', 'fuguku_gift_meta_box_nonce');
+
+    // Get existing values
+    $gift_price = get_post_meta($post->ID, '_gift_price', true);
+    $gift_brand = get_post_meta($post->ID, '_gift_brand', true);
+    $gift_availability = get_post_meta($post->ID, '_gift_availability', true);
+    $featured_gift = get_post_meta($post->ID, '_featured_gift', true);
+    ?>
+    
+    <table class="form-table">
+        <tr>
+            <th scope="row">
+                <label for="gift_price"><?php _e('Price (IDR)', 'fuguku-gift'); ?></label>
+            </th>
+            <td>
+                <input type="number" id="gift_price" name="gift_price" value="<?php echo esc_attr($gift_price); ?>" class="regular-text" />
+                <p class="description"><?php _e('Enter the price in Indonesian Rupiah', 'fuguku-gift'); ?></p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th scope="row">
+                <label for="gift_brand"><?php _e('Brand', 'fuguku-gift'); ?></label>
+            </th>
+            <td>
+                <input type="text" id="gift_brand" name="gift_brand" value="<?php echo esc_attr($gift_brand); ?>" class="regular-text" />
+                <p class="description"><?php _e('Enter the brand name', 'fuguku-gift'); ?></p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th scope="row">
+                <label for="gift_availability"><?php _e('Availability', 'fuguku-gift'); ?></label>
+            </th>
+            <td>
+                <select id="gift_availability" name="gift_availability">
+                    <option value=""><?php _e('Select Availability', 'fuguku-gift'); ?></option>
+                    <option value="in_stock" <?php selected($gift_availability, 'in_stock'); ?>><?php _e('In Stock', 'fuguku-gift'); ?></option>
+                    <option value="limited" <?php selected($gift_availability, 'limited'); ?>><?php _e('Limited Stock', 'fuguku-gift'); ?></option>
+                    <option value="out_of_stock" <?php selected($gift_availability, 'out_of_stock'); ?>><?php _e('Out of Stock', 'fuguku-gift'); ?></option>
+                </select>
+                <p class="description"><?php _e('Select the availability status', 'fuguku-gift'); ?></p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th scope="row">
+                <label for="featured_gift"><?php _e('Featured Gift', 'fuguku-gift'); ?></label>
+            </th>
+            <td>
+                <input type="checkbox" id="featured_gift" name="featured_gift" value="1" <?php checked($featured_gift, '1'); ?> />
+                <label for="featured_gift"><?php _e('Mark as featured gift', 'fuguku-gift'); ?></label>
+                <p class="description"><?php _e('Featured gifts will be highlighted in the grid', 'fuguku-gift'); ?></p>
+            </td>
+        </tr>
+    </table>
+    
+    <?php
+}
+
+/**
+ * Save Meta Box Data
+ */
+function fuguku_save_gift_meta_box($post_id) {
+    // Check if nonce is valid
+    if (!isset($_POST['fuguku_gift_meta_box_nonce']) || !wp_verify_nonce($_POST['fuguku_gift_meta_box_nonce'], 'fuguku_gift_meta_box')) {
+        return;
+    }
+
+    // Check if user has permissions to save data
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Check if not an autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Save the data
+    if (isset($_POST['gift_price'])) {
+        update_post_meta($post_id, '_gift_price', sanitize_text_field($_POST['gift_price']));
+    }
+    
+    if (isset($_POST['gift_brand'])) {
+        update_post_meta($post_id, '_gift_brand', sanitize_text_field($_POST['gift_brand']));
+    }
+    
+    if (isset($_POST['gift_availability'])) {
+        update_post_meta($post_id, '_gift_availability', sanitize_text_field($_POST['gift_availability']));
+    }
+    
+    $featured_gift = isset($_POST['featured_gift']) ? '1' : '';
+    update_post_meta($post_id, '_featured_gift', $featured_gift);
+}
+add_action('save_post', 'fuguku_save_gift_meta_box');
+
+/**
  * Flush rewrite rules on activation
  */
 function fuguku_gifts_activate() {

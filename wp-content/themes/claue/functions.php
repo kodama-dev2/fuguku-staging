@@ -23,3 +23,18 @@ function my_custom_tracking( $order_id ) {
 	$order->get_order_number());  
 	echo '<iframe src=https://marktamerica.go2cloud.org/aff_l?offer_id=18902&amount=' . $total . '&adv_sub=' . $id . ' scrolling="no" frameborder="0" width="1" height="1"></iframe>';
 }
+
+/**
+ * Enqueue Gifts CSS
+ */
+function claue_enqueue_gifts_styles() {
+    if (is_post_type_archive('gifts') || is_singular('gifts') || is_tax('gift_category') || is_tax('gift_tag')) {
+        wp_enqueue_style(
+            'claue-gifts-styles',
+            get_template_directory_uri() . '/assets/css/gifts.css',
+            array(),
+            JAS_CLAUE_VERSION
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'claue_enqueue_gifts_styles');
