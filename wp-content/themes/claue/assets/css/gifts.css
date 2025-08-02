@@ -138,6 +138,19 @@
     padding: 0 20px;
 }
 
+/* 14-Card Layout Grid - Override base grid */
+.gifts-grid-lv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+    gap: 30px;
+    margin-bottom: 80px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
 .gift-card {
     background: #ffffff;
     border-radius: 8px;
