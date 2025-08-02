@@ -1,9 +1,9 @@
 <?php
 /**
- * Gift Grid Widget for Elementor
+ * Gift Grid Widget for Elementor - Louis Vuitton Style
  * 
  * @package Fuguku_Gifts
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 // Prevent direct access
@@ -48,7 +48,7 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
      * Get widget keywords
      */
     public function get_keywords() {
-        return ['gift', 'grid', 'products', 'shop'];
+        return ['gift', 'grid', 'products', 'shop', 'louis vuitton'];
     }
 
     /**
@@ -62,6 +62,19 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
             [
                 'label' => __('Content', 'fuguku-gift'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'layout_type',
+            [
+                'label' => __('Layout Type', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'lv_mixed',
+                'options' => [
+                    'regular' => __('Regular Grid', 'fuguku-gift'),
+                    'lv_mixed' => __('Louis Vuitton Mixed Grid', 'fuguku-gift'),
+                ],
             ]
         );
 
@@ -143,7 +156,10 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                     '6' => '6',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .gifts-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .gifts-grid:not(.gifts-grid-lv)' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                ],
+                'condition' => [
+                    'layout_type' => 'regular',
                 ],
             ]
         );
@@ -316,17 +332,38 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
         $gifts_query = new WP_Query($args);
 
         if ($gifts_query->have_posts()) :
+            // Determine grid class based on layout type
+            $grid_class = ($settings['layout_type'] === 'lv_mixed') ? 'gifts-grid gifts-grid-lv' : 'gifts-grid elementor-gifts-grid';
             ?>
-            <div class="gifts-grid elementor-gifts-grid">
-                <?php while ($gifts_query->have_posts()) : $gifts_query->the_post(); ?>
+            <div class="<?php echo esc_attr($grid_class); ?>">
+                <?php 
+                $counter = 0;
+                while ($gifts_query->have_posts()) : $gifts_query->the_post(); 
+                    $counter++;
+                    $is_featured = get_post_meta(get_the_ID(), '_featured_gift', true);
                     
-                    <article class="gift-card <?php echo (get_post_meta(get_the_ID(), '_featured_gift', true) ? 'featured' : 'regular'); ?>">
+                    // Determine card class based on layout type
+                    if ($settings['layout_type'] === 'lv_mixed') {
+                        $card_class = 'gift-card';
+                        if ($is_featured) {
+                            $card_class .= ' featured-lv';
+                        } elseif ($counter % 6 == 0) {
+                            $card_class .= ' medium-lv';
+                        } else {
+                            $card_class .= ' regular-lv';
+                        }
+                    } else {
+                        $card_class = 'gift-card ' . ($is_featured ? 'featured' : 'regular');
+                    }
+                    ?>
+                    
+                    <article class="<?php echo esc_attr($card_class); ?>">
                         
                         <!-- Gift Image -->
                         <div class="gift-image">
                             <?php if (has_post_thumbnail()) : ?>
                                 <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('medium_large', array('class' => 'gift-thumbnail')); ?>
+                                    <?php the_post_thumbnail('large', array('class' => 'gift-thumbnail')); ?>
                                 </a>
                             <?php else : ?>
                                 <a href="<?php the_permalink(); ?>">
@@ -337,7 +374,7 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                             <?php endif; ?>
                             
                             <!-- Featured Badge -->
-                            <?php if (get_post_meta(get_the_ID(), '_featured_gift', true)) : ?>
+                            <?php if ($is_featured) : ?>
                                 <div class="featured-badge">
                                     <i class="fa fa-star"></i>
                                 </div>
