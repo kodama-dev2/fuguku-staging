@@ -1,9 +1,9 @@
 <?php
 /**
- * Template for displaying gift archives
+ * Template for displaying gift archives - Louis Vuitton Style Mixed Grid
  * 
  * @package Claue
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 get_header(); ?>
@@ -11,7 +11,6 @@ get_header(); ?>
 <div class="jas-container">
     <div class="jas-row">
         <div class="jas-col-md-12">
-            
             <!-- Page Header -->
             <div class="gifts-header">
                 <h1 class="gifts-title"><?php echo esc_html__('Gifts Collection', 'claue'); ?></h1>
@@ -32,7 +31,6 @@ get_header(); ?>
                                 'taxonomy' => 'gift_category',
                                 'hide_empty' => true,
                             ));
-                            
                             if (!empty($gift_categories) && !is_wp_error($gift_categories)) {
                                 foreach ($gift_categories as $category) {
                                     echo '<a href="' . esc_url(get_term_link($category)) . '">' . esc_html($category->name) . '</a>';
@@ -42,7 +40,6 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                
                 <div class="filter-right">
                     <button class="filter-btn">
                         <i class="fa fa-filter"></i>
@@ -51,18 +48,29 @@ get_header(); ?>
                 </div>
             </div>
 
-            <!-- Gifts Grid -->
-            <div class="gifts-grid">
-                <?php if (have_posts()) : ?>
-                    <?php while (have_posts()) : the_post(); ?>
-                        
-                        <article class="gift-card <?php echo (get_post_meta(get_the_ID(), '_featured_gift', true) ? 'featured' : 'regular'); ?>">
-                            
+            <!-- Gifts Grid - Mixed LV Style -->
+            <div class="gifts-grid gifts-grid-lv">
+                <?php 
+                $counter = 0;
+                if (have_posts()) : 
+                    while (have_posts()) : the_post(); 
+                        $counter++;
+                        $is_featured = get_post_meta(get_the_ID(), '_featured_gift', true);
+                        $card_class = 'gift-card';
+                        if ($is_featured) {
+                            $card_class .= ' featured-lv';
+                        } elseif ($counter % 6 == 0) {
+                            $card_class .= ' medium-lv';
+                        } else {
+                            $card_class .= ' regular-lv';
+                        }
+                        ?>
+                        <article class="<?php echo esc_attr($card_class); ?>">
                             <!-- Gift Image -->
                             <div class="gift-image">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <a href="<?php the_permalink(); ?>">
-                                        <?php the_post_thumbnail('medium_large', array('class' => 'gift-thumbnail')); ?>
+                                        <?php the_post_thumbnail('large', array('class' => 'gift-thumbnail')); ?>
                                     </a>
                                 <?php else : ?>
                                     <a href="<?php the_permalink(); ?>">
@@ -71,22 +79,17 @@ get_header(); ?>
                                         </div>
                                     </a>
                                 <?php endif; ?>
-                                
-                                <!-- Featured Badge -->
-                                <?php if (get_post_meta(get_the_ID(), '_featured_gift', true)) : ?>
+                                <?php if ($is_featured) : ?>
                                     <div class="featured-badge">
                                         <i class="fa fa-star"></i>
                                     </div>
                                 <?php endif; ?>
                             </div>
-
                             <!-- Gift Info -->
                             <div class="gift-info">
                                 <h3 class="gift-title">
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h3>
-                                
-                                <!-- Gift Price -->
                                 <?php 
                                 $gift_price = get_post_meta(get_the_ID(), '_gift_price', true);
                                 if ($gift_price) : ?>
@@ -95,8 +98,6 @@ get_header(); ?>
                                         <span class="price"><?php echo esc_html(number_format($gift_price, 0, ',', '.')); ?></span>
                                     </div>
                                 <?php endif; ?>
-                                
-                                <!-- Gift Brand -->
                                 <?php 
                                 $gift_brand = get_post_meta(get_the_ID(), '_gift_brand', true);
                                 if ($gift_brand) : ?>
@@ -104,8 +105,6 @@ get_header(); ?>
                                         <?php echo esc_html($gift_brand); ?>
                                     </div>
                                 <?php endif; ?>
-                                
-                                <!-- Gift Availability -->
                                 <?php 
                                 $gift_availability = get_post_meta(get_the_ID(), '_gift_availability', true);
                                 if ($gift_availability) : ?>
@@ -126,13 +125,9 @@ get_header(); ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
-
                         </article>
-
                     <?php endwhile; ?>
                 <?php else : ?>
-                    
-                    <!-- No Gifts Found -->
                     <div class="no-gifts-found">
                         <div class="no-gifts-icon">
                             <i class="fa fa-gift"></i>
@@ -143,7 +138,6 @@ get_header(); ?>
                             <?php echo esc_html__('View All Gifts', 'claue'); ?>
                         </a>
                     </div>
-
                 <?php endif; ?>
             </div>
 
@@ -159,7 +153,6 @@ get_header(); ?>
                     ?>
                 </div>
             <?php endif; ?>
-
         </div>
     </div>
 </div>

@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single), and advanced features (AJAX filtering, wishlist, social sharing). This plugin is updated on 2025-01-27 17:30, version 1.3.0
- * Version: 1.3.0
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single), advanced features (AJAX filtering, wishlist, social sharing), and hybrid approach (LV-style archive template + Elementor pages). This plugin is updated on 2025-01-27 18:00, version 1.4.0
+ * Version: 1.4.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 17:30
- * 
+ * Last Updated: 2025-01-27 18:00
+ *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
  * v1.1.0 - Added meta fields and basic templates
@@ -16,6 +16,7 @@
  * v1.1.2 - Enhanced description and documentation
  * v1.2.0 - Added Elementor integration with custom widgets
  * v1.3.0 - Added advanced features (AJAX filtering, wishlist, social sharing)
+ * v1.4.0 - Implemented hybrid approach (LV-style archive template + Elementor pages)
  */
 
 // Prevent direct access
@@ -147,7 +148,7 @@ function fuguku_gift_details_callback($post) {
     $gift_availability = get_post_meta($post->ID, '_gift_availability', true);
     $featured_gift = get_post_meta($post->ID, '_featured_gift', true);
     ?>
-    
+
     <table class="form-table">
         <tr>
             <th scope="row">
@@ -158,7 +159,7 @@ function fuguku_gift_details_callback($post) {
                 <p class="description"><?php _e('Enter the price in Indonesian Rupiah', 'fuguku-gift'); ?></p>
             </td>
         </tr>
-        
+
         <tr>
             <th scope="row">
                 <label for="gift_brand"><?php _e('Brand', 'fuguku-gift'); ?></label>
@@ -168,7 +169,7 @@ function fuguku_gift_details_callback($post) {
                 <p class="description"><?php _e('Enter the brand name', 'fuguku-gift'); ?></p>
             </td>
         </tr>
-        
+
         <tr>
             <th scope="row">
                 <label for="gift_availability"><?php _e('Availability', 'fuguku-gift'); ?></label>
@@ -183,7 +184,7 @@ function fuguku_gift_details_callback($post) {
                 <p class="description"><?php _e('Select the availability status', 'fuguku-gift'); ?></p>
             </td>
         </tr>
-        
+
         <tr>
             <th scope="row">
                 <label for="featured_gift"><?php _e('Featured Gift', 'fuguku-gift'); ?></label>
@@ -195,7 +196,7 @@ function fuguku_gift_details_callback($post) {
             </td>
         </tr>
     </table>
-    
+
     <?php
 }
 
@@ -222,15 +223,15 @@ function fuguku_save_gift_meta_box($post_id) {
     if (isset($_POST['gift_price'])) {
         update_post_meta($post_id, '_gift_price', sanitize_text_field($_POST['gift_price']));
     }
-    
+
     if (isset($_POST['gift_brand'])) {
         update_post_meta($post_id, '_gift_brand', sanitize_text_field($_POST['gift_brand']));
     }
-    
+
     if (isset($_POST['gift_availability'])) {
         update_post_meta($post_id, '_gift_availability', sanitize_text_field($_POST['gift_availability']));
     }
-    
+
     $featured_gift = isset($_POST['featured_gift']) ? '1' : '';
     update_post_meta($post_id, '_featured_gift', $featured_gift);
 }
@@ -256,10 +257,10 @@ add_action('plugins_loaded', 'fuguku_elementor_integration');
 function fuguku_advanced_features_integration() {
     // Include AJAX handler
     require_once(__DIR__ . '/includes/class-ajax-handler.php');
-    
+
     // Include share handler
     require_once(__DIR__ . '/includes/class-share-handler.php');
-    
+
     // Enqueue scripts and styles
     add_action('wp_enqueue_scripts', 'fuguku_enqueue_advanced_scripts');
 }
@@ -272,7 +273,7 @@ function fuguku_enqueue_advanced_scripts() {
     // Enqueue jQuery UI for slider and autocomplete
     wp_enqueue_script('jquery-ui-slider');
     wp_enqueue_script('jquery-ui-autocomplete');
-    
+
     // Enqueue custom scripts
     wp_enqueue_script(
         'fuguku-gifts-ajax',
@@ -281,13 +282,13 @@ function fuguku_enqueue_advanced_scripts() {
         '1.0.0',
         true
     );
-    
+
     // Localize script
     wp_localize_script('fuguku-gifts-ajax', 'fuguku_gifts_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('fuguku_gifts_nonce'),
     ));
-    
+
     // Enqueue advanced styles
     wp_enqueue_style(
         'fuguku-gifts-advanced',
@@ -322,41 +323,41 @@ function fuguku_gifts_debug() {
     if (current_user_can('administrator')) {
         echo '<div style="background: #fff; padding: 20px; margin: 20px; border: 1px solid #ccc;">';
         echo '<h3>Fuguku Gifts Plugin Debug</h3>';
-        
+
         // Check if plugin is active
         if (is_plugin_active('fuguku-gifts-post-type/fuguku-gifts-post-type.php')) {
             echo '<p style="color: green;"><strong>✅ Plugin is ACTIVE!</strong></p>';
         } else {
             echo '<p style="color: red;"><strong>❌ Plugin is NOT ACTIVE!</strong></p>';
         }
-        
+
         // Check if post type exists
         $post_types = get_post_types(array(), 'names');
         echo '<p><strong>Registered Post Types:</strong> ' . implode(', ', $post_types) . '</p>';
-        
+
         // Check if gifts post type exists
         if (post_type_exists('gifts')) {
             echo '<p style="color: green;"><strong>✅ Gifts post type is registered!</strong></p>';
         } else {
             echo '<p style="color: red;"><strong>❌ Gifts post type is NOT registered!</strong></p>';
         }
-        
+
         // Check if taxonomies exist
         $taxonomies = get_taxonomies(array(), 'names');
         echo '<p><strong>Registered Taxonomies:</strong> ' . implode(', ', $taxonomies) . '</p>';
-        
+
         if (taxonomy_exists('gift_category')) {
             echo '<p style="color: green;"><strong>✅ Gift category taxonomy is registered!</strong></p>';
         } else {
             echo '<p style="color: red;"><strong>❌ Gift category taxonomy is NOT registered!</strong></p>';
         }
-        
+
         if (taxonomy_exists('gift_tag')) {
             echo '<p style="color: green;"><strong>✅ Gift tag taxonomy is registered!</strong></p>';
         } else {
             echo '<p style="color: red;"><strong>❌ Gift tag taxonomy is NOT registered!</strong></p>';
         }
-        
+
         echo '</div>';
     }
 }
