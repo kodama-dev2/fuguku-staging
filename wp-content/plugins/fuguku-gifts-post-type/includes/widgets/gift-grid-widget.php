@@ -79,6 +79,18 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
+            'demo_mode',
+            [
+                'label' => __('Demo Mode', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'fuguku-gift'),
+                'label_off' => __('No', 'fuguku-gift'),
+                'default' => '',
+                'description' => __('Show demo layout with sample gifts', 'fuguku-gift'),
+            ]
+        );
+
+        $this->add_control(
             'posts_per_page',
             [
                 'label' => __('Posts Per Page', 'fuguku-gift'),
@@ -309,6 +321,12 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
+        // Demo mode - show sample gifts
+        if ($settings['demo_mode'] === 'yes') {
+            $this->render_demo_layout($settings);
+            return;
+        }
+
         // Build query args
         $args = array(
             'post_type' => 'gifts',
@@ -445,5 +463,159 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
             </div>
             <?php
         endif;
+    }
+
+    /**
+     * Render demo layout with sample gifts
+     */
+    private function render_demo_layout($settings) {
+        // Sample gifts data
+        $demo_gifts = array(
+            array(
+                'title' => 'Luxury Watch Collection',
+                'price' => '25000000',
+                'brand' => 'Rolex',
+                'image' => 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=400&fit=crop',
+                'featured' => true,
+                'availability' => 'in_stock'
+            ),
+            array(
+                'title' => 'Designer Handbag',
+                'price' => '15000000',
+                'brand' => 'Louis Vuitton',
+                'image' => 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'limited'
+            ),
+            array(
+                'title' => 'Premium Perfume Set',
+                'price' => '3500000',
+                'brand' => 'Chanel',
+                'image' => 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'in_stock'
+            ),
+            array(
+                'title' => 'Diamond Necklace',
+                'price' => '45000000',
+                'brand' => 'Cartier',
+                'image' => 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'in_stock'
+            ),
+            array(
+                'title' => 'Luxury Sunglasses',
+                'price' => '2800000',
+                'brand' => 'Gucci',
+                'image' => 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'limited'
+            ),
+            array(
+                'title' => 'Premium Wine Collection',
+                'price' => '8500000',
+                'brand' => 'Dom Pérignon',
+                'image' => 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'in_stock'
+            ),
+            array(
+                'title' => 'Designer Wallet',
+                'price' => '4200000',
+                'brand' => 'Hermès',
+                'image' => 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'in_stock'
+            ),
+            array(
+                'title' => 'Luxury Cufflinks',
+                'price' => '1800000',
+                'brand' => 'Montblanc',
+                'image' => 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=400&fit=crop',
+                'featured' => false,
+                'availability' => 'limited'
+            )
+        );
+
+        // Determine grid class based on layout type
+        $grid_class = ($settings['layout_type'] === 'lv_mixed') ? 'gifts-grid gifts-grid-lv' : 'gifts-grid elementor-gifts-grid';
+        ?>
+        <div class="<?php echo esc_attr($grid_class); ?>">
+            <?php 
+            $counter = 0;
+            foreach ($demo_gifts as $gift) : 
+                $counter++;
+                
+                // Determine card class based on layout type
+                if ($settings['layout_type'] === 'lv_mixed') {
+                    $card_class = 'gift-card';
+                    if ($gift['featured']) {
+                        $card_class .= ' featured-lv';
+                    } elseif ($counter % 6 == 0) {
+                        $card_class .= ' medium-lv';
+                    } else {
+                        $card_class .= ' regular-lv';
+                    }
+                } else {
+                    $card_class = 'gift-card ' . ($gift['featured'] ? 'featured' : 'regular');
+                }
+                ?>
+                
+                <article class="<?php echo esc_attr($card_class); ?>">
+                    
+                    <!-- Gift Image -->
+                    <div class="gift-image">
+                        <a href="#">
+                            <img src="<?php echo esc_url($gift['image']); ?>" alt="<?php echo esc_attr($gift['title']); ?>" class="gift-thumbnail">
+                        </a>
+                        
+                        <!-- Featured Badge -->
+                        <?php if ($gift['featured']) : ?>
+                            <div class="featured-badge">
+                                <i class="fa fa-star"></i>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Gift Info -->
+                    <div class="gift-info">
+                        <h3 class="gift-title">
+                            <a href="#"><?php echo esc_html($gift['title']); ?></a>
+                        </h3>
+                        
+                        <!-- Gift Price -->
+                        <div class="gift-price">
+                            <span class="currency">IDR</span>
+                            <span class="price"><?php echo esc_html(number_format($gift['price'], 0, ',', '.')); ?></span>
+                        </div>
+                        
+                        <!-- Gift Brand -->
+                        <div class="gift-brand">
+                            <?php echo esc_html($gift['brand']); ?>
+                        </div>
+                        
+                        <!-- Gift Availability -->
+                        <div class="gift-availability <?php echo esc_attr($gift['availability']); ?>">
+                            <?php 
+                            switch ($gift['availability']) {
+                                case 'in_stock':
+                                    echo '<i class="fa fa-check-circle"></i> ' . esc_html__('In Stock', 'fuguku-gift');
+                                    break;
+                                case 'limited':
+                                    echo '<i class="fa fa-exclamation-triangle"></i> ' . esc_html__('Limited Stock', 'fuguku-gift');
+                                    break;
+                                case 'out_of_stock':
+                                    echo '<i class="fa fa-times-circle"></i> ' . esc_html__('Out of Stock', 'fuguku-gift');
+                                    break;
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                </article>
+
+            <?php endforeach; ?>
+        </div>
+        <?php
     }
 } 
