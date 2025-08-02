@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, and Elementor compatibility with custom widgets (Grid, Slider, Filter, Single). This plugin is updated on 2025-01-27 17:00, version 1.2.0
- * Version: 1.2.0
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single), and advanced features (AJAX filtering, wishlist, social sharing). This plugin is updated on 2025-01-27 17:30, version 1.3.0
+ * Version: 1.3.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 17:00
+ * Last Updated: 2025-01-27 17:30
  * 
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -15,6 +15,7 @@
  * v1.1.1 - Enhanced layout with Louis Vuitton inspired design
  * v1.1.2 - Enhanced description and documentation
  * v1.2.0 - Added Elementor integration with custom widgets
+ * v1.3.0 - Added advanced features (AJAX filtering, wishlist, social sharing)
  */
 
 // Prevent direct access
@@ -248,6 +249,53 @@ function fuguku_elementor_integration() {
     require_once(__DIR__ . '/includes/class-elementor-gifts-widgets.php');
 }
 add_action('plugins_loaded', 'fuguku_elementor_integration');
+
+/**
+ * Advanced Features Integration
+ */
+function fuguku_advanced_features_integration() {
+    // Include AJAX handler
+    require_once(__DIR__ . '/includes/class-ajax-handler.php');
+    
+    // Include share handler
+    require_once(__DIR__ . '/includes/class-share-handler.php');
+    
+    // Enqueue scripts and styles
+    add_action('wp_enqueue_scripts', 'fuguku_enqueue_advanced_scripts');
+}
+add_action('plugins_loaded', 'fuguku_advanced_features_integration');
+
+/**
+ * Enqueue Advanced Scripts and Styles
+ */
+function fuguku_enqueue_advanced_scripts() {
+    // Enqueue jQuery UI for slider and autocomplete
+    wp_enqueue_script('jquery-ui-slider');
+    wp_enqueue_script('jquery-ui-autocomplete');
+    
+    // Enqueue custom scripts
+    wp_enqueue_script(
+        'fuguku-gifts-ajax',
+        plugin_dir_url(__FILE__) . 'assets/js/gifts-ajax.js',
+        array('jquery', 'jquery-ui-slider', 'jquery-ui-autocomplete'),
+        '1.0.0',
+        true
+    );
+    
+    // Localize script
+    wp_localize_script('fuguku-gifts-ajax', 'fuguku_gifts_ajax', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('fuguku_gifts_nonce'),
+    ));
+    
+    // Enqueue advanced styles
+    wp_enqueue_style(
+        'fuguku-gifts-advanced',
+        plugin_dir_url(__FILE__) . 'assets/css/gifts-advanced.css',
+        array(),
+        '1.0.0'
+    );
+}
 
 /**
  * Flush rewrite rules on activation
