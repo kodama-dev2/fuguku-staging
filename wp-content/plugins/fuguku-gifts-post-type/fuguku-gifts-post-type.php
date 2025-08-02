@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), hybrid approach (LV-style archive template + Elementor pages), and demo page functionality. This plugin is updated on 2025-01-27 18:30, version 1.4.2
- * Version: 1.4.2
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), and hybrid approach (LV-style archive template + Elementor pages). This plugin is updated on 2025-01-27 18:45, version 1.4.3
+ * Version: 1.4.3
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 18:30
+ * Last Updated: 2025-01-27 18:45
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -18,7 +18,7 @@
  * v1.3.0 - Added advanced features (AJAX filtering, wishlist, social sharing)
  * v1.4.0 - Implemented hybrid approach (LV-style archive template + Elementor pages)
  * v1.4.1 - Added LV mixed grid layout for Elementor widgets
- * v1.4.2 - Added demo page functionality with sample gifts
+ * v1.4.3 - Removed demo functionality and simplified widget
  */
 
 // Prevent direct access
@@ -262,9 +262,6 @@ function fuguku_advanced_features_integration() {
 
     // Include share handler
     require_once(__DIR__ . '/includes/class-share-handler.php');
-
-    // Include demo page handler
-    require_once(__DIR__ . '/includes/class-demo-page.php');
 
     // Enqueue scripts and styles
     add_action('wp_enqueue_scripts', 'fuguku_enqueue_advanced_scripts');
