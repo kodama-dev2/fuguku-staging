@@ -2,11 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku
- * Version: 1.0.0
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap
+ * Version: 1.1.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
+ * Last Updated: 2025-01-27 15:30
  */
 
 // Prevent direct access
