@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), and hybrid approach (LV-style archive template + Elementor pages) with correct 14-card layout implementation. This plugin is updated on 2025-01-27 19:15, version 1.4.4
- * Version: 1.4.4
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), and hybrid approach (LV-style archive template + Elementor pages) with correct 14-card layout implementation and CSS grid fix. This plugin is updated on 2025-01-27 19:25, version 1.4.7
+ * Version: 1.4.7
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 19:15
+ * Last Updated: 2025-01-27 19:25
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -20,6 +20,9 @@
  * v1.4.1 - Added LV mixed grid layout for Elementor widgets
  * v1.4.3 - Removed demo functionality and simplified widget
  * v1.4.4 - Implemented correct 14-card layout with proper positioning (portrait-large, regular, landscape-wide, portrait-tall)
+ * v1.4.5 - Implemented permanent memory system to prevent basic mistakes
+ * v1.4.6 - Added proper descriptions and auto attachments to rule files
+ * v1.4.7 - Fixed CSS grid override for 14-card layout with proper 4-column grid
  */
 
 // Prevent direct access
