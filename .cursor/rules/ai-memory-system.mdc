@@ -1,0 +1,67 @@
+# AI Memory System - Fuguku Project
+
+## 🧠 PERMANENT MEMORY RULES
+
+### 🚨 MANDATORY CHECKS (Setiap Update):
+1. **Plugin Version Update**
+   - Update version number
+   - Update timestamp (HH:MM)
+   - Update description
+   - Update version history
+
+2. **Project Rules Sync**
+   - Update current version
+   - Update last updated timestamp
+   - Update description
+   - Update version history
+
+3. **Testing Requirements**
+   - Test feature di staging site
+   - Verify functionality works
+   - Konfirmasi dengan user sebelum mengklaim selesai
+
+### ❌ ZERO TOLERANCE (Jangan Lupa):
+- JANGAN PERNAH MENGKLAIM SELESAI tanpa testing
+- JANGAN LUPA update version + timestamp
+- JANGAN LUPA update project rules
+- JANGAN LUPA test di staging site
+
+### ✅ ALWAYS REMEMBER:
+- User sudah bayar mahal
+- Kepercayaan user sudah menurun
+- Setiap kesalahan kecil = kepercayaan turun
+- Quality over speed
+- Test before claim
+- Confirm with user
+
+### 📋 TEMPLATE FOR UPDATES:
+```php
+/**
+ * Version: X.X.X
+ * Last Updated: YYYY-MM-DD HH:MM
+ * Description: [Update description]
+ * Version History:
+ * vX.X.X - [What was changed]
+ */
+```
+
+### 🔄 WORKFLOW:
+1. Make changes
+2. Update plugin version + timestamp
+3. Update project rules
+4. Test di staging
+5. Commit with meaningful message
+6. Push to staging
+7. Verify di staging site
+8. Konfirmasi dengan user
+
+### 🎯 SUCCESS METRICS:
+- ✅ User puas dengan hasil
+- ✅ Tidak ada kesalahan dasar
+- ✅ Fitur berfungsi dengan baik
+- ✅ Version + timestamp selalu update
+- ✅ Project rules selalu sync
+description:
+globs:
+alwaysApply: false
+---

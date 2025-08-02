@@ -1,5 +1,31 @@
 
-# WordPress Development Project Rules - Fuguku.com Staging
+# WordPress Development Project Rules - Fuguku Staging 2025
+
+## 🚨 MANDATORY CHECKLIST - JANGAN LUPA!
+
+### ✅ OBLIGATORY UPDATES (Setiap Perubahan):
+- [ ] Update Plugin Version Number
+- [ ] Update Last Updated Timestamp (HH:MM)
+- [ ] Update Plugin Description
+- [ ] Update Version History
+- [ ] Update Project Rules (Current Version, Last Updated, Description)
+- [ ] Test Feature di Staging Site
+- [ ] Konfirmasi dengan User Sebelum Mengklaim Selesai
+
+### ✅ QUALITY ASSURANCE PROCESS:
+- [ ] Before Commit: Checklist semua update
+- [ ] After Commit: Verify semua file terupdate
+- [ ] Before Push: Double-check version numbers
+- [ ] After Push: Test di staging site
+
+### ✅ ZERO TOLERANCE RULES:
+- ❌ JANGAN PERNAH MENGKLAIM SELESAI tanpa testing
+- ❌ JANGAN LUPA update version + timestamp
+- ❌ JANGAN LUPA update project rules
+- ✅ SELALU test fitur sebelum mengklaim selesai
+- ✅ SELALU konfirmasi dengan user
+
+---
 
 ## Project Overview
 - **Project**: Fuguku.com WordPress Revamp
