@@ -70,8 +70,10 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
             [
                 'label' => __('Layout Type', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'lv_mixed',
+                'default' => 'section_1',
                 'options' => [
+                    'section_1' => __('Section 1 (4 Items: 30% 20% 20% 30%)', 'fuguku-gift'),
+                    'section_2' => __('Section 2 (5 Items: 15% 15% 40% 15% 15%)', 'fuguku-gift'),
                     'regular' => __('Regular Grid', 'fuguku-gift'),
                     'lv_mixed' => __('Louis Vuitton Mixed Grid', 'fuguku-gift'),
                 ],
@@ -238,6 +240,30 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'image_border_radius',
+            [
+                'label' => __('Image Border Radius', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .gift-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'card_padding',
+            [
+                'label' => __('Card Padding', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .gift-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         // Style Section - Titles
@@ -333,7 +359,16 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
 
         if ($gifts_query->have_posts()) :
             // Determine grid class based on layout type
-            $grid_class = ($settings['layout_type'] === 'lv_mixed') ? 'gifts-grid gifts-grid-lv' : 'gifts-grid elementor-gifts-grid';
+            $grid_class = 'gifts-grid';
+            if ($settings['layout_type'] === 'section_1') {
+                $grid_class .= ' gifts-grid-section-1';
+            } elseif ($settings['layout_type'] === 'section_2') {
+                $grid_class .= ' gifts-grid-section-2';
+            } elseif ($settings['layout_type'] === 'lv_mixed') {
+                $grid_class .= ' gifts-grid-lv';
+            } else {
+                $grid_class .= ' elementor-gifts-grid';
+            }
             ?>
             <div class="<?php echo esc_attr($grid_class); ?>">
                 <?php 
@@ -343,7 +378,21 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                     $is_featured = get_post_meta(get_the_ID(), '_featured_gift', true);
                     
                     // Determine card class based on layout type
-                    if ($settings['layout_type'] === 'lv_mixed') {
+                    if ($settings['layout_type'] === 'section_1') {
+                        $card_class = 'gift-card';
+                        if ($counter === 1 || $counter === 4) {
+                            $card_class .= ' section-1-wide';
+                        } else {
+                            $card_class .= ' section-1-regular';
+                        }
+                    } elseif ($settings['layout_type'] === 'section_2') {
+                        $card_class = 'gift-card';
+                        if ($counter === 3) {
+                            $card_class .= ' section-2-center';
+                        } else {
+                            $card_class .= ' section-2-regular';
+                        }
+                    } elseif ($settings['layout_type'] === 'lv_mixed') {
                         $card_class = 'gift-card';
                         if ($is_featured) {
                             $card_class .= ' featured-lv';

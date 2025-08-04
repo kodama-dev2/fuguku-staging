@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), and hybrid approach (LV-style archive template + Elementor pages) with correct 14-card layout implementation and clean CSS. This plugin is updated on 2025-01-27 19:35, version 1.4.8
- * Version: 1.4.8
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), hybrid approach (LV-style archive template + Elementor pages), correct 14-card layout implementation, clean CSS, and new Section 1 (4 items: 30% 20% 20% 30%) and Section 2 (5 items: 15% 15% 40% 15% 15%) layouts with proper border radius controls. This plugin is updated on 2025-01-27 20:15, version 1.5.0
+ * Version: 1.5.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 19:35
+ * Last Updated: 2025-01-27 20:15
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -24,6 +24,7 @@
  * v1.4.6 - Added proper descriptions and auto attachments to rule files
  * v1.4.7 - Fixed CSS grid override for 14-card layout with proper 4-column grid
  * v1.4.8 - Removed all old CSS and created clean 14-card layout only
+ * v1.5.0 - Added Section 1 (4 items: 30% 20% 20% 30%) and Section 2 (5 items: 15% 15% 40% 15% 15%) layouts with proper border radius controls and fixed widget settings
  */
 
 // Prevent direct access
