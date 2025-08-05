@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with simple GIFT SOLO widget for loop grid integration, FUGU IMAGES-ITEM widget with enhanced features: multiple images per item, gap control, width control, minimal navigation icons, hybrid approach (LV-style archive template + Elementor pages), clean CSS, and simplified widget system for better performance and compatibility. This plugin is updated on 2025-01-27 21:15, version 1.8.0
- * Version: 1.8.0
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with simple GIFT SOLO widget for loop grid integration, FUGU IMAGES-ITEM widget with enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, and simplified widget system for better performance and compatibility. This plugin is updated on 2025-01-27 21:15, version 1.9.0
+ * Version: 1.9.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 21:45
+ * Last Updated: 2025-01-27 22:00
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -30,7 +30,8 @@
  * v1.5.3 - Implemented force override CSS with !important declarations and specific Elementor widget selectors to ensure layouts work properly
  * v1.6.0 - Removed all complex widgets and created simple GIFT SOLO widget for Elementor loop grid integration
  * v1.7.0 - Added FUGU IMAGES-ITEM widget with overlay, navigation, multiple image support, and responsive grid layout
- * v1.8.0 - Enhanced FUGU IMAGES-ITEM widget: multiple images per item, gap control, width control, minimal navigation icons
+ * v1.8.0 - Enhanced FUGU IMAGES-ITEM widget: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit
+ * v1.9.0 - Fixed FUGU IMAGES-ITEM widget: object-fit functionality, full-width container, added text field, simplified navigation icons
  */
 
 // Prevent direct access

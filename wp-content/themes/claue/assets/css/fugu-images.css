@@ -3,17 +3,18 @@
    ========================================== */
 
 /* ==========================================
-   CONTAINER & GRID LAYOUT
+   CONTAINER & GRID LAYOUT - FULL WIDTH
    ========================================== */
 
 .fugu-images-container {
     display: grid;
     gap: 30px;
     margin-bottom: 80px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 
 .fugu-images-container[data-columns="3"] {
@@ -76,7 +77,6 @@
 .fugu-images-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     transition: transform 0.4s ease;
 }
 
@@ -116,7 +116,7 @@
 }
 
 /* ==========================================
-   TITLE & SUBTITLE STYLES
+   TITLE, SUBTITLE & TEXT STYLES
    ========================================== */
 
 .fugu-images-title {
@@ -142,13 +142,22 @@
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
     color: #666666;
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+.fugu-images-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    color: #888888;
     margin: 0;
     line-height: 1.4;
     font-weight: 400;
 }
 
 /* ==========================================
-   NAVIGATION BUTTONS - MINIMALIS HOVER ONLY
+   NAVIGATION BUTTONS - SIMPLE ICONS
    ========================================== */
 
 .fugu-images-navigation {
@@ -191,12 +200,9 @@
     transform: scale(1.1);
 }
 
-.fugu-images-nav-btn svg {
-    width: 12px;
-    height: 12px;
-    stroke: currentColor;
-    stroke-width: 2;
-    fill: none;
+.fugu-images-nav-btn i {
+    font-size: 12px;
+    font-weight: 300;
 }
 
 /* ==========================================
@@ -252,6 +258,11 @@
     
     .fugu-images-subtitle {
         font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+    
+    .fugu-images-text {
+        font-size: 0.75rem;
     }
     
     .fugu-images-nav-btn {
@@ -259,9 +270,8 @@
         height: 28px;
     }
     
-    .fugu-images-nav-btn svg {
-        width: 10px;
-        height: 10px;
+    .fugu-images-nav-btn i {
+        font-size: 10px;
     }
 }
 
@@ -288,6 +298,11 @@
     
     .fugu-images-subtitle {
         font-size: 0.75rem;
+        margin-bottom: 3px;
+    }
+    
+    .fugu-images-text {
+        font-size: 0.7rem;
     }
     
     .fugu-images-nav-btn {
@@ -295,8 +310,7 @@
         height: 24px;
     }
     
-    .fugu-images-nav-btn svg {
-        width: 8px;
-        height: 8px;
+    .fugu-images-nav-btn i {
+        font-size: 8px;
     }
 }

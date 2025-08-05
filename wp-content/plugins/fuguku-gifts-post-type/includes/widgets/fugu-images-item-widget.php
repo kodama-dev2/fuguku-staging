@@ -91,6 +91,17 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
         );
 
         $repeater->add_control(
+            'text',
+            [
+                'label' => __('Text', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => __('Item description text goes here...', 'fuguku-gift'),
+                'label_block' => true,
+                'rows' => 3,
+            ]
+        );
+
+        $repeater->add_control(
             'sort_order',
             [
                 'label' => __('Sort Order', 'fuguku-gift'),
@@ -111,11 +122,13 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
                     [
                         'title' => __('Item 1', 'fuguku-gift'),
                         'subtitle' => __('Subtitle 1', 'fuguku-gift'),
+                        'text' => __('Description for item 1...', 'fuguku-gift'),
                         'sort_order' => 1,
                     ],
                     [
                         'title' => __('Item 2', 'fuguku-gift'),
                         'subtitle' => __('Subtitle 2', 'fuguku-gift'),
+                        'text' => __('Description for item 2...', 'fuguku-gift'),
                         'sort_order' => 2,
                     ],
                 ],
@@ -429,6 +442,38 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
 
         $this->end_controls_section();
 
+        // Style Section - Text
+        $this->start_controls_section(
+            'style_text_section',
+            [
+                'label' => __('Text', 'fuguku-gift'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'text_typography',
+                'label' => __('Typography', 'fuguku-gift'),
+                'selector' => '{{WRAPPER}} .fugu-images-text',
+            ]
+        );
+
+        $this->add_control(
+            'text_color',
+            [
+                'label' => __('Color', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#888888',
+                'selectors' => [
+                    '{{WRAPPER}} .fugu-images-text' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
         // Style Section - Navigation
         $this->start_controls_section(
             'style_navigation_section',
@@ -559,20 +604,20 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
                             <?php if (!empty($item['subtitle'])) : ?>
                                 <p class="fugu-images-subtitle"><?php echo esc_html($item['subtitle']); ?></p>
                             <?php endif; ?>
+                            
+                            <?php if (!empty($item['text'])) : ?>
+                                <p class="fugu-images-text"><?php echo esc_html($item['text']); ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
 
                     <?php if ($show_navigation === 'yes' && !empty($item['images']) && count($item['images']) > 1) : ?>
                         <div class="fugu-images-navigation">
                             <button class="fugu-images-nav-btn fugu-images-prev" data-direction="prev" data-item-index="<?php echo $item_index; ?>">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="15,18 9,12 15,6"></polyline>
-                                </svg>
+                                <i class="fa fa-chevron-left"></i>
                             </button>
                             <button class="fugu-images-nav-btn fugu-images-next" data-direction="next" data-item-index="<?php echo $item_index; ?>">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="9,18 15,12 9,6"></polyline>
-                                </svg>
+                                <i class="fa fa-chevron-right"></i>
                             </button>
                         </div>
                     <?php endif; ?>
