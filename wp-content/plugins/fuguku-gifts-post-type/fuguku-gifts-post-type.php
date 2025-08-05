@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with simple GIFT SOLO widget for loop grid integration, FUGU IMAGES-ITEM widget with enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, and simplified widget system for better performance and compatibility. This plugin is updated on 2025-01-27 23:00, version 2.2.0
- * Version: 2.2.0
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with simple GIFT SOLO widget for loop grid integration, FUGU IMAGES-ITEM widget with enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, and simplified widget system for better performance and compatibility. This plugin is updated on 2025-01-27 23:15, version 2.3.0
+ * Version: 2.3.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 23:00
+ * Last Updated: 2025-01-27 23:15
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -36,6 +36,7 @@
  * v2.0.0 - Major Release: Added product single revamp layout (layout-revamp.php), modern CSS styling (product-revamp.css), conditional CSS enqueue, dual layout system for single products
  * v2.1.0 - Added revamp layout option to theme configs (framework.config.php, metabox.config.php), created product-revamp.png preview image
  * v2.2.0 - Enhanced product revamp layout: moved Description/Additional Info/Reviews to section 1 right column below categories, implemented full-height scrollable images in left column with internal scroll, updated CSS for better UX
+ * v2.3.0 - Cloned layout 4 structure for revamp layout: implemented sticky full-height scrollable images container, moved Description/Additional Info/Reviews to right column with proper tabs, enhanced CSS with layout 4 styling and responsive design
  */
 
 // Prevent direct access
