@@ -557,7 +557,7 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
         $show_navigation = $settings['show_navigation'];
         ?>
         
-        <div class="fugu-images-container" data-columns="<?php echo esc_attr($columns); ?>">
+        <div class="fugu-images-container" data-columns="<?php echo esc_attr($columns); ?>" data-object-fit="<?php echo esc_attr($object_fit); ?>">
             <?php foreach ($items as $item_index => $item) : ?>
                 <div class="fugu-images-item" data-item-index="<?php echo $item_index; ?>">
                     
@@ -574,8 +574,7 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
                                     <?php endif; ?>
                                     
                                     <img src="<?php echo esc_url($image['url']); ?>" 
-                                         alt="<?php echo esc_attr($item['title']); ?>"
-                                         style="object-fit: <?php echo esc_attr($object_fit); ?>;">
+                                         alt="<?php echo esc_attr($item['title']); ?>">
                                     
                                     <?php if (!empty($item['link']['url'])) : ?>
                                         </a>
