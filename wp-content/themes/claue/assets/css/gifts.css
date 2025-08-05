@@ -1,16 +1,124 @@
-/**
- * Gifts Template Styles - 14 Card Layout
- * Louis Vuitton Inspired Design
- * 
- * @package Claue
- * @version 2.0.0
- */
-
 /* ==========================================
-   14-CARD LAYOUT - CLEAN CSS ONLY
+   FUGUKU GIFTS - CLEAN CSS IMPLEMENTATION
    ========================================== */
 
-/* 14-Card Grid Layout */
+/* ==========================================
+   BASE GIFT CARD STYLES
+   ========================================== */
+
+.gift-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    border: 1px solid #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+.gift-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: #e8e8e8;
+}
+
+.gift-image {
+    position: relative;
+    overflow: hidden;
+    background: #f8f9fa;
+    flex-shrink: 0;
+}
+
+.gift-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gift-card:hover .gift-image img {
+    transform: scale(1.05);
+}
+
+.gift-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #999;
+    font-size: 2rem;
+}
+
+.gift-info {
+    padding: 20px;
+    background: #ffffff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gift-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: #333;
+    font-weight: 500;
+}
+
+.gift-price {
+    margin-top: auto;
+    font-weight: 600;
+    color: #56cfe1;
+}
+
+.gift-price .price {
+    font-size: 1.2rem;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* ==========================================
+   REGULAR GRID LAYOUT
+   ========================================== */
+
+.elementor-gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.elementor-gifts-grid .gift-card {
+    height: 400px;
+}
+
+.elementor-gifts-grid .gift-image {
+    height: 250px;
+}
+
+/* ==========================================
+   LOUIS VUITTON MIXED GRID LAYOUT
+   ========================================== */
+
 .gifts-grid-lv {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -23,417 +131,48 @@
     padding: 0 20px;
 }
 
-/* Card 1, 4, 8, 11 - Portrait Large (1x2) */
-.gift-card.portrait-large {
-    grid-column: span 1;
+.gift-card.featured-lv {
+    grid-column: span 2;
     grid-row: span 2;
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f0f0f0;
+    height: auto;
 }
 
-.gift-card.portrait-large:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-    border-color: #e0e0e0;
+.gift-card.featured-lv .gift-image {
+    height: 350px;
 }
 
-.gift-card.portrait-large .gift-image {
-    height: 400px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
+.gift-card.featured-lv .gift-info {
+    padding: 30px;
 }
 
-.gift-card.portrait-large .gift-info {
-    padding: 25px;
-    background: #ffffff;
-}
-
-.gift-card.portrait-large .gift-title {
+.gift-card.featured-lv .gift-title {
     font-size: 1.4rem;
-    margin-bottom: 12px;
-    line-height: 1.3;
+    margin-bottom: 15px;
 }
 
-.gift-card.portrait-large .gift-price .price {
+.gift-card.featured-lv .gift-price .price {
     font-size: 1.6rem;
 }
 
-/* Card 2, 3, 9, 10 - Regular (1x1) */
-.gift-card.regular {
+.gift-card.medium-lv {
+    grid-column: span 1;
+    grid-row: span 1.5;
+    height: auto;
+}
+
+.gift-card.medium-lv .gift-image {
+    height: 280px;
+}
+
+.gift-card.regular-lv {
     grid-column: span 1;
     grid-row: span 1;
-    background: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f5f5f5;
+    height: auto;
 }
 
-.gift-card.regular:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border-color: #e8e8e8;
-}
-
-.gift-card.regular .gift-image {
+.gift-card.regular-lv .gift-image {
     height: 200px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
 }
-
-.gift-card.regular .gift-info {
-    padding: 20px;
-    background: #ffffff;
-}
-
-.gift-card.regular .gift-title {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.gift-card.regular .gift-price .price {
-    font-size: 1.2rem;
-}
-
-/* Card 5, 7, 12, 14 - Landscape Wide (2x1) */
-.gift-card.landscape-wide {
-    grid-column: span 2;
-    grid-row: span 1;
-    background: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.07);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f2f2f2;
-}
-
-.gift-card.landscape-wide:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.13);
-    border-color: #e5e5e5;
-}
-
-.gift-card.landscape-wide .gift-image {
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
-}
-
-.gift-card.landscape-wide .gift-info {
-    padding: 25px;
-    background: #ffffff;
-}
-
-.gift-card.landscape-wide .gift-title {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    line-height: 1.35;
-}
-
-.gift-card.landscape-wide .gift-price .price {
-    font-size: 1.4rem;
-}
-
-/* Card 6, 13 - Portrait Tall (1x2) */
-.gift-card.portrait-tall {
-    grid-column: span 1;
-    grid-row: span 2;
-    background: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.07);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f2f2f2;
-}
-
-.gift-card.portrait-tall:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.13);
-    border-color: #e5e5e5;
-}
-
-.gift-card.portrait-tall .gift-image {
-    height: 400px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
-}
-
-.gift-card.portrait-tall .gift-info {
-    padding: 25px;
-    background: #ffffff;
-}
-
-.gift-card.portrait-tall .gift-title {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    line-height: 1.35;
-}
-
-.gift-card.portrait-tall .gift-price .price {
-    font-size: 1.4rem;
-}
-
-/* Placeholder Cards */
-.gift-card.placeholder {
-    background: #f8f9fa;
-    border: 2px dashed #e9ecef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #adb5bd;
-    font-style: italic;
-}
-
-.gift-card.placeholder .gift-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.gift-card.placeholder .gift-placeholder {
-    text-align: center;
-    color: #adb5bd;
-}
-
-.gift-card.placeholder .gift-placeholder i {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.gift-card.placeholder .gift-info {
-    text-align: center;
-    padding: 20px;
-}
-
-.gift-card.placeholder .gift-title {
-    color: #adb5bd;
-    font-style: italic;
-    margin-bottom: 10px;
-}
-
-.gift-card.placeholder .gift-price {
-    color: #adb5bd;
-}
-
-/* ==========================================
-   GIFT IMAGE STYLES
-   ========================================== */
-
-.gift-image {
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
-}
-
-.gift-thumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.gift-card:hover .gift-thumbnail {
-    transform: scale(1.05);
-}
-
-.gift-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #ccc;
-    font-size: 3rem;
-}
-
-/* Featured Badge */
-.featured-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #ffd700;
-    color: #333;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    z-index: 10;
-}
-
-.featured-badge i {
-    margin-right: 5px;
-}
-
-/* ==========================================
-   GIFT INFO STYLES
-   ========================================== */
-
-.gift-info {
-    padding: 20px;
-    background: #ffffff;
-}
-
-.gift-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #222;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.gift-title a {
-    color: #222;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.gift-title a:hover {
-    color: #56cfe1;
-}
-
-.gift-price {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 8px;
-}
-
-.gift-price .currency {
-    font-weight: 500;
-    margin-right: 5px;
-}
-
-.gift-price .price {
-    font-weight: 600;
-    color: #222;
-}
-
-.gift-brand {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
-    color: #888;
-    margin-top: 5px;
-}
-
-.gift-availability {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.gift-availability.in_stock {
-    color: #28a745;
-}
-
-.gift-availability.limited {
-    color: #ffc107;
-}
-
-.gift-availability.out_of_stock {
-    color: #dc3545;
-}
-
-/* ==========================================
-   RESPONSIVE DESIGN
-   ========================================== */
-
-@media (max-width: 1200px) {
-    .gifts-grid-lv {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
-    
-    .gift-card.landscape-wide {
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-}
-
-@media (max-width: 768px) {
-    .gifts-grid-lv {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 250px;
-        gap: 20px;
-        padding: 0 15px;
-    }
-    
-    .gift-card.portrait-large,
-    .gift-card.portrait-tall {
-        grid-column: span 1;
-        grid-row: span 2;
-    }
-    
-    .gift-card.landscape-wide {
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-    
-    .gift-card.portrait-large .gift-image,
-    .gift-card.portrait-tall .gift-image {
-        height: 300px;
-    }
-    
-    .gift-card.landscape-wide .gift-image {
-        height: 200px;
-    }
-    
-    .gift-card.regular .gift-image {
-        height: 150px;
-    }
-}
-
-@media (max-width: 480px) {
-    .gifts-grid-lv {
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        gap: 15px;
-    }
-    
-    .gift-card.portrait-large,
-    .gift-card.portrait-tall,
-    .gift-card.landscape-wide,
-    .gift-card.regular {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-    
-    .gift-card.portrait-large .gift-image,
-    .gift-card.portrait-tall .gift-image {
-        height: 250px;
-    }
-    
-    .gift-card.landscape-wide .gift-image {
-        height: 180px;
-    }
-    
-    .gift-card.regular .gift-image {
-        height: 180px;
-    }
-} 
-
-/* ==========================================
-   SECTION 1 & SECTION 2 LAYOUTS
-   ========================================== */
 
 /* ==========================================
    SECTION 1 LAYOUT (4 Items: 30% 20% 20% 30%)
@@ -451,35 +190,25 @@
     padding: 0 20px;
 }
 
-/* Section 1 - Wide Cards (30%) */
 .gift-card.section-1-wide {
     grid-column: span 1;
     grid-row: span 1;
-    background: #ffffff;
+    height: auto;
     border-radius: 12px;
-    overflow: hidden;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f0f0f0;
 }
 
 .gift-card.section-1-wide:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-    border-color: #e0e0e0;
 }
 
 .gift-card.section-1-wide .gift-image {
     height: 250px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
 }
 
 .gift-card.section-1-wide .gift-info {
     padding: 25px;
-    background: #ffffff;
 }
 
 .gift-card.section-1-wide .gift-title {
@@ -492,35 +221,25 @@
     font-size: 1.4rem;
 }
 
-/* Section 1 - Regular Cards (20%) */
 .gift-card.section-1-regular {
     grid-column: span 1;
     grid-row: span 1;
-    background: #ffffff;
+    height: auto;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f5f5f5;
 }
 
 .gift-card.section-1-regular:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border-color: #e8e8e8;
 }
 
 .gift-card.section-1-regular .gift-image {
     height: 200px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
 }
 
 .gift-card.section-1-regular .gift-info {
     padding: 20px;
-    background: #ffffff;
 }
 
 .gift-card.section-1-regular .gift-title {
@@ -549,37 +268,27 @@
     padding: 0 20px;
 }
 
-/* Section 2 - Center Card (40%) - Elevated */
 .gift-card.section-2-center {
     grid-column: span 1;
     grid-row: span 1;
-    background: #ffffff;
+    height: auto;
     border-radius: 15px;
-    overflow: hidden;
     box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #e8e8e8;
-    margin-top: -60px; /* Elevated position */
+    margin-top: -60px;
     z-index: 2;
 }
 
 .gift-card.section-2-center:hover {
     transform: translateY(-15px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-    border-color: #d0d0d0;
 }
 
 .gift-card.section-2-center .gift-image {
     height: 350px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
 }
 
 .gift-card.section-2-center .gift-info {
     padding: 30px;
-    background: #ffffff;
 }
 
 .gift-card.section-2-center .gift-title {
@@ -592,35 +301,25 @@
     font-size: 1.8rem;
 }
 
-/* Section 2 - Regular Cards (15%) */
 .gift-card.section-2-regular {
     grid-column: span 1;
     grid-row: span 1;
-    background: #ffffff;
+    height: auto;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f5f5f5;
 }
 
 .gift-card.section-2-regular:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border-color: #e8e8e8;
 }
 
 .gift-card.section-2-regular .gift-image {
     height: 180px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
 }
 
 .gift-card.section-2-regular .gift-info {
     padding: 18px;
-    background: #ffffff;
 }
 
 .gift-card.section-2-regular .gift-title {
@@ -634,11 +333,16 @@
 }
 
 /* ==========================================
-   RESPONSIVE DESIGN FOR SECTION LAYOUTS
+   RESPONSIVE DESIGN
    ========================================== */
 
 /* Tablet Responsive */
 @media (max-width: 1200px) {
+    .gifts-grid-lv {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
     .gifts-grid-section-1 {
         grid-template-columns: 1fr 1fr;
         gap: 25px;
@@ -656,13 +360,9 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    .gifts-grid-section-1 {
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        gap: 20px;
-        padding: 0 15px;
-    }
-    
+    .elementor-gifts-grid,
+    .gifts-grid-lv,
+    .gifts-grid-section-1,
     .gifts-grid-section-2 {
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
@@ -670,25 +370,31 @@
         padding: 0 15px;
     }
     
+    .gift-card.featured-lv,
     .gift-card.section-2-center {
-        margin-top: 0;
         grid-column: span 1;
         grid-row: span 1;
+        margin-top: 0;
     }
     
     .gift-card.section-1-wide .gift-image,
-    .gift-card.section-2-center .gift-image {
+    .gift-card.section-2-center .gift-image,
+    .gift-card.featured-lv .gift-image {
         height: 250px;
     }
     
     .gift-card.section-1-regular .gift-image,
-    .gift-card.section-2-regular .gift-image {
+    .gift-card.section-2-regular .gift-image,
+    .gift-card.regular-lv .gift-image,
+    .gift-card.medium-lv .gift-image {
         height: 200px;
     }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+    .elementor-gifts-grid,
+    .gifts-grid-lv,
     .gifts-grid-section-1,
     .gifts-grid-section-2 {
         gap: 15px;
@@ -696,12 +402,15 @@
     }
     
     .gift-card.section-1-wide .gift-image,
-    .gift-card.section-2-center .gift-image {
+    .gift-card.section-2-center .gift-image,
+    .gift-card.featured-lv .gift-image {
         height: 200px;
     }
     
     .gift-card.section-1-regular .gift-image,
-    .gift-card.section-2-regular .gift-image {
+    .gift-card.section-2-regular .gift-image,
+    .gift-card.regular-lv .gift-image,
+    .gift-card.medium-lv .gift-image {
         height: 180px;
     }
 } 
