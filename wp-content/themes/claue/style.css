@@ -4014,66 +4014,72 @@ input[type="search"] {
 
 /* Quick view button - icon mata di pojok kanan bawah */
 .product-image .product-btn .button {
-	position: absolute;
-	bottom: 10px;
-	right: 10px;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #fff;
-	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	z-index: 10;
-	text-indent: -999em;
-	overflow: hidden;
+	position: absolute !important;
+	bottom: 15px !important;
+	right: 15px !important;
+	width: 35px !important;
+	height: 35px !important;
+	border-radius: 50% !important;
+	background: #fff !important;
+	border: none !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	opacity: 0 !important;
+	transition: opacity 0.3s ease !important;
+	z-index: 999 !important;
+	text-indent: -999em !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 1 !important;
 }
 
 .product-image .product-btn .button::before {
-	content: "\f06e";
-	font-family: "FontAwesome";
-	font-size: 16px;
-	color: #000;
-	text-indent: 0;
+	content: "\f06e" !important;
+	font-family: "FontAwesome" !important;
+	font-size: 14px !important;
+	color: #000 !important;
+	text-indent: 0 !important;
 }
 
 .product-image:hover .product-btn .button {
-	opacity: 1;
+	opacity: 1 !important;
 }
 
 /* Add to cart button - icon cart di pojok kanan bawah */
 .product-image .added_to_cart {
-	position: absolute;
-	bottom: 10px;
-	right: 60px;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #fff;
-	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	z-index: 10;
-	text-indent: -999em;
-	overflow: hidden;
+	position: absolute !important;
+	bottom: 15px !important;
+	right: 60px !important;
+	width: 35px !important;
+	height: 35px !important;
+	border-radius: 50% !important;
+	background: #fff !important;
+	border: none !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	opacity: 0 !important;
+	transition: opacity 0.3s ease !important;
+	z-index: 999 !important;
+	text-indent: -999em !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 1 !important;
 }
 
 .product-image .added_to_cart::before {
-	content: "\f07a";
-	font-family: "FontAwesome";
-	font-size: 16px;
-	color: #000;
-	text-indent: 0;
+	content: "\f07a" !important;
+	font-family: "FontAwesome" !important;
+	font-size: 14px !important;
+	color: #000 !important;
+	text-indent: 0 !important;
 }
 
 .product-image:hover .added_to_cart {
-	opacity: 1;
+	opacity: 1 !important;
 }
 .product-image .product-btn .button i {
 	display: none;
