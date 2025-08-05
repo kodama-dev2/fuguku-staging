@@ -574,6 +574,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 							'2' => CS_URI . '/assets/images/layout/product-2.png',
 							'3' => CS_URI . '/assets/images/layout/product-3.png',
 							'4' => CS_URI . '/assets/images/layout/product-4.png',
+							'revamp' => CS_URI . '/assets/images/layout/product-revamp.png',
 						),
 						'default' => '1'
 					),
