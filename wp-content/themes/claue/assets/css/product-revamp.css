@@ -36,6 +36,33 @@
   display: block;
 }
 
+/* Disable zoom hover for revamp layout */
+.wc-single-revamp .product-revamp-images-container .woocommerce-product-gallery__image .zoom {
+  cursor: pointer !important;
+}
+
+.wc-single-revamp .product-revamp-images-container .zoomImg {
+  display: none !important;
+}
+
+.wc-single-revamp .product-revamp-images-container .woocommerce-product-gallery__image:hover .zoomImg {
+  display: none !important;
+}
+
+/* Disable zoom initialization for revamp layout */
+.wc-single-revamp .product-revamp-images-container .woocommerce-product-gallery__image {
+  zoom: 1 !important;
+}
+
+.wc-single-revamp .product-revamp-images-container .woocommerce-product-gallery__image a {
+  cursor: pointer !important;
+}
+
+/* Enable PhotoSwipe click zoom instead of hover zoom */
+.wc-single-revamp .product-revamp-images-container .woocommerce-product-gallery__image a:hover {
+  cursor: pointer !important;
+}
+
 /* Right Column - Product Info */
 .wc-single-revamp .summary.entry-summary {
   padding: 0;
