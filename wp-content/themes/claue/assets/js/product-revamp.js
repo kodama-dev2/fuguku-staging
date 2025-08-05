@@ -1,7 +1,7 @@
 /**
  * Product Revamp Layout JavaScript
- * Version: 2.3.7
- * Description: Disable zoom hover for revamp layout, enable click-only zoom, fix multiple lightbox issue with simple modal, update button styling, pill shape buttons, add hover icons
+ * Version: 2.3.8
+ * Description: Disable zoom hover for revamp layout, enable click-only zoom, fix multiple lightbox issue with simple modal, update button styling, pill shape buttons, replace text with icons
  */
 
 jQuery(document).ready(function($) {

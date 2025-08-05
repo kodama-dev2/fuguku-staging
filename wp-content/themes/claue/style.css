@@ -4012,37 +4012,67 @@ input[type="search"] {
 	background: #333333;
 }
 
-/* Icon mata untuk quick view */
+/* Quick view button - icon mata di pojok kanan bawah */
+.product-image .product-btn .button {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #fff;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	z-index: 10;
+	text-indent: -999em;
+	overflow: hidden;
+}
+
 .product-image .product-btn .button::before {
 	content: "\f06e";
 	font-family: "FontAwesome";
-	position: absolute;
-	bottom: 4px;
-	right: 8px;
-	font-size: 12px;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	color: #fff;
+	font-size: 16px;
+	color: #000;
+	text-indent: 0;
 }
 
-.product-image .product-btn .button:hover::before {
+.product-image:hover .product-btn .button {
 	opacity: 1;
 }
 
-/* Icon cart untuk add to cart */
+/* Add to cart button - icon cart di pojok kanan bawah */
+.product-image .added_to_cart {
+	position: absolute;
+	bottom: 10px;
+	right: 60px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #fff;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	z-index: 10;
+	text-indent: -999em;
+	overflow: hidden;
+}
+
 .product-image .added_to_cart::before {
 	content: "\f07a";
 	font-family: "FontAwesome";
-	position: absolute;
-	bottom: 4px;
-	right: 8px;
-	font-size: 12px;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	color: #fff;
+	font-size: 16px;
+	color: #000;
+	text-indent: 0;
 }
 
-.product-image .added_to_cart:hover::before {
+.product-image:hover .added_to_cart {
 	opacity: 1;
 }
 .product-image .product-btn .button i {
@@ -4074,6 +4104,7 @@ input[type="search"] {
 }
 .product-image {
 	text-align: center;
+	position: relative;
 }
 .product-image a.db:before {
 	content: '';
