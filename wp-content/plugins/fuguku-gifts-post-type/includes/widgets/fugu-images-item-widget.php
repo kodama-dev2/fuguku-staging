@@ -45,14 +45,14 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
 
         $repeater = new \Elementor\Repeater();
 
+        // Multiple images per item
         $repeater->add_control(
-            'image',
+            'images',
             [
-                'label' => __('Image', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
+                'label' => __('Images', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::GALLERY,
+                'default' => [],
+                'description' => __('Upload multiple images for this item. Use prev/next arrows to navigate between images.', 'fuguku-gift'),
             ]
         );
 
@@ -149,6 +149,39 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
+            'gap',
+            [
+                'label' => __('Gap Between Items', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 10,
+                        'step' => 0.1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 20,
+                        'step' => 0.5,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 30,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .fugu-images-container' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'object_fit',
             [
                 'label' => __('Image Object Fit', 'fuguku-gift'),
@@ -170,7 +203,7 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
                 'label_on' => __('Yes', 'fuguku-gift'),
                 'label_off' => __('No', 'fuguku-gift'),
                 'default' => 'yes',
-                'description' => __('Show next/prev buttons when multiple images', 'fuguku-gift'),
+                'description' => __('Show next/prev buttons when multiple images in item', 'fuguku-gift'),
             ]
         );
 
@@ -182,6 +215,39 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
             [
                 'label' => __('Item', 'fuguku-gift'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'item_width',
+            [
+                'label' => __('Item Width', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 200,
+                        'max' => 800,
+                        'step' => 10,
+                    ],
+                    'em' => [
+                        'min' => 10,
+                        'max' => 50,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 20,
+                        'max' => 100,
+                        'step' => 5,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .fugu-images-item' => 'width: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -387,7 +453,7 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 40,
+                    'size' => 32,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .fugu-images-nav-btn' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
@@ -412,7 +478,7 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
             [
                 'label' => __('Button Background', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'rgba(0,0,0,0.5)',
+                'default' => 'rgba(0,0,0,0.3)',
                 'selectors' => [
                     '{{WRAPPER}} .fugu-images-nav-btn' => 'background-color: {{VALUE}};',
                 ],
@@ -447,24 +513,30 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
         ?>
         
         <div class="fugu-images-container" data-columns="<?php echo esc_attr($columns); ?>">
-            <?php foreach ($items as $index => $item) : ?>
-                <div class="fugu-images-item" data-index="<?php echo $index; ?>">
+            <?php foreach ($items as $item_index => $item) : ?>
+                <div class="fugu-images-item" data-item-index="<?php echo $item_index; ?>">
                     
-                    <?php if (!empty($item['image']['url'])) : ?>
-                        <div class="fugu-images-image">
-                            <?php if (!empty($item['link']['url'])) : ?>
-                                <a href="<?php echo esc_url($item['link']['url']); ?>" 
-                                   <?php echo ($item['link']['is_external'] ? 'target="_blank"' : ''); ?>
-                                   <?php echo ($item['link']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
-                            <?php endif; ?>
-                            
-                            <img src="<?php echo esc_url($item['image']['url']); ?>" 
-                                 alt="<?php echo esc_attr($item['title']); ?>"
-                                 style="object-fit: <?php echo esc_attr($object_fit); ?>;">
-                            
-                            <?php if (!empty($item['link']['url'])) : ?>
-                                </a>
-                            <?php endif; ?>
+                    <?php if (!empty($item['images']) && is_array($item['images'])) : ?>
+                        <div class="fugu-images-image-container">
+                            <?php foreach ($item['images'] as $image_index => $image) : ?>
+                                <div class="fugu-images-image <?php echo ($image_index === 0) ? 'active' : ''; ?>" 
+                                     data-image-index="<?php echo $image_index; ?>">
+                                    
+                                    <?php if (!empty($item['link']['url'])) : ?>
+                                        <a href="<?php echo esc_url($item['link']['url']); ?>" 
+                                           <?php echo ($item['link']['is_external'] ? 'target="_blank"' : ''); ?>
+                                           <?php echo ($item['link']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
+                                    <?php endif; ?>
+                                    
+                                    <img src="<?php echo esc_url($image['url']); ?>" 
+                                         alt="<?php echo esc_attr($item['title']); ?>"
+                                         style="object-fit: <?php echo esc_attr($object_fit); ?>;">
+                                    
+                                    <?php if (!empty($item['link']['url'])) : ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
 
@@ -490,13 +562,17 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
                         </div>
                     </div>
 
-                    <?php if ($show_navigation === 'yes' && count($items) > 1) : ?>
+                    <?php if ($show_navigation === 'yes' && !empty($item['images']) && count($item['images']) > 1) : ?>
                         <div class="fugu-images-navigation">
-                            <button class="fugu-images-nav-btn fugu-images-prev" data-direction="prev">
-                                <i class="fa fa-chevron-left"></i>
+                            <button class="fugu-images-nav-btn fugu-images-prev" data-direction="prev" data-item-index="<?php echo $item_index; ?>">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15,18 9,12 15,6"></polyline>
+                                </svg>
                             </button>
-                            <button class="fugu-images-nav-btn fugu-images-next" data-direction="next">
-                                <i class="fa fa-chevron-right"></i>
+                            <button class="fugu-images-nav-btn fugu-images-next" data-direction="next" data-item-index="<?php echo $item_index; ?>">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9,18 15,12 9,6"></polyline>
+                                </svg>
                             </button>
                         </div>
                     <?php endif; ?>
@@ -505,25 +581,32 @@ class Fugu_Images_Item_Widget extends \Elementor\Widget_Base {
             <?php endforeach; ?>
         </div>
 
-        <?php if ($show_navigation === 'yes' && count($items) > 1) : ?>
+        <?php if ($show_navigation === 'yes') : ?>
         <script>
         jQuery(document).ready(function($) {
             $('.fugu-images-container').each(function() {
                 var container = $(this);
-                var items = container.find('.fugu-images-item');
-                var currentIndex = 0;
                 
-                container.find('.fugu-images-nav-btn').on('click', function() {
+                container.find('.fugu-images-nav-btn').on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
                     var direction = $(this).data('direction');
+                    var itemIndex = $(this).data('item-index');
+                    var item = container.find('.fugu-images-item[data-item-index="' + itemIndex + '"]');
+                    var images = item.find('.fugu-images-image');
+                    var currentImage = item.find('.fugu-images-image.active');
+                    var currentIndex = currentImage.data('image-index');
+                    var totalImages = images.length;
                     
                     if (direction === 'prev') {
-                        currentIndex = (currentIndex - 1 + items.length) % items.length;
+                        var newIndex = (currentIndex - 1 + totalImages) % totalImages;
                     } else {
-                        currentIndex = (currentIndex + 1) % items.length;
+                        var newIndex = (currentIndex + 1) % totalImages;
                     }
                     
-                    items.hide();
-                    items.eq(currentIndex).show();
+                    currentImage.removeClass('active');
+                    item.find('.fugu-images-image[data-image-index="' + newIndex + '"]').addClass('active');
                 });
             });
         });

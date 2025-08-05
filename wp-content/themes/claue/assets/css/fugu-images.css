@@ -35,6 +35,7 @@
 .fugu-images-item {
     position: relative;
     height: 300px;
+    width: 100%;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
@@ -47,11 +48,29 @@
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
 }
 
-.fugu-images-image {
+/* ==========================================
+   IMAGE CONTAINER & MULTIPLE IMAGES
+   ========================================== */
+
+.fugu-images-image-container {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
+}
+
+.fugu-images-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fugu-images-image.active {
+    opacity: 1;
 }
 
 .fugu-images-image img {
@@ -84,6 +103,7 @@
     background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 30%, transparent 100%);
     padding: 30px 25px 25px;
     transition: all 0.3s ease;
+    z-index: 2;
 }
 
 .fugu-images-item:hover .fugu-images-overlay {
@@ -128,7 +148,7 @@
 }
 
 /* ==========================================
-   NAVIGATION BUTTONS
+   NAVIGATION BUTTONS - MINIMALIS HOVER ONLY
    ========================================== */
 
 .fugu-images-navigation {
@@ -142,31 +162,41 @@
     padding: 0 15px;
     pointer-events: none;
     z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fugu-images-item:hover .fugu-images-navigation {
+    opacity: 1;
 }
 
 .fugu-images-nav-btn {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border: none;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     color: #ffffff;
-    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(5px);
 }
 
 .fugu-images-nav-btn:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     transform: scale(1.1);
 }
 
-.fugu-images-nav-btn i {
-    font-size: 0.9rem;
+.fugu-images-nav-btn svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
 }
 
 /* ==========================================
@@ -225,9 +255,13 @@
     }
     
     .fugu-images-nav-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 0.8rem;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .fugu-images-nav-btn svg {
+        width: 10px;
+        height: 10px;
     }
 }
 
@@ -257,8 +291,12 @@
     }
     
     .fugu-images-nav-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 0.7rem;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .fugu-images-nav-btn svg {
+        width: 8px;
+        height: 8px;
     }
 }
