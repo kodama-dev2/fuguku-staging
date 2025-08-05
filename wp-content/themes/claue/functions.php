@@ -47,3 +47,15 @@ function claue_enqueue_fugu_images_styles() {
     }
 }
 add_action('wp_enqueue_scripts', 'claue_enqueue_fugu_images_styles');
+
+// Enqueue product-revamp.css for product revamp layout
+add_action('wp_enqueue_scripts', function() {
+    if (is_product()) {
+        global $post;
+        $options = get_post_meta($post->ID, '_custom_wc_options', true);
+        $style = (is_array($options) && !empty($options['wc-single-style'])) ? $options['wc-single-style'] : (function_exists('cs_get_option') ? cs_get_option('wc-single-style') : '');
+        if ($style === 'revamp') {
+            wp_enqueue_style('product-revamp', get_template_directory_uri() . '/assets/css/product-revamp.css', [], '1.0.0');
+        }
+    }
+});

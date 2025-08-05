@@ -1,0 +1,97 @@
+/* Product Revamp Layout */
+.product-revamp-section-1 {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 48px;
+  align-items: flex-start;
+}
+.product-revamp-images {
+  max-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 16px;
+  background: #fafbfc;
+}
+.product-revamp-images img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  cursor: pointer;
+}
+.product-revamp-images img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+.product-revamp-info {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 32px 28px;
+  min-width: 320px;
+  max-width: 480px;
+  width: 100%;
+}
+.product-details-accordion {
+  margin-top: 32px;
+}
+.product-details-accordion .wc-tabs {
+  border-bottom: none;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.product-details-accordion .wc-tabs li {
+  background: #f5f7fa;
+  border-radius: 8px 8px 0 0;
+  padding: 8px 18px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 0;
+}
+.product-details-accordion .wc-tabs li.active {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.product-details-accordion .woocommerce-Tabs-panel {
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 24px 20px;
+  margin-top: -2px;
+}
+.product-revamp-section-2 {
+  margin-top: 64px;
+}
+@media (max-width: 900px) {
+  .product-revamp-section-1 {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .product-revamp-info {
+    max-width: 100%;
+    min-width: 0;
+    padding: 20px 10px;
+  }
+  .product-revamp-images {
+    max-height: 320px;
+    padding: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .product-revamp-section-1 {
+    gap: 12px;
+  }
+  .product-revamp-info {
+    padding: 12px 4px;
+  }
+  .product-details-accordion .woocommerce-Tabs-panel {
+    padding: 12px 4px;
+  }
+}
