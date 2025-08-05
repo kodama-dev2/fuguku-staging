@@ -4004,10 +4004,46 @@ input[type="search"] {
 	border-radius: 20px;
 	padding: 6px 16px;
 	min-width: 100px;
+	position: relative;
+	overflow: hidden;
 }
 .product-image .product-btn .button:hover {
 	color: #fff;
 	background: #333333;
+}
+
+/* Icon mata untuk quick view */
+.product-image .product-btn .button::before {
+	content: "\f06e";
+	font-family: "FontAwesome";
+	position: absolute;
+	bottom: 4px;
+	right: 8px;
+	font-size: 12px;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	color: #fff;
+}
+
+.product-image .product-btn .button:hover::before {
+	opacity: 1;
+}
+
+/* Icon cart untuk add to cart */
+.product-image .added_to_cart::before {
+	content: "\f07a";
+	font-family: "FontAwesome";
+	position: absolute;
+	bottom: 4px;
+	right: 8px;
+	font-size: 12px;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	color: #fff;
+}
+
+.product-image .added_to_cart:hover::before {
+	opacity: 1;
 }
 .product-image .product-btn .button i {
 	display: none;
