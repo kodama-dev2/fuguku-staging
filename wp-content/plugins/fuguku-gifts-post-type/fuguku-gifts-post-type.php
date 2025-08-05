@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with simple GIFT SOLO widget for loop grid integration, FUGU IMAGES-ITEM widget with enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, and simplified widget system for better performance and compatibility. This plugin is updated on 2025-01-27 22:15, version 1.10.0
- * Version: 1.10.0
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with simple GIFT SOLO widget for loop grid integration, FUGU IMAGES-ITEM widget with enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, and simplified widget system for better performance and compatibility. This plugin is updated on 2025-01-27 22:30, version 2.0.0
+ * Version: 2.0.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 22:15
+ * Last Updated: 2025-01-27 22:30
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -33,6 +33,7 @@
  * v1.8.0 - Enhanced FUGU IMAGES-ITEM widget: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit
  * v1.9.0 - Fixed FUGU IMAGES-ITEM widget: object-fit functionality, full-width container, added text field, simplified navigation icons
  * v1.10.0 - Enhanced FUGU IMAGES-ITEM widget: working object-fit with data attributes, removed backdrop blur from navigation
+ * v2.0.0 - Major Release: Added product single revamp layout (layout-revamp.php), modern CSS styling (product-revamp.css), conditional CSS enqueue, dual layout system for single products
  */
 
 // Prevent direct access
