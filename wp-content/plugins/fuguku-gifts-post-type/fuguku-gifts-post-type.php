@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan simple GIFT SOLO widget untuk loop grid integration, FUGU IMAGES-ITEM widget dengan enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, dan simplified widget system untuk better performance dan compatibility. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, dan multiple lightbox issue dengan simple modal. This plugin is updated on 2025-01-28 00:15, version 2.3.4
- * Version: 2.3.4
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan simple GIFT SOLO widget untuk loop grid integration, FUGU IMAGES-ITEM widget dengan enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, dan simplified widget system untuk better performance dan compatibility. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, dan updated button styling (black color, smaller size). This plugin is updated on 2025-01-28 00:20, version 2.3.5
+ * Version: 2.3.5
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-28 00:15
+ * Last Updated: 2025-01-28 00:20
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -39,6 +39,7 @@
  * v2.3.0 - Cloned layout 4 structure for revamp layout: implemented sticky full-height scrollable images container, moved Description/Additional Info/Reviews to right column with proper tabs, enhanced CSS with layout 4 styling and responsive design
  * v2.3.3 - Fixed product revamp layout: removed scroll bar internal dari kolom kiri, menghilangkan jarak antar image, removed border radius pada image, dan menghilangkan zoom hover effects
  * v2.3.4 - Fixed multiple lightbox issue dengan simple modal approach, disabled fullscreen, added product revamp thumbnail image untuk admin preview
+ * v2.3.5 - Updated button styling: changed add to cart dan quick shop buttons to black color dan smaller size
  */
 
 // Prevent direct access
