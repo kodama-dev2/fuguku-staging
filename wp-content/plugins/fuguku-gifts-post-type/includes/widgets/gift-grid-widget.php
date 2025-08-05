@@ -74,9 +74,22 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                 'options' => [
                     'section_1' => __('Section 1 (4 Items: 30% 20% 20% 30%)', 'fuguku-gift'),
                     'section_2' => __('Section 2 (5 Items: 15% 15% 40% 15% 15%)', 'fuguku-gift'),
+                    'compact' => __('Compact Grid (4 Columns No Gap)', 'fuguku-gift'),
                     'regular' => __('Regular Grid', 'fuguku-gift'),
                     'lv_mixed' => __('Louis Vuitton Mixed Grid', 'fuguku-gift'),
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'show_info',
+            [
+                'label' => __('Show Item Info', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'fuguku-gift'),
+                'label_off' => __('No', 'fuguku-gift'),
+                'default' => 'yes',
+                'description' => __('Show title, price, and other info below image', 'fuguku-gift'),
             ]
         );
 
@@ -158,7 +171,7 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                     '6' => '6',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .gifts-grid:not(.gifts-grid-lv)' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .elementor-gifts-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
                 'condition' => [
                     'layout_type' => 'regular',
@@ -184,7 +197,10 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                     'size' => 30,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .gifts-grid' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .elementor-gifts-grid' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'layout_type' => 'regular',
                 ],
             ]
         );
@@ -364,6 +380,8 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                 $grid_class .= ' gifts-grid-section-1';
             } elseif ($settings['layout_type'] === 'section_2') {
                 $grid_class .= ' gifts-grid-section-2';
+            } elseif ($settings['layout_type'] === 'compact') {
+                $grid_class .= ' gifts-grid-compact';
             } elseif ($settings['layout_type'] === 'lv_mixed') {
                 $grid_class .= ' gifts-grid-lv';
             } else {
@@ -392,6 +410,8 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                         } else {
                             $card_class .= ' section-2-regular';
                         }
+                    } elseif ($settings['layout_type'] === 'compact') {
+                        $card_class = 'gift-card compact';
                     } elseif ($settings['layout_type'] === 'lv_mixed') {
                         $card_class = 'gift-card';
                         if ($is_featured) {
@@ -431,6 +451,7 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                         </div>
 
                         <!-- Gift Info -->
+                        <?php if ($settings['show_info'] === 'yes') : ?>
                         <div class="gift-info">
                             <h3 class="gift-title">
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -476,6 +497,7 @@ class Fuguku_Gift_Grid_Widget extends \Elementor\Widget_Base {
                                 </div>
                             <?php endif; ?>
                         </div>
+                        <?php endif; ?>
 
                     </article>
 

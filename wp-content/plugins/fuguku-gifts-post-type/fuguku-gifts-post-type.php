@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), hybrid approach (LV-style archive template + Elementor pages), correct 14-card layout implementation, clean CSS, and new Section 1 (4 items: 30% 20% 20% 30%) and Section 2 (5 items: 15% 15% 40% 15% 15%) layouts with proper border radius controls. This plugin is updated on 2025-01-27 20:30, version 1.5.1
- * Version: 1.5.1
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), hybrid approach (LV-style archive template + Elementor pages), correct 14-card layout implementation, clean CSS, Section 1 (4 items: 30% 20% 20% 30%) and Section 2 (5 items: 15% 15% 40% 15% 15%) layouts, Compact Grid (4 columns no gap) layout with show/hide info option, and fixed widget controls to prevent CSS conflicts. This plugin is updated on 2025-01-27 20:45, version 1.5.2
+ * Version: 1.5.2
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-27 20:30
+ * Last Updated: 2025-01-27 20:45
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -26,6 +26,7 @@
  * v1.4.8 - Removed all old CSS and created clean 14-card layout only
  * v1.5.0 - Added Section 1 (4 items: 30% 20% 20% 30%) and Section 2 (5 items: 15% 15% 40% 15% 15%) layouts with proper border radius controls and fixed widget settings
  * v1.5.1 - Completely rebuilt CSS with clean implementation to fix layout conflicts and ensure proper grid display for all layout types
+ * v1.5.2 - Fixed widget controls to prevent CSS conflicts, removed columns/gap controls for special layouts, added Compact Grid (4 columns no gap) layout with show/hide info option
  */
 
 // Prevent direct access
