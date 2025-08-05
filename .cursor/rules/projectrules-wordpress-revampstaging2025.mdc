@@ -228,9 +228,9 @@ alwaysApply: true
 ## Plugin Development Status
 
 ### Fuguku Gifts Post Type Plugin
-- **Current Version**: 1.4.8
-- **Last Updated**: 2025-01-27 19:35
-- **Description**: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility with custom widgets (Grid, Slider, Filter, Single) with LV mixed grid layout, advanced features (AJAX filtering, wishlist, social sharing), and hybrid approach (LV-style archive template + Elementor pages) with correct 14-card layout implementation and clean CSS. This plugin is updated on 2025-01-27 19:35, version 1.4.8
+- **Current Version**: 2.3.0
+- **Last Updated**: 2025-01-27 23:15
+- **Description**: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget untuk loop grid integration, FUGU IMAGES-ITEM widget dengan enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, dan simplified widget system untuk better performance dan compatibility. Reset ke version 2.3.0 karena error besar di versi setelahnya. This plugin is updated on 2025-01-27 23:15, version 2.3.0
 - **Features**:
   - Post type registration (gifts)
   - Custom taxonomies (gift_category, gift_tag)
@@ -260,3 +260,16 @@ alwaysApply: true
 - **v1.4.6**: Added proper descriptions and auto attachments to rule files
 - **v1.4.7**: Fixed CSS grid override for 14-card layout with proper 4-column grid
 - **v1.4.8**: Removed all old CSS and created clean 14-card layout only
+- **v1.5.0**: Added Section 1 and Section 2 layouts with border radius controls
+- **v1.5.1**: Completely rebuilt CSS with clean implementation
+- **v1.5.2**: Fixed widget controls and added Compact Grid layout
+- **v1.5.3**: Implemented force override CSS with !important declarations
+- **v1.6.0**: Removed complex widgets, created simple GIFT SOLO widget
+- **v1.7.0**: Added FUGU IMAGES-ITEM widget with overlay and navigation
+- **v1.8.0**: Enhanced FUGU IMAGES-ITEM widget with multiple image support
+- **v1.9.0**: Fixed FUGU IMAGES-ITEM widget object-fit functionality
+- **v1.10.0**: Enhanced FUGU IMAGES-ITEM widget with working object-fit
+- **v2.0.0**: Major Release - Added product single revamp layout
+- **v2.1.0**: Added revamp layout option to theme configs
+- **v2.2.0**: Enhanced product revamp layout with scrollable images
+- **v2.3.0**: CURRENT - Cloned layout 4 structure for revamp, sticky full-height scrollable images, proper tabs in right column, enhanced CSS (RESET VERSION - versions after this were removed due to major errors)
