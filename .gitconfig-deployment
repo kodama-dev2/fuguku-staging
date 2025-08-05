@@ -1,0 +1,27 @@
+# Git Configuration for Fuguku Staging Deployment
+# Version: 2.3.0
+# Last Updated: 2025-01-27 23:30
+# Purpose: Mengatasi divergent branches issue pada deployment
+
+[pull]
+    rebase = false
+    ff = false
+
+[user]
+    email = deployment@fuguku.com
+    name = Fuguku Deployment
+
+[core]
+    autocrlf = false
+    filemode = false
+
+[merge]
+    ours = false
+
+[branch "masterstaging"]
+    remote = origin
+    merge = refs/heads/masterstaging
+
+# Deployment strategy configuration
+[advice]
+    divergentBranches = false
