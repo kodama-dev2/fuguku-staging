@@ -157,7 +157,7 @@
 
 /* Right Column - Product Info */
 .wc-single-revamp .summary.entry-summary {
-  padding: 0;
+  padding: 60px 80px;
   margin: 0;
 }
 
@@ -177,10 +177,11 @@
 
 /* Product Price */
 .wc-single-revamp .price {
-  font-size: 24px;
-  font-weight: 600;
-  color: #56cfe1;
+  font-size: 20px;
+  font-weight: 300;
+  color: #333;
   margin-bottom: 20px;
+  letter-spacing: 0.5px;
 }
 
 .wc-single-revamp .price del {

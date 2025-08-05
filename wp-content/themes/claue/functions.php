@@ -55,8 +55,8 @@ add_action('wp_enqueue_scripts', function() {
         $options = get_post_meta($post->ID, '_custom_wc_options', true);
         $style = (is_array($options) && !empty($options['wc-single-style'])) ? $options['wc-single-style'] : (function_exists('cs_get_option') ? cs_get_option('wc-single-style') : '');
         if ($style === 'revamp') {
-                               wp_enqueue_style('product-revamp', get_template_directory_uri() . '/assets/css/product-revamp.css', [], '2.3.8');
-                   wp_enqueue_script('product-revamp-js', get_template_directory_uri() . '/assets/js/product-revamp.js', ['jquery'], '2.3.8', true);
+                               wp_enqueue_style('product-revamp', get_template_directory_uri() . '/assets/css/product-revamp.css', [], '2.3.9');
+                   wp_enqueue_script('product-revamp-js', get_template_directory_uri() . '/assets/js/product-revamp.js', ['jquery'], '2.3.9', true);
         }
     }
 });
