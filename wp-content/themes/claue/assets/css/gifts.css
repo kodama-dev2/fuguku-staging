@@ -1,335 +1,513 @@
 /* ==========================================
-   FUGUKU GIFTS - CLEAN CSS IMPLEMENTATION
+   FUGUKU GIFTS - FORCE OVERRIDE CSS
    ========================================== */
 
 /* ==========================================
    BASE GIFT CARD STYLES
    ========================================== */
 
+.elementor-widget-fuguku-gift-grid .gift-card,
 .gift-card {
-    background: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    border: 1px solid #f5f5f5;
-    display: flex;
-    flex-direction: column;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    position: relative !important;
+    border: 1px solid #f5f5f5 !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card:hover,
 .gift-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border-color: #e8e8e8;
+    transform: translateY(-6px) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+    border-color: #e8e8e8 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-image,
 .gift-image {
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
-    flex-shrink: 0;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #f8f9fa !important;
+    flex-shrink: 0 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-image img,
 .gift-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.4s ease !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card:hover .gift-image img,
 .gift-card:hover .gift-image img {
-    transform: scale(1.05);
+    transform: scale(1.05) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-placeholder,
 .gift-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
-    color: #999;
-    font-size: 2rem;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #f8f9fa !important;
+    color: #999 !important;
+    font-size: 2rem !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-info,
 .gift-info {
-    padding: 20px;
-    background: #ffffff;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 20px !important;
+    background: #ffffff !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-title,
 .gift-title {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    line-height: 1.4;
-    color: #333;
-    font-weight: 500;
+    font-size: 1.1rem !important;
+    margin-bottom: 10px !important;
+    line-height: 1.4 !important;
+    color: #333 !important;
+    font-weight: 500 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-price,
 .gift-price {
-    margin-top: auto;
-    font-weight: 600;
-    color: #56cfe1;
+    margin-top: auto !important;
+    font-weight: 600 !important;
+    color: #56cfe1 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-price .price,
 .gift-price .price {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
 }
 
+.elementor-widget-fuguku-gift-grid .featured-badge,
 .featured-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ff6b6b;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    z-index: 2;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    background: #ff6b6b !important;
+    color: white !important;
+    padding: 5px 10px !important;
+    border-radius: 20px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    z-index: 2 !important;
 }
 
 /* ==========================================
    REGULAR GRID LAYOUT
    ========================================== */
 
+.elementor-widget-fuguku-gift-grid .elementor-gifts-grid,
 .elementor-gifts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-bottom: 80px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 30px !important;
+    margin-bottom: 80px !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 20px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .elementor-gifts-grid .gift-card,
 .elementor-gifts-grid .gift-card {
-    height: 400px;
+    height: 400px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .elementor-gifts-grid .gift-image,
 .elementor-gifts-grid .gift-image {
-    height: 250px;
+    height: 250px !important;
 }
 
 /* ==========================================
    LOUIS VUITTON MIXED GRID LAYOUT
    ========================================== */
 
+.elementor-widget-fuguku-gift-grid .gifts-grid-lv,
 .gifts-grid-lv {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 300px;
-    gap: 30px;
-    margin-bottom: 80px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    grid-auto-rows: 300px !important;
+    gap: 30px !important;
+    margin-bottom: 80px !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 20px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.featured-lv,
 .gift-card.featured-lv {
-    grid-column: span 2;
-    grid-row: span 2;
-    height: auto;
+    grid-column: span 2 !important;
+    grid-row: span 2 !important;
+    height: auto !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.featured-lv .gift-image,
 .gift-card.featured-lv .gift-image {
-    height: 350px;
+    height: 350px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.featured-lv .gift-info,
 .gift-card.featured-lv .gift-info {
-    padding: 30px;
+    padding: 30px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.featured-lv .gift-title,
 .gift-card.featured-lv .gift-title {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
+    font-size: 1.4rem !important;
+    margin-bottom: 15px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.featured-lv .gift-price .price,
 .gift-card.featured-lv .gift-price .price {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.medium-lv,
 .gift-card.medium-lv {
-    grid-column: span 1;
-    grid-row: span 1.5;
-    height: auto;
+    grid-column: span 1 !important;
+    grid-row: span 1.5 !important;
+    height: auto !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.medium-lv .gift-image,
 .gift-card.medium-lv .gift-image {
-    height: 280px;
+    height: 280px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.regular-lv,
 .gift-card.regular-lv {
-    grid-column: span 1;
-    grid-row: span 1;
-    height: auto;
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    height: auto !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.regular-lv .gift-image,
 .gift-card.regular-lv .gift-image {
-    height: 200px;
+    height: 200px !important;
 }
 
 /* ==========================================
    SECTION 1 LAYOUT (4 Items: 30% 20% 20% 30%)
    ========================================== */
 
+.elementor-widget-fuguku-gift-grid .gifts-grid-section-1,
 .gifts-grid-section-1 {
-    display: grid;
-    grid-template-columns: 30% 20% 20% 30%;
-    grid-auto-rows: 300px;
-    gap: 30px;
-    margin-bottom: 80px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
+    display: grid !important;
+    grid-template-columns: 30% 20% 20% 30% !important;
+    grid-auto-rows: 300px !important;
+    gap: 30px !important;
+    margin-bottom: 80px !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 20px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-wide,
 .gift-card.section-1-wide {
-    grid-column: span 1;
-    grid-row: span 1;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-wide:hover,
 .gift-card.section-1-wide:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) !important;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-wide .gift-image,
 .gift-card.section-1-wide .gift-image {
-    height: 250px;
+    height: 250px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-wide .gift-info,
 .gift-card.section-1-wide .gift-info {
-    padding: 25px;
+    padding: 25px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-wide .gift-title,
 .gift-card.section-1-wide .gift-title {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    line-height: 1.35;
+    font-size: 1.3rem !important;
+    margin-bottom: 12px !important;
+    line-height: 1.35 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-wide .gift-price .price,
 .gift-card.section-1-wide .gift-price .price {
-    font-size: 1.4rem;
+    font-size: 1.4rem !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-regular,
 .gift-card.section-1-regular {
-    grid-column: span 1;
-    grid-row: span 1;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-regular:hover,
 .gift-card.section-1-regular:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-6px) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-regular .gift-image,
 .gift-card.section-1-regular .gift-image {
-    height: 200px;
+    height: 200px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-regular .gift-info,
 .gift-card.section-1-regular .gift-info {
-    padding: 20px;
+    padding: 20px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-regular .gift-title,
 .gift-card.section-1-regular .gift-title {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    line-height: 1.4;
+    font-size: 1.1rem !important;
+    margin-bottom: 10px !important;
+    line-height: 1.4 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-1-regular .gift-price .price,
 .gift-card.section-1-regular .gift-price .price {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
 }
 
 /* ==========================================
    SECTION 2 LAYOUT (5 Items: 15% 15% 40% 15% 15%)
    ========================================== */
 
+.elementor-widget-fuguku-gift-grid .gifts-grid-section-2,
 .gifts-grid-section-2 {
-    display: grid;
-    grid-template-columns: 15% 15% 40% 15% 15%;
-    grid-auto-rows: 300px;
-    gap: 30px;
-    margin-bottom: 80px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
+    display: grid !important;
+    grid-template-columns: 15% 15% 40% 15% 15% !important;
+    grid-auto-rows: 300px !important;
+    gap: 30px !important;
+    margin-bottom: 80px !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 20px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-center,
 .gift-card.section-2-center {
-    grid-column: span 1;
-    grid-row: span 1;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12);
-    margin-top: -60px;
-    z-index: 2;
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    height: auto !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12) !important;
+    margin-top: -60px !important;
+    z-index: 2 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-center:hover,
 .gift-card.section-2-center:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+    transform: translateY(-15px) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-center .gift-image,
 .gift-card.section-2-center .gift-image {
-    height: 350px;
+    height: 350px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-center .gift-info,
 .gift-card.section-2-center .gift-info {
-    padding: 30px;
+    padding: 30px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-center .gift-title,
 .gift-card.section-2-center .gift-title {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    line-height: 1.3;
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+    line-height: 1.3 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-center .gift-price .price,
 .gift-card.section-2-center .gift-price .price {
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-regular,
 .gift-card.section-2-regular {
-    grid-column: span 1;
-    grid-row: span 1;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-regular:hover,
 .gift-card.section-2-regular:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-6px) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-regular .gift-image,
 .gift-card.section-2-regular .gift-image {
-    height: 180px;
+    height: 180px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-regular .gift-info,
 .gift-card.section-2-regular .gift-info {
-    padding: 18px;
+    padding: 18px !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-regular .gift-title,
 .gift-card.section-2-regular .gift-title {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    line-height: 1.4;
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+    line-height: 1.4 !important;
 }
 
+.elementor-widget-fuguku-gift-grid .gift-card.section-2-regular .gift-price .price,
 .gift-card.section-2-regular .gift-price .price {
-    font-size: 1.1rem;
+    font-size: 1.1rem !important;
+}
+
+/* ==========================================
+   COMPACT GRID LAYOUT (4 Columns No Gap)
+   ========================================== */
+
+.elementor-widget-fuguku-gift-grid .gifts-grid-compact,
+.gifts-grid-compact {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0 !important;
+    margin-bottom: 80px !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact,
+.gift-card.compact {
+    height: auto !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact:hover,
+.gift-card.compact:hover {
+    transform: scale(1.05) !important;
+    z-index: 10 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-image,
+.gift-card.compact .gift-image {
+    height: 250px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #f8f9fa !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-image img,
+.gift-card.compact .gift-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.3s ease !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact:hover .gift-image img,
+.gift-card.compact:hover .gift-image img {
+    transform: scale(1.1) !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-info,
+.gift-card.compact .gift-info {
+    padding: 15px !important;
+    background: #ffffff !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)) !important;
+    color: white !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact:hover .gift-info,
+.gift-card.compact:hover .gift-info {
+    transform: translateY(0) !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-title,
+.gift-card.compact .gift-title {
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+    line-height: 1.3 !important;
+    color: white !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-title a,
+.gift-card.compact .gift-title a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-price,
+.gift-card.compact .gift-price {
+    font-weight: 600 !important;
+    color: #56cfe1 !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-price .price,
+.gift-card.compact .gift-price .price {
+    font-size: 1.1rem !important;
+    color: white !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-brand,
+.gift-card.compact .gift-brand {
+    font-size: 0.8rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-top: 5px !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-availability,
+.gift-card.compact .gift-availability {
+    font-size: 0.8rem !important;
+    margin-top: 5px !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-availability.in_stock,
+.gift-card.compact .gift-availability.in_stock {
+    color: #4CAF50 !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-availability.limited,
+.gift-card.compact .gift-availability.limited {
+    color: #FF9800 !important;
+}
+
+.elementor-widget-fuguku-gift-grid .gift-card.compact .gift-availability.out_of_stock,
+.gift-card.compact .gift-availability.out_of_stock {
+    color: #F44336 !important;
 }
 
 /* ==========================================
@@ -338,217 +516,132 @@
 
 /* Tablet Responsive */
 @media (max-width: 1200px) {
+    .elementor-widget-fuguku-gift-grid .gifts-grid-lv,
     .gifts-grid-lv {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 25px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gifts-grid-section-1,
     .gifts-grid-section-1 {
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 25px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gifts-grid-section-2,
     .gifts-grid-section-2 {
-        grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-        gap: 25px;
+        grid-template-columns: 1fr 1fr 2fr 1fr 1fr !important;
+        gap: 25px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.section-2-center,
     .gift-card.section-2-center {
-        margin-top: -40px;
+        margin-top: -40px !important;
+    }
+    
+    .elementor-widget-fuguku-gift-grid .gifts-grid-compact,
+    .gifts-grid-compact {
+        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .elementor-widget-fuguku-gift-grid .elementor-gifts-grid,
     .elementor-gifts-grid,
+    .elementor-widget-fuguku-gift-grid .gifts-grid-lv,
     .gifts-grid-lv,
+    .elementor-widget-fuguku-gift-grid .gifts-grid-section-1,
     .gifts-grid-section-1,
+    .elementor-widget-fuguku-gift-grid .gifts-grid-section-2,
     .gifts-grid-section-2 {
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        gap: 20px;
-        padding: 0 15px;
+        grid-template-columns: 1fr !important;
+        grid-auto-rows: auto !important;
+        gap: 20px !important;
+        padding: 0 15px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.featured-lv,
     .gift-card.featured-lv,
+    .elementor-widget-fuguku-gift-grid .gift-card.section-2-center,
     .gift-card.section-2-center {
-        grid-column: span 1;
-        grid-row: span 1;
-        margin-top: 0;
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        margin-top: 0 !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.section-1-wide .gift-image,
     .gift-card.section-1-wide .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.section-2-center .gift-image,
     .gift-card.section-2-center .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.featured-lv .gift-image,
     .gift-card.featured-lv .gift-image {
-        height: 250px;
+        height: 250px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.section-1-regular .gift-image,
     .gift-card.section-1-regular .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.section-2-regular .gift-image,
     .gift-card.section-2-regular .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.regular-lv .gift-image,
     .gift-card.regular-lv .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.medium-lv .gift-image,
     .gift-card.medium-lv .gift-image {
-        height: 200px;
+        height: 200px !important;
+    }
+    
+    .elementor-widget-fuguku-gift-grid .gifts-grid-compact,
+    .gifts-grid-compact {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .elementor-widget-fuguku-gift-grid .gift-card.compact .gift-image,
+    .gift-card.compact .gift-image {
+        height: 200px !important;
     }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+    .elementor-widget-fuguku-gift-grid .elementor-gifts-grid,
     .elementor-gifts-grid,
+    .elementor-widget-fuguku-gift-grid .gifts-grid-lv,
     .gifts-grid-lv,
+    .elementor-widget-fuguku-gift-grid .gifts-grid-section-1,
     .gifts-grid-section-1,
+    .elementor-widget-fuguku-gift-grid .gifts-grid-section-2,
     .gifts-grid-section-2 {
-        gap: 15px;
-        padding: 0 10px;
+        gap: 15px !important;
+        padding: 0 10px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.section-1-wide .gift-image,
     .gift-card.section-1-wide .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.section-2-center .gift-image,
     .gift-card.section-2-center .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.featured-lv .gift-image,
     .gift-card.featured-lv .gift-image {
-        height: 200px;
+        height: 200px !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.section-1-regular .gift-image,
     .gift-card.section-1-regular .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.section-2-regular .gift-image,
     .gift-card.section-2-regular .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.regular-lv .gift-image,
     .gift-card.regular-lv .gift-image,
+    .elementor-widget-fuguku-gift-grid .gift-card.medium-lv .gift-image,
     .gift-card.medium-lv .gift-image {
-        height: 180px;
-    }
-} 
-
-/* ==========================================
-   COMPACT GRID LAYOUT (4 Columns No Gap)
-   ========================================== */
-
-.gifts-grid-compact {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-bottom: 80px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-}
-
-.gift-card.compact {
-    height: auto;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.gift-card.compact:hover {
-    transform: scale(1.05);
-    z-index: 10;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.gift-card.compact .gift-image {
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-    background: #f8f9fa;
-}
-
-.gift-card.compact .gift-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.gift-card.compact:hover .gift-image img {
-    transform: scale(1.1);
-}
-
-.gift-card.compact .gift-info {
-    padding: 15px;
-    background: #ffffff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    color: white;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.gift-card.compact:hover .gift-info {
-    transform: translateY(0);
-}
-
-.gift-card.compact .gift-title {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    line-height: 1.3;
-    color: white;
-}
-
-.gift-card.compact .gift-title a {
-    color: white;
-    text-decoration: none;
-}
-
-.gift-card.compact .gift-price {
-    font-weight: 600;
-    color: #56cfe1;
-}
-
-.gift-card.compact .gift-price .price {
-    font-size: 1.1rem;
-    color: white;
-}
-
-.gift-card.compact .gift-brand {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 5px;
-}
-
-.gift-card.compact .gift-availability {
-    font-size: 0.8rem;
-    margin-top: 5px;
-}
-
-.gift-card.compact .gift-availability.in_stock {
-    color: #4CAF50;
-}
-
-.gift-card.compact .gift-availability.limited {
-    color: #FF9800;
-}
-
-.gift-card.compact .gift-availability.out_of_stock {
-    color: #F44336;
-}
-
-/* Compact Grid Responsive */
-@media (max-width: 1200px) {
-    .gifts-grid-compact {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .gifts-grid-compact {
-        grid-template-columns: repeat(2, 1fr);
+        height: 180px !important;
     }
     
-    .gift-card.compact .gift-image {
-        height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
+    .elementor-widget-fuguku-gift-grid .gifts-grid-compact,
     .gifts-grid-compact {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr) !important;
     }
     
+    .elementor-widget-fuguku-gift-grid .gift-card.compact .gift-image,
     .gift-card.compact .gift-image {
-        height: 250px;
+        height: 250px !important;
     }
 } 
