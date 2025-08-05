@@ -1,0 +1,264 @@
+/* ==========================================
+   FUGU IMAGES ITEM - CSS STYLES
+   ========================================== */
+
+/* ==========================================
+   CONTAINER & GRID LAYOUT
+   ========================================== */
+
+.fugu-images-container {
+    display: grid;
+    gap: 30px;
+    margin-bottom: 80px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.fugu-images-container[data-columns="3"] {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.fugu-images-container[data-columns="4"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.fugu-images-container[data-columns="5"] {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* ==========================================
+   ITEM STYLES
+   ========================================== */
+
+.fugu-images-item {
+    position: relative;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.fugu-images-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.fugu-images-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.fugu-images-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.fugu-images-item:hover .fugu-images-image img {
+    transform: scale(1.05);
+}
+
+.fugu-images-image a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+/* ==========================================
+   OVERLAY STYLES (PUTIH GRADASI DARI BOTTOM)
+   ========================================== */
+
+.fugu-images-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 30%, transparent 100%);
+    padding: 30px 25px 25px;
+    transition: all 0.3s ease;
+}
+
+.fugu-images-item:hover .fugu-images-overlay {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 40%, transparent 100%);
+}
+
+.fugu-images-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================
+   TITLE & SUBTITLE STYLES
+   ========================================== */
+
+.fugu-images-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #222222;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.fugu-images-title a {
+    color: #222222;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.fugu-images-title a:hover {
+    color: #56cfe1;
+}
+
+.fugu-images-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #666666;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+/* ==========================================
+   NAVIGATION BUTTONS
+   ========================================== */
+
+.fugu-images-navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.fugu-images-nav-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fugu-images-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+.fugu-images-nav-btn i {
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   NO ITEMS & ERROR STYLES
+   ========================================== */
+
+.fugu-images-no-items {
+    background: #f8f9fa;
+    border: 2px dashed #e9ecef;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.fugu-images-no-items p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+/* Tablet Responsive */
+@media (max-width: 1200px) {
+    .fugu-images-container[data-columns="4"],
+    .fugu-images-container[data-columns="5"] {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .fugu-images-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .fugu-images-item {
+        height: 250px;
+    }
+    
+    .fugu-images-overlay {
+        padding: 20px 15px 15px;
+    }
+    
+    .fugu-images-title {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+    
+    .fugu-images-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .fugu-images-nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .fugu-images-container {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .fugu-images-item {
+        height: 200px;
+    }
+    
+    .fugu-images-overlay {
+        padding: 15px 12px 12px;
+    }
+    
+    .fugu-images-title {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    
+    .fugu-images-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .fugu-images-nav-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+}

@@ -43,9 +43,11 @@ class Fuguku_Elementor_Gifts_Widgets {
     public function register_widgets($widgets_manager) {
         // Include widget files
         require_once(__DIR__ . '/widgets/gift-solo-widget.php');
+        require_once(__DIR__ . '/widgets/fugu-images-item-widget.php');
 
         // Register widgets
         $widgets_manager->register(new \Fuguku_Gift_Solo_Widget());
+        $widgets_manager->register(new \Fugu_Images_Item_Widget());
     }
 }
 

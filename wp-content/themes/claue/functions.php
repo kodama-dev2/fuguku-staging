@@ -38,3 +38,12 @@ function claue_enqueue_gifts_styles() {
     }
 }
 add_action('wp_enqueue_scripts', 'claue_enqueue_gifts_styles');
+/**
+ * Enqueue FUGU Images CSS
+ */
+function claue_enqueue_fugu_images_styles() {
+    if (is_page() || is_single() || is_archive()) {
+        wp_enqueue_style('claue-fugu-images', get_template_directory_uri() . '/assets/css/fugu-images.css', array(), '1.0.0');
+    }
+}
+add_action('wp_enqueue_scripts', 'claue_enqueue_fugu_images_styles');
