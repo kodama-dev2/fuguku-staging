@@ -54,3 +54,6 @@ debug.log
 
 # Hostinger specific
 wp-content/ai1wm-backups/
+
+# Theme admin images (to avoid deployment conflicts)
+wp-content/themes/claue/core/admin/assets/images/layout/product-revamp.png
