@@ -42,16 +42,10 @@ class Fuguku_Elementor_Gifts_Widgets {
      */
     public function register_widgets($widgets_manager) {
         // Include widget files
-        require_once(__DIR__ . '/widgets/gift-grid-widget.php');
-        require_once(__DIR__ . '/widgets/gift-slider-widget.php');
-        require_once(__DIR__ . '/widgets/gift-filter-widget.php');
-        require_once(__DIR__ . '/widgets/gift-single-widget.php');
+        require_once(__DIR__ . '/widgets/gift-solo-widget.php');
 
         // Register widgets
-        $widgets_manager->register(new \Fuguku_Gift_Grid_Widget());
-        $widgets_manager->register(new \Fuguku_Gift_Slider_Widget());
-        $widgets_manager->register(new \Fuguku_Gift_Filter_Widget());
-        $widgets_manager->register(new \Fuguku_Gift_Single_Widget());
+        $widgets_manager->register(new \Fuguku_Gift_Solo_Widget());
     }
 }
 
