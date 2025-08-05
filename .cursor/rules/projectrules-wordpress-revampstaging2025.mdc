@@ -228,9 +228,9 @@ alwaysApply: true
 ## Plugin Development Status
 
 ### Fuguku Gifts Post Type Plugin
-- **Current Version**: 2.3.0
-- **Last Updated**: 2025-01-27 23:15
-- **Description**: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget untuk loop grid integration, FUGU IMAGES-ITEM widget dengan enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, dan simplified widget system untuk better performance dan compatibility. Reset ke version 2.3.0 karena error besar di versi setelahnya. This plugin is updated on 2025-01-27 23:15, version 2.3.0
+- **Current Version**: 2.3.3
+- **Last Updated**: 2025-01-27 23:45
+- **Description**: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget untuk loop grid integration, FUGU IMAGES-ITEM widget dengan enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, dan simplified widget system untuk better performance dan compatibility. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, dan zoom hover effects. This plugin is updated on 2025-01-27 23:45, version 2.3.3
 - **Features**:
   - Post type registration (gifts)
   - Custom taxonomies (gift_category, gift_tag)
@@ -272,4 +272,7 @@ alwaysApply: true
 - **v2.0.0**: Major Release - Added product single revamp layout
 - **v2.1.0**: Added revamp layout option to theme configs
 - **v2.2.0**: Enhanced product revamp layout with scrollable images
-- **v2.3.0**: CURRENT - Cloned layout 4 structure for revamp, sticky full-height scrollable images, proper tabs in right column, enhanced CSS (RESET VERSION - versions after this were removed due to major errors)
+- **v2.3.0**: Cloned layout 4 structure for revamp, sticky full-height scrollable images, proper tabs in right column, enhanced CSS (RESET VERSION - versions after this were removed due to major errors)
+- **v2.3.1**: Update project rules after reset - removed problematic versions, updated plugin version to 2.3.0, comprehensive version history with reset documentation
+- **v2.3.2**: Added deployment fixes - git config files and deployment script to resolve divergent branches issue
+- **v2.3.3**: CURRENT - Fixed product revamp layout: removed scroll bar internal dari kolom kiri, menghilangkan jarak antar image, removed border radius pada image, dan menghilangkan zoom hover effects
