@@ -60,3 +60,17 @@ add_action('wp_enqueue_scripts', function() {
         }
     }
 });
+
+/**
+ * Hide Review Tab based on Theme Options
+ */
+function claue_hide_review_tab($tabs) {
+    // Check if hide review tab option is enabled
+    if (function_exists('cs_get_option') && cs_get_option('wc-hide-review-tab')) {
+        if (isset($tabs['reviews'])) {
+            unset($tabs['reviews']);
+        }
+    }
+    return $tabs;
+}
+add_filter('woocommerce_product_tabs', 'claue_hide_review_tab', 99);

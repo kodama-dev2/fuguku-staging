@@ -614,6 +614,13 @@ if ( class_exists( 'WooCommerce' ) ) {
 						),
 						'dependency' => array( 'wc-single-style_3', '==', false ),
 					),
+					array(
+						'id'      => 'wc-hide-review-tab',
+						'type'    => 'switcher',
+						'title'   => esc_html__( 'Hide Review Tab', 'claue' ),
+						'desc'    => esc_html__( 'Hide the review tab on product detail pages', 'claue' ),
+						'default' => false,
+					),
 					
 					array(
 						'type'    => 'subheading',
