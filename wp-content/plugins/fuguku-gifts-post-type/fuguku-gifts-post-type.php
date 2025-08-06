@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan simple GIFT SOLO widget untuk loop grid integration, FUGU IMAGES-ITEM widget dengan enhanced features: multiple images per item, gap control, width control, minimal navigation icons, text field, full-width container, fixed object-fit, hybrid approach (LV-style archive template + Elementor pages), clean CSS, dan simplified widget system untuk better performance dan compatibility. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-01-28 01:00, version 2.4.1
- * Version: 2.4.1
+ * Version: 2.4.2
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-01-28 01:00
+ * Last Updated: 2025-01-28 01:15
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -45,7 +45,8 @@
  * v2.3.8 - Replaced text buttons with circular icon buttons di pojok kanan bawah product image
  * v2.3.9 - Enhanced layout spacing: added large padding pada kolom kanan dan updated price styling dengan font tipis
  * v2.4.0 - Added theme option to hide review tab on product detail pages
- * v2.4.1 - CURRENT - Added KODAMA ADMIN plugin integration for clean admin interface
+ * v2.4.1 - Added KODAMA ADMIN plugin integration for clean admin interface
+ * v2.4.2 - CURRENT - Fixed FUGU IMAGES-ITEM widget: separated overlay from text content, removed bottom padding from grid container
  */
 
 // Prevent direct access
