@@ -1,0 +1,786 @@
+/**
+ * KODAMA ADMIN - Custom WordPress Admin Styling
+ * Version: 1.0.0
+ * Last Updated: 2025-01-28 01:00
+ * Description: KDM-PL Clean white background, minimal buttons, minimal font, purple icons
+ */
+
+/* KODAMA ADMIN - Reset and Base Styles */
+body.wp-admin {
+    background-color: #ffffff !important;
+    color: #495057 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+}
+
+/* KODAMA ADMIN - Typography */
+body.wp-admin,
+body.wp-admin * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+    font-weight: 400 !important;
+}
+
+/* KODAMA ADMIN - Purple Icons */
+.dashicons,
+.dashicons-before::before {
+    color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Minimal Buttons */
+.button,
+.button-primary,
+.button-secondary,
+input[type="submit"],
+input[type="button"] {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    padding: 6px 12px !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important;
+}
+
+.button:hover,
+.button-primary:hover,
+.button-secondary:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #e9ecef !important;
+    border-color: #dee2e6 !important;
+    color: #212529 !important;
+    box-shadow: none !important;
+}
+
+.button-primary {
+    background-color: #8B5CF6 !important;
+    border-color: #8B5CF6 !important;
+    color: #ffffff !important;
+}
+
+.button-primary:hover {
+    background-color: #7C3AED !important;
+    border-color: #7C3AED !important;
+    color: #ffffff !important;
+}
+
+/* KODAMA ADMIN - Clean Admin Bar */
+#wpadminbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e9ecef !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+#wpadminbar .ab-item {
+    color: #495057 !important;
+}
+
+#wpadminbar .ab-item:hover {
+    color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Sidebar */
+#adminmenu {
+    background-color: #ffffff !important;
+    border-right: 1px solid #e9ecef !important;
+}
+
+#adminmenu li a {
+    color: #495057 !important;
+    border-bottom: 1px solid #f8f9fa !important;
+    font-weight: 400 !important;
+}
+
+#adminmenu li a:hover {
+    background-color: #f8f9fa !important;
+    color: #8B5CF6 !important;
+}
+
+#adminmenu li.current a {
+    background-color: #8B5CF6 !important;
+    color: #ffffff !important;
+}
+
+/* KODAMA ADMIN - Clean Content Area */
+#wpcontent {
+    background-color: #ffffff !important;
+}
+
+/* KODAMA ADMIN - Clean Tables */
+.wp-list-table {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+.wp-list-table th {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #e9ecef !important;
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+.wp-list-table td {
+    border-bottom: 1px solid #f8f9fa !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Forms */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+    font-size: 13px !important;
+    padding: 6px 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+    outline: none !important;
+}
+
+/* KODAMA ADMIN - Clean Notices */
+.notice {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.notice-success {
+    border-left-color: #10B981 !important;
+}
+
+.notice-error {
+    border-left-color: #EF4444 !important;
+}
+
+.notice-warning {
+    border-left-color: #F59E0B !important;
+}
+
+.notice-info {
+    border-left-color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Meta Boxes */
+.postbox {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.postbox .hndle {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #e9ecef !important;
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* KODAMA ADMIN - Clean Tabs */
+.nav-tab {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    color: #495057 !important;
+    font-weight: 400 !important;
+}
+
+.nav-tab:hover {
+    background-color: #f8f9fa !important;
+    color: #8B5CF6 !important;
+}
+
+.nav-tab-active {
+    background-color: #8B5CF6 !important;
+    border-color: #8B5CF6 !important;
+    color: #ffffff !important;
+}
+
+/* KODAMA ADMIN - Clean Pagination */
+.tablenav-pages a {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    color: #495057 !important;
+    border-radius: 4px !important;
+}
+
+.tablenav-pages a:hover {
+    background-color: #f8f9fa !important;
+    color: #8B5CF6 !important;
+}
+
+.tablenav-pages .current {
+    background-color: #8B5CF6 !important;
+    border-color: #8B5CF6 !important;
+    color: #ffffff !important;
+}
+
+/* KODAMA ADMIN - Clean Headers */
+.wrap h1,
+.wrap h2,
+.wrap h3 {
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* KODAMA ADMIN - Clean Links */
+a {
+    color: #8B5CF6 !important;
+}
+
+a:hover {
+    color: #7C3AED !important;
+}
+
+/* KODAMA ADMIN - Clean Checkboxes and Radio Buttons */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Tooltips */
+.wp-tooltip {
+    background-color: #495057 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Loading States */
+.spinner {
+    border-color: #8B5CF6 !important;
+    border-top-color: transparent !important;
+}
+
+/* KODAMA ADMIN - Clean Dropdowns */
+.select2-container--default .select2-selection--single {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+.select2-container--default .select2-selection--single:focus {
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+}
+
+/* KODAMA ADMIN - Clean Modals */
+.wp-dialog {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* KODAMA ADMIN - Clean Toolbar */
+.toolbar {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Status Messages */
+.updated,
+.error,
+.notice {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Breadcrumbs */
+.breadcrumb {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Search Box */
+#searchbox {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+}
+
+#searchbox:focus {
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+}
+
+/* KODAMA ADMIN - Clean Footer */
+#wpfooter {
+    background-color: #ffffff !important;
+    border-top: 1px solid #e9ecef !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Contextual Help */
+.contextual-help-tabs {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+.contextual-help-tabs ul li a {
+    color: #495057 !important;
+}
+
+.contextual-help-tabs ul li a:hover {
+    color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Screen Options */
+.screen-meta-toggle {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    color: #495057 !important;
+}
+
+.screen-meta-toggle:hover {
+    background-color: #f8f9fa !important;
+    color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Help Tabs */
+.help-tab-content {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Plugin Cards */
+.plugin-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.plugin-card:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* KODAMA ADMIN - Clean Theme Cards */
+.theme-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.theme-card:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* KODAMA ADMIN - Clean Widget Areas */
+.widgets-holder-wrap {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Customizer */
+.wp-customizer {
+    background-color: #ffffff !important;
+}
+
+.wp-customizer .customize-control {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Media Library */
+.media-frame {
+    background-color: #ffffff !important;
+}
+
+.media-frame .media-frame-menu {
+    background-color: #f8f9fa !important;
+    border-right: 1px solid #e9ecef !important;
+}
+
+/* KODAMA ADMIN - Clean Editor */
+.wp-editor-container {
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+.wp-editor-container:focus-within {
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+}
+
+/* KODAMA ADMIN - Clean Color Picker */
+.wp-color-result {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+.wp-color-result:hover {
+    border-color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Date Picker */
+.ui-datepicker {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* KODAMA ADMIN - Clean Sliders */
+.ui-slider {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+.ui-slider .ui-slider-handle {
+    background-color: #8B5CF6 !important;
+    border: 1px solid #8B5CF6 !important;
+    border-radius: 50% !important;
+}
+
+/* KODAMA ADMIN - Clean Progress Bars */
+.progress-bar {
+    background-color: #f8f9fa !important;
+    border-radius: 4px !important;
+}
+
+.progress-bar-fill {
+    background-color: #8B5CF6 !important;
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Alerts */
+.alert {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+}
+
+.alert-success {
+    border-left-color: #10B981 !important;
+}
+
+.alert-error {
+    border-left-color: #EF4444 !important;
+}
+
+.alert-warning {
+    border-left-color: #F59E0B !important;
+}
+
+.alert-info {
+    border-left-color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Badges */
+.badge {
+    background-color: #8B5CF6 !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    padding: 2px 6px !important;
+}
+
+/* KODAMA ADMIN - Clean Cards */
+.card {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #e9ecef !important;
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* KODAMA ADMIN - Clean Dividers */
+hr {
+    border: none !important;
+    border-top: 1px solid #e9ecef !important;
+    margin: 1rem 0 !important;
+}
+
+/* KODAMA ADMIN - Clean Code Blocks */
+code {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 3px !important;
+    color: #495057 !important;
+    font-family: "SF Mono", Monaco, Inconsolata, "Roboto Mono", monospace !important;
+    font-size: 12px !important;
+    padding: 2px 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Pre Blocks */
+pre {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+    font-family: "SF Mono", Monaco, Inconsolata, "Roboto Mono", monospace !important;
+    font-size: 12px !important;
+    padding: 1rem !important;
+}
+
+/* KODAMA ADMIN - Clean Blockquotes */
+blockquote {
+    border-left: 3px solid #8B5CF6 !important;
+    color: #495057 !important;
+    font-style: italic !important;
+    margin: 1rem 0 !important;
+    padding-left: 1rem !important;
+}
+
+/* KODAMA ADMIN - Clean Lists */
+ul, ol {
+    color: #495057 !important;
+}
+
+li {
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Definition Lists */
+dl {
+    color: #495057 !important;
+}
+
+dt {
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+dd {
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Tables */
+table {
+    background-color: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 4px !important;
+    color: #495057 !important;
+}
+
+th {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #e9ecef !important;
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+td {
+    border-bottom: 1px solid #f8f9fa !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Images */
+img {
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Videos */
+video {
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Embeds */
+embed,
+iframe {
+    border-radius: 4px !important;
+}
+
+/* KODAMA ADMIN - Clean Scrollbars */
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f8f9fa !important;
+    border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e9ecef !important;
+    border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Clean Selection */
+::selection {
+    background-color: rgba(139, 92, 246, 0.2) !important;
+    color: #495057 !important;
+}
+
+/* KODAMA ADMIN - Clean Focus */
+:focus {
+    outline: 2px solid #8B5CF6 !important;
+    outline-offset: 2px !important;
+}
+
+/* KODAMA ADMIN - Clean Disabled States */
+.disabled,
+[disabled] {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+
+/* KODAMA ADMIN - Clean Loading States */
+.loading {
+    opacity: 0.7 !important;
+    pointer-events: none !important;
+}
+
+/* KODAMA ADMIN - Clean Success States */
+.success {
+    color: #10B981 !important;
+}
+
+/* KODAMA ADMIN - Clean Error States */
+.error {
+    color: #EF4444 !important;
+}
+
+/* KODAMA ADMIN - Clean Warning States */
+.warning {
+    color: #F59E0B !important;
+}
+
+/* KODAMA ADMIN - Clean Info States */
+.info {
+    color: #8B5CF6 !important;
+}
+
+/* KODAMA ADMIN - Responsive Design */
+@media (max-width: 782px) {
+    /* Mobile optimizations */
+    .button,
+    .button-primary,
+    .button-secondary,
+    input[type="submit"],
+    input[type="button"] {
+        padding: 8px 16px !important;
+        font-size: 14px !important;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="url"],
+    input[type="number"],
+    textarea,
+    select {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 8px 12px !important;
+    }
+    
+    #adminmenu {
+        width: 100% !important;
+    }
+    
+    #wpcontent {
+        margin-left: 0 !important;
+    }
+}
+
+/* KODAMA ADMIN - Print Styles */
+@media print {
+    body.wp-admin {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    
+    .button,
+    .button-primary,
+    .button-secondary,
+    input[type="submit"],
+    input[type="button"] {
+        background-color: #ffffff !important;
+        border: 1px solid #000000 !important;
+        color: #000000 !important;
+    }
+    
+    #wpadminbar,
+    #adminmenu {
+        display: none !important;
+    }
+}
+
+/* KODAMA ADMIN - High Contrast Mode */
+@media (prefers-contrast: high) {
+    body.wp-admin {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    
+    .button,
+    .button-primary,
+    .button-secondary,
+    input[type="submit"],
+    input[type="button"] {
+        background-color: #ffffff !important;
+        border: 2px solid #000000 !important;
+        color: #000000 !important;
+    }
+    
+    .dashicons,
+    .dashicons-before::before {
+        color: #000000 !important;
+    }
+}
+
+/* KODAMA ADMIN - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* KODAMA ADMIN - Dark Mode Support (if system prefers) */
+@media (prefers-color-scheme: dark) {
+    /* Keep light theme for admin regardless of system preference */
+    body.wp-admin {
+        background-color: #ffffff !important;
+        color: #495057 !important;
+    }
+} 
