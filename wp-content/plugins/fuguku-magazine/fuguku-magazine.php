@@ -25,6 +25,7 @@ final class Fuguku_Magazine {
 
     public static function init(): void {
         add_action('init', [self::class, 'register_types']);
+        add_action('init', [self::class, 'register_rewrite']);
         add_filter('post_type_link', [self::class, 'filter_post_type_link'], 10, 2);
         add_action('add_meta_boxes', [self::class, 'register_meta_boxes']);
         add_action('save_post_' . self::CPT, [self::class, 'save_meta'], 10, 2);
@@ -103,6 +104,21 @@ final class Fuguku_Magazine {
                 'menu_icon'          => 'dashicons-media-document',
                 'taxonomies'         => [self::TAX],
             ]
+        );
+    }
+
+    /**
+     * Add rewrite tag and explicit rule for /magazine/<category>/<post-slug>
+     */
+    public static function register_rewrite(): void {
+        // Allow %magazine_category% placeholder to be parsed
+        add_rewrite_tag('%' . self::TAX . '%', '([^/]+)', self::TAX . '=');
+
+        // Single: /magazine/{category}/{postname}
+        add_rewrite_rule(
+            '^magazine/([^/]+)/([^/]+)/?$',
+            'index.php?post_type=' . self::CPT . '&name=$matches[2]&' . self::TAX . '=$matches[1]',
+            'top'
         );
     }
 
