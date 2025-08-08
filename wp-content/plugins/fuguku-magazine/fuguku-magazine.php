@@ -2,14 +2,15 @@
 /**
  * Plugin Name: Fuguku Magazine
  * Description: Custom post type "Magazine" with categories and LV-style permalinks for Fuguku. Elementor-compatible with essential meta fields.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Fuguku Dev Team
  * License: GPLv2 or later
  *
- * Version: 1.1.0
- * Last Updated: 2025-08-08 01:30
- * Description: Add Magazine single features: Gallery 1 (unlimited, 5-col grid with load more), Gallery 2 (max 6 images), repeatable section titles/subtitles. Initial release features retained.
+ * Version: 1.2.0
+ * Last Updated: 2025-08-08 02:20
+ * Description: Shortcodes update — add index support for [mag_section_titles], [mag_section_subtitles], and galleries; enhance [mag_gallery2] with per-image layouts (square, portrait, landscape, tall, wide) using object-fit: cover.
  * Version History:
+ * v1.2.0 - Shortcode index attr + gallery2 layouts per image (cover)
  * v1.1.0 - Gallery1/2 meta + shortcodes, repeatable section titles/subtitles
  * v1.0.0 - Initial CPT, taxonomy, term seeding, permalinks, meta boxes, REST support
  */
@@ -367,11 +368,20 @@ final class Fuguku_Magazine {
 
     public static function shortcode_gallery1($atts = []): string {
         if (!is_singular(self::CPT)) { return ''; }
-        $atts = shortcode_atts(['columns' => 5, 'initial' => 15, 'step' => 15], $atts, 'mag_gallery1');
+        $atts = shortcode_atts(['columns' => 5, 'initial' => 15, 'step' => 15, 'index' => ''], $atts, 'mag_gallery1');
         $post_id = get_the_ID();
         $ids = get_post_meta($post_id, 'mag_gallery1_ids', true);
         $ids = is_array($ids) ? array_filter(array_map('intval', $ids)) : [];
         if (!$ids) { return ''; }
+        // Single image mode by index (1-based)
+        $index = trim((string) $atts['index']) !== '' ? max(1, (int) $atts['index']) : 0;
+        if ($index > 0) {
+            $i = $index - 1;
+            if (!array_key_exists($i, $ids)) { return ''; }
+            $src = wp_get_attachment_image_url((int) $ids[$i], 'large');
+            if (!$src) { return ''; }
+            return '<img class="mag-g1-single" src="' . esc_url($src) . '" loading="lazy" style="width:100%;height:auto;display:block" />';
+        }
         $columns = max(1, (int) $atts['columns']);
         $initial = max(1, (int) $atts['initial']);
         $step    = max(1, (int) $atts['step']);
@@ -410,40 +420,104 @@ final class Fuguku_Magazine {
 
     public static function shortcode_gallery2($atts = []): string {
         if (!is_singular(self::CPT)) { return ''; }
+        $atts = shortcode_atts([
+            'index'   => '',                // optional: show single image by 1-based index
+            'layout'  => 'square',          // used when index is specified
+            'layouts' => '',                // comma-separated layouts for each image (order-based)
+        ], $atts, 'mag_gallery2');
         $post_id = get_the_ID();
         $ids = get_post_meta($post_id, 'mag_gallery2_ids', true);
         $ids = is_array($ids) ? array_slice(array_filter(array_map('intval', $ids)), 0, 6) : [];
         if (!$ids) { return ''; }
+
+        // Helpers
+        $normalize_layout = function(string $token): string {
+            $token = strtolower(trim($token));
+            $allowed = ['square','portrait','landscape','tall','wide'];
+            return in_array($token, $allowed, true) ? $token : 'square';
+        };
+
+        // Single image mode
+        $index = trim((string) $atts['index']) !== '' ? max(1, (int) $atts['index']) : 0;
+        if ($index > 0) {
+            $i = $index - 1;
+            if (!array_key_exists($i, $ids)) { return ''; }
+            $layout = $normalize_layout((string) $atts['layout']);
+            $src = wp_get_attachment_image_url((int) $ids[$i], 'large');
+            if (!$src) { return ''; }
+            ob_start();
+            ?>
+            <style>
+            .mag-g2-item{position:relative;width:100%;overflow:hidden}
+            .mag-g2-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+            .mag-g2-item.is-square{aspect-ratio:1/1}
+            .mag-g2-item.is-portrait{aspect-ratio:3/4}
+            .mag-g2-item.is-landscape{aspect-ratio:4/3}
+            .mag-g2-item.is-tall{aspect-ratio:1/2}
+            .mag-g2-item.is-wide{aspect-ratio:2/1}
+            </style>
+            <div class="mag-g2-item <?php echo 'is-' . esc_attr($layout); ?>">
+                <img src="<?php echo esc_url($src); ?>" loading="lazy" />
+            </div>
+            <?php
+            return (string) ob_get_clean();
+        }
+
+        // Multi image grid mode
+        $layouts = array_map($normalize_layout, array_filter(array_map('trim', explode(',', (string) $atts['layouts']))));
         ob_start();
         ?>
         <style>
         .mag-g2-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:8px}
-        .mag-g2-grid img{width:100%;height:auto;display:block}
+        .mag-g2-item{position:relative;width:100%;overflow:hidden}
+        .mag-g2-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+        .mag-g2-item.is-square{aspect-ratio:1/1}
+        .mag-g2-item.is-portrait{aspect-ratio:3/4}
+        .mag-g2-item.is-landscape{aspect-ratio:4/3}
+        .mag-g2-item.is-tall{aspect-ratio:1/2}
+        .mag-g2-item.is-wide{aspect-ratio:2/1}
         @media (min-width:768px){.mag-g2-grid{grid-template-columns:repeat(3,1fr)}}
         @media (min-width:1024px){.mag-g2-grid{grid-template-columns:repeat(3,1fr)}}
         </style>
         <div class="mag-g2-grid">
-            <?php foreach ($ids as $id): $src = wp_get_attachment_image_url($id, 'large'); if ($src): ?>
-                <img src="<?php echo esc_url($src); ?>" loading="lazy" />
+            <?php foreach ($ids as $idx => $id): $src = wp_get_attachment_image_url($id, 'large'); if ($src):
+                $layout = isset($layouts[$idx]) ? $layouts[$idx] : 'square'; ?>
+                <div class="mag-g2-item <?php echo 'is-' . esc_attr($layout); ?>">
+                    <img src="<?php echo esc_url($src); ?>" loading="lazy" />
+                </div>
             <?php endif; endforeach; ?>
         </div>
         <?php
         return (string) ob_get_clean();
     }
 
-    public static function shortcode_section_titles(): string {
+    public static function shortcode_section_titles($atts = []): string {
         if (!is_singular(self::CPT)) { return ''; }
+        $atts = shortcode_atts(['index' => ''], $atts, 'mag_section_titles');
         $vals = get_post_meta(get_the_ID(), 'mag_section_titles', true);
-        $vals = is_array($vals) ? array_filter(array_map('sanitize_text_field', $vals)) : [];
+        $vals = is_array($vals) ? array_values(array_filter(array_map('sanitize_text_field', $vals))) : [];
         if (!$vals) { return ''; }
+        $index = trim((string) $atts['index']) !== '' ? max(1, (int) $atts['index']) : 0;
+        if ($index > 0) {
+            $i = $index - 1;
+            if (!array_key_exists($i, $vals)) { return ''; }
+            return esc_html((string) $vals[$i]);
+        }
         return '<ul class="mag-section-titles"><li>'.implode('</li><li>', array_map('esc_html', $vals)).'</li></ul>';
     }
 
-    public static function shortcode_section_subtitles(): string {
+    public static function shortcode_section_subtitles($atts = []): string {
         if (!is_singular(self::CPT)) { return ''; }
+        $atts = shortcode_atts(['index' => ''], $atts, 'mag_section_subtitles');
         $vals = get_post_meta(get_the_ID(), 'mag_section_subtitles', true);
-        $vals = is_array($vals) ? array_filter(array_map('sanitize_text_field', $vals)) : [];
+        $vals = is_array($vals) ? array_values(array_filter(array_map('sanitize_text_field', $vals))) : [];
         if (!$vals) { return ''; }
+        $index = trim((string) $atts['index']) !== '' ? max(1, (int) $atts['index']) : 0;
+        if ($index > 0) {
+            $i = $index - 1;
+            if (!array_key_exists($i, $vals)) { return ''; }
+            return esc_html((string) $vals[$i]);
+        }
         return '<ul class="mag-section-subtitles"><li>'.implode('</li><li>', array_map('esc_html', $vals)).'</li></ul>';
     }
 }
