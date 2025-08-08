@@ -282,3 +282,28 @@ alwaysApply: true
 - **v2.3.7**: Added hover icons: eye icon untuk quick view dan cart icon untuk add to cart button di shop page
 - **v2.3.8**: Replaced text buttons with circular icon buttons di pojok kanan bawah product image
 - **v2.3.9**: CURRENT - Enhanced layout spacing: added large padding pada kolom kanan dan updated price styling dengan font tipis
+
+---
+
+## CPT + Rewrite Rules Best Practices (Magazine)
+
+- Last Updated: 2025-08-08 00:00
+- Summary: Pattern untuk permalink CPT yang mengandung taxonomy segment (contoh: `/magazine/<category>/<slug>`)
+
+Implementation checklist:
+- Register CPT dan taxonomy di `init` (bukan hanya di activation) agar tersedia di setiap request.
+- Gunakan slug CPT: `magazine`; taxonomy: `magazine_category` (hierarchical, public, show_in_rest true).
+- Atur rewrite CPT menggunakan placeholder taxonomy:
+  - `rewrite` CPT: `slug => 'magazine/%magazine_category%'`, `with_front => false`.
+- Tambahkan rewrite tag dan explicit rule di `init` untuk single URL:
+  - `add_rewrite_tag('%magazine_category%', '([^/]+)', 'magazine_category=');`
+  - `add_rewrite_rule('^magazine/([^/]+)/([^/]+)/?$', 'index.php?post_type=magazine&name=$matches[2]&magazine_category=$matches[1]', 'top');`
+- Filter permalink untuk mengganti `%magazine_category%` menjadi slug term pertama:
+  - Hook: `post_type_link` → replace placeholder dengan slug taxonomy dari post.
+- Pada `register_activation_hook`, panggil register_types, seed default terms, lalu `flush_rewrite_rules()`.
+- Setelah deploy/aktivasi, lakukan Settings → Permalinks → Save sekali untuk memastikan rewrite ter-flush.
+
+Notes operasional:
+- Pastikan tidak ada Page bernama `magazine` yang bisa bentrok dengan arsip CPT.
+- Post single harus di-assign ke term taxonomy yang valid (mis. `fashion-shows`).
+- Untuk Elementor: aktifkan post type `magazine` di Elementor Settings dan buat Single/Archive Templates sesuai kebutuhan.
