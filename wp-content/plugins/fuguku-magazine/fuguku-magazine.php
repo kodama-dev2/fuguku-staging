@@ -2,14 +2,15 @@
 /**
  * Plugin Name: Fuguku Magazine
  * Description: Custom post type "Magazine" with categories and LV-style permalinks for Fuguku. Elementor-compatible with essential meta fields.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Fuguku Dev Team
  * License: GPLv2 or later
  *
- * Version: 1.2.0
- * Last Updated: 2025-08-08 02:20
- * Description: Shortcodes update — add index support for [mag_section_titles], [mag_section_subtitles], and galleries; enhance [mag_gallery2] with per-image layouts (square, portrait, landscape, tall, wide) using object-fit: cover.
+ * Version: 1.3.0
+ * Last Updated: 2025-08-08 03:05
+ * Description: Add [mag_image] — simple image widget-style shortcode with configurable width and aspect ratio using object-fit: cover; works with direct attachment ID, URL, or gallery2 index. Keeps v1.2.0 improvements.
  * Version History:
+ * v1.3.0 - New [mag_image] shortcode (width + aspect-ratio + cover; id/src/index sources)
  * v1.2.0 - Shortcode index attr + gallery2 layouts per image (cover)
  * v1.1.0 - Gallery1/2 meta + shortcodes, repeatable section titles/subtitles
  * v1.0.0 - Initial CPT, taxonomy, term seeding, permalinks, meta boxes, REST support
@@ -364,6 +365,7 @@ final class Fuguku_Magazine {
         add_shortcode('mag_gallery2', [self::class, 'shortcode_gallery2']);
         add_shortcode('mag_section_titles', [self::class, 'shortcode_section_titles']);
         add_shortcode('mag_section_subtitles', [self::class, 'shortcode_section_subtitles']);
+        add_shortcode('mag_image', [self::class, 'shortcode_image']);
     }
 
     public static function shortcode_gallery1($atts = []): string {
@@ -519,6 +521,95 @@ final class Fuguku_Magazine {
             return esc_html((string) $vals[$i]);
         }
         return '<ul class="mag-section-subtitles"><li>'.implode('</li><li>', array_map('esc_html', $vals)).'</li></ul>';
+    }
+
+    /**
+     * [mag_image] — Simple widget-like image with cover behavior and configurable width + aspect ratio.
+     * Usage examples:
+     *  - [mag_image id=123 ratio="3/4" width="50%"]
+     *  - [mag_image src="https://.../img.jpg" ratio="2/1" width="100%"]
+     *  - [mag_image index=2 source=gallery2 ratio="1/1" width="100%"]
+     */
+    public static function shortcode_image($atts = []): string {
+        if (!is_singular(self::CPT)) { return ''; }
+        $atts = shortcode_atts([
+            'id'     => '',         // attachment ID
+            'src'    => '',         // image URL
+            'index'  => '',         // select from gallery when provided
+            'source' => 'gallery2', // gallery2|gallery1 when using index
+            'ratio'  => '1/1',      // aspect ratio string or token (square|portrait|landscape|tall|wide)
+            'width'  => '100%',     // container width
+            'alt'    => '',
+            'class'  => '',
+        ], $atts, 'mag_image');
+
+        $normalize_ratio = function(string $token): string {
+            $token = strtolower(trim($token));
+            $map = [
+                'square'    => '1/1',
+                'portrait'  => '3/4',
+                'landscape' => '4/3',
+                'tall'      => '1/2',
+                'wide'      => '2/1',
+            ];
+            if (isset($map[$token])) { return $map[$token]; }
+            // Validate custom ratio like "w/h"
+            if (preg_match('/^\s*(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)\s*$/', $token)) {
+                return $token;
+            }
+            return '1/1';
+        };
+
+        $src = '';
+        $alt = sanitize_text_field((string) $atts['alt']);
+
+        // Priority: id > src > index+source
+        $id = (int) $atts['id'];
+        if ($id > 0) {
+            $src = (string) wp_get_attachment_image_url($id, 'full');
+            if (!$alt) { $alt = get_post_meta($id, '_wp_attachment_image_alt', true) ?: ''; }
+        } elseif (!empty($atts['src'])) {
+            $src = esc_url_raw((string) $atts['src']);
+        } elseif (trim((string) $atts['index']) !== '') {
+            $index = max(1, (int) $atts['index']);
+            $source = strtolower((string) $atts['source']) === 'gallery1' ? 'gallery1' : 'gallery2';
+            $meta_key = $source === 'gallery1' ? 'mag_gallery1_ids' : 'mag_gallery2_ids';
+            $ids = get_post_meta(get_the_ID(), $meta_key, true);
+            $ids = is_array($ids) ? array_values(array_filter(array_map('intval', $ids))) : [];
+            $i = $index - 1;
+            if (array_key_exists($i, $ids)) {
+                $src = (string) wp_get_attachment_image_url((int) $ids[$i], 'full');
+                if (!$alt) { $alt = get_post_meta((int) $ids[$i], '_wp_attachment_image_alt', true) ?: ''; }
+            }
+        }
+
+        if (!$src) { return ''; }
+
+        $ratio = $normalize_ratio((string) $atts['ratio']);
+        $width = trim((string) $atts['width']);
+        if ($width === '') { $width = '100%'; }
+        // Basic CSS length validation fallback
+        if (!preg_match('/^(?:\d+(?:\.\d+)?(?:px|rem|em|vw|vh|%)|auto)$/', $width)) {
+            $width = '100%';
+        }
+
+        $classes = trim('mag-image ' . sanitize_html_class((string) $atts['class']));
+
+        ob_start();
+        ?>
+        <style>
+        .mag-image{display:block}
+        .mag-image-inner{position:relative;width:100%;overflow:hidden}
+        .mag-image-inner{aspect-ratio:var(--ratio,1/1)}
+        .mag-image-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+        </style>
+        <div class="<?php echo esc_attr($classes); ?>" style="width: <?php echo esc_attr($width); ?>;">
+            <div class="mag-image-inner" style="--ratio: <?php echo esc_attr($ratio); ?>;">
+                <img src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt); ?>" loading="lazy" />
+            </div>
+        </div>
+        <?php
+        return (string) ob_get_clean();
     }
 }
 
