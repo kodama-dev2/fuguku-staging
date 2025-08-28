@@ -7,8 +7,8 @@
  * License: GPLv2 or later
  *
  * Version: 1.5.0
- * Last Updated: 2025-08-28 17:25
- * Description: Dummy stability release: content equals v1.3.0 (rollback-safe). No functional changes; only header version bump for deployment sync.
+ * Last Updated: 2025-08-28 18:55
+ * Description: Add [mag_image] — simple image widget-style shortcode with configurable width and aspect ratio using object-fit: cover; works with direct attachment ID, URL, or gallery2 index. Keeps v1.2.0 improvements.
  * Version History:
  * v1.5.0 - Dummy stability release (same code as v1.3.0); deployment sync only
  * v1.3.0 - New [mag_image] shortcode (width + aspect-ratio + cover; id/src/index sources)
