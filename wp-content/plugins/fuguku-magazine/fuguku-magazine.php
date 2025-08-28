@@ -2,14 +2,15 @@
 /**
  * Plugin Name: Fuguku Magazine
  * Description: Custom post type "Magazine" with categories and LV-style permalinks for Fuguku. Elementor-compatible with essential meta fields.
- * Version: 1.3.0
+ * Version: 1.5.0
  * Author: Fuguku Dev Team
  * License: GPLv2 or later
  *
- * Version: 1.3.0
- * Last Updated: 2025-08-08 03:05
- * Description: Add [mag_image] — simple image widget-style shortcode with configurable width and aspect ratio using object-fit: cover; works with direct attachment ID, URL, or gallery2 index. Keeps v1.2.0 improvements.
+ * Version: 1.5.0
+ * Last Updated: 2025-08-28 17:25
+ * Description: Dummy stability release: content equals v1.3.0 (rollback-safe). No functional changes; only header version bump for deployment sync.
  * Version History:
+ * v1.5.0 - Dummy stability release (same code as v1.3.0); deployment sync only
  * v1.3.0 - New [mag_image] shortcode (width + aspect-ratio + cover; id/src/index sources)
  * v1.2.0 - Shortcode index attr + gallery2 layouts per image (cover)
  * v1.1.0 - Gallery1/2 meta + shortcodes, repeatable section titles/subtitles

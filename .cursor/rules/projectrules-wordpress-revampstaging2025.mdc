@@ -252,6 +252,7 @@ alwaysApply: true
 - **v1.1.2**: Enhanced description and documentation
 - **v1.2.0**: Added Elementor integration with custom widgets
 - **v1.3.0**: Added advanced features (AJAX filtering, wishlist, social sharing)
+- **v1.5.0**: CURRENT - Dummy stability release for Fuguku Magazine (same code as v1.3.0)
 - **v1.4.0**: Implemented hybrid approach (LV-style archive template + Elementor pages)
 - **v1.4.1**: Added LV mixed grid layout for Elementor widgets
 - **v1.4.3**: Removed demo functionality and simplified widget
