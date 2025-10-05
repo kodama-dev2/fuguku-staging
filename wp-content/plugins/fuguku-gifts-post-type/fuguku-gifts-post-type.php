@@ -391,4 +391,4 @@ function fuguku_gifts_debug() {
         echo '</div>';
     }
 }
-add_action('admin_footer', 'fuguku_gifts_debug'); 
+// add_action('admin_footer', 'fuguku_gifts_debug'); // Disabled to reduce CPU usage 
