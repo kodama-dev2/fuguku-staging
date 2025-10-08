@@ -1,0 +1,99 @@
+/*
+ Theme Name:   Claue Child
+ Theme URI:    https://fuguku.com/
+ Description:  Child theme for Claue with product carousel enhancements
+ Author:       Fuguku Team
+ Author URI:   https://fuguku.com/
+ Template:     claue
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  claue-child
+*/
+
+/* ========================================
+   Product Archive Carousel Enhancements
+   ======================================== */
+
+/* Hide carousel arrows by default */
+.product-image-carousel .slick-arrow {
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+/* Show arrows on product hover */
+.product:hover .product-image-carousel .slick-arrow {
+	opacity: 1;
+}
+
+/* Ensure carousel images maintain aspect ratio */
+.product-image-carousel .slick-slide img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Arrow positioning */
+.product-image-carousel .slick-prev {
+	left: 10px;
+	z-index: 10;
+}
+
+.product-image-carousel .slick-next {
+	right: 10px;
+	z-index: 10;
+}
+
+/* Optional: hide dots if not needed */
+.product-image-carousel .slick-dots {
+	display: none;
+}
+
+/* Completely disable flip back image */
+.product-image-flip .back {
+	display: none !important;
+}
+
+/* Carousel positioning */
+.product-image-carousel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	z-index: 5;
+}
+
+/* Show carousel on hover */
+.product:hover .product-image-carousel {
+	opacity: 1;
+}
+
+/* Carousel images */
+.product-image-carousel img {
+	width: 100%;
+	height: auto;
+}
+
+.product-image-carousel .jas-carousel {
+	width: 100%;
+}
+
+/* Prevent image flashing/white space */
+.product-image-carousel img {
+	min-height: 200px;
+	background-color: #f5f5f5;
+	object-fit: cover;
+}
+
+/* Loading state */
+.product-image-carousel .carousel-slide {
+	position: relative;
+}
+
+.product-image-carousel .carousel-slide img[src=""] {
+	display: none;
+}
+

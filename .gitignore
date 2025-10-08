@@ -57,3 +57,8 @@ wp-content/ai1wm-backups/
 
 # Theme admin images (to avoid deployment conflicts)
 wp-content/themes/claue/core/admin/assets/images/layout/product-revamp.png
+
+# Duplicate uploads folder (should never be tracked)
+wp-content 2/
+# Large archives
+*.zip
