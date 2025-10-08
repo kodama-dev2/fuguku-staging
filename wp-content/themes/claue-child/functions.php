@@ -165,6 +165,7 @@ add_action('wp_footer', function() {
             var max   = parseFloat($qty.attr('max'));
             var val   = parseFloat($qty.val()) || 0;
             var next  = val + step;
+            $('.quantity .plus').css('pointer-events','auto');
             if (!isNaN(max) && max > 0 && next > max) return;
             $qty.val(next).trigger('change');
         });
@@ -177,6 +178,7 @@ add_action('wp_footer', function() {
             var next  = val - step;
             if (next < min) next = min;
             $qty.val(next).trigger('change');
+            $('.quantity .plus').css('pointer-events','auto');
         });
     });
     </script>

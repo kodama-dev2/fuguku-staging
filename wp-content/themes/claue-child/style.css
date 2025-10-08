@@ -49,6 +49,23 @@
 	display: none;
 }
 
+/* Quantity controls: ensure clicks are not blocked in staging */
+.quantity {
+	position: relative;
+}
+.quantity .tc,
+.quantity .tc a {
+	pointer-events: auto !important;
+	z-index: 10;
+}
+.quantity .tc a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 28px;
+	min-height: 28px;
+}
+
 /* Completely disable flip back image */
 .product-image-flip .back {
 	display: none !important;
