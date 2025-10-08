@@ -135,3 +135,52 @@ add_action('wp_footer', function() {
 
 // Max quantity is now configured in parent theme options (framework.config.php)
 
+// Ensure quantity input has sane defaults and respects parent options
+add_filter('woocommerce_quantity_input_args', function($args, $product) {
+    $enabled = function_exists('cs_get_option') ? (bool) cs_get_option('wc-max-quantity-enable') : true;
+    if ($enabled && function_exists('cs_get_option')) {
+        $max = (int) cs_get_option('wc-max-quantity-limit', 5);
+        if ($max > 0) {
+            $args['max_value'] = $max;
+        }
+    }
+    // Hard defaults to avoid 0/NaN on some setups
+    $args['min_value'] = isset($args['min_value']) && (int)$args['min_value'] > 0 ? (int)$args['min_value'] : 1;
+    $args['step']      = isset($args['step']) && (int)$args['step'] > 0 ? (int)$args['step'] : 1;
+    if (empty($args['input_value']) || (int)$args['input_value'] < $args['min_value']) {
+        $args['input_value'] = $args['min_value'];
+    }
+    return $args;
+}, 10, 2);
+
+// Fallback JS: bind + / - even if parent script fails to load
+add_action('wp_footer', function() {
+    if (!is_product()) { return; }
+    ?>
+    <script>
+    jQuery(function($){
+        $(document.body).on('click', '.quantity .plus', function(e){
+            e.preventDefault();
+            var $qty  = $(this).closest('.quantity').find('input.qty');
+            var step  = parseFloat($qty.attr('step')) || 1;
+            var max   = parseFloat($qty.attr('max'));
+            var val   = parseFloat($qty.val()) || 0;
+            var next  = val + step;
+            if (!isNaN(max) && max > 0 && next > max) return;
+            $qty.val(next).trigger('change');
+        });
+        $(document.body).on('click', '.quantity .minus', function(e){
+            e.preventDefault();
+            var $qty  = $(this).closest('.quantity').find('input.qty');
+            var step  = parseFloat($qty.attr('step')) || 1;
+            var min   = parseFloat($qty.attr('min')) || 1;
+            var val   = parseFloat($qty.val()) || min;
+            var next  = val - step;
+            if (next < min) next = min;
+            $qty.val(next).trigger('change');
+        });
+    });
+    </script>
+    <?php
+});
+
