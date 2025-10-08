@@ -60,5 +60,8 @@ wp-content/themes/claue/core/admin/assets/images/layout/product-revamp.png
 
 # Duplicate uploads folder (should never be tracked)
 wp-content 2/
-# Large archives
+
+# Large archives and database dumps
 *.zip
+*.gz
+*.sql.gz
