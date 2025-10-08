@@ -155,7 +155,6 @@ add_filter('woocommerce_quantity_input_args', function($args, $product) {
 
 // Fallback JS: bind + / - even if parent script fails to load
 add_action('wp_footer', function() {
-    if (!is_product()) { return; }
     ?>
     <script>
     jQuery(function($){
