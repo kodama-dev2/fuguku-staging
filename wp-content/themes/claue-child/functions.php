@@ -133,55 +133,5 @@ add_action('wp_footer', function() {
 
 // Maximum quantity options added directly to parent theme framework.config.php
 
-/**
- * Set maximum quantity based on theme options
- */
-add_filter('woocommerce_quantity_input_args', function($args, $product) {
-	if (cs_get_option('wc-max-quantity-enable')) {
-		$max_qty = cs_get_option('wc-max-quantity-limit', 5);
-		$args['max_value'] = $max_qty;
-	}
-	return $args;
-}, 10, 2);
-
-/**
- * Validate cart quantity based on theme options
- */
-add_filter('woocommerce_add_to_cart_validation', function($passed, $product_id, $quantity) {
-	if (!cs_get_option('wc-max-quantity-enable')) {
-		return $passed;
-	}
-	
-	$max_qty = cs_get_option('wc-max-quantity-limit', 5);
-	if ($quantity > $max_qty) {
-		wc_add_notice(sprintf('Maximum %d items allowed per product.', $max_qty), 'error');
-		return false;
-	}
-	return $passed;
-}, 10, 3);
-
-/**
- * Check cart total quantity per product based on theme options
- */
-add_filter('woocommerce_add_to_cart_validation', function($passed, $product_id, $quantity) {
-	if (!cs_get_option('wc-max-quantity-enable')) {
-		return $passed;
-	}
-	
-	$max_qty = cs_get_option('wc-max-quantity-limit', 5);
-	$cart_item_quantities = WC()->cart->get_cart_item_quantities();
-	$existing_quantity = isset($cart_item_quantities[$product_id]) ? $cart_item_quantities[$product_id] : 0;
-	$total_quantity = $existing_quantity + $quantity;
-	
-	if ($total_quantity > $max_qty) {
-		$remaining = $max_qty - $existing_quantity;
-		if ($remaining > 0) {
-			wc_add_notice(sprintf('You can only add %d more of this item (maximum %d total).', $remaining, $max_qty), 'error');
-		} else {
-			wc_add_notice(sprintf('Maximum %d items already in cart for this product.', $max_qty), 'error');
-		}
-		return false;
-	}
-	return $passed;
-}, 20, 3);
+// Max quantity is now configured in parent theme options (framework.config.php)
 

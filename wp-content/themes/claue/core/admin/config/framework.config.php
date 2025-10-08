@@ -680,6 +680,20 @@ if ( class_exists( 'WooCommerce' ) ) {
 						'title'   => esc_html__( 'Enable countdown sale', 'claue' ),
 						'default' => false,
 					),
+					// Maximum quantity options
+					array(
+						'id'      => 'wc-max-quantity-enable',
+						'type'    => 'switcher',
+						'title'   => esc_html__( 'Enable Maximum Quantity Limit', 'claue' ),
+						'default' => true,
+					),
+					array(
+						'id'         => 'wc-max-quantity-limit',
+						'type'       => 'number',
+						'title'     => esc_html__( 'Maximum Quantity Per Product', 'claue' ),
+						'default'   => 5,
+						'dependency'=> array( 'wc-max-quantity-enable', '==', true ),
+					),
 					array(
 						'title' => esc_html__( 'Extra Content','claue'),
 						'id'    => 'wc-extra-content',
