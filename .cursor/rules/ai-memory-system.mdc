@@ -72,3 +72,78 @@ alwaysApply: true
 - ✅ Fitur berfungsi dengan baik
 - ✅ Version + timestamp selalu update
 - ✅ Project rules selalu sync
+
+## 🔒 Pre-Push Guardrails (Large Files & Shadow Dirs)
+
+### Kenapa ini wajib
+- Insiden 2025-10-08: Push gagal (HTTP 500) karena accidental tracked folder berukuran ~2GB: `wp-content 2/uploads/` (shadow duplicate dari `wp-content/uploads/`).
+- `.gitignore` awal hanya mengabaikan `wp-content/uploads/`, tidak meng-cover shadow folder/duplikat (contoh: `wp-content 2/`).
+- Solusi permanen: enforce policy ini sebelum setiap push.
+
+### Hard Rules (Zero Tolerance)
+- ❌ JANGAN PERNAH commit atau push:
+  - Direktori uploads apapun: `wp-content/uploads/`, `wp-content 2/uploads/`, atau pola `wp-content */uploads/`
+  - Arsip & dump: `*.zip`, `*.gz`, `*.sql`, `*.sql.gz`, `*.bak`, `*.backup`
+- ✅ SELALU stage file secara eksplisit: `git add <file-path-yang-diedit-saja>`
+- ✅ Jika perlu ambil perubahan dari commit lama, gunakan surgical restore: `git checkout <commit> -- <path>` lalu commit baru, BUKAN cherry-pick besar yang bisa menarik file tak diinginkan.
+
+### Wajib di .gitignore (root)
+Tambahkan (atau pastikan ada):
+
+```
+# Duplicate/shadow directories (Finder copies, etc.)
+wp-content 2/
+
+# Uploads directories (any variant should never be tracked)
+wp-content/uploads/
+
+# Large archives & dumps
+*.zip
+*.gz
+*.sql
+*.sql.gz
+*.bak
+*.backup
+```
+
+### Pre-push Checklist (Jalankan SEMUA perintah ini)
+```
+# 1) Lihat apa yang akan dipush dibanding remote
+git status -s
+git diff --name-only origin/masterstaging..HEAD
+
+# 2) Deteksi berkas/dir terlarang (uploads, arsip, dumps)
+git ls-files 'wp-content */uploads/**' '*.zip' '*.gz' '*.sql' '*.sql.gz' '*.bak' '*.backup'
+
+# 3) Cek ukuran file yang distage (>10MB akan diblok)
+git diff --cached --name-only | while read p; do \
+  if [ -f "$p" ]; then sz=$(wc -c <"$p"); \
+    if [ $sz -gt 10485760 ]; then echo ">10MB: $p ($sz bytes)"; fi; \
+  fi; \
+done
+
+# 4) Jika ada output dari langkah (2) atau (3), STOP
+#    Unstage dan revert file terlarang/besar
+#    Contoh:
+#    git restore --staged "wp-content 2/uploads/..."
+#    git reset -- "*.zip"
+```
+
+### Strategi Commit Aman (Surgical)
+- Stage hanya file yang diminta user (path spesifik), misal:
+```
+git add wp-content/themes/claue-child/functions.php \
+        wp-content/themes/claue-child/style.css \
+        wp-content/themes/claue-child/woocommerce/content-product.php \
+        wp-content/themes/claue-child/woocommerce/content-product-image.php
+```
+- Jika commit lama ikut membawa file besar/terlarang, JANGAN cherry-pick mentah. Gunakan:
+```
+git checkout <commit> -- <paths-yang-valid-saja>
+git commit -m "feat(theme): apply intended edits only"
+```
+
+### Incident Note (2025-10-08)
+- Penyebab: Shadow folder `wp-content 2/uploads/` ter-track → pack ~2GB → push HTTP 500.
+- Perbaikan: Tambah ignore `wp-content 2/`, dorong policy pre-push ini, dan hanya push file tema anak yang diubah.
+- Preventive: Wajib jalankan Pre-push Checklist di atas, commit surgikal saja.
