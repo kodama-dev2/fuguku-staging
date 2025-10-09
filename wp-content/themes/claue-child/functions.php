@@ -26,6 +26,10 @@ add_filter('cs_get_option', function($value, $option_name) {
     if ($option_name === 'wc-flip-thumb') {
         return false; // Force disable flip
     }
+    // Force add-to-cart behavior to popup to match design
+    if ($option_name === 'wc-atc-behavior') {
+        return 'popup';
+    }
     return $value;
 }, 10, 2);
 
@@ -149,8 +153,8 @@ add_filter('woocommerce_quantity_input_args', function($args, $product) {
     $args['step']      = isset($args['step']) && (int)$args['step'] > 0 ? (int)$args['step'] : 1;
     if (empty($args['input_value']) || (int)$args['input_value'] < $args['min_value']) {
         $args['input_value'] = $args['min_value'];
-    }
-    return $args;
+	}
+	return $args;
 }, 10, 2);
 
 // Force body class to popup behavior if theme option drifted
@@ -226,7 +230,7 @@ add_action('wp_footer', function() {
 
         $(document.body).on('click', '.quantity .plus', function(e){
             e.preventDefault();
-            var $qty  = $(this).closest('.quantity').find('input.qty');
+            var $qty  = $(this).closest('.quantity').find('input.input-text, input.qty');
             var step  = parseFloat($qty.attr('step')) || 1;
             var max   = parseFloat($qty.attr('max'));
             var val   = parseFloat($qty.val()) || 0;
@@ -237,7 +241,7 @@ add_action('wp_footer', function() {
         });
         $(document.body).on('click', '.quantity .minus', function(e){
             e.preventDefault();
-            var $qty  = $(this).closest('.quantity').find('input.qty');
+            var $qty  = $(this).closest('.quantity').find('input.input-text, input.qty');
             var step  = parseFloat($qty.attr('step')) || 1;
             var min   = parseFloat($qty.attr('min')) || 1;
             var val   = parseFloat($qty.val()) || min;
