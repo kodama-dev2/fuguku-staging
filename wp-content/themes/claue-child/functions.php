@@ -187,6 +187,43 @@ add_action('wp_footer', function() {
             } catch(e) { /* noop */ }
         });
 
+        // Intercept single product non-AJAX submit and convert to AJAX to show popup
+        $(document).on('submit', 'form.cart', function(e){
+            if (!$('body').hasClass('jan-atc-behavior-popup')) return; // respect theme option
+            e.preventDefault();
+            var $form = $(this);
+            var data = $form.serializeArray();
+            var addToCart = $form.find('input[name="add-to-cart"]').val();
+            if (addToCart) {
+                data.push({name: 'product_id', value: addToCart});
+            }
+            var url = (typeof wc_add_to_cart_params !== 'undefined' && wc_add_to_cart_params.wc_ajax_url)
+                ? wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart')
+                : ($form.attr('action') || window.location.href);
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: $.param(data),
+                success: function(response){
+                    try {
+                        if (response && response.fragments) {
+                            $.each(response.fragments, function(k, v){ $(k).replaceWith(v); });
+                            $(document.body).trigger('wc_fragments_refreshed');
+                        }
+                    } catch(err) { /* noop */ }
+                    if (typeof JASAjaxURL !== 'undefined' && $.magnificPopup) {
+                        $.post(JASAjaxURL, {action: 'jas_claue_popup_content_ajax'}, function(html){
+                            $.magnificPopup.open({
+                                items: { src: '<div class="product-quickview cart__popup pr">' + html + '</div>', type: 'inline' },
+                                mainClass: 'mfp-fade',
+                                removalDelay: 800
+                            });
+                        });
+                    }
+                }
+            });
+        });
+
         $(document.body).on('click', '.quantity .plus', function(e){
             e.preventDefault();
             var $qty  = $(this).closest('.quantity').find('input.qty');
