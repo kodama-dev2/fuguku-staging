@@ -1,55 +1,56 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ warning)
+  "default": function() { return /* binding */ warning; }
 });
 
-;// ./node_modules/@wordpress/warning/build-module/utils.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/warning/build-module/utils.js
 /**
  * Object map tracking messages which have been logged, for use in ensuring a
  * message is only logged once.
+ *
+ * @type {Set<string>}
  */
 const logged = new Set();
 
-;// ./node_modules/@wordpress/warning/build-module/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/warning/build-module/index.js
 /**
  * Internal dependencies
  */
 
 function isDev() {
-  // eslint-disable-next-line @wordpress/wp-global-usage
-  return true === true;
+  return  true && true === true;
 }
 
 /**
  * Shows a warning with `message` if environment is not `production`.
  *
- * @param message Message to show in the warning.
+ * @param {string} message Message to show in the warning.
  *
  * @example
  * ```js

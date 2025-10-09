@@ -4,7 +4,6 @@
 	"name": "core/page-list",
 	"title": "Page List",
 	"category": "widgets",
-	"allowedBlocks": [ "core/page-list-item" ],
 	"description": "Display a list of all pages.",
 	"keywords": [ "menu", "navigation" ],
 	"textdomain": "default",
@@ -47,34 +46,6 @@
 			"__experimentalLetterSpacing": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
-			}
-		},
-		"interactivity": {
-			"clientNavigation": true
-		},
-		"color": {
-			"text": true,
-			"background": true,
-			"link": true,
-			"gradients": true,
-			"__experimentalDefaultControls": {
-				"background": true,
-				"text": true,
-				"link": true
-			}
-		},
-		"__experimentalBorder": {
-			"radius": true,
-			"color": true,
-			"width": true,
-			"style": true
-		},
-		"spacing": {
-			"padding": true,
-			"margin": true,
-			"__experimentalDefaultControls": {
-				"padding": false,
-				"margin": false
 			}
 		}
 	},

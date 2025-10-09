@@ -37,7 +37,6 @@
 				"text": true
 			}
 		},
-		"shadow": true,
 		"spacing": {
 			"blockGap": true,
 			"padding": true,
@@ -48,12 +47,10 @@
 		},
 		"__experimentalBorder": {
 			"color": true,
-			"radius": true,
 			"style": true,
 			"width": true,
 			"__experimentalDefaultControls": {
 				"color": true,
-				"radius": true,
 				"style": true,
 				"width": true
 			}
@@ -71,9 +68,6 @@
 				"fontSize": true
 			}
 		},
-		"layout": true,
-		"interactivity": {
-			"clientNavigation": true
-		}
+		"layout": true
 	}
 }

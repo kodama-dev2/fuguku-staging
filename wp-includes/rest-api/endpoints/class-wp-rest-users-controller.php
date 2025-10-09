@@ -25,14 +25,6 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 	protected $meta;
 
 	/**
-	 * Whether the controller supports batching.
-	 *
-	 * @since 6.6.0
-	 * @var array
-	 */
-	protected $allow_batch = array( 'v1' => true );
-
-	/**
 	 * Constructor.
 	 *
 	 * @since 4.7.0
@@ -69,8 +61,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'create_item_permissions_check' ),
 					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
 				),
-				'allow_batch' => $this->allow_batch,
-				'schema'      => array( $this, 'get_public_item_schema' ),
+				'schema' => array( $this, 'get_public_item_schema' ),
 			)
 		);
 
@@ -78,7 +69,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			$this->namespace,
 			'/' . $this->rest_base . '/(?P<id>[\d]+)',
 			array(
-				'args'        => array(
+				'args'   => array(
 					'id' => array(
 						'description' => __( 'Unique identifier for the user.' ),
 						'type'        => 'integer',
@@ -116,8 +107,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 						),
 					),
 				),
-				'allow_batch' => $this->allow_batch,
-				'schema'      => array( $this, 'get_public_item_schema' ),
+				'schema' => array( $this, 'get_public_item_schema' ),
 			)
 		);
 
@@ -220,7 +210,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 		if ( 'edit' === $request['context'] && ! current_user_can( 'list_users' ) ) {
 			return new WP_Error(
 				'rest_forbidden_context',
-				__( 'Sorry, you are not allowed to edit users.' ),
+				__( 'Sorry, you are not allowed to list users.' ),
 				array( 'status' => rest_authorization_required_code() )
 			);
 		}
@@ -257,7 +247,6 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 	 * Retrieves all users.
 	 *
 	 * @since 4.7.0
-	 * @since 6.8.0 Added support for the search_columns query param.
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
@@ -332,34 +321,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			if ( ! current_user_can( 'list_users' ) ) {
 				$prepared_args['search_columns'] = array( 'ID', 'user_login', 'user_nicename', 'display_name' );
 			}
-			$search_columns         = $request->get_param( 'search_columns' );
-			$valid_columns          = isset( $prepared_args['search_columns'] )
-				? $prepared_args['search_columns']
-				: array( 'ID', 'user_login', 'user_nicename', 'user_email', 'display_name' );
-			$search_columns_mapping = array(
-				'id'       => 'ID',
-				'username' => 'user_login',
-				'slug'     => 'user_nicename',
-				'email'    => 'user_email',
-				'name'     => 'display_name',
-			);
-			$search_columns         = array_map(
-				static function ( $column ) use ( $search_columns_mapping ) {
-					return $search_columns_mapping[ $column ];
-				},
-				$search_columns
-			);
-			$search_columns         = array_intersect( $search_columns, $valid_columns );
-			if ( ! empty( $search_columns ) ) {
-				$prepared_args['search_columns'] = $search_columns;
-			}
 			$prepared_args['search'] = '*' . $prepared_args['search'] . '*';
-		}
-
-		$is_head_request = $request->is_method( 'HEAD' );
-		if ( $is_head_request ) {
-			// Force the 'fields' argument. For HEAD requests, only user IDs are required.
-			$prepared_args['fields'] = 'id';
 		}
 		/**
 		 * Filters WP_User_Query arguments when querying users via the REST API.
@@ -375,24 +337,18 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 
 		$query = new WP_User_Query( $prepared_args );
 
-		if ( ! $is_head_request ) {
-			$users = array();
+		$users = array();
 
-			foreach ( $query->get_results() as $user ) {
-				if ( 'edit' === $request['context'] && ! current_user_can( 'edit_user', $user->ID ) ) {
-					continue;
-				}
-
-				$data    = $this->prepare_item_for_response( $user, $request );
-				$users[] = $this->prepare_response_for_collection( $data );
-			}
+		foreach ( $query->results as $user ) {
+			$data    = $this->prepare_item_for_response( $user, $request );
+			$users[] = $this->prepare_response_for_collection( $data );
 		}
 
-		$response = $is_head_request ? new WP_REST_Response( array() ) : rest_ensure_response( $users );
+		$response = rest_ensure_response( $users );
 
 		// Store pagination values for headers then unset for count query.
 		$per_page = (int) $prepared_args['number'];
-		$page     = (int) ceil( ( ( (int) $prepared_args['offset'] ) / $per_page ) + 1 );
+		$page     = ceil( ( ( (int) $prepared_args['offset'] ) / $per_page ) + 1 );
 
 		$prepared_args['fields'] = 'ID';
 
@@ -407,9 +363,9 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 
 		$response->header( 'X-WP-Total', (int) $total_users );
 
-		$max_pages = (int) ceil( $total_users / $per_page );
+		$max_pages = ceil( $total_users / $per_page );
 
-		$response->header( 'X-WP-TotalPages', $max_pages );
+		$response->header( 'X-WP-TotalPages', (int) $max_pages );
 
 		$base = add_query_arg( urlencode_deep( $request->get_query_params() ), rest_url( sprintf( '%s/%s', $this->namespace, $this->rest_base ) ) );
 		if ( $page > 1 ) {
@@ -483,15 +439,13 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			return true;
 		}
 
-		if ( 'edit' === $request['context'] && ! current_user_can( 'edit_user', $user->ID ) ) {
+		if ( 'edit' === $request['context'] && ! current_user_can( 'list_users' ) ) {
 			return new WP_Error(
-				'rest_forbidden_context',
-				__( 'Sorry, you are not allowed to edit this user.' ),
+				'rest_user_cannot_view',
+				__( 'Sorry, you are not allowed to list users.' ),
 				array( 'status' => rest_authorization_required_code() )
 			);
-		}
-
-		if ( ! current_user_can( 'edit_user', $user->ID ) && ! current_user_can( 'list_users' ) && ! count_user_posts( $user->ID, $types ) ) {
+		} elseif ( ! count_user_posts( $user->ID, $types ) && ! current_user_can( 'edit_user', $user->ID ) && ! current_user_can( 'list_users' ) ) {
 			return new WP_Error(
 				'rest_user_cannot_view',
 				__( 'Sorry, you are not allowed to list users.' ),
@@ -1035,12 +989,6 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 		// Restores the more descriptive, specific name for use within this method.
 		$user = $item;
 
-		// Don't prepare the response body for HEAD requests.
-		if ( $request->is_method( 'HEAD' ) ) {
-			/** This filter is documented in wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php */
-			return apply_filters( 'rest_prepare_user', new WP_REST_Response( array() ), $user, $request );
-		}
-
 		$fields = $this->get_fields_for_response( $request );
 		$data   = array();
 
@@ -1092,7 +1040,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			$data['slug'] = $user->user_nicename;
 		}
 
-		if ( in_array( 'roles', $fields, true ) && ( current_user_can( 'list_users' ) || current_user_can( 'edit_user', $user->ID ) ) ) {
+		if ( in_array( 'roles', $fields, true ) ) {
 			// Defensively call array_values() to ensure an array is returned.
 			$data['roles'] = array_values( $user->roles );
 		}
@@ -1352,12 +1300,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 	 * @param string          $param   The parameter name.
 	 * @return string|WP_Error The sanitized password, if valid, otherwise an error.
 	 */
-	public function check_user_password(
-		#[\SensitiveParameter]
-		$value,
-		$request,
-		$param
-	) {
+	public function check_user_password( $value, $request, $param ) {
 		$password = (string) $value;
 
 		if ( empty( $password ) ) {
@@ -1652,16 +1595,6 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			'items'       => array(
 				'type' => 'string',
 				'enum' => get_post_types( array( 'show_in_rest' => true ), 'names' ),
-			),
-		);
-
-		$query_params['search_columns'] = array(
-			'default'     => array(),
-			'description' => __( 'Array of column names to be searched.' ),
-			'type'        => 'array',
-			'items'       => array(
-				'enum' => array( 'email', 'name', 'id', 'username', 'slug' ),
-				'type' => 'string',
 			),
 		);
 

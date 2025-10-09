@@ -27,9 +27,6 @@
 		}
 	},
 	"usesContext": [ "postId", "postType" ],
-	"example": {
-		"viewportWidth": 350
-	},
 	"supports": {
 		"html": false,
 		"color": {
@@ -56,21 +53,6 @@
 			"__experimentalLetterSpacing": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
-			}
-		},
-		"interactivity": {
-			"clientNavigation": true
-		},
-		"__experimentalBorder": {
-			"radius": true,
-			"color": true,
-			"width": true,
-			"style": true,
-			"__experimentalDefaultControls": {
-				"radius": true,
-				"color": true,
-				"width": true,
-				"style": true
 			}
 		}
 	},

@@ -1,48 +1,48 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
+/******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -51,14 +51,14 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  __unstableCreatePersistenceLayer: () => (/* binding */ __unstableCreatePersistenceLayer),
-  create: () => (/* reexport */ create)
+  __unstableCreatePersistenceLayer: function() { return /* binding */ __unstableCreatePersistenceLayer; },
+  create: function() { return /* reexport */ create; }
 });
 
-;// external ["wp","apiFetch"]
-const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
+;// CONCATENATED MODULE: external ["wp","apiFetch"]
+var external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// ./node_modules/@wordpress/preferences-persistence/build-module/create/debounce-async.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/create/debounce-async.js
 /**
  * Performs a leading edge debounce of async functions.
  *
@@ -127,7 +127,7 @@ function debounceAsync(func, delayMS) {
   };
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/create/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/create/index.js
 /**
  * WordPress dependencies
  */
@@ -229,7 +229,7 @@ function create({
   };
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-feature-preferences.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-feature-preferences.js
 /**
  * Move the 'features' object in local storage from the sourceStoreName to the
  * preferences store data structure.
@@ -354,7 +354,7 @@ function moveFeaturePreferences(state, sourceStoreName) {
   };
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-third-party-feature-preferences.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-third-party-feature-preferences.js
 /**
  * The interface package previously had a public API that could be used by
  * plugins to set persisted boolean 'feature' preferences.
@@ -440,7 +440,7 @@ function moveThirdPartyFeaturePreferencesToPreferences(state) {
   }, state);
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-individual-preference.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-individual-preference.js
 const identity = arg => arg;
 
 /**
@@ -526,7 +526,7 @@ function moveIndividualPreferenceToPreferences(state, {
   };
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-interface-enable-items.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-interface-enable-items.js
 /**
  * Migrates interface 'enableItems' data to the preferences store.
  *
@@ -636,7 +636,7 @@ function moveInterfaceEnableItems(state) {
   };
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/convert-edit-post-panels.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/convert-edit-post-panels.js
 /**
  * Convert the post editor's panels state from:
  * ```
@@ -686,7 +686,7 @@ function convertEditPostPanels(preferences) {
   });
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/index.js
 /**
  * Internal dependencies
  */
@@ -750,14 +750,14 @@ function convertLegacyData(data) {
   data = moveIndividualPreferenceToPreferences(data, {
     from: 'core/edit-post',
     to: 'core/edit-post'
+  }, 'preferredStyleVariations');
+  data = moveIndividualPreferenceToPreferences(data, {
+    from: 'core/edit-post',
+    to: 'core/edit-post'
   }, 'panels', convertEditPostPanels);
   data = moveIndividualPreferenceToPreferences(data, {
     from: 'core/editor',
-    to: 'core'
-  }, 'isPublishSidebarEnabled');
-  data = moveIndividualPreferenceToPreferences(data, {
-    from: 'core/edit-post',
-    to: 'core'
+    to: 'core/edit-post'
   }, 'isPublishSidebarEnabled');
   data = moveIndividualPreferenceToPreferences(data, {
     from: 'core/edit-site',
@@ -783,7 +783,7 @@ function convertLegacyLocalStorageData(userId) {
   return convertLegacyData(data);
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/convert-complementary-areas.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/convert-complementary-areas.js
 function convertComplementaryAreas(state) {
   return Object.keys(state).reduce((stateAccumulator, scope) => {
     const scopeData = state[scope];
@@ -802,52 +802,16 @@ function convertComplementaryAreas(state) {
   }, state);
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/convert-editor-settings.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/index.js
 /**
  * Internal dependencies
  */
-
-function convertEditorSettings(data) {
-  var _newData$coreEditPo, _newData$coreEditSi;
-  let newData = data;
-  const settingsToMoveToCore = ['allowRightClickOverrides', 'distractionFree', 'editorMode', 'fixedToolbar', 'focusMode', 'hiddenBlockTypes', 'inactivePanels', 'keepCaretInsideBlock', 'mostUsedBlocks', 'openPanels', 'showBlockBreadcrumbs', 'showIconLabels', 'showListViewByDefault', 'isPublishSidebarEnabled', 'isComplementaryAreaVisible', 'pinnedItems'];
-  settingsToMoveToCore.forEach(setting => {
-    if (data?.['core/edit-post']?.[setting] !== undefined) {
-      newData = {
-        ...newData,
-        core: {
-          ...newData?.core,
-          [setting]: data['core/edit-post'][setting]
-        }
-      };
-      delete newData['core/edit-post'][setting];
-    }
-    if (data?.['core/edit-site']?.[setting] !== undefined) {
-      delete newData['core/edit-site'][setting];
-    }
-  });
-  if (Object.keys((_newData$coreEditPo = newData?.['core/edit-post']) !== null && _newData$coreEditPo !== void 0 ? _newData$coreEditPo : {})?.length === 0) {
-    delete newData['core/edit-post'];
-  }
-  if (Object.keys((_newData$coreEditSi = newData?.['core/edit-site']) !== null && _newData$coreEditSi !== void 0 ? _newData$coreEditSi : {})?.length === 0) {
-    delete newData['core/edit-site'];
-  }
-  return newData;
-}
-
-;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/index.js
-/**
- * Internal dependencies
- */
-
 
 function convertPreferencesPackageData(data) {
-  let newData = convertComplementaryAreas(data);
-  newData = convertEditorSettings(newData);
-  return newData;
+  return convertComplementaryAreas(data);
 }
 
-;// ./node_modules/@wordpress/preferences-persistence/build-module/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/preferences-persistence/build-module/index.js
 /**
  * Internal dependencies
  */

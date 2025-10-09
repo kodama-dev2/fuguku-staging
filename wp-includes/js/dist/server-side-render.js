@@ -1,9 +1,9 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7734:
-/***/ ((module) => {
+/***/ 5619:
+/***/ (function(module) {
 
 
 
@@ -109,65 +109,66 @@ module.exports = function equal(a, b) {
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
+/******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+!function() {
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ build_module)
+  "default": function() { return /* binding */ build_module; }
 });
 
-;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+;// CONCATENATED MODULE: external ["wp","element"]
+var external_wp_element_namespaceObject = window["wp"]["element"];
+;// CONCATENATED MODULE: external ["wp","data"]
+var external_wp_data_namespaceObject = window["wp"]["data"];
 // EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
-var es6 = __webpack_require__(7734);
+var es6 = __webpack_require__(5619);
 var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
-;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// external ["wp","apiFetch"]
-const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
+;// CONCATENATED MODULE: external ["wp","compose"]
+var external_wp_compose_namespaceObject = window["wp"]["compose"];
+;// CONCATENATED MODULE: external ["wp","i18n"]
+var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+;// CONCATENATED MODULE: external ["wp","apiFetch"]
+var external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
-;// external ["wp","url"]
-const external_wp_url_namespaceObject = window["wp"]["url"];
-;// external ["wp","components"]
-const external_wp_components_namespaceObject = window["wp"]["components"];
-;// external ["wp","blocks"]
-const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// ./node_modules/@wordpress/server-side-render/build-module/server-side-render.js
+;// CONCATENATED MODULE: external ["wp","url"]
+var external_wp_url_namespaceObject = window["wp"]["url"];
+;// CONCATENATED MODULE: external ["wp","components"]
+var external_wp_components_namespaceObject = window["wp"]["components"];
+;// CONCATENATED MODULE: external ["wp","blocks"]
+var external_wp_blocks_namespaceObject = window["wp"]["blocks"];
+;// CONCATENATED MODULE: ./node_modules/@wordpress/server-side-render/build-module/server-side-render.js
+
 /**
  * External dependencies
  */
@@ -176,7 +177,6 @@ const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
 /**
  * WordPress dependencies
  */
-
 
 
 
@@ -221,10 +221,9 @@ function removeBlockSupportAttributes(attributes) {
 function DefaultEmptyResponsePlaceholder({
   className
 }) {
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Placeholder, {
-    className: className,
-    children: (0,external_wp_i18n_namespaceObject.__)('Block rendered as empty.')
-  });
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Placeholder, {
+    className: className
+  }, (0,external_wp_i18n_namespaceObject.__)('Block rendered as empty.'));
 }
 function DefaultErrorResponsePlaceholder({
   response,
@@ -233,35 +232,31 @@ function DefaultErrorResponsePlaceholder({
   const errorMessage = (0,external_wp_i18n_namespaceObject.sprintf)(
   // translators: %s: error message describing the problem
   (0,external_wp_i18n_namespaceObject.__)('Error loading block: %s'), response.errorMsg);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Placeholder, {
-    className: className,
-    children: errorMessage
-  });
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Placeholder, {
+    className: className
+  }, errorMessage);
 }
 function DefaultLoadingResponsePlaceholder({
   children,
   showLoader
 }) {
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)("div", {
+  return (0,external_wp_element_namespaceObject.createElement)("div", {
     style: {
       position: 'relative'
-    },
-    children: [showLoader && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
-      style: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        marginTop: '-9px',
-        marginLeft: '-9px'
-      },
-      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {})
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
-      style: {
-        opacity: showLoader ? '0.3' : 1
-      },
-      children: children
-    })]
-  });
+    }
+  }, showLoader && (0,external_wp_element_namespaceObject.createElement)("div", {
+    style: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: '-9px',
+      marginLeft: '-9px'
+    }
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Spinner, null)), (0,external_wp_element_namespaceObject.createElement)("div", {
+    style: {
+      opacity: showLoader ? '0.3' : 1
+    }
+  }, children));
 }
 function ServerSideRender(props) {
   const {
@@ -275,7 +270,7 @@ function ServerSideRender(props) {
     ErrorResponsePlaceholder = DefaultErrorResponsePlaceholder,
     LoadingResponsePlaceholder = DefaultLoadingResponsePlaceholder
   } = props;
-  const isMountedRef = (0,external_wp_element_namespaceObject.useRef)(false);
+  const isMountedRef = (0,external_wp_element_namespaceObject.useRef)(true);
   const [showLoader, setShowLoader] = (0,external_wp_element_namespaceObject.useState)(false);
   const fetchRequestRef = (0,external_wp_element_namespaceObject.useRef)();
   const [response, setResponse] = (0,external_wp_element_namespaceObject.useState)(null);
@@ -287,11 +282,6 @@ function ServerSideRender(props) {
       return;
     }
     setIsLoading(true);
-
-    // Schedule showing the Spinner after 1 second.
-    const timeout = setTimeout(() => {
-      setShowLoader(true);
-    }, 1000);
     let sanitizedAttributes = attributes && (0,external_wp_blocks_namespaceObject.__experimentalSanitizeBlockAttributes)(block, attributes);
     if (skipBlockSupportAttributes) {
       sanitizedAttributes = removeBlockSupportAttributes(sanitizedAttributes);
@@ -326,9 +316,6 @@ function ServerSideRender(props) {
     }).finally(() => {
       if (isMountedRef.current && fetchRequest === fetchRequestRef.current) {
         setIsLoading(false);
-        // Cancel the timeout to show the Spinner.
-        setShowLoader(false);
-        clearTimeout(timeout);
       }
     });
     return fetchRequest;
@@ -337,11 +324,8 @@ function ServerSideRender(props) {
 
   // When the component unmounts, set isMountedRef to false. This will
   // let the async fetch callbacks know when to stop.
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    isMountedRef.current = true;
-    return () => {
-      isMountedRef.current = false;
-    };
+  (0,external_wp_element_namespaceObject.useEffect)(() => () => {
+    isMountedRef.current = false;
   }, []);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     // Don't debounce the first fetch. This ensures that the first render
@@ -352,37 +336,50 @@ function ServerSideRender(props) {
       debouncedFetchData();
     }
   });
+
+  /**
+   * Effect to handle showing the loading placeholder.
+   * Show it only if there is no previous response or
+   * the request takes more than one second.
+   */
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (!isLoading) {
+      return;
+    }
+    const timeout = setTimeout(() => {
+      setShowLoader(true);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
   const hasResponse = !!response;
   const hasEmptyResponse = response === '';
   const hasError = response?.error;
   if (isLoading) {
-    return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(LoadingResponsePlaceholder, {
+    return (0,external_wp_element_namespaceObject.createElement)(LoadingResponsePlaceholder, {
       ...props,
-      showLoader: showLoader,
-      children: hasResponse && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_element_namespaceObject.RawHTML, {
-        className: className,
-        children: response
-      })
-    });
+      showLoader: showLoader
+    }, hasResponse && (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.RawHTML, {
+      className: className
+    }, response));
   }
   if (hasEmptyResponse || !hasResponse) {
-    return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(EmptyResponsePlaceholder, {
+    return (0,external_wp_element_namespaceObject.createElement)(EmptyResponsePlaceholder, {
       ...props
     });
   }
   if (hasError) {
-    return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ErrorResponsePlaceholder, {
+    return (0,external_wp_element_namespaceObject.createElement)(ErrorResponsePlaceholder, {
       response: response,
       ...props
     });
   }
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_element_namespaceObject.RawHTML, {
-    className: className,
-    children: response
-  });
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.RawHTML, {
+    className: className
+  }, response);
 }
 
-;// ./node_modules/@wordpress/server-side-render/build-module/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/server-side-render/build-module/index.js
+
 /**
  * WordPress dependencies
  */
@@ -397,7 +394,6 @@ function ServerSideRender(props) {
 /**
  * Constants
  */
-
 const build_module_EMPTY_OBJECT = {};
 const ExportedServerSideRender = (0,external_wp_data_namespaceObject.withSelect)(select => {
   // FIXME: @wordpress/server-side-render should not depend on @wordpress/editor.
@@ -431,13 +427,14 @@ const ExportedServerSideRender = (0,external_wp_data_namespaceObject.withSelect)
       ...urlQueryArgs
     };
   }, [currentPostId, urlQueryArgs]);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ServerSideRender, {
+  return (0,external_wp_element_namespaceObject.createElement)(ServerSideRender, {
     urlQueryArgs: newUrlQueryArgs,
     ...props
   });
 });
-/* harmony default export */ const build_module = (ExportedServerSideRender);
+/* harmony default export */ var build_module = (ExportedServerSideRender);
 
+}();
 (window.wp = window.wp || {}).serverSideRender = __webpack_exports__["default"];
 /******/ })()
 ;

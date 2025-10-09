@@ -40,8 +40,6 @@ $_SERVER['REQUEST_URI'] = remove_query_arg( $query_args_to_remove, $_SERVER['REQ
 
 wp_enqueue_script( 'updates' );
 
-WP_Plugin_Dependencies::initialize();
-
 if ( $action ) {
 
 	switch ( $action ) {
@@ -71,7 +69,7 @@ if ( $action ) {
 			if ( ! is_network_admin() ) {
 				$recent = (array) get_option( 'recently_activated' );
 				unset( $recent[ $plugin ] );
-				update_option( 'recently_activated', $recent, false );
+				update_option( 'recently_activated', $recent );
 			} else {
 				$recent = (array) get_site_option( 'recently_activated' );
 				unset( $recent[ $plugin ] );
@@ -136,7 +134,7 @@ if ( $action ) {
 			}
 
 			if ( ! is_network_admin() ) {
-				update_option( 'recently_activated', $recent, false );
+				update_option( 'recently_activated', $recent );
 			} else {
 				update_site_option( 'recently_activated', $recent );
 			}
@@ -211,7 +209,7 @@ if ( $action ) {
 			deactivate_plugins( $plugin, false, is_network_admin() );
 
 			if ( ! is_network_admin() ) {
-				update_option( 'recently_activated', array( $plugin => time() ) + (array) get_option( 'recently_activated' ), false );
+				update_option( 'recently_activated', array( $plugin => time() ) + (array) get_option( 'recently_activated' ) );
 			} else {
 				update_site_option( 'recently_activated', array( $plugin => time() ) + (array) get_site_option( 'recently_activated' ) );
 			}
@@ -258,7 +256,7 @@ if ( $action ) {
 			}
 
 			if ( ! is_network_admin() ) {
-				update_option( 'recently_activated', $deactivated + (array) get_option( 'recently_activated' ), false );
+				update_option( 'recently_activated', $deactivated + (array) get_option( 'recently_activated' ) );
 			} else {
 				update_site_option( 'recently_activated', $deactivated + (array) get_site_option( 'recently_activated' ) );
 			}
@@ -429,14 +427,13 @@ if ( $action ) {
 
 			$delete_result = delete_plugins( $plugins );
 
-			// Store the result in an option rather than a URL param due to object type & length.
-			// Cannot use transient/cache, as that could get flushed if any plugin flushes data on uninstall/delete.
-			update_option( 'plugins_delete_result_' . $user_ID, $delete_result, false );
+			// Store the result in a cache rather than a URL param due to object type & length.
+			set_transient( 'plugins_delete_result_' . $user_ID, $delete_result );
 			wp_redirect( self_admin_url( "plugins.php?deleted=$plugins_to_delete&plugin_status=$status&paged=$page&s=$s" ) );
 			exit;
 		case 'clear-recent-list':
 			if ( ! is_network_admin() ) {
-				update_option( 'recently_activated', array(), false );
+				update_option( 'recently_activated', array() );
 			} else {
 				update_site_option( 'recently_activated', array() );
 			}
@@ -566,7 +563,7 @@ get_current_screen()->add_help_tab(
 				'<p>' . __( 'The search for installed plugins will search for terms in their name, description, or author.' ) . ' <span id="live-search-desc" class="hide-if-no-js">' . __( 'The search results will be updated as you type.' ) . '</span></p>' .
 				'<p>' . sprintf(
 					/* translators: %s: WordPress Plugin Directory URL. */
-					__( 'If you would like to see more plugins to choose from, click on the &#8220;Add Plugin&#8221; button and you will be able to browse or search for additional plugins from the <a href="%s">WordPress Plugin Directory</a>. Plugins in the WordPress Plugin Directory are designed and developed by third parties, and are compatible with the license WordPress uses. Oh, and they are free!' ),
+					__( 'If you would like to see more plugins to choose from, click on the &#8220;Add New Plugin&#8221; button and you will be able to browse or search for additional plugins from the <a href="%s">WordPress Plugin Directory</a>. Plugins in the WordPress Plugin Directory are designed and developed by third parties, and are compatible with the license WordPress uses. Oh, and they&#8217;re free!' ),
 					__( 'https://wordpress.org/plugins/' )
 				) . '</p>',
 	)
@@ -600,19 +597,6 @@ if ( current_user_can( 'update_plugins' ) && wp_is_auto_update_enabled_for_type(
 	);
 
 	$help_sidebar_autoupdates = '<p>' . __( '<a href="https://wordpress.org/documentation/article/plugins-themes-auto-updates/">Documentation on Auto-updates</a>' ) . '</p>';
-}
-
-if ( current_user_can( 'install_plugins' ) ) {
-	get_current_screen()->add_help_tab(
-		array(
-			'id'      => 'plugins-dependencies',
-			'title'   => __( 'Dependencies' ),
-			'content' =>
-				'<p>' . __( 'Plugin Dependencies aims to make the process of installing and activating add-ons (dependents) and the plugins they rely on (dependencies) consistent and easy.' ) . '</p>' .
-				'<p>' . __( 'If a required plugin is deleted, a notice will be displayed on the Plugin administration screen informing the user that there is some missing dependencies to install and/or activate. Additionally, each plugin whose dependencies are not met will have an error notice on their plugin row.' ) . '</p>' .
-				'<p>' . __( 'If a dependent plugin is missing some dependencies, its activation button will be disabled until the required dependencies are activated.' ) . '</p>',
-		)
-	);
 }
 
 get_current_screen()->set_help_sidebar(
@@ -706,9 +690,9 @@ if ( isset( $_GET['error'] ) ) {
 	);
 
 } elseif ( isset( $_GET['deleted'] ) ) {
-	$delete_result = get_option( 'plugins_delete_result_' . $user_ID );
+	$delete_result = get_transient( 'plugins_delete_result_' . $user_ID );
 	// Delete it once we're done.
-	delete_option( 'plugins_delete_result_' . $user_ID );
+	delete_transient( 'plugins_delete_result_' . $user_ID );
 
 	if ( is_wp_error( $delete_result ) ) {
 		$plugin_not_deleted_message = sprintf(
@@ -755,8 +739,6 @@ if ( isset( $_GET['error'] ) ) {
 }
 ?>
 
-<?php WP_Plugin_Dependencies::display_admin_notice_for_unmet_dependencies(); ?>
-<?php WP_Plugin_Dependencies::display_admin_notice_for_circular_dependencies(); ?>
 <div class="wrap">
 <h1 class="wp-heading-inline">
 <?php
@@ -767,7 +749,7 @@ echo esc_html( $title );
 <?php
 if ( ( ! is_multisite() || is_network_admin() ) && current_user_can( 'install_plugins' ) ) {
 	?>
-	<a href="<?php echo esc_url( self_admin_url( 'plugin-install.php' ) ); ?>" class="page-title-action"><?php echo esc_html__( 'Add Plugin' ); ?></a>
+	<a href="<?php echo esc_url( self_admin_url( 'plugin-install.php' ) ); ?>" class="page-title-action"><?php echo esc_html__( 'Add New Plugin' ); ?></a>
 	<?php
 }
 
@@ -803,7 +785,7 @@ do_action( 'pre_current_active_plugins', $plugins['all'] );
 <?php $wp_list_table->views(); ?>
 
 <form class="search-form search-plugins" method="get">
-<?php $wp_list_table->search_box( __( 'Search installed plugins' ), 'plugin' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Installed Plugins' ), 'plugin' ); ?>
 </form>
 
 <form method="post" id="bulk-action-form">

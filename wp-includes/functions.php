@@ -5,11 +5,6 @@
  * @package WordPress
  */
 
-// Don't load directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 require ABSPATH . WPINC . '/option.php';
 
 /**
@@ -78,7 +73,7 @@ function mysql2date( $format, $date, $translate = true ) {
 function current_time( $type, $gmt = 0 ) {
 	// Don't use non-GMT timestamp, unless you know the difference and really need to.
 	if ( 'timestamp' === $type || 'U' === $type ) {
-		return $gmt ? time() : time() + (int) ( (float) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+		return $gmt ? time() : time() + (int) ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
 	}
 
 	if ( 'mysql' === $type ) {
@@ -599,10 +594,10 @@ function get_weekstartend( $mysqlstring, $start_of_week = '' ) {
 	$day = mktime( 0, 0, 0, $md, $mm, $my );
 
 	// The day of the week from the timestamp.
-	$weekday = (int) gmdate( 'w', $day );
+	$weekday = gmdate( 'w', $day );
 
 	if ( ! is_numeric( $start_of_week ) ) {
-		$start_of_week = (int) get_option( 'start_of_week' );
+		$start_of_week = get_option( 'start_of_week' );
 	}
 
 	if ( $weekday < $start_of_week ) {
@@ -614,7 +609,6 @@ function get_weekstartend( $mysqlstring, $start_of_week = '' ) {
 
 	// $start + 1 week - 1 second.
 	$end = $start + WEEK_IN_SECONDS - 1;
-
 	return compact( 'start', 'end' );
 }
 
@@ -1353,7 +1347,6 @@ function wp( $query_vars = '' ) {
  * @since 3.9.0 Added status codes 418, 428, 429, 431, and 511.
  * @since 4.5.0 Added status codes 308, 421, and 451.
  * @since 5.1.0 Added status code 103.
- * @since 6.6.0 Added status code 425.
  *
  * @global array $wp_header_to_desc
  *
@@ -1415,7 +1408,6 @@ function get_status_header_desc( $code ) {
 			422 => 'Unprocessable Entity',
 			423 => 'Locked',
 			424 => 'Failed Dependency',
-			425 => 'Too Early',
 			426 => 'Upgrade Required',
 			428 => 'Precondition Required',
 			429 => 'Too Many Requests',
@@ -1489,18 +1481,18 @@ function status_header( $code, $description = '' ) {
  * Gets the HTTP header information to prevent caching.
  *
  * The several different headers cover the different ways cache prevention
- * is handled by different browsers or intermediate caches such as proxy servers.
+ * is handled by different browsers.
  *
  * @since 2.8.0
  * @since 6.3.0 The `Cache-Control` header for logged in users now includes the
  *              `no-store` and `private` directives.
- * @since 6.8.0 The `Cache-Control` header now includes the `no-store` and `private`
- *              directives regardless of whether a user is logged in.
  *
  * @return array The associative array of header names and field values.
  */
 function wp_get_nocache_headers() {
-	$cache_control = 'no-cache, must-revalidate, max-age=0, no-store, private';
+	$cache_control = ( function_exists( 'is_user_logged_in' ) && is_user_logged_in() )
+		? 'no-cache, must-revalidate, max-age=0, no-store, private'
+		: 'no-cache, must-revalidate, max-age=0';
 
 	$headers = array(
 		'Expires'       => 'Wed, 11 Jan 1984 05:00:00 GMT',
@@ -1556,11 +1548,11 @@ function nocache_headers() {
  * @since 2.1.0
  */
 function cache_javascript_headers() {
-	$expires_offset = 10 * DAY_IN_SECONDS;
+	$expiresOffset = 10 * DAY_IN_SECONDS;
 
 	header( 'Content-Type: text/javascript; charset=' . get_bloginfo( 'charset' ) );
 	header( 'Vary: Accept-Encoding' ); // Handle proxies.
-	header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expires_offset ) . ' GMT' );
+	header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expiresOffset ) . ' GMT' );
 }
 
 /**
@@ -1700,7 +1692,7 @@ function do_feed_atom( $for_comments ) {
  * Displays the default robots.txt file content.
  *
  * @since 2.1.0
- * @since 5.3.0 Remove the "Disallow: /" output if search engine visibility is
+ * @since 5.3.0 Remove the "Disallow: /" output if search engine visiblity is
  *              discouraged in favor of robots meta HTML tag via wp_robots_no_robots()
  *              filter callback.
  */
@@ -1715,7 +1707,7 @@ function do_robots() {
 	do_action( 'do_robotstxt' );
 
 	$output = "User-agent: *\n";
-	$public = (bool) get_option( 'blog_public' );
+	$public = get_option( 'blog_public' );
 
 	$site_url = parse_url( site_url() );
 	$path     = ( ! empty( $site_url['path'] ) ) ? $site_url['path'] : '';
@@ -2263,11 +2255,11 @@ function get_temp_dir() {
  * @return bool Whether the path is writable.
  */
 function wp_is_writable( $path ) {
-	if ( 'Windows' === PHP_OS_FAMILY ) {
+	if ( 'WIN' === strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
 		return win_is_writable( $path );
+	} else {
+		return @is_writable( $path );
 	}
-
-	return @is_writable( $path );
 }
 
 /**
@@ -2276,7 +2268,7 @@ function wp_is_writable( $path ) {
  * PHP has issues with Windows ACL's for determine if a
  * directory is writable or not, this works around them by
  * checking the ability to open files rather than relying
- * upon PHP to interpret the OS ACL.
+ * upon PHP to interprate the OS ACL.
  *
  * @since 2.8.0
  *
@@ -2350,10 +2342,10 @@ function wp_get_upload_dir() {
  * @since 2.0.0
  * @uses _wp_upload_dir()
  *
- * @param string|null $time          Optional. Time formatted in 'yyyy/mm'. Default null.
- * @param bool        $create_dir    Optional. Whether to check and create the uploads directory.
- *                                   Default true for backward compatibility.
- * @param bool        $refresh_cache Optional. Whether to refresh the cache. Default false.
+ * @param string $time Optional. Time formatted in 'yyyy/mm'. Default null.
+ * @param bool   $create_dir Optional. Whether to check and create the uploads directory.
+ *                           Default true for backward compatibility.
+ * @param bool   $refresh_cache Optional. Whether to refresh the cache. Default false.
  * @return array {
  *     Array of information about the upload directory.
  *
@@ -2425,7 +2417,7 @@ function wp_upload_dir( $time = null, $create_dir = true, $refresh_cache = false
  * @since 4.5.0
  * @access private
  *
- * @param string|null $time Optional. Time formatted in 'yyyy/mm'. Default null.
+ * @param string $time Optional. Time formatted in 'yyyy/mm'. Default null.
  * @return array See wp_upload_dir()
  */
 function _wp_upload_dir( $time = null ) {
@@ -2712,7 +2704,8 @@ function wp_unique_filename( $dir, $filename, $unique_filename_callback = null )
 		 * when regenerated. If yes, ensure the new file name will be unique and will produce unique sub-sizes.
 		 */
 		if ( $is_image ) {
-			$output_formats = wp_get_image_editor_output_format( $_dir . $filename, $mime_type );
+			/** This filter is documented in wp-includes/class-wp-image-editor.php */
+			$output_formats = apply_filters( 'image_editor_output_format', array(), $_dir . $filename, $mime_type );
 			$alt_types      = array();
 
 			if ( ! empty( $output_formats[ $mime_type ] ) ) {
@@ -2876,7 +2869,7 @@ function _wp_check_existing_file_names( $filename, $files ) {
  * @param string      $name       Filename.
  * @param null|string $deprecated Never used. Set to null.
  * @param string      $bits       File content
- * @param string|null $time       Optional. Time formatted in 'yyyy/mm'. Default null.
+ * @param string      $time       Optional. Time formatted in 'yyyy/mm'. Default null.
  * @return array {
  *     Information about the newly-uploaded file.
  *
@@ -3107,13 +3100,7 @@ function wp_check_filetype_and_ext( $file, $filename, $mimes = null ) {
 		// Attempt to figure out what type of image it actually is.
 		$real_mime = wp_get_image_mime( $file );
 
-		$heic_images_extensions = array(
-			'heif',
-			'heics',
-			'heifs',
-		);
-
-		if ( $real_mime && ( $real_mime !== $type || in_array( $ext, $heic_images_extensions, true ) ) ) {
+		if ( $real_mime && $real_mime !== $type ) {
 			/**
 			 * Filters the list mapping image mime types to their respective extensions.
 			 *
@@ -3124,31 +3111,18 @@ function wp_check_filetype_and_ext( $file, $filename, $mimes = null ) {
 			$mime_to_ext = apply_filters(
 				'getimagesize_mimes_to_exts',
 				array(
-					'image/jpeg'          => 'jpg',
-					'image/png'           => 'png',
-					'image/gif'           => 'gif',
-					'image/bmp'           => 'bmp',
-					'image/tiff'          => 'tif',
-					'image/webp'          => 'webp',
-					'image/avif'          => 'avif',
-
-					/*
-					 * In theory there are/should be file extensions that correspond to the
-					 * mime types: .heif, .heics and .heifs. However it seems that HEIC images
-					 * with any of the mime types commonly have a .heic file extension.
-					 * Seems keeping the status quo here is best for compatibility.
-					 */
-					'image/heic'          => 'heic',
-					'image/heif'          => 'heic',
-					'image/heic-sequence' => 'heic',
-					'image/heif-sequence' => 'heic',
+					'image/jpeg' => 'jpg',
+					'image/png'  => 'png',
+					'image/gif'  => 'gif',
+					'image/bmp'  => 'bmp',
+					'image/tiff' => 'tif',
+					'image/webp' => 'webp',
 				)
 			);
 
 			// Replace whatever is after the last period in the filename with the correct extension.
 			if ( ! empty( $mime_to_ext[ $real_mime ] ) ) {
 				$filename_parts = explode( '.', $filename );
-
 				array_pop( $filename_parts );
 				$filename_parts[] = $mime_to_ext[ $real_mime ];
 				$new_filename     = implode( '.', $filename_parts );
@@ -3321,8 +3295,6 @@ function wp_check_filetype_and_ext( $file, $filename, $mimes = null ) {
  *
  * @since 4.7.1
  * @since 5.8.0 Added support for WebP images.
- * @since 6.5.0 Added support for AVIF images.
- * @since 6.7.0 Added support for HEIC images.
  *
  * @param string $file Full path to the file.
  * @return string|false The actual mime type or false if the type cannot be determined.
@@ -3339,7 +3311,9 @@ function wp_get_image_mime( $file ) {
 			$mime      = ( $imagetype ) ? image_type_to_mime_type( $imagetype ) : false;
 		} elseif ( function_exists( 'getimagesize' ) ) {
 			// Don't silence errors when in debug mode, unless running unit tests.
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG && ! defined( 'WP_RUN_CORE_TESTS' ) ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG
+				&& ! defined( 'WP_RUN_CORE_TESTS' )
+			) {
 				// Not using wp_getimagesize() here to avoid an infinite loop.
 				$imagesize = getimagesize( $file );
 			} else {
@@ -3375,40 +3349,6 @@ function wp_get_image_mime( $file ) {
 		) {
 			$mime = 'image/webp';
 		}
-
-		/**
-		 * Add AVIF fallback detection when image library doesn't support AVIF.
-		 *
-		 * Detection based on section 4.3.1 File-type box definition of the ISO/IEC 14496-12
-		 * specification and the AV1-AVIF spec, see https://aomediacodec.github.io/av1-avif/v1.1.0.html#brands.
-		 */
-
-		// Divide the header string into 4 byte groups.
-		$magic = str_split( $magic, 8 );
-
-		if ( isset( $magic[1] ) && isset( $magic[2] ) && 'ftyp' === hex2bin( $magic[1] ) ) {
-			if ( 'avif' === hex2bin( $magic[2] ) || 'avis' === hex2bin( $magic[2] ) ) {
-				$mime = 'image/avif';
-			} elseif ( 'heic' === hex2bin( $magic[2] ) ) {
-				$mime = 'image/heic';
-			} elseif ( 'heif' === hex2bin( $magic[2] ) ) {
-				$mime = 'image/heif';
-			} else {
-				/*
-				 * HEIC/HEIF images and image sequences/animations may have other strings here
-				 * like mif1, msf1, etc. For now fall back to using finfo_file() to detect these.
-				 */
-				if ( extension_loaded( 'fileinfo' ) ) {
-					$fileinfo  = finfo_open( FILEINFO_MIME_TYPE );
-					$mime_type = finfo_file( $fileinfo, $file );
-					finfo_close( $fileinfo );
-
-					if ( wp_is_heic_image_mime_type( $mime_type ) ) {
-						$mime = $mime_type;
-					}
-				}
-			}
-		}
 	} catch ( Exception $e ) {
 		$mime = false;
 	}
@@ -3423,7 +3363,6 @@ function wp_get_image_mime( $file ) {
  * @since 4.2.0 Support was added for GIMP (.xcf) files.
  * @since 4.9.2 Support was added for Flac (.flac) files.
  * @since 4.9.6 Support was added for AAC (.aac) files.
- * @since 6.8.0 Support was added for `audio/x-wav`.
  *
  * @return string[] Array of mime types keyed by the file extension regex corresponding to those types.
  */
@@ -3449,15 +3388,8 @@ function wp_get_mime_types() {
 			'bmp'                          => 'image/bmp',
 			'tiff|tif'                     => 'image/tiff',
 			'webp'                         => 'image/webp',
-			'avif'                         => 'image/avif',
 			'ico'                          => 'image/x-icon',
-
-			// TODO: Needs improvement. All images with the following mime types seem to have .heic file extension.
 			'heic'                         => 'image/heic',
-			'heif'                         => 'image/heif',
-			'heics'                        => 'image/heic-sequence',
-			'heifs'                        => 'image/heif-sequence',
-
 			// Video formats.
 			'asf|asx'                      => 'video/x-ms-asf',
 			'wmv'                          => 'video/x-ms-wmv',
@@ -3488,7 +3420,7 @@ function wp_get_mime_types() {
 			'mp3|m4a|m4b'                  => 'audio/mpeg',
 			'aac'                          => 'audio/aac',
 			'ra|ram'                       => 'audio/x-realaudio',
-			'wav|x-wav'                    => 'audio/wav',
+			'wav'                          => 'audio/wav',
 			'ogg|oga'                      => 'audio/ogg',
 			'flac'                         => 'audio/flac',
 			'mid|midi'                     => 'audio/midi',
@@ -3577,7 +3509,7 @@ function wp_get_ext_types() {
 	return apply_filters(
 		'ext2type',
 		array(
-			'image'       => array( 'jpg', 'jpeg', 'jpe', 'gif', 'png', 'bmp', 'tif', 'tiff', 'ico', 'heic', 'heif', 'webp', 'avif' ),
+			'image'       => array( 'jpg', 'jpeg', 'jpe', 'gif', 'png', 'bmp', 'tif', 'tiff', 'ico', 'heic', 'webp' ),
 			'audio'       => array( 'aac', 'ac3', 'aif', 'aiff', 'flac', 'm3a', 'm4a', 'm4b', 'mka', 'mp1', 'mp2', 'mp3', 'ogg', 'oga', 'ram', 'wav', 'wma' ),
 			'video'       => array( '3g2', '3gp', '3gpp', 'asf', 'avi', 'divx', 'dv', 'flv', 'm4v', 'mkv', 'mov', 'mp4', 'mpeg', 'mpg', 'mpv', 'ogm', 'ogv', 'qt', 'rm', 'vob', 'wmv' ),
 			'document'    => array( 'doc', 'docx', 'docm', 'dotm', 'odt', 'pages', 'pdf', 'xps', 'oxps', 'rtf', 'wp', 'wpd', 'psd', 'xcf' ),
@@ -3672,7 +3604,7 @@ function get_allowed_mime_types( $user = null ) {
  */
 function wp_nonce_ays( $action ) {
 	// Default title and response code.
-	$title         = __( 'An error occurred.' );
+	$title         = __( 'Something went wrong.' );
 	$response_code = 403;
 
 	if ( 'log-out' === $action ) {
@@ -3786,7 +3718,7 @@ function wp_die( $message = '', $title = '', $args = array() ) {
 		 * @param callable $callback Callback function name.
 		 */
 		$callback = apply_filters( 'wp_die_json_handler', '_json_wp_die_handler' );
-	} elseif ( wp_is_serving_rest_request() && wp_is_jsonp_request() ) {
+	} elseif ( defined( 'REST_REQUEST' ) && REST_REQUEST && wp_is_jsonp_request() ) {
 		/**
 		 * Filters the callback for killing WordPress execution for JSONP REST requests.
 		 *
@@ -3902,13 +3834,10 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 <html <?php echo $dir_attr; ?>>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $parsed_args['charset']; ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 		<?php
 		if ( function_exists( 'wp_robots' ) && function_exists( 'wp_robots_no_robots' ) && function_exists( 'add_filter' ) ) {
 			add_filter( 'wp_robots', 'wp_robots_no_robots' );
-			// Prevent warnings because of $wp_query not existing.
-			remove_filter( 'wp_robots', 'wp_robots_noindex_embeds' );
-			remove_filter( 'wp_robots', 'wp_robots_noindex_search' );
 			wp_robots();
 		}
 		?>
@@ -3954,16 +3883,21 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 			font-size: 14px ;
 		}
 		a {
-			color: #2271b1;
+			color: #0073aa;
 		}
 		a:hover,
 		a:active {
-			color: #135e96;
+			color: #006799;
 		}
 		a:focus {
-			color: #043959;
-			box-shadow: 0 0 0 2px #2271b1;
-			outline: 2px solid transparent;
+			color: #124964;
+			-webkit-box-shadow:
+				0 0 0 1px #5b9dd9,
+				0 0 2px 1px rgba(30, 140, 190, 0.8);
+			box-shadow:
+				0 0 0 1px #5b9dd9,
+				0 0 2px 1px rgba(30, 140, 190, 0.8);
+			outline: none;
 		}
 		.button {
 			background: #f3f5f6;
@@ -4100,10 +4034,6 @@ function _json_wp_die_handler( $message, $title = '', $args = array() ) {
 		'additional_errors' => $parsed_args['additional_errors'],
 	);
 
-	if ( isset( $parsed_args['error_data'] ) ) {
-		$data['data']['error'] = $parsed_args['error_data'];
-	}
-
 	if ( ! headers_sent() ) {
 		header( "Content-Type: application/json; charset={$parsed_args['charset']}" );
 		if ( null !== $parsed_args['response'] ) {
@@ -4141,10 +4071,6 @@ function _jsonp_wp_die_handler( $message, $title = '', $args = array() ) {
 		),
 		'additional_errors' => $parsed_args['additional_errors'],
 	);
-
-	if ( isset( $parsed_args['error_data'] ) ) {
-		$data['data']['error'] = $parsed_args['error_data'];
-	}
 
 	if ( ! headers_sent() ) {
 		header( "Content-Type: application/javascript; charset={$parsed_args['charset']}" );
@@ -4323,9 +4249,6 @@ function _wp_die_process_input( $message, $title = '', $args = array() ) {
 			if ( empty( $title ) && is_array( $errors[0]['data'] ) && ! empty( $errors[0]['data']['title'] ) ) {
 				$title = $errors[0]['data']['title'];
 			}
-			if ( WP_DEBUG_DISPLAY && is_array( $errors[0]['data'] ) && ! empty( $errors[0]['data']['error'] ) ) {
-				$args['error_data'] = $errors[0]['data']['error'];
-			}
 
 			unset( $errors[0] );
 			$args['additional_errors'] = array_values( $errors );
@@ -4361,38 +4284,36 @@ function _wp_die_process_input( $message, $title = '', $args = array() ) {
 }
 
 /**
- * Encodes a variable into JSON, with some confidence checks.
+ * Encodes a variable into JSON, with some sanity checks.
  *
  * @since 4.1.0
  * @since 5.3.0 No longer handles support for PHP < 5.6.
- * @since 6.5.0 The `$data` parameter has been renamed to `$value` and
- *              the `$options` parameter to `$flags` for parity with PHP.
  *
- * @param mixed $value Variable (usually an array or object) to encode as JSON.
- * @param int   $flags Optional. Options to be passed to json_encode(). Default 0.
- * @param int   $depth Optional. Maximum depth to walk through $value. Must be
- *                     greater than 0. Default 512.
+ * @param mixed $data    Variable (usually an array or object) to encode as JSON.
+ * @param int   $options Optional. Options to be passed to json_encode(). Default 0.
+ * @param int   $depth   Optional. Maximum depth to walk through $data. Must be
+ *                       greater than 0. Default 512.
  * @return string|false The JSON encoded string, or false if it cannot be encoded.
  */
-function wp_json_encode( $value, $flags = 0, $depth = 512 ) {
-	$json = json_encode( $value, $flags, $depth );
+function wp_json_encode( $data, $options = 0, $depth = 512 ) {
+	$json = json_encode( $data, $options, $depth );
 
-	// If json_encode() was successful, no need to do more confidence checking.
+	// If json_encode() was successful, no need to do more sanity checking.
 	if ( false !== $json ) {
 		return $json;
 	}
 
 	try {
-		$value = _wp_json_sanity_check( $value, $depth );
+		$data = _wp_json_sanity_check( $data, $depth );
 	} catch ( Exception $e ) {
 		return false;
 	}
 
-	return json_encode( $value, $flags, $depth );
+	return json_encode( $data, $options, $depth );
 }
 
 /**
- * Performs confidence checks on data that shall be encoded to JSON.
+ * Performs sanity checks on data that shall be encoded to JSON.
  *
  * @ignore
  * @since 4.1.0
@@ -4402,18 +4323,18 @@ function wp_json_encode( $value, $flags = 0, $depth = 512 ) {
  *
  * @throws Exception If depth limit is reached.
  *
- * @param mixed $value Variable (usually an array or object) to encode as JSON.
- * @param int   $depth Maximum depth to walk through $value. Must be greater than 0.
+ * @param mixed $data  Variable (usually an array or object) to encode as JSON.
+ * @param int   $depth Maximum depth to walk through $data. Must be greater than 0.
  * @return mixed The sanitized data that shall be encoded to JSON.
  */
-function _wp_json_sanity_check( $value, $depth ) {
+function _wp_json_sanity_check( $data, $depth ) {
 	if ( $depth < 0 ) {
 		throw new Exception( 'Reached depth limit' );
 	}
 
-	if ( is_array( $value ) ) {
+	if ( is_array( $data ) ) {
 		$output = array();
-		foreach ( $value as $id => $el ) {
+		foreach ( $data as $id => $el ) {
 			// Don't forget to sanitize the ID!
 			if ( is_string( $id ) ) {
 				$clean_id = _wp_json_convert_string( $id );
@@ -4430,9 +4351,9 @@ function _wp_json_sanity_check( $value, $depth ) {
 				$output[ $clean_id ] = $el;
 			}
 		}
-	} elseif ( is_object( $value ) ) {
+	} elseif ( is_object( $data ) ) {
 		$output = new stdClass();
-		foreach ( $value as $id => $el ) {
+		foreach ( $data as $id => $el ) {
 			if ( is_string( $id ) ) {
 				$clean_id = _wp_json_convert_string( $id );
 			} else {
@@ -4447,10 +4368,10 @@ function _wp_json_sanity_check( $value, $depth ) {
 				$output->$clean_id = $el;
 			}
 		}
-	} elseif ( is_string( $value ) ) {
-		return _wp_json_convert_string( $value );
+	} elseif ( is_string( $data ) ) {
+		return _wp_json_convert_string( $data );
 	} else {
-		return $value;
+		return $data;
 	}
 
 	return $output;
@@ -4497,12 +4418,12 @@ function _wp_json_convert_string( $input_string ) {
  *                   has been dropped.
  * @access private
  *
- * @param mixed $value Native representation.
+ * @param mixed $data Native representation.
  * @return bool|int|float|null|string|array Data ready for `json_encode()`.
  */
-function _wp_json_prepare_data( $value ) {
+function _wp_json_prepare_data( $data ) {
 	_deprecated_function( __FUNCTION__, '5.3.0' );
-	return $value;
+	return $data;
 }
 
 /**
@@ -4510,15 +4431,15 @@ function _wp_json_prepare_data( $value ) {
  *
  * @since 3.5.0
  * @since 4.7.0 The `$status_code` parameter was added.
- * @since 5.6.0 The `$flags` parameter was added.
+ * @since 5.6.0 The `$options` parameter was added.
  *
  * @param mixed $response    Variable (usually an array or object) to encode as JSON,
  *                           then print and die.
  * @param int   $status_code Optional. The HTTP status code to output. Default null.
- * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
+ * @param int   $options     Optional. Options to be passed to json_encode(). Default 0.
  */
-function wp_send_json( $response, $status_code = null, $flags = 0 ) {
-	if ( wp_is_serving_rest_request() ) {
+function wp_send_json( $response, $status_code = null, $options = 0 ) {
+	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 		_doing_it_wrong(
 			__FUNCTION__,
 			sprintf(
@@ -4538,7 +4459,7 @@ function wp_send_json( $response, $status_code = null, $flags = 0 ) {
 		}
 	}
 
-	echo wp_json_encode( $response, $flags );
+	echo wp_json_encode( $response, $options );
 
 	if ( wp_doing_ajax() ) {
 		wp_die(
@@ -4558,46 +4479,46 @@ function wp_send_json( $response, $status_code = null, $flags = 0 ) {
  *
  * @since 3.5.0
  * @since 4.7.0 The `$status_code` parameter was added.
- * @since 5.6.0 The `$flags` parameter was added.
+ * @since 5.6.0 The `$options` parameter was added.
  *
- * @param mixed $value       Optional. Data to encode as JSON, then print and die. Default null.
+ * @param mixed $data        Optional. Data to encode as JSON, then print and die. Default null.
  * @param int   $status_code Optional. The HTTP status code to output. Default null.
- * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
+ * @param int   $options     Optional. Options to be passed to json_encode(). Default 0.
  */
-function wp_send_json_success( $value = null, $status_code = null, $flags = 0 ) {
+function wp_send_json_success( $data = null, $status_code = null, $options = 0 ) {
 	$response = array( 'success' => true );
 
-	if ( isset( $value ) ) {
-		$response['data'] = $value;
+	if ( isset( $data ) ) {
+		$response['data'] = $data;
 	}
 
-	wp_send_json( $response, $status_code, $flags );
+	wp_send_json( $response, $status_code, $options );
 }
 
 /**
  * Sends a JSON response back to an Ajax request, indicating failure.
  *
- * If the `$value` parameter is a WP_Error object, the errors
+ * If the `$data` parameter is a WP_Error object, the errors
  * within the object are processed and output as an array of error
  * codes and corresponding messages. All other types are output
  * without further processing.
  *
  * @since 3.5.0
- * @since 4.1.0 The `$value` parameter is now processed if a WP_Error object is passed in.
+ * @since 4.1.0 The `$data` parameter is now processed if a WP_Error object is passed in.
  * @since 4.7.0 The `$status_code` parameter was added.
- * @since 5.6.0 The `$flags` parameter was added.
+ * @since 5.6.0 The `$options` parameter was added.
  *
- * @param mixed $value       Optional. Data to encode as JSON, then print and die. Default null.
+ * @param mixed $data        Optional. Data to encode as JSON, then print and die. Default null.
  * @param int   $status_code Optional. The HTTP status code to output. Default null.
- * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
+ * @param int   $options     Optional. Options to be passed to json_encode(). Default 0.
  */
-function wp_send_json_error( $value = null, $status_code = null, $flags = 0 ) {
+function wp_send_json_error( $data = null, $status_code = null, $options = 0 ) {
 	$response = array( 'success' => false );
 
-	if ( isset( $value ) ) {
-		if ( is_wp_error( $value ) ) {
+	if ( isset( $data ) ) {
+		if ( is_wp_error( $data ) ) {
 			$result = array();
-			foreach ( $value->errors as $code => $messages ) {
+			foreach ( $data->errors as $code => $messages ) {
 				foreach ( $messages as $message ) {
 					$result[] = array(
 						'code'    => $code,
@@ -4608,11 +4529,11 @@ function wp_send_json_error( $value = null, $status_code = null, $flags = 0 ) {
 
 			$response['data'] = $result;
 		} else {
-			$response['data'] = $value;
+			$response['data'] = $data;
 		}
 	}
 
-	wp_send_json( $response, $status_code, $flags );
+	wp_send_json( $response, $status_code, $options );
 }
 
 /**
@@ -4658,8 +4579,7 @@ function wp_json_file_decode( $filename, $options = array() ) {
 	$filename = wp_normalize_path( realpath( $filename ) );
 
 	if ( ! $filename ) {
-		wp_trigger_error(
-			__FUNCTION__,
+		trigger_error(
 			sprintf(
 				/* translators: %s: Path to the JSON file. */
 				__( "File %s doesn't exist!" ),
@@ -4673,8 +4593,7 @@ function wp_json_file_decode( $filename, $options = array() ) {
 	$decoded_file = json_decode( file_get_contents( $filename ), $options['associative'] );
 
 	if ( JSON_ERROR_NONE !== json_last_error() ) {
-		wp_trigger_error(
-			__FUNCTION__,
+		trigger_error(
 			sprintf(
 				/* translators: 1: Path to the JSON file, 2: Error message. */
 				__( 'Error when decoding a JSON file at path %1$s: %2$s' ),
@@ -4739,7 +4658,7 @@ function _config_wp_siteurl( $url = '' ) {
  * @access private
  */
 function _delete_option_fresh_site() {
-	update_option( 'fresh_site', '0', false );
+	update_option( 'fresh_site', '0' );
 }
 
 /**
@@ -4776,23 +4695,6 @@ function _mce_set_direction( $mce_init ) {
 	return $mce_init;
 }
 
-/**
- * Determines whether WordPress is currently serving a REST API request.
- *
- * The function relies on the 'REST_REQUEST' global. As such, it only returns true when an actual REST _request_ is
- * being made. It does not return true when a REST endpoint is hit as part of another request, e.g. for preloading a
- * REST response. See {@see wp_is_rest_endpoint()} for that purpose.
- *
- * This function should not be called until the {@see 'parse_request'} action, as the constant is only defined then,
- * even for an actual REST request.
- *
- * @since 6.5.0
- *
- * @return bool True if it's a WordPress REST API request, false otherwise.
- */
-function wp_is_serving_rest_request() {
-	return defined( 'REST_REQUEST' ) && REST_REQUEST;
-}
 
 /**
  * Converts smiley code to the icon graphic file equivalent.
@@ -4811,10 +4713,10 @@ function wp_is_serving_rest_request() {
  * the description. Probably should create a Codex page for it, so that it is
  * available.
  *
- * @since 2.2.0
- *
  * @global array $wpsmiliestrans
  * @global array $wp_smiliessearch
+ *
+ * @since 2.2.0
  */
 function smilies_init() {
 	global $wpsmiliestrans, $wp_smiliessearch;
@@ -5449,10 +5351,10 @@ function wp_widgets_add_menu() {
 	}
 
 	$menu_name = __( 'Widgets' );
-	if ( wp_is_block_theme() ) {
+	if ( wp_is_block_theme() || current_theme_supports( 'block-template-parts' ) ) {
 		$submenu['themes.php'][] = array( $menu_name, 'edit_theme_options', 'widgets.php' );
 	} else {
-		$submenu['themes.php'][8] = array( $menu_name, 'edit_theme_options', 'widgets.php' );
+		$submenu['themes.php'][7] = array( $menu_name, 'edit_theme_options', 'widgets.php' );
 	}
 
 	ksort( $submenu['themes.php'], SORT_NUMERIC );
@@ -5508,6 +5410,18 @@ function dead_db() {
 
 	// Otherwise, be terse.
 	wp_die( '<h1>' . __( 'Error establishing a database connection' ) . '</h1>', __( 'Database Error' ) );
+}
+
+/**
+ * Converts a value to non-negative integer.
+ *
+ * @since 2.5.0
+ *
+ * @param mixed $maybeint Data you wish to have converted to a non-negative integer.
+ * @return int A non-negative integer.
+ */
+function absint( $maybeint ) {
+	return abs( (int) $maybeint );
 }
 
 /**
@@ -6030,7 +5944,7 @@ function _doing_it_wrong( $function_name, $message, $version ) {
 			$message .= ' ' . sprintf(
 				/* translators: %s: Documentation URL. */
 				__( 'Please see <a href="%s">Debugging in WordPress</a> for more information.' ),
-				__( 'https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/' )
+				__( 'https://wordpress.org/documentation/article/debugging-in-wordpress/' )
 			);
 
 			$message = sprintf(
@@ -6047,7 +5961,7 @@ function _doing_it_wrong( $function_name, $message, $version ) {
 
 			$message .= sprintf(
 				' Please see <a href="%s">Debugging in WordPress</a> for more information.',
-				'https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/'
+				'https://wordpress.org/documentation/article/debugging-in-wordpress/'
 			);
 
 			$message = sprintf(
@@ -6105,18 +6019,14 @@ function wp_trigger_error( $function_name, $message, $error_level = E_USER_NOTIC
 	$message = wp_kses(
 		$message,
 		array(
-			'a'      => array( 'href' => true ),
-			'br'     => array(),
-			'code'   => array(),
-			'em'     => array(),
-			'strong' => array(),
+			'a' => array( 'href' ),
+			'br',
+			'code',
+			'em',
+			'strong',
 		),
 		array( 'http', 'https' )
 	);
-
-	if ( E_USER_ERROR === $error_level ) {
-		throw new WP_Exception( $message );
-	}
 
 	trigger_error( $message, $error_level );
 }
@@ -6197,7 +6107,7 @@ function iis7_supports_permalinks() {
 		 * easily update the xml configuration file, hence we just bail out and tell user that
 		 * pretty permalinks cannot be used.
 		 *
-		 * Next we check if the URL Rewrite Module 1.1 is loaded and enabled for the website. When
+		 * Next we check if the URL Rewrite Module 1.1 is loaded and enabled for the web site. When
 		 * URL Rewrite 1.1 is loaded it always sets a server variable called 'IIS_UrlRewriteModule'.
 		 * Lastly we make sure that PHP is running via FastCGI. This is important because if it runs
 		 * via ISAPI then pretty permalinks will not work.
@@ -6235,10 +6145,8 @@ function validate_file( $file, $allowed_files = array() ) {
 		return 0;
 	}
 
-	// Normalize path for Windows servers.
+	// Normalize path for Windows servers
 	$file = wp_normalize_path( $file );
-	// Normalize path for $allowed_files as well so it's an apples to apples comparison.
-	$allowed_files = array_map( 'wp_normalize_path', $allowed_files );
 
 	// `../` on its own is not allowed:
 	if ( '../' === $file ) {
@@ -6273,7 +6181,7 @@ function validate_file( $file, $allowed_files = array() ) {
  *
  * @since 2.6.0
  *
- * @param string|bool|null $force Optional. Whether to force SSL in admin screens. Default null.
+ * @param string|bool $force Optional. Whether to force SSL in admin screens. Default null.
  * @return bool True if forced, false if not forced.
  */
 function force_ssl_admin( $force = null ) {
@@ -6281,7 +6189,7 @@ function force_ssl_admin( $force = null ) {
 
 	if ( ! is_null( $force ) ) {
 		$old_forced = $forced;
-		$forced     = (bool) $force;
+		$forced     = $force;
 		return $old_forced;
 	}
 
@@ -6626,7 +6534,7 @@ function wp_timezone_choice( $selected_zone, $locale = null ) {
 	if ( ! $mo_loaded || $locale !== $locale_loaded ) {
 		$locale_loaded = $locale ? $locale : get_locale();
 		$mofile        = WP_LANG_DIR . '/continents-cities-' . $locale_loaded . '.mo';
-		unload_textdomain( 'continents-cities', true );
+		unload_textdomain( 'continents-cities' );
 		load_textdomain( 'continents-cities', $mofile, $locale_loaded );
 		$mo_loaded = true;
 	}
@@ -7145,30 +7053,6 @@ function send_frame_options_header() {
 }
 
 /**
- * Sends a referrer policy header so referrers are not sent externally from administration screens.
- *
- * @since 4.9.0
- * @since 6.8.0 This function was moved from `wp-admin/includes/misc.php` to `wp-includes/functions.php`.
- */
-function wp_admin_headers() {
-	$policy = 'strict-origin-when-cross-origin';
-
-	/**
-	 * Filters the admin referrer policy header value.
-	 *
-	 * @since 4.9.0
-	 * @since 4.9.5 The default value was changed to 'strict-origin-when-cross-origin'.
-	 *
-	 * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
-	 *
-	 * @param string $policy The admin referrer policy header value. Default 'strict-origin-when-cross-origin'.
-	 */
-	$policy = apply_filters( 'admin_referrer_policy', $policy );
-
-	header( sprintf( 'Referrer-Policy: %s', $policy ) );
-}
-
-/**
  * Retrieves a list of protocols to allow in HTML attributes.
  *
  * @since 3.3.0
@@ -7536,40 +7420,6 @@ function get_tag_regex( $tag ) {
 }
 
 /**
- * Indicates if a given slug for a character set represents the UTF-8
- * text encoding. If not provided, examines the current blog's charset.
- *
- * A charset is considered to represent UTF-8 if it is a case-insensitive
- * match of "UTF-8" with or without the hyphen.
- *
- * Example:
- *
- *     true  === is_utf8_charset( 'UTF-8' );
- *     true  === is_utf8_charset( 'utf8' );
- *     false === is_utf8_charset( 'latin1' );
- *     false === is_utf8_charset( 'UTF 8' );
- *
- *     // Only strings match.
- *     false === is_utf8_charset( [ 'charset' => 'utf-8' ] );
- *
- *     // Without a given charset, it depends on the site option "blog_charset".
- *     $is_utf8 = is_utf8_charset();
- *
- * @since 6.6.0
- * @since 6.6.1 A wrapper for _is_utf8_charset
- *
- * @see _is_utf8_charset
- *
- * @param string|null $blog_charset Optional. Slug representing a text character encoding, or "charset".
- *                                  E.g. "UTF-8", "Windows-1252", "ISO-8859-1", "SJIS".
- *                                  Default value is to infer from "blog_charset" option.
- * @return bool Whether the slug represents the UTF-8 encoding.
- */
-function is_utf8_charset( $blog_charset = null ) {
-	return _is_utf8_charset( $blog_charset ?? get_option( 'blog_charset' ) );
-}
-
-/**
  * Retrieves a canonical form of the provided charset appropriate for passing to PHP
  * functions such as htmlspecialchars() and charset HTML attributes.
  *
@@ -7578,27 +7428,17 @@ function is_utf8_charset( $blog_charset = null ) {
  *
  * @see https://core.trac.wordpress.org/ticket/23688
  *
- * @param string $charset A charset name, e.g. "UTF-8", "Windows-1252", "SJIS".
+ * @param string $charset A charset name.
  * @return string The canonical form of the charset.
  */
 function _canonical_charset( $charset ) {
-	if ( is_utf8_charset( $charset ) ) {
+	if ( 'utf-8' === strtolower( $charset ) || 'utf8' === strtolower( $charset ) ) {
+
 		return 'UTF-8';
 	}
 
-	/*
-	 * Normalize the ISO-8859-1 family of languages.
-	 *
-	 * This is not required for htmlspecialchars(), as it properly recognizes all of
-	 * the input character sets that here are transformed into "ISO-8859-1".
-	 *
-	 * @todo Should this entire check be removed since it's not required for the stated purpose?
-	 * @todo Should WordPress transform other potential charset equivalents, such as "latin1"?
-	 */
-	if (
-		( 0 === strcasecmp( 'iso-8859-1', $charset ) ) ||
-		( 0 === strcasecmp( 'iso8859-1', $charset ) )
-	) {
+	if ( 'iso-8859-1' === strtolower( $charset ) || 'iso8859-1' === strtolower( $charset ) ) {
+
 		return 'ISO-8859-1';
 	}
 
@@ -7695,10 +7535,8 @@ function wp_validate_boolean( $value ) {
  * Deletes a file.
  *
  * @since 4.2.0
- * @since 6.7.0 A return value was added.
  *
  * @param string $file The path to the file to delete.
- * @return bool True on success, false on failure.
  */
 function wp_delete_file( $file ) {
 	/**
@@ -7709,12 +7547,9 @@ function wp_delete_file( $file ) {
 	 * @param string $file Path to the file to delete.
 	 */
 	$delete = apply_filters( 'wp_delete_file', $file );
-
 	if ( ! empty( $delete ) ) {
-		return @unlink( $delete );
+		@unlink( $delete );
 	}
-
-	return false;
 }
 
 /**
@@ -7747,7 +7582,9 @@ function wp_delete_file_from_directory( $file, $directory ) {
 		return false;
 	}
 
-	return wp_delete_file( $file );
+	wp_delete_file( $file );
+
+	return true;
 }
 
 /**
@@ -8070,9 +7907,9 @@ function wp_cache_set_last_changed( $group ) {
 	 *
 	 * @since 6.3.0
 	 *
-	 * @param string       $group         The cache group name.
-	 * @param string       $time          The new last changed time (msec sec).
-	 * @param string|false $previous_time The previous last changed time. False if not previously set.
+	 * @param string    $group         The cache group name.
+	 * @param int       $time          The new last changed time.
+	 * @param int|false $previous_time The previous last changed time. False if not previously set.
 	 */
 	do_action( 'wp_cache_set_last_changed', $group, $time, $previous_time );
 
@@ -8563,7 +8400,7 @@ function wp_direct_php_update_button() {
 
 	echo '<p class="button-container">';
 	printf(
-		'<a class="button button-primary" href="%1$s" target="_blank">%2$s<span class="screen-reader-text"> %3$s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
+		'<a class="button button-primary" href="%1$s" target="_blank" rel="noopener">%2$s<span class="screen-reader-text"> %3$s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
 		esc_url( $direct_update_url ),
 		__( 'Update PHP' ),
 		/* translators: Hidden accessibility text. */
@@ -8624,7 +8461,7 @@ function wp_get_update_https_url() {
  */
 function wp_get_default_update_https_url() {
 	/* translators: Documentation explaining HTTPS and why it should be used. */
-	return __( 'https://developer.wordpress.org/advanced-administration/security/https/' );
+	return __( 'https://wordpress.org/documentation/article/why-should-i-use-https/' );
 }
 
 /**
@@ -8821,8 +8658,7 @@ function recurse_dirsize( $directory, $exclude = null, $max_execution_time = nul
  */
 function clean_dirsize_cache( $path ) {
 	if ( ! is_string( $path ) || empty( $path ) ) {
-		wp_trigger_error(
-			'',
+		trigger_error(
 			sprintf(
 				/* translators: 1: Function name, 2: A variable type, like "boolean" or "integer". */
 				__( '%1$s only accepts a non-empty path string, received %2$s.' ),
@@ -8868,57 +8704,20 @@ function clean_dirsize_cache( $path ) {
 }
 
 /**
- * Returns the current WordPress version.
- *
- * Returns an unmodified value of `$wp_version`. Some plugins modify the global
- * in an attempt to improve security through obscurity. This practice can cause
- * errors in WordPress, so the ability to get an unmodified version is needed.
- *
- * @since 6.7.0
- *
- * @return string The current WordPress version.
- */
-function wp_get_wp_version() {
-	static $wp_version;
-
-	if ( ! isset( $wp_version ) ) {
-		require ABSPATH . WPINC . '/version.php';
-	}
-
-	return $wp_version;
-}
-
-/**
  * Checks compatibility with the current WordPress version.
  *
  * @since 5.2.0
  *
- * @global string $_wp_tests_wp_version The WordPress version string. Used only in Core tests.
+ * @global string $wp_version The WordPress version string.
  *
  * @param string $required Minimum required WordPress version.
  * @return bool True if required version is compatible or empty, false if not.
  */
 function is_wp_version_compatible( $required ) {
-	if (
-		defined( 'WP_RUN_CORE_TESTS' )
-		&& WP_RUN_CORE_TESTS
-		&& isset( $GLOBALS['_wp_tests_wp_version'] )
-	) {
-		$wp_version = $GLOBALS['_wp_tests_wp_version'];
-	} else {
-		$wp_version = wp_get_wp_version();
-	}
+	global $wp_version;
 
 	// Strip off any -alpha, -RC, -beta, -src suffixes.
 	list( $version ) = explode( '-', $wp_version );
-
-	if ( is_string( $required ) ) {
-		$trimmed = trim( $required );
-
-		if ( substr_count( $trimmed, '.' ) > 1 && str_ends_with( $trimmed, '.0' ) ) {
-			$required = substr( $trimmed, 0, -2 );
-		}
-	}
 
 	return empty( $required ) || version_compare( $version, $required, '>=' );
 }
@@ -9078,7 +8877,6 @@ function wp_get_admin_notice( $message, $args = array() ) {
  *     @type bool     $dismissible        Optional. Whether the admin notice is dismissible. Default false.
  *     @type string   $id                 Optional. The value of the admin notice's ID attribute. Default empty string.
  *     @type string[] $additional_classes Optional. A string array of class names. Default empty array.
- *     @type string[] $attributes         Optional. Additional attributes for the notice div. Default empty array.
  *     @type bool     $paragraph_wrap     Optional. Whether to wrap the message in paragraph tags. Default true.
  * }
  */
@@ -9094,114 +8892,4 @@ function wp_admin_notice( $message, $args = array() ) {
 	do_action( 'wp_admin_notice', $message, $args );
 
 	echo wp_kses_post( wp_get_admin_notice( $message, $args ) );
-}
-
-/**
- * Checks if a mime type is for a HEIC/HEIF image.
- *
- * @since 6.7.0
- *
- * @param string $mime_type The mime type to check.
- * @return bool Whether the mime type is for a HEIC/HEIF image.
- */
-function wp_is_heic_image_mime_type( $mime_type ) {
-	$heic_mime_types = array(
-		'image/heic',
-		'image/heif',
-		'image/heic-sequence',
-		'image/heif-sequence',
-	);
-
-	return in_array( $mime_type, $heic_mime_types, true );
-}
-
-/**
- * Returns a cryptographically secure hash of a message using a fast generic hash function.
- *
- * Use the wp_verify_fast_hash() function to verify the hash.
- *
- * This function does not salt the value prior to being hashed, therefore input to this function must originate from
- * a random generator with sufficiently high entropy, preferably greater than 128 bits. This function is used internally
- * in WordPress to hash security keys and application passwords which are generated with high entropy.
- *
- * Important:
- *
- *  - This function must not be used for hashing user-generated passwords. Use wp_hash_password() for that.
- *  - This function must not be used for hashing other low-entropy input. Use wp_hash() for that.
- *
- * The BLAKE2b algorithm is used by Sodium to hash the message.
- *
- * @since 6.8.0
- *
- * @throws TypeError Thrown by Sodium if the message is not a string.
- *
- * @param string $message The message to hash.
- * @return string The hash of the message.
- */
-function wp_fast_hash(
-	#[\SensitiveParameter]
-	string $message
-): string {
-	$hashed = sodium_crypto_generichash( $message, 'wp_fast_hash_6.8+', 30 );
-	return '$generic$' . sodium_bin2base64( $hashed, SODIUM_BASE64_VARIANT_URLSAFE_NO_PADDING );
-}
-
-/**
- * Checks whether a plaintext message matches the hashed value. Used to verify values hashed via wp_fast_hash().
- *
- * The function uses Sodium to hash the message and compare it to the hashed value. If the hash is not a generic hash,
- * the hash is treated as a phpass portable hash in order to provide backward compatibility for passwords and security
- * keys which were hashed using phpass prior to WordPress 6.8.0.
- *
- * @since 6.8.0
- *
- * @throws TypeError Thrown by Sodium if the message is not a string.
- *
- * @param string $message The plaintext message.
- * @param string $hash    Hash of the message to check against.
- * @return bool Whether the message matches the hashed message.
- */
-function wp_verify_fast_hash(
-	#[\SensitiveParameter]
-	string $message,
-	string $hash
-): bool {
-	if ( ! str_starts_with( $hash, '$generic$' ) ) {
-		// Back-compat for old phpass hashes.
-		require_once ABSPATH . WPINC . '/class-phpass.php';
-		return ( new PasswordHash( 8, true ) )->CheckPassword( $message, $hash );
-	}
-
-	return hash_equals( $hash, wp_fast_hash( $message ) );
-}
-
-/**
- * Generates a unique ID based on the structure and values of a given array.
- *
- * This function serializes the array into a JSON string and generates a hash
- * that serves as a unique identifier. Optionally, a prefix can be added to
- * the generated ID for context or categorization.
- *
- * @since 6.8.0
- *
- * @param array  $data   The input array to generate an ID from.
- * @param string $prefix Optional. A prefix to prepend to the generated ID. Default ''.
- *
- * @return string The generated unique ID for the array.
- */
-function wp_unique_id_from_values( array $data, string $prefix = '' ): string {
-	if ( empty( $data ) ) {
-		_doing_it_wrong(
-			__FUNCTION__,
-			sprintf(
-				/* translators: %s: parameter name. */
-				__( 'The %s argument must not be empty.' ),
-				'$data'
-			),
-			'6.8.0'
-		);
-	}
-	$serialized = wp_json_encode( $data );
-	$hash       = substr( md5( $serialized ), 0, 8 );
-	return $prefix . $hash;
 }

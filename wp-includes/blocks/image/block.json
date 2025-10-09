@@ -4,28 +4,20 @@
 	"name": "core/image",
 	"title": "Image",
 	"category": "media",
-	"usesContext": [
-		"allowResize",
-		"imageCrop",
-		"fixedHeight",
-		"postId",
-		"postType",
-		"queryId"
-	],
+	"usesContext": [ "allowResize", "imageCrop", "fixedHeight" ],
 	"description": "Insert an image to make a visual statement.",
 	"keywords": [ "img", "photo", "picture" ],
 	"textdomain": "default",
 	"attributes": {
-		"blob": {
-			"type": "string",
-			"role": "local"
+		"align": {
+			"type": "string"
 		},
 		"url": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "img",
 			"attribute": "src",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"alt": {
 			"type": "string",
@@ -33,13 +25,13 @@
 			"selector": "img",
 			"attribute": "alt",
 			"default": "",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"caption": {
-			"type": "rich-text",
-			"source": "rich-text",
+			"type": "string",
+			"source": "html",
 			"selector": "figcaption",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"lightbox": {
 			"type": "object",
@@ -52,14 +44,14 @@
 			"source": "attribute",
 			"selector": "img",
 			"attribute": "title",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"href": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "figure > a",
 			"attribute": "href",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"rel": {
 			"type": "string",
@@ -75,7 +67,7 @@
 		},
 		"id": {
 			"type": "number",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"width": {
 			"type": "string"
@@ -103,8 +95,6 @@
 		}
 	},
 	"supports": {
-		"interactivity": true,
-		"align": [ "left", "center", "right", "wide", "full" ],
 		"anchor": true,
 		"color": {
 			"text": false,
@@ -112,9 +102,6 @@
 		},
 		"filter": {
 			"duotone": true
-		},
-		"spacing": {
-			"margin": true
 		},
 		"__experimentalBorder": {
 			"color": true,
@@ -126,14 +113,10 @@
 				"radius": true,
 				"width": true
 			}
-		},
-		"shadow": {
-			"__experimentalSkipSerialization": true
 		}
 	},
 	"selectors": {
 		"border": ".wp-block-image img, .wp-block-image .wp-block-image__crop-area, .wp-block-image .components-placeholder",
-		"shadow": ".wp-block-image img, .wp-block-image .wp-block-image__crop-area, .wp-block-image .components-placeholder",
 		"filter": {
 			"duotone": ".wp-block-image img, .wp-block-image .components-placeholder"
 		}
@@ -147,5 +130,6 @@
 		{ "name": "rounded", "label": "Rounded" }
 	],
 	"editorStyle": "wp-block-image-editor",
-	"style": "wp-block-image"
+	"style": "wp-block-image",
+	"viewScript": "file:./view.min.js"
 }

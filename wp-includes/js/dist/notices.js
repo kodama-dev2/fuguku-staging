@@ -1,36 +1,36 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -39,33 +39,33 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  store: () => (/* reexport */ store)
+  store: function() { return /* reexport */ store; }
 });
 
 // NAMESPACE OBJECT: ./node_modules/@wordpress/notices/build-module/store/actions.js
 var actions_namespaceObject = {};
 __webpack_require__.r(actions_namespaceObject);
 __webpack_require__.d(actions_namespaceObject, {
-  createErrorNotice: () => (createErrorNotice),
-  createInfoNotice: () => (createInfoNotice),
-  createNotice: () => (createNotice),
-  createSuccessNotice: () => (createSuccessNotice),
-  createWarningNotice: () => (createWarningNotice),
-  removeAllNotices: () => (removeAllNotices),
-  removeNotice: () => (removeNotice),
-  removeNotices: () => (removeNotices)
+  createErrorNotice: function() { return createErrorNotice; },
+  createInfoNotice: function() { return createInfoNotice; },
+  createNotice: function() { return createNotice; },
+  createSuccessNotice: function() { return createSuccessNotice; },
+  createWarningNotice: function() { return createWarningNotice; },
+  removeAllNotices: function() { return removeAllNotices; },
+  removeNotice: function() { return removeNotice; },
+  removeNotices: function() { return removeNotices; }
 });
 
 // NAMESPACE OBJECT: ./node_modules/@wordpress/notices/build-module/store/selectors.js
 var selectors_namespaceObject = {};
 __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, {
-  getNotices: () => (getNotices)
+  getNotices: function() { return getNotices; }
 });
 
-;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
-;// ./node_modules/@wordpress/notices/build-module/store/utils/on-sub-key.js
+;// CONCATENATED MODULE: external ["wp","data"]
+var external_wp_data_namespaceObject = window["wp"]["data"];
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/store/utils/on-sub-key.js
 /**
  * Higher-order reducer creator which creates a combined reducer object, keyed
  * by a property on the action object.
@@ -93,9 +93,9 @@ const onSubKey = actionProperty => reducer => (state = {}, action) => {
     [key]: nextKeyState
   };
 };
-/* harmony default export */ const on_sub_key = (onSubKey);
+/* harmony default export */ var on_sub_key = (onSubKey);
 
-;// ./node_modules/@wordpress/notices/build-module/store/reducer.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/store/reducer.js
 /**
  * Internal dependencies
  */
@@ -132,9 +132,9 @@ const notices = on_sub_key('context')((state = [], action) => {
   }
   return state;
 });
-/* harmony default export */ const reducer = (notices);
+/* harmony default export */ var reducer = (notices);
 
-;// ./node_modules/@wordpress/notices/build-module/store/constants.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/store/constants.js
 /**
  * Default context to use for notice grouping when not otherwise specified. Its
  * specific value doesn't hold much meaning, but it must be reasonably unique
@@ -151,7 +151,7 @@ const DEFAULT_CONTEXT = 'global';
  */
 const DEFAULT_STATUS = 'info';
 
-;// ./node_modules/@wordpress/notices/build-module/store/actions.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/store/actions.js
 /**
  * Internal dependencies
  */
@@ -235,7 +235,7 @@ function createNotice(status = DEFAULT_STATUS, content, options = {}) {
   } = options;
 
   // The supported value shape of content is currently limited to plain text
-  // strings. To avoid setting expectation that e.g. a React Element could be
+  // strings. To avoid setting expectation that e.g. a WPElement could be
   // supported, cast to a string.
   content = String(content);
   return {
@@ -483,7 +483,7 @@ function removeNotice(id, context = DEFAULT_CONTEXT) {
  * 	const notices = useSelect( ( select ) =>
  * 		select( noticesStore ).getNotices()
  * 	);
- * 	const { removeAllNotices } = useDispatch( noticesStore );
+ * 	const { removeNotices } = useDispatch( noticesStore );
  * 	return (
  * 		<>
  * 			<ul>
@@ -566,7 +566,7 @@ function removeNotices(ids, context = DEFAULT_CONTEXT) {
   };
 }
 
-;// ./node_modules/@wordpress/notices/build-module/store/selectors.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/store/selectors.js
 /**
  * Internal dependencies
  */
@@ -641,7 +641,7 @@ function getNotices(state, context = DEFAULT_CONTEXT) {
   return state[context] || DEFAULT_NOTICES;
 }
 
-;// ./node_modules/@wordpress/notices/build-module/store/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/store/index.js
 /**
  * WordPress dependencies
  */
@@ -666,7 +666,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)('core/notice
 });
 (0,external_wp_data_namespaceObject.register)(store);
 
-;// ./node_modules/@wordpress/notices/build-module/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/notices/build-module/index.js
 
 
 (window.wp = window.wp || {}).notices = __webpack_exports__;

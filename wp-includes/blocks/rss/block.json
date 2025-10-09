@@ -43,30 +43,7 @@
 	},
 	"supports": {
 		"align": true,
-		"html": false,
-		"interactivity": {
-			"clientNavigation": true
-		},
-		"__experimentalBorder": {
-			"radius": true,
-			"color": true,
-			"width": true,
-			"style": true
-		},
-		"spacing": {
-			"margin": true,
-			"padding": true,
-			"__experimentalDefaultControls": {
-				"padding": false,
-				"margin": false
-			}
-		},
-		"color": {
-			"background": true,
-			"text": true,
-			"gradients": true,
-			"link": true
-		}
+		"html": false
 	},
 	"editorStyle": "wp-block-rss-editor",
 	"style": "wp-block-rss"

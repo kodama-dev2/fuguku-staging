@@ -8,11 +8,6 @@
 /**
  * Renders the `core/calendar` block on server.
  *
- * @since 5.2.0
- *
- * @global int $monthnum.
- * @global int $year.
- *
  * @param array $attributes The block attributes.
  *
  * @return string Returns the block content.
@@ -38,8 +33,10 @@ function render_block_core_calendar( $attributes ) {
 			str_contains( $permalink_structure, '%monthnum%' ) &&
 			str_contains( $permalink_structure, '%year%' )
 		) {
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
 			$monthnum = $attributes['month'];
-			$year     = $attributes['year'];
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
+			$year = $attributes['year'];
 		}
 	}
 
@@ -73,16 +70,16 @@ function render_block_core_calendar( $attributes ) {
 		$calendar
 	);
 
+	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
 	$monthnum = $previous_monthnum;
-	$year     = $previous_year;
+	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
+	$year = $previous_year;
 
 	return $output;
 }
 
 /**
  * Registers the `core/calendar` block on server.
- *
- * @since 5.2.0
  */
 function register_block_core_calendar() {
 	register_block_type_from_metadata(
@@ -100,8 +97,6 @@ add_action( 'init', 'register_block_core_calendar' );
  *
  * Used to hide the calendar block when there are no published posts.
  * This compensates for a known Core bug: https://core.trac.wordpress.org/ticket/12016
- *
- * @since 5.9.0
  *
  * @return bool Has any published posts or not.
  */
@@ -126,10 +121,6 @@ function block_core_calendar_has_published_posts() {
  * Queries the database for any published post and saves
  * a flag whether any published post exists or not.
  *
- * @since 5.9.0
- *
- * @global wpdb $wpdb WordPress database abstraction object.
- *
  * @return bool Has any published posts or not.
  */
 function block_core_calendar_update_has_published_posts() {
@@ -145,8 +136,6 @@ if ( ! is_multisite() ) {
 	/**
 	 * Handler for updating the has published posts flag when a post is deleted.
 	 *
-	 * @since 5.9.0
-	 *
 	 * @param int $post_id Deleted post ID.
 	 */
 	function block_core_calendar_update_has_published_post_on_delete( $post_id ) {
@@ -161,8 +150,6 @@ if ( ! is_multisite() ) {
 
 	/**
 	 * Handler for updating the has published posts flag when a post status changes.
-	 *
-	 * @since 5.9.0
 	 *
 	 * @param string  $new_status The status the post is changing to.
 	 * @param string  $old_status The status the post is changing from.
