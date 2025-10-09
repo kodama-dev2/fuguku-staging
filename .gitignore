@@ -62,3 +62,18 @@ wp-content/themes/claue/core/admin/assets/images/layout/product-revamp.png
 wp-content 2/
 # Large archives
 *.zip
+*.gz
+*.sql.gz
+
+# Do not track WordPress core and marketplace plugins (server-managed)
+wp-admin/
+wp-includes/
+wp-content/plugins/
+wp-content/srplugin_backups/
+wp-content/themes/twentytwentyfive/
+
+# Stray/temporary items on server
+fuguku_staging_*.sql.gz
+router.php
+claue/
+wp-admin/wp-admin/
