@@ -308,3 +308,54 @@ Notes operasional:
 - Pastikan tidak ada Page bernama `magazine` yang bisa bentrok dengan arsip CPT.
 - Post single harus di-assign ke term taxonomy yang valid (mis. `fashion-shows`).
 - Untuk Elementor: aktifkan post type `magazine` di Elementor Settings dan buat Single/Archive Templates sesuai kebutuhan.
+
+---
+
+## Incident Postmortem – 2025-10-09
+
+### Ringkasan
+- Terjadi kegagalan deploy dan critical error setelah upaya menyamakan Git dengan kondisi server dengan menyertakan WordPress core dan plugin marketplace ke dalam commit.
+- Penyebab utama: strategi overengineering (full snapshot core/plugins via Git), tidak mengikuti constraint user (deploy hanya file yang diedit), dan tidak melakukan rollback cepat saat error.
+
+### Kesalahan Teknis (yang harus dihindari ke depan)
+- Menyinkronkan WordPress core (`wp-admin/`, `wp-includes/`) dan plugin marketplace ke Git lalu deploy → berisiko besar memicu mismatch versi dan DB schema serta korupsi file.
+- Melarang download WordPress dari sumber resmi saat terindikasi file core corrupt/hilang. Koreksi: jika core corrupt atau tidak lengkap, WAJIB gunakan paket resmi WordPress dengan versi yang sesuai dan lakukan prosedur upgrade terkontrol.
+- Tidak segera rollback ketika muncul critical error di staging.
+
+### Kesalahan Komunikasi
+- Tidak mengikuti instruksi user untuk hanya push file yang diedit; memberi solusi yang tidak diminta (overengineering).
+- Mengaitkan isu yang tidak relevan (misal menghubungkan carousel dengan masalah quantity) dan lambat mengakui arah yang benar dari user.
+- Kurang singkat dan tidak langsung ke solusi yang diminta user.
+
+### Kebijakan dan Guardrails yang Diperbarui
+- Mode Deploy DEFAULT: Theme-only
+  - Git hanya melacak custom code: `wp-content/themes/claue-child/` dan plugin kustom bila ada.
+  - DILARANG menyentuh `wp-admin/`, `wp-includes/`, `wp-content/plugins/` marketplace saat deploy.
+  - Hostinger 1-klik deploy hanya menarik perubahan tema/ custom code.
+
+- Mode Full-Stack (Core/Plugins) HANYA dengan persetujuan eksplisit user:
+  - Aktifkan maintenance mode; backup file + DB.
+  - Jika core corrupt/hilang: download paket WordPress resmi dengan versi yang SESUAI lingkungan server; timpa `wp-admin/` dan `wp-includes/` dari paket resmi; jalankan `/wp-admin/upgrade.php`.
+  - Sinkron versi plugin via wp-admin atau WP-CLI; uji kompatibilitas, baru nonaktifkan maintenance mode.
+
+- Source of Truth Operasional:
+  - Custom code (child theme/plugin kustom) → Git.
+  - WordPress core & plugin marketplace → dikelola via server (wp-admin), versi dicatat bila perlu, TIDAK di-commit ke Git.
+
+- Recovery & Rollback:
+  - Jika muncul critical error pasca deploy, segera rollback ke commit terakhir yang sehat sebelum investigasi lebih lanjut.
+
+### Pre-Deploy Checklist Tambahan
+- [ ] Scope deploy dikonfirmasi: theme-only vs full-stack (harus ada persetujuan user untuk full-stack).
+- [ ] Jika full-stack: aktifkan maintenance mode; siapkan backup; siapkan paket WordPress resmi versi yang tepat.
+- [ ] Setelah deploy: jalankan `/wp-admin/upgrade.php`, clear cache, test halaman kritikal (login, product, cart, checkout).
+
+### Tindakan Korektif Hari Ini
+- Rollback commit sync core/plugins yang memicu critical error.
+- Menetapkan kembali kebijakan deploy theme-only sebagai default untuk mencegah rollback versi yang tidak diinginkan.
+
+### Apology & Accountability
+- Kami meminta maaf atas kesalahan teknis dan komunikasi yang menyebabkan gangguan di staging. Ke depan kami akan:
+  - Mengikuti instruksi user secara ketat (deploy hanya file yang diminta).
+  - Menghindari overengineering, memberi solusi paling sederhana yang memenuhi kebutuhan.
+  - Melakukan rollback cepat saat terjadi error dan berkomunikasi singkat, jelas, dan to the point.
