@@ -153,11 +153,40 @@ add_filter('woocommerce_quantity_input_args', function($args, $product) {
     return $args;
 }, 10, 2);
 
+// Force body class to popup behavior if theme option drifted
+add_filter('body_class', function($classes){
+    if (!in_array('jan-atc-behavior-popup', $classes, true)) {
+        $classes[] = 'jan-atc-behavior-popup';
+    }
+    return $classes;
+}, 99);
+
 // Fallback JS: bind + / - even if parent script fails to load
 add_action('wp_footer', function() {
     ?>
     <script>
     jQuery(function($){
+        // Ensure popup behavior fires after default add_to_cart ajax
+        $(document).ajaxComplete(function(event, xhr, settings){
+            try {
+                if (!settings || !settings.url) return;
+                if (settings.url.indexOf('add_to_cart') === -1) return;
+                if (typeof JASAjaxURL === 'undefined' || !$.magnificPopup) return;
+                $.ajax({
+                    url: JASAjaxURL,
+                    type: 'POST',
+                    data: { action: 'jas_claue_popup_content_ajax' },
+                    success: function(response){
+                        $.magnificPopup.open({
+                            items: { src: '<div class="product-quickview cart__popup pr">' + response + '</div>', type: 'inline' },
+                            mainClass: 'mfp-fade',
+                            removalDelay: 800
+                        });
+                    }
+                });
+            } catch(e) { /* noop */ }
+        });
+
         $(document.body).on('click', '.quantity .plus', function(e){
             e.preventDefault();
             var $qty  = $(this).closest('.quantity').find('input.qty');
@@ -179,6 +208,11 @@ add_action('wp_footer', function() {
             if (next < min) next = min;
             $qty.val(next).trigger('change');
             $('.quantity .plus').css('pointer-events','auto');
+        });
+
+        // Re-affirm after Woo fragments or content updates
+        $(document.body).on('wc_fragments_refreshed wc_fragments_loaded updated_wc_div', function(){
+            // no-op: delegated handlers above already cover future nodes
         });
     });
     </script>
