@@ -2,11 +2,11 @@
 /**
  * FUGU ProductShow Item Widget
  * 
- * Displays WooCommerce products by category or tag.
- * Auto-loads all products from selected category/tag for better performance.
+ * Displays WooCommerce products with repeater support.
+ * Each repeater item can query by category or tag.
  * 
  * @package Fuguku_Gifts
- * @version 3.0.0
+ * @version 3.1.0
  */
 
 if (!defined('ABSPATH')) {
@@ -37,30 +37,17 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
 
     protected function register_controls() {
         
-        // Content Section - Query
+        // Content Section
         $this->start_controls_section(
-            'query_section',
+            'content_section',
             [
-                'label' => __('Product Query', 'fuguku-gift'),
+                'label' => __('Content', 'fuguku-gift'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
-        $this->add_control(
-            'query_type',
-            [
-                'label' => __('Query By', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'category',
-                'options' => [
-                    'category' => __('Product Category', 'fuguku-gift'),
-                    'tag' => __('Product Tag', 'fuguku-gift'),
-                ],
-            ]
-        );
-
         // Get product categories
-        $categories = [];
+        $categories = ['' => __('Select Category', 'fuguku-gift')];
         if (function_exists('get_terms')) {
             $product_categories = get_terms([
                 'taxonomy' => 'product_cat',
@@ -73,22 +60,8 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             }
         }
 
-        $this->add_control(
-            'product_category',
-            [
-                'label' => __('Select Category', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::SELECT2,
-                'options' => $categories,
-                'default' => '',
-                'label_block' => true,
-                'condition' => [
-                    'query_type' => 'category',
-                ],
-            ]
-        );
-
         // Get product tags
-        $tags = [];
+        $tags = ['' => __('Select Tag', 'fuguku-gift')];
         if (function_exists('get_terms')) {
             $product_tags = get_terms([
                 'taxonomy' => 'product_tag',
@@ -101,33 +74,59 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             }
         }
 
-        $this->add_control(
+        $repeater = new \Elementor\Repeater();
+
+        $repeater->add_control(
+            'query_type',
+            [
+                'label' => __('Query By', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'category',
+                'options' => [
+                    'category' => __('Category', 'fuguku-gift'),
+                    'tag' => __('Tag', 'fuguku-gift'),
+                ],
+            ]
+        );
+
+        $repeater->add_control(
+            'product_category',
+            [
+                'label' => __('Category', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => $categories,
+                'default' => '',
+                'condition' => [
+                    'query_type' => 'category',
+                ],
+            ]
+        );
+
+        $repeater->add_control(
             'product_tag',
             [
-                'label' => __('Select Tag', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::SELECT2,
+                'label' => __('Tag', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => $tags,
                 'default' => '',
-                'label_block' => true,
                 'condition' => [
                     'query_type' => 'tag',
                 ],
             ]
         );
 
-        $this->add_control(
-            'products_per_page',
+        $repeater->add_control(
+            'products_limit',
             [
-                'label' => __('Products to Show', 'fuguku-gift'),
+                'label' => __('Limit', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'default' => 12,
                 'min' => 1,
                 'max' => 100,
-                'description' => __('Number of products to display', 'fuguku-gift'),
             ]
         );
 
-        $this->add_control(
+        $repeater->add_control(
             'orderby',
             [
                 'label' => __('Order By', 'fuguku-gift'),
@@ -144,16 +143,47 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $repeater->add_control(
             'order',
             [
                 'label' => __('Order', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'DESC',
                 'options' => [
-                    'ASC' => __('Ascending', 'fuguku-gift'),
-                    'DESC' => __('Descending', 'fuguku-gift'),
+                    'ASC' => __('ASC', 'fuguku-gift'),
+                    'DESC' => __('DESC', 'fuguku-gift'),
                 ],
+            ]
+        );
+
+        $repeater->add_control(
+            'sort_order',
+            [
+                'label' => __('Sort Order', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 1,
+                'min' => 1,
+                'max' => 100,
+            ]
+        );
+
+        $this->add_control(
+            'items',
+            [
+                'label' => __('Product Queries', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'default' => [
+                    [
+                        'query_type' => 'category',
+                        'product_category' => '',
+                        'products_limit' => 12,
+                        'orderby' => 'date',
+                        'order' => 'DESC',
+                        'sort_order' => 1,
+                    ],
+                ],
+                'title_field' => 'Query #{{{ sort_order }}} - {{{ query_type }}}',
             ]
         );
 
@@ -227,7 +257,6 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 'label_on' => __('Yes', 'fuguku-gift'),
                 'label_off' => __('No', 'fuguku-gift'),
                 'default' => 'yes',
-                'description' => __('Show next/prev arrows when multiple images', 'fuguku-gift'),
             ]
         );
 
@@ -239,13 +268,12 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 'default' => 6,
                 'min' => 0,
                 'max' => 50,
-                'description' => __('Number of words to show (0 = hide description)', 'fuguku-gift'),
             ]
         );
 
         $this->end_controls_section();
 
-        // Style Section - Item (same as FUGU Images Item)
+        // Style Section - Item
         $this->start_controls_section(
             'style_item_section',
             [
@@ -352,7 +380,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => '%',
-                    'size' => 70,
+                    'size' => 100,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .fugu-productshow-overlay' => 'opacity: calc({{SIZE}} / 100);',
@@ -535,41 +563,56 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
+        if (empty($settings['items'])) {
+            echo '<div class="fugu-productshow-notice">';
+            echo '<p>' . __('Please add some product queries.', 'fuguku-gift') . '</p>';
+            echo '</div>';
+            return;
+        }
+
         // Check if WooCommerce is active
         if (!function_exists('wc_get_products')) {
-            echo '<div class="fugu-productshow-notice" style="padding: 20px; background: #fff3cd; border: 1px solid #ffc107; text-align: center;">';
+            echo '<div class="fugu-productshow-notice">';
             echo '<p>' . __('WooCommerce is required for this widget.', 'fuguku-gift') . '</p>';
             echo '</div>';
             return;
         }
 
-        // Build product query based on category or tag
-        $query_args = [
-            'limit' => (int) ($settings['products_per_page'] ?? 12),
-            'status' => 'publish',
-            'orderby' => $settings['orderby'] ?? 'date',
-            'order' => $settings['order'] ?? 'DESC',
-        ];
+        // Sort items by sort_order
+        $items = $settings['items'];
+        usort($items, function($a, $b) {
+            return ($a['sort_order'] ?? 1) - ($b['sort_order'] ?? 1);
+        });
 
-        $query_type = $settings['query_type'] ?? 'category';
-        
-        if ($query_type === 'category' && !empty($settings['product_category'])) {
-            $query_args['category'] = [(int) $settings['product_category']];
-        } elseif ($query_type === 'tag' && !empty($settings['product_tag'])) {
-            $query_args['tag'] = [(int) $settings['product_tag']];
-        } else {
-            echo '<div class="fugu-productshow-notice" style="padding: 20px; background: #f9f9f9; border: 1px solid #ddd; text-align: center;">';
-            echo '<p>' . __('Please select a category or tag.', 'fuguku-gift') . '</p>';
-            echo '</div>';
-            return;
+        // Collect all products from all queries
+        $all_products = [];
+        foreach ($items as $item) {
+            $query_args = [
+                'limit' => (int) ($item['products_limit'] ?? 12),
+                'status' => 'publish',
+                'orderby' => $item['orderby'] ?? 'date',
+                'order' => $item['order'] ?? 'DESC',
+            ];
+
+            $query_type = $item['query_type'] ?? 'category';
+            
+            if ($query_type === 'category' && !empty($item['product_category'])) {
+                $query_args['category'] = [(int) $item['product_category']];
+            } elseif ($query_type === 'tag' && !empty($item['product_tag'])) {
+                $query_args['tag'] = [(int) $item['product_tag']];
+            } else {
+                continue; // Skip if no valid query
+            }
+
+            $products = wc_get_products($query_args);
+            if (!empty($products)) {
+                $all_products = array_merge($all_products, $products);
+            }
         }
 
-        // Get products
-        $products = wc_get_products($query_args);
-
-        if (empty($products)) {
-            echo '<div class="fugu-productshow-notice" style="padding: 20px; background: #f9f9f9; border: 1px solid #ddd; text-align: center;">';
-            echo '<p>' . __('No products found in this category/tag.', 'fuguku-gift') . '</p>';
+        if (empty($all_products)) {
+            echo '<div class="fugu-productshow-notice">';
+            echo '<p>' . __('No products found. Please select valid categories or tags.', 'fuguku-gift') . '</p>';
             echo '</div>';
             return;
         }
@@ -581,23 +624,22 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         ?>
         
         <div class="fugu-productshow-container" data-columns="<?php echo esc_attr($columns); ?>" data-object-fit="<?php echo esc_attr($object_fit); ?>">
-            <?php foreach ($products as $item_index => $product) : 
-                // Get product data
+            <?php foreach ($all_products as $item_index => $product) : 
                 $product_id = $product->get_id();
                 $title = $product->get_name();
                 $price = $product->get_price_html();
                 $short_desc = $product->get_short_description();
                 
                 // Truncate description to X words
+                $description_output = '';
                 if ($description_length > 0 && $short_desc) {
-                    $words = explode(' ', strip_tags($short_desc));
+                    $clean_desc = strip_tags($short_desc);
+                    $words = preg_split('/\s+/', $clean_desc, -1, PREG_SPLIT_NO_EMPTY);
                     if (count($words) > $description_length) {
-                        $short_desc = implode(' ', array_slice($words, 0, $description_length)) . '...';
+                        $description_output = implode(' ', array_slice($words, 0, $description_length)) . '...';
                     } else {
-                        $short_desc = strip_tags($short_desc);
+                        $description_output = $clean_desc;
                     }
-                } elseif ($description_length === 0) {
-                    $short_desc = '';
                 }
 
                 // Get product images
@@ -650,8 +692,8 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                                 <div class="fugu-productshow-price"><?php echo wp_kses_post($price); ?></div>
                             <?php endif; ?>
                             
-                            <?php if ($short_desc) : ?>
-                                <div class="fugu-productshow-description"><?php echo esc_html($short_desc); ?></div>
+                            <?php if ($description_output) : ?>
+                                <div class="fugu-productshow-description"><?php echo esc_html($description_output); ?></div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -704,7 +746,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         <?php endif; ?>
 
         <style>
-        /* Match FUGU Images Item styling */
+        /* Match FUGU Images Item styling exactly */
         .fugu-productshow-container {
             display: grid;
             gap: 30px;
@@ -745,6 +787,11 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         .fugu-productshow-image.active {
             opacity: 1;
         }
+        .fugu-productshow-image a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
         .fugu-productshow-image img {
             width: 100%;
             height: 100%;
@@ -756,25 +803,30 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         .fugu-productshow-container[data-object-fit="fill"] .fugu-productshow-image img {
             object-fit: fill;
         }
+        /* Overlay with gradient - same as FUGU Images Item */
         .fugu-productshow-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             padding: 20px;
-            background: linear-gradient(to top, #ffffff 0%, transparent 100%);
-            opacity: 0.7;
+            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%);
             z-index: 2;
+            pointer-events: none;
         }
         .fugu-productshow-content {
             position: relative;
             z-index: 3;
+        }
+        .fugu-productshow-content * {
+            pointer-events: auto;
         }
         .fugu-productshow-title {
             margin: 0 0 5px 0;
             font-size: 18px;
             font-weight: 600;
             color: #222222;
+            line-height: 1.3;
         }
         .fugu-productshow-title a {
             color: inherit;
@@ -784,9 +836,10 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             text-decoration: underline;
         }
         .fugu-productshow-price {
-            margin: 0 0 5px 0;
+            margin: 0 0 8px 0;
             font-size: 16px;
             color: #666666;
+            line-height: 1.3;
         }
         .fugu-productshow-description {
             margin: 0;
@@ -794,6 +847,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             color: #888888;
             line-height: 1.5;
         }
+        /* Navigation - clean line icons without background */
         .fugu-productshow-navigation {
             position: absolute;
             top: 50%;
@@ -810,8 +864,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             width: auto;
             height: auto;
             border: none;
-            border-radius: 0;
-            background: transparent;
+            background: transparent !important;
             color: #ffffff;
             font-size: 24px;
             display: flex;
@@ -821,11 +874,18 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             transition: color 0.3s ease, transform 0.3s ease;
             pointer-events: auto;
             padding: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            outline: none !important;
+            box-shadow: none !important;
         }
-        .fugu-productshow-nav-btn:hover {
+        .fugu-productshow-nav-btn:hover,
+        .fugu-productshow-nav-btn:focus,
+        .fugu-productshow-nav-btn:active {
+            background: transparent !important;
             color: #ffffff;
             transform: scale(1.2);
+            outline: none !important;
+            box-shadow: none !important;
         }
         .fugu-productshow-notice {
             padding: 20px;
