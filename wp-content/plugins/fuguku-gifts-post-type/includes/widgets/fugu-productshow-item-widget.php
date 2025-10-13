@@ -2,10 +2,11 @@
 /**
  * FUGU ProductShow Item Widget
  * 
- * Displays WooCommerce product with images from gallery, name, price, and description.
+ * Displays WooCommerce products with images from gallery, name, price, and description.
+ * Uses repeater to add multiple products like FUGU Images Item.
  * 
  * @package Fuguku_Gifts
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 if (!defined('ABSPATH')) {
@@ -36,17 +37,17 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
 
     protected function register_controls() {
         
-        // Content Section - Product Selection
+        // Content Section
         $this->start_controls_section(
             'content_section',
             [
-                'label' => __('Product', 'fuguku-gift'),
+                'label' => __('Content', 'fuguku-gift'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
-        // Use simple select2 for product search (compatible with all Elementor versions)
-        $products = [];
+        // Get products for dropdown
+        $products = ['' => __('Select Product', 'fuguku-gift')];
         if (function_exists('wc_get_products')) {
             $wc_products = wc_get_products([
                 'limit' => 100,
@@ -59,7 +60,10 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             }
         }
 
-        $this->add_control(
+        $repeater = new \Elementor\Repeater();
+
+        // Product selector
+        $repeater->add_control(
             'product_id',
             [
                 'label' => __('Select Product', 'fuguku-gift'),
@@ -67,32 +71,33 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 'options' => $products,
                 'default' => '',
                 'label_block' => true,
-                'description' => __('Select a WooCommerce product to display', 'fuguku-gift'),
             ]
         );
 
-        $this->add_control(
-            'use_short_description',
+        $repeater->add_control(
+            'sort_order',
             [
-                'label' => __('Use Short Description', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'fuguku-gift'),
-                'label_off' => __('No', 'fuguku-gift'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-                'description' => __('Show short description instead of full product description', 'fuguku-gift'),
-            ]
-        );
-
-        $this->add_control(
-            'limit_images',
-            [
-                'label' => __('Limit Images', 'fuguku-gift'),
+                'label' => __('Sort Order', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 0,
-                'min' => 0,
-                'max' => 20,
-                'description' => __('Limit number of images to show (0 = show all)', 'fuguku-gift'),
+                'default' => 1,
+                'min' => 1,
+                'max' => 100,
+            ]
+        );
+
+        $this->add_control(
+            'items',
+            [
+                'label' => __('Products', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'default' => [
+                    [
+                        'product_id' => '',
+                        'sort_order' => 1,
+                    ],
+                ],
+                'title_field' => 'Product #{{{ sort_order }}}',
             ]
         );
 
@@ -133,16 +138,6 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                         'max' => 100,
                         'step' => 1,
                     ],
-                    'em' => [
-                        'min' => 0,
-                        'max' => 10,
-                        'step' => 0.1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 20,
-                        'step' => 0.5,
-                    ],
                 ],
                 'default' => [
                     'unit' => 'px',
@@ -176,13 +171,25 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 'label_on' => __('Yes', 'fuguku-gift'),
                 'label_off' => __('No', 'fuguku-gift'),
                 'default' => 'yes',
-                'description' => __('Show next/prev buttons when multiple images', 'fuguku-gift'),
+                'description' => __('Show next/prev arrows when multiple images', 'fuguku-gift'),
+            ]
+        );
+
+        $this->add_control(
+            'description_length',
+            [
+                'label' => __('Description Length (words)', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 6,
+                'min' => 0,
+                'max' => 50,
+                'description' => __('Number of words to show (0 = hide description)', 'fuguku-gift'),
             ]
         );
 
         $this->end_controls_section();
 
-        // Style Section - Item
+        // Style Section - Item (same as FUGU Images Item)
         $this->start_controls_section(
             'style_item_section',
             [
@@ -202,11 +209,6 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                         'min' => 200,
                         'max' => 800,
                         'step' => 10,
-                    ],
-                    'em' => [
-                        'min' => 10,
-                        'max' => 50,
-                        'step' => 1,
                     ],
                     '%' => [
                         'min' => 20,
@@ -235,16 +237,6 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                         'min' => 200,
                         'max' => 600,
                         'step' => 10,
-                    ],
-                    'em' => [
-                        'min' => 10,
-                        'max' => 50,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 20,
-                        'max' => 100,
-                        'step' => 5,
                     ],
                 ],
                 'default' => [
@@ -446,22 +438,22 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'nav_button_size',
             [
-                'label' => __('Button Size', 'fuguku-gift'),
+                'label' => __('Arrow Size', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
-                        'min' => 20,
-                        'max' => 60,
+                        'min' => 16,
+                        'max' => 48,
                         'step' => 2,
                     ],
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 32,
+                    'size' => 24,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .fugu-productshow-nav-btn' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .fugu-productshow-nav-btn' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -469,23 +461,11 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'nav_button_color',
             [
-                'label' => __('Button Color', 'fuguku-gift'),
+                'label' => __('Arrow Color', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
                     '{{WRAPPER}} .fugu-productshow-nav-btn' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'nav_button_bg',
-            [
-                'label' => __('Button Background', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'rgba(0,0,0,0.3)',
-                'selectors' => [
-                    '{{WRAPPER}} .fugu-productshow-nav-btn' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -499,13 +479,9 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        // Get product ID from settings (now it's direct from SELECT2)
-        $product_id = (int) ($settings['product_id'] ?? 0);
-
-        // Check if product ID is valid
-        if (!$product_id) {
+        if (empty($settings['items'])) {
             echo '<div class="fugu-productshow-notice" style="padding: 20px; background: #f9f9f9; border: 1px solid #ddd; text-align: center;">';
-            echo '<p>' . __('Please select a product.', 'fuguku-gift') . '</p>';
+            echo '<p>' . __('Please add some products to display.', 'fuguku-gift') . '</p>';
             echo '</div>';
             return;
         }
@@ -518,105 +494,113 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             return;
         }
 
-        // Get product
-        $product = wc_get_product($product_id);
-        if (!$product) {
-            echo '<div class="fugu-productshow-notice" style="padding: 20px; background: #f8d7da; border: 1px solid #dc3545; text-align: center;">';
-            echo '<p>' . __('Product not found.', 'fuguku-gift') . '</p>';
-            echo '</div>';
-            return;
-        }
+        // Sort items by sort_order
+        $items = $settings['items'];
+        usort($items, function($a, $b) {
+            return ($a['sort_order'] ?? 1) - ($b['sort_order'] ?? 1);
+        });
 
-        // Get product data
-        $title = $product->get_name();
-        $price = $product->get_price_html();
-        $description = ('yes' === ($settings['use_short_description'] ?? 'yes'))
-            ? $product->get_short_description()
-            : get_post_field('post_content', $product_id);
-
-        // Get product images
-        $image_ids = [];
-        $featured_image_id = (int) $product->get_image_id();
-        if ($featured_image_id) {
-            $image_ids[] = $featured_image_id;
-        }
-        $gallery_ids = $product->get_gallery_image_ids();
-        if (!empty($gallery_ids)) {
-            $image_ids = array_merge($image_ids, $gallery_ids);
-        }
-
-        // Limit images if set
-        $limit = (int) ($settings['limit_images'] ?? 0);
-        if ($limit > 0) {
-            $image_ids = array_slice($image_ids, 0, $limit);
-        }
-
-        // Get settings
         $columns = $settings['columns'];
         $object_fit = $settings['object_fit'];
         $show_navigation = $settings['show_navigation'];
-        $product_url = get_permalink($product_id);
+        $description_length = (int) ($settings['description_length'] ?? 6);
         ?>
         
         <div class="fugu-productshow-container" data-columns="<?php echo esc_attr($columns); ?>" data-object-fit="<?php echo esc_attr($object_fit); ?>">
-            <div class="fugu-productshow-item" data-product-id="<?php echo esc_attr($product_id); ?>">
+            <?php foreach ($items as $item_index => $item) : 
+                $product_id = (int) ($item['product_id'] ?? 0);
+                if (!$product_id) continue;
                 
-                <?php if (!empty($image_ids)) : ?>
-                    <div class="fugu-productshow-image-container">
-                        <?php foreach ($image_ids as $image_index => $image_id) : ?>
-                            <div class="fugu-productshow-image <?php echo ($image_index === 0) ? 'active' : ''; ?>" 
-                                 data-image-index="<?php echo $image_index; ?>">
+                $product = wc_get_product($product_id);
+                if (!$product) continue;
+
+                // Get product data
+                $title = $product->get_name();
+                $price = $product->get_price_html();
+                $short_desc = $product->get_short_description();
+                
+                // Truncate description to X words
+                if ($description_length > 0 && $short_desc) {
+                    $words = explode(' ', strip_tags($short_desc));
+                    if (count($words) > $description_length) {
+                        $short_desc = implode(' ', array_slice($words, 0, $description_length)) . '...';
+                    }
+                } elseif ($description_length === 0) {
+                    $short_desc = '';
+                }
+
+                // Get product images
+                $image_ids = [];
+                $featured_image_id = (int) $product->get_image_id();
+                if ($featured_image_id) {
+                    $image_ids[] = $featured_image_id;
+                }
+                $gallery_ids = $product->get_gallery_image_ids();
+                if (!empty($gallery_ids)) {
+                    $image_ids = array_merge($image_ids, $gallery_ids);
+                }
+
+                $product_url = get_permalink($product_id);
+            ?>
+                <div class="fugu-productshow-item" data-item-index="<?php echo $item_index; ?>">
+                    
+                    <?php if (!empty($image_ids)) : ?>
+                        <div class="fugu-productshow-image-container">
+                            <?php foreach ($image_ids as $image_index => $image_id) : ?>
+                                <div class="fugu-productshow-image <?php echo ($image_index === 0) ? 'active' : ''; ?>" 
+                                     data-image-index="<?php echo $image_index; ?>">
+                                    <a href="<?php echo esc_url($product_url); ?>">
+                                        <?php echo wp_get_attachment_image($image_id, 'large', false, ['alt' => esc_attr($title), 'loading' => 'lazy']); ?>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else : ?>
+                        <div class="fugu-productshow-image-container">
+                            <div class="fugu-productshow-image active">
                                 <a href="<?php echo esc_url($product_url); ?>">
-                                    <?php echo wp_get_attachment_image($image_id, 'large', false, ['alt' => esc_attr($title)]); ?>
+                                    <?php echo wc_placeholder_img('large'); ?>
                                 </a>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php else : ?>
-                    <div class="fugu-productshow-image-container">
-                        <div class="fugu-productshow-image active">
-                            <a href="<?php echo esc_url($product_url); ?>">
-                                <?php echo wc_placeholder_img('large'); ?>
-                            </a>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="fugu-productshow-overlay">
+                        <div class="fugu-productshow-content">
+                            <?php if ($title) : ?>
+                                <h3 class="fugu-productshow-title">
+                                    <a href="<?php echo esc_url($product_url); ?>">
+                                        <?php echo esc_html($title); ?>
+                                    </a>
+                                </h3>
+                            <?php endif; ?>
+                            
+                            <?php if ($price) : ?>
+                                <div class="fugu-productshow-price"><?php echo wp_kses_post($price); ?></div>
+                            <?php endif; ?>
+                            
+                            <?php if ($short_desc) : ?>
+                                <div class="fugu-productshow-description"><?php echo esc_html($short_desc); ?></div>
+                            <?php endif; ?>
                         </div>
                     </div>
-                <?php endif; ?>
 
-                <div class="fugu-productshow-overlay">
-                    <div class="fugu-productshow-content">
-                        <?php if ($title) : ?>
-                            <h3 class="fugu-productshow-title">
-                                <a href="<?php echo esc_url($product_url); ?>">
-                                    <?php echo esc_html($title); ?>
-                                </a>
-                            </h3>
-                        <?php endif; ?>
-                        
-                        <?php if ($price) : ?>
-                            <div class="fugu-productshow-price"><?php echo wp_kses_post($price); ?></div>
-                        <?php endif; ?>
-                        
-                        <?php if ($description) : ?>
-                            <div class="fugu-productshow-description"><?php echo wp_kses_post(wpautop($description)); ?></div>
-                        <?php endif; ?>
-                    </div>
+                    <?php if ($show_navigation === 'yes' && !empty($image_ids) && count($image_ids) > 1) : ?>
+                        <div class="fugu-productshow-navigation">
+                            <button class="fugu-productshow-nav-btn fugu-productshow-prev" data-direction="prev" data-item-index="<?php echo $item_index; ?>" aria-label="Previous image">
+                                <i class="fa fa-chevron-left"></i>
+                            </button>
+                            <button class="fugu-productshow-nav-btn fugu-productshow-next" data-direction="next" data-item-index="<?php echo $item_index; ?>" aria-label="Next image">
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
-
-                <?php if ($show_navigation === 'yes' && !empty($image_ids) && count($image_ids) > 1) : ?>
-                    <div class="fugu-productshow-navigation">
-                        <button class="fugu-productshow-nav-btn fugu-productshow-prev" data-direction="prev">
-                            <i class="fa fa-chevron-left"></i>
-                        </button>
-                        <button class="fugu-productshow-nav-btn fugu-productshow-next" data-direction="next">
-                            <i class="fa fa-chevron-right"></i>
-                        </button>
-                    </div>
-                <?php endif; ?>
-
-            </div>
+            <?php endforeach; ?>
         </div>
 
-        <?php if ($show_navigation === 'yes' && !empty($image_ids) && count($image_ids) > 1) : ?>
+        <?php if ($show_navigation === 'yes') : ?>
         <script>
         jQuery(document).ready(function($) {
             $('.fugu-productshow-container').each(function() {
@@ -627,7 +611,8 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                     e.stopPropagation();
                     
                     var direction = $(this).data('direction');
-                    var item = container.find('.fugu-productshow-item');
+                    var itemIndex = $(this).data('item-index');
+                    var item = container.find('.fugu-productshow-item[data-item-index="' + itemIndex + '"]');
                     var images = item.find('.fugu-productshow-image');
                     var currentImage = item.find('.fugu-productshow-image.active');
                     var currentIndex = currentImage.data('image-index');
@@ -648,7 +633,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         <?php endif; ?>
 
         <style>
-        /* Reuse styles from FUGU Images Item */
+        /* Match FUGU Images Item styling */
         .fugu-productshow-container {
             display: grid;
             gap: 30px;
@@ -715,7 +700,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             z-index: 3;
         }
         .fugu-productshow-title {
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             font-size: 18px;
             font-weight: 600;
             color: #222222;
@@ -728,7 +713,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             text-decoration: underline;
         }
         .fugu-productshow-price {
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             font-size: 16px;
             color: #666666;
         }
@@ -751,21 +736,25 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             pointer-events: none;
         }
         .fugu-productshow-nav-btn {
-            width: 32px;
-            height: 32px;
+            width: auto;
+            height: auto;
             border: none;
-            border-radius: 50%;
-            background-color: rgba(0,0,0,0.3);
+            border-radius: 0;
+            background: transparent;
             color: #ffffff;
+            font-size: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
             pointer-events: auto;
+            padding: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         .fugu-productshow-nav-btn:hover {
-            background-color: rgba(0,0,0,0.5);
+            color: #ffffff;
+            transform: scale(1.2);
         }
         .fugu-productshow-notice {
             padding: 20px;
@@ -789,4 +778,3 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         <?php
     }
 }
-
