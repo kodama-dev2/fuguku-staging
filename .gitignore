@@ -68,7 +68,8 @@ wp-content 2/
 # Do not track WordPress core and marketplace plugins (server-managed)
 wp-admin/
 wp-includes/
-wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/fuguku-gifts-post-type/
 wp-content/srplugin_backups/
 wp-content/themes/twentytwentyfive/
 
