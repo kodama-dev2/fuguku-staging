@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget, FUGU IMAGES-ITEM widget (multiple images per item, gap control, width control, navigation, text field, object-fit), dan FUGU PRODUCTSHOW-ITEM widget (repeater untuk multiple products, auto-fetch gallery images/name/price/description dari WooCommerce, line icon navigation tanpa background, truncate description 5-6 words, card size sama dengan Images Item). Hybrid approach (LV-style archive + Elementor pages), clean CSS, simplified widget system untuk better performance. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-10-13 22:00, version 2.4.5
- * Version: 2.4.5
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget, FUGU IMAGES-ITEM widget (multiple images per item, gap control, width control, navigation, text field, object-fit), dan FUGU PRODUCTSHOW-ITEM widget (query by category/tag, auto-load products dari taxonomy, line icon navigation tanpa background, truncate description 5-6 words, orderby/order/limit controls, card size sama dengan Images Item, optimized untuk load banyak produk tanpa berat). Hybrid approach (LV-style archive + Elementor pages), clean CSS, simplified widget system untuk better performance. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-10-13 22:15, version 2.4.6
+ * Version: 2.4.6
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-13 22:00
+ * Last Updated: 2025-10-13 22:15
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -49,7 +49,8 @@
  * v2.4.2 - Fixed FUGU IMAGES-ITEM widget: separated overlay from text content, removed bottom padding from grid container
  * v2.4.3 - Added FUGU PRODUCTSHOW-ITEM widget: WooCommerce product integration dengan product search autocomplete, auto-fetch gallery images, name, price, description, navigation controls, layout matching FUGU Images-Item untuk consistency
  * v2.4.4 - Fixed FUGU PRODUCTSHOW-ITEM widget: replaced Elementor Pro Query Control dengan simple SELECT2 untuk better compatibility dan menghindari endless loading di Elementor sidebar, product picker sekarang lebih stabil
- * v2.4.5 - CURRENT - Revamped FUGU PRODUCTSHOW-ITEM widget: changed to repeater (multiple products like Images Item), line icon navigation without background, truncate description to 5-6 words, card size matching Images Item, improved UX dengan clean navigation styling
+ * v2.4.5 - Revamped FUGU PRODUCTSHOW-ITEM widget: changed to repeater (multiple products like Images Item), line icon navigation without background, truncate description to 5-6 words, card size matching Images Item, improved UX dengan clean navigation styling
+ * v2.4.6 - CURRENT - Optimized FUGU PRODUCTSHOW-ITEM widget: changed dari repeater ke query by category/tag, auto-load semua products dari taxonomy yang dipilih, added orderby/order/limit controls, optimized performance untuk load banyak produk tanpa berat di editor
  */
 
 // Prevent direct access
