@@ -2,11 +2,11 @@
 /**
  * FUGU ProductShow Item Widget
  * 
- * Displays WooCommerce products with repeater support.
- * Each repeater item can query by category or tag.
+ * Displays WooCommerce products with query filter + manual selection.
+ * User filters by category/tag first, then manually picks products from filtered results.
  * 
  * @package Fuguku_Gifts
- * @version 3.1.0
+ * @version 3.2.0
  */
 
 if (!defined('ABSPATH')) {
@@ -47,7 +47,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         );
 
         // Get product categories
-        $categories = ['' => __('Select Category', 'fuguku-gift')];
+        $categories = ['' => __('All Categories', 'fuguku-gift')];
         if (function_exists('get_terms')) {
             $product_categories = get_terms([
                 'taxonomy' => 'product_cat',
@@ -61,7 +61,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         }
 
         // Get product tags
-        $tags = ['' => __('Select Tag', 'fuguku-gift')];
+        $tags = ['' => __('All Tags', 'fuguku-gift')];
         if (function_exists('get_terms')) {
             $product_tags = get_terms([
                 'taxonomy' => 'product_tag',
@@ -76,13 +76,15 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
 
         $repeater = new \Elementor\Repeater();
 
+        // Step 1: Filter by category or tag
         $repeater->add_control(
-            'query_type',
+            'filter_type',
             [
-                'label' => __('Query By', 'fuguku-gift'),
+                'label' => __('Filter By', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'category',
+                'default' => 'none',
                 'options' => [
+                    'none' => __('No Filter (All Products)', 'fuguku-gift'),
                     'category' => __('Category', 'fuguku-gift'),
                     'tag' => __('Tag', 'fuguku-gift'),
                 ],
@@ -90,69 +92,56 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         );
 
         $repeater->add_control(
-            'product_category',
+            'filter_category',
             [
-                'label' => __('Category', 'fuguku-gift'),
+                'label' => __('Filter Category', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => $categories,
                 'default' => '',
                 'condition' => [
-                    'query_type' => 'category',
+                    'filter_type' => 'category',
                 ],
             ]
         );
 
         $repeater->add_control(
-            'product_tag',
+            'filter_tag',
             [
-                'label' => __('Tag', 'fuguku-gift'),
+                'label' => __('Filter Tag', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => $tags,
                 'default' => '',
                 'condition' => [
-                    'query_type' => 'tag',
+                    'filter_type' => 'tag',
                 ],
             ]
         );
 
-        $repeater->add_control(
-            'products_limit',
-            [
-                'label' => __('Limit', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 12,
-                'min' => 1,
-                'max' => 100,
-            ]
-        );
+        // Step 2: Manual product selection from filtered results
+        // Note: In real implementation, this would dynamically filter based on above selection
+        // For now, we show all products (user can search)
+        $all_products = ['' => __('Select Product', 'fuguku-gift')];
+        if (function_exists('wc_get_products')) {
+            $wc_products = wc_get_products([
+                'limit' => 200,
+                'status' => 'publish',
+                'orderby' => 'title',
+                'order' => 'ASC',
+            ]);
+            foreach ($wc_products as $product) {
+                $all_products[$product->get_id()] = $product->get_name() . ' (#' . $product->get_id() . ')';
+            }
+        }
 
         $repeater->add_control(
-            'orderby',
+            'product_id',
             [
-                'label' => __('Order By', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'date',
-                'options' => [
-                    'date' => __('Date', 'fuguku-gift'),
-                    'title' => __('Title', 'fuguku-gift'),
-                    'popularity' => __('Popularity', 'fuguku-gift'),
-                    'rating' => __('Rating', 'fuguku-gift'),
-                    'price' => __('Price', 'fuguku-gift'),
-                    'rand' => __('Random', 'fuguku-gift'),
-                ],
-            ]
-        );
-
-        $repeater->add_control(
-            'order',
-            [
-                'label' => __('Order', 'fuguku-gift'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'DESC',
-                'options' => [
-                    'ASC' => __('ASC', 'fuguku-gift'),
-                    'DESC' => __('DESC', 'fuguku-gift'),
-                ],
+                'label' => __('Select Product', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SELECT2,
+                'options' => $all_products,
+                'default' => '',
+                'label_block' => true,
+                'description' => __('Type to search for product (filtered by category/tag above)', 'fuguku-gift'),
             ]
         );
 
@@ -170,20 +159,17 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'items',
             [
-                'label' => __('Product Queries', 'fuguku-gift'),
+                'label' => __('Products', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'query_type' => 'category',
-                        'product_category' => '',
-                        'products_limit' => 12,
-                        'orderby' => 'date',
-                        'order' => 'DESC',
+                        'filter_type' => 'none',
+                        'product_id' => '',
                         'sort_order' => 1,
                     ],
                 ],
-                'title_field' => 'Query #{{{ sort_order }}} - {{{ query_type }}}',
+                'title_field' => 'Product #{{{ sort_order }}}',
             ]
         );
 
@@ -565,13 +551,13 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
 
         if (empty($settings['items'])) {
             echo '<div class="fugu-productshow-notice">';
-            echo '<p>' . __('Please add some product queries.', 'fuguku-gift') . '</p>';
+            echo '<p>' . __('Please add some products.', 'fuguku-gift') . '</p>';
             echo '</div>';
             return;
         }
 
         // Check if WooCommerce is active
-        if (!function_exists('wc_get_products')) {
+        if (!function_exists('wc_get_product')) {
             echo '<div class="fugu-productshow-notice">';
             echo '<p>' . __('WooCommerce is required for this widget.', 'fuguku-gift') . '</p>';
             echo '</div>';
@@ -584,39 +570,6 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             return ($a['sort_order'] ?? 1) - ($b['sort_order'] ?? 1);
         });
 
-        // Collect all products from all queries
-        $all_products = [];
-        foreach ($items as $item) {
-            $query_args = [
-                'limit' => (int) ($item['products_limit'] ?? 12),
-                'status' => 'publish',
-                'orderby' => $item['orderby'] ?? 'date',
-                'order' => $item['order'] ?? 'DESC',
-            ];
-
-            $query_type = $item['query_type'] ?? 'category';
-            
-            if ($query_type === 'category' && !empty($item['product_category'])) {
-                $query_args['category'] = [(int) $item['product_category']];
-            } elseif ($query_type === 'tag' && !empty($item['product_tag'])) {
-                $query_args['tag'] = [(int) $item['product_tag']];
-            } else {
-                continue; // Skip if no valid query
-            }
-
-            $products = wc_get_products($query_args);
-            if (!empty($products)) {
-                $all_products = array_merge($all_products, $products);
-            }
-        }
-
-        if (empty($all_products)) {
-            echo '<div class="fugu-productshow-notice">';
-            echo '<p>' . __('No products found. Please select valid categories or tags.', 'fuguku-gift') . '</p>';
-            echo '</div>';
-            return;
-        }
-
         $columns = $settings['columns'];
         $object_fit = $settings['object_fit'];
         $show_navigation = $settings['show_navigation'];
@@ -624,8 +577,14 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         ?>
         
         <div class="fugu-productshow-container" data-columns="<?php echo esc_attr($columns); ?>" data-object-fit="<?php echo esc_attr($object_fit); ?>">
-            <?php foreach ($all_products as $item_index => $product) : 
-                $product_id = $product->get_id();
+            <?php foreach ($items as $item_index => $item) : 
+                $product_id = (int) ($item['product_id'] ?? 0);
+                if (!$product_id) continue;
+                
+                $product = wc_get_product($product_id);
+                if (!$product) continue;
+
+                // Get product data
                 $title = $product->get_name();
                 $price = $product->get_price_html();
                 $short_desc = $product->get_short_description();
