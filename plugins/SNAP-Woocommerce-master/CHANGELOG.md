@@ -1,1 +1,0 @@
-Refer to `readme.txt` file.

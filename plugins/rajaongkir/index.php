@@ -1,6 +1,0 @@
-<?php
-/**
- *
- *
- * @package Woocommerce-Cekongkir
- */
