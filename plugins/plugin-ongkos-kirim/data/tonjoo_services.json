@@ -1,0 +1,326 @@
+{
+  "jne":{
+    "reg":{
+      "name":"REG",
+      "desc":"Reguler",
+      "cat":"regular"
+    },
+    "oke":{
+      "name":"OKE",
+      "desc":"Ongkos Kirim Ekonomis",
+      "cat":"economy"
+    },
+    "yes":{
+      "name":"YES",
+      "desc":"Yakin Esok Sampai",
+      "cat":"nextday"
+    },
+    "sps":{
+      "name":"SPS",
+      "desc":"Super Speed",
+      "cat":"sameday"
+    },
+    "ctc":{
+      "name":"CTC",
+      "desc":"City to City Reguler",
+      "cat":"regular"
+    },
+    "ctcyes":{
+      "name":"CTCYES",
+      "desc":"City to City Nextday",
+      "cat":"nextday"
+    },
+    "ctcsps":{
+      "name":"CTCSPS",
+      "desc":"City to City Sameday",
+      "cat":"sameday"
+    },
+    "jtr":{
+      "name":"JTR",
+      "desc":"JNE Trucking (minimal 10kg)",
+      "cat":"cargo"
+    },
+    "pelikan":{
+      "name":"Pelikan",
+      "desc":"",
+      "cat":"document"
+    },
+    "popbox":{
+      "name":"Pop Box",
+      "desc":"",
+      "cat":"popbox"
+    }
+  },
+  "pos":{
+    "regular":{
+      "name":"Regular",
+      "desc":"",
+      "cat":"regular"
+    },
+    "nextday":{
+      "name":"Nextday",
+      "desc":"",
+      "cat":"nextday"
+    },
+    "sameday":{
+      "name":"Sameday",
+      "desc":"",
+      "cat":"sameday"
+    },
+    "dangerous-goods":{
+      "name":"Dangerous Goods",
+      "desc":"",
+      "cat":""
+    },
+    "valuable-goods":{
+      "name":"Valuable Goods",
+      "desc":"",
+      "cat":"regular"
+    },
+    "ekonomi-mbag":{
+      "name":"Ekonomi MBAG",
+      "desc":"",
+      "cat":"economy"
+    },
+    "ekonomi-paket":{
+      "name":"Ekonomi Paket",
+      "desc":"",
+      "cat":"economy"
+    },
+    "kargo-barang":{
+      "name":"Kargo Barang",
+      "desc":"",
+      "cat":"cargo"
+    }
+  },
+  "tiki":{
+    "reg":{
+      "name":"REG",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "eco":{
+      "name":"ECO",
+      "desc":"Economy Service",
+      "cat":"economy"
+    },
+    "ons":{
+      "name":"ONS",
+      "desc":"One Night Service",
+      "cat":"nextday"
+    },
+    "sds":{
+      "name":"SDS",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "tds":{
+      "name":"TDS",
+      "desc":"Two Day Service",
+      "cat":"nextday"
+    },
+    "trc":{
+      "name":"TRC",
+      "desc":"Trucking Service (minimal 10kg)",
+      "cat":"cargo"
+    }
+  },
+  "jnt":{
+    "ez":{
+      "name":"EZ",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "jsd":{
+      "name":"JSD",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "jnd":{
+      "name":"JND",
+      "desc":"Next Day Service",
+      "cat":"nextday"
+    },
+    "eco":{
+      "name":"ECO",
+      "desc":"Economy Service",
+      "cat":"economy"
+    }
+  },
+  "jntcargo":{
+    "fasttrack":{
+      "name":"FastTrack",
+      "desc":"Regular Service",
+      "cat":"cargo"
+    }
+  },
+  "wahana":{
+    "express":{
+      "name":"Express",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "nextday":{
+      "name":"NextDay",
+      "desc":"Next Day Service",
+      "cat":"nextday"
+    },
+    "ekonomis":{
+      "name":"Ekonomis",
+      "desc":"Economy Service",
+      "cat":"economy"
+    },
+    "popbox":{
+      "name":"PopBox",
+      "desc":"Pop Box (minimal 2kg)",
+      "cat":"popbox"
+    },
+    "kargo":{
+      "name":"Kargo",
+      "desc":"Cargo Service (minimal 10kg)",
+      "cat":"cargo"
+    },
+    "gedung-dan-apartment":{
+      "name":"Gedung dan Apartment",
+      "desc":"",
+      "cat":""
+    }
+  },
+  "sicepat":{
+    "reg":{
+      "name":"REG",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "siunt":{
+      "name":"SIUNT",
+      "desc":"Siuntung",
+      "cat":"regular"
+    },
+    "best":{
+      "name":"BEST",
+      "desc":"Besok Sampai Tujuan",
+      "cat":"nextday"
+    },
+    "sds":{
+      "name":"SDS",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "gokil":{
+      "name":"GOKIL",
+      "desc":"Cargo Kilat (minimal 10kg)",
+      "cat":"cargo"
+    }
+  },
+  "lion":{
+    "jagopack":{
+      "name":"JAGOPACK",
+      "desc":"Layanan Reguler",
+      "cat":"regular"
+    },
+    "bosspack":{
+      "name":"BOSSPACK",
+      "desc":"Layanan Prioritas",
+      "cat":"sameday"
+    },
+    "onepack":{
+      "name":"ONEPACK",
+      "desc":"One Day Service",
+      "cat":"nextday"
+    },
+    "regpack":{
+      "name":"REGPACK",
+      "desc":"Layanan Paket Darat",
+      "cat":"regular"
+    },
+    "bigpack":{
+      "name":"BIGPACK",
+      "desc":"Layanan Kargo",
+      "cat":"cargo"
+    },
+    "docupack":{
+      "name":"DOCUPACK",
+      "desc":"Layanan Dokumen",
+      "cat":"document"
+    }
+  },
+  "atlas":{
+    "udara":{
+      "name":"Udara",
+      "desc":"",
+      "cat":""
+    }
+  },
+  "anteraja":{
+    "regular":{
+      "name":"Regular",
+      "desc":"Regular Service",
+      "cat":"regular"
+    },
+    "next-day":{
+      "name":"Next Day",
+      "desc":"Next Day Service",
+      "cat":"nextday"
+    },
+    "same-day":{
+      "name":"Same Day",
+      "desc":"Same Day Service",
+      "cat":"sameday"
+    },
+    "cargo":{
+      "name":"Cargo",
+      "desc":"Cargo Service",
+      "cat":"cargo"
+    }
+  },
+  "ncs": {
+    "nrs": {
+      "name": "NRS",
+      "desc": "Regular Service",
+      "cat": "regular"
+    },
+    "ons": {
+      "name": "ONS",
+      "desc": "Over Night Service",
+      "cat": "nextday"
+    },
+    "sds": {
+      "name": "SDS",
+      "desc": "Same Day Service",
+      "cat": "sameday"
+    },
+    "nfo": {
+      "name": "NFO",
+      "desc": "Food One Night Service",
+      "cat": "nextday"
+    },
+    "nfs": {
+      "name": "NFS",
+      "desc": "Food Same Day Service",
+      "cat": "sameday"
+    },
+    "drt": {
+      "name": "DRT",
+      "desc": "Regular Darat",
+      "cat": "economy"
+    },
+    "jmr": {
+      "name": "JMR",
+      "desc": "Jawa Murah",
+      "cat": "economy"
+    }
+  },
+  "ide":{
+    "std":{
+      "name": "STD",
+      "desc": "Regular",
+      "cat": "regular"
+    },
+    "idtruck":{
+      "name": "iDtruck",
+      "desc": "Cargo",
+      "cat": "cargo"
+    }
+  }
+}

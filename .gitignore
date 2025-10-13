@@ -78,3 +78,15 @@ fuguku_staging_*.sql.gz
 router.php
 claue/
 wp-admin/wp-admin/
+
+# Ignore ALL untracked vendor plugin files (specific patterns from deploy log)
+wp-content/plugins/duplicate-page/
+wp-content/plugins/elementor-pro/
+wp-content/plugins/elementor/
+wp-content/plugins/pojo-accessibility/
+wp-content/plugins/srmehranclub_automatic_update/
+wp-content/plugins/woocommerce-legacy-rest-api/
+wp-content/plugins/wp-downgrade/
+wp-content/plugins/wp-google-map-plugin/
+wp-content/plugins/wp-rollback/
+wp-content/plugins/yayextra/

@@ -1,0 +1,475 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Pin Maker\n"
+"POT-Creation-Date: 2017-03-18 14:47+0700\n"
+"PO-Revision-Date: 2017-03-18 14:46+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: pin-maker.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/admin/class-pm-admin.php:103
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:104 includes/admin/pm-admin-editor.php:310
+msgid "Title"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:105 includes/admin/class-pm-admin.php:425
+msgid "Shortcode"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:106
+msgid "Date"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:130
+msgid "No Thumb"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:232
+msgid "Auto Draft"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:245 includes/admin/class-pm-admin.php:321
+msgid "Display Type"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:247 includes/admin/class-pm-admin.php:324
+#: includes/admin/pm-admin-editor.php:333
+#: includes/admin/pm-admin-editor.php:349
+msgid "Default"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:248 includes/admin/class-pm-admin.php:325
+msgid "Masonry"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:249 includes/admin/class-pm-admin.php:326
+msgid "Slider"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:253 includes/admin/class-pm-admin.php:331
+msgid "Columns"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:255 includes/admin/class-pm-admin.php:334
+msgid "1 Column"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:256 includes/admin/class-pm-admin.php:335
+msgid "2 Columns"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:257 includes/admin/class-pm-admin.php:336
+msgid "3 Columns"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:258 includes/admin/class-pm-admin.php:337
+msgid "4 Columns"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:259 includes/admin/class-pm-admin.php:338
+msgid "5 Columns"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:263
+msgid "Gutter Width (Type Number Only)"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:268
+msgid "Slider Settings"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:272 includes/admin/class-pm-admin.php:355
+#: includes/admin/pm-admin-editor.php:365
+msgid "Autoplay"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:276 includes/admin/class-pm-admin.php:359
+msgid "Enable Arrow"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:280 includes/admin/class-pm-admin.php:363
+msgid "Enable Dot"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:343
+msgid "Gutter Width"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:346
+msgid "Type number only"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:351
+msgid "Slider Setting"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:463
+msgid "Select"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:464
+msgid "Select or upload an image"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:465
+msgid "Your changes on this page are not saved!"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:466
+msgid "Are you sure you want to remove this pin?"
+msgstr ""
+
+#: includes/admin/class-pm-admin.php:467
+msgid "Please input a title for this pin"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:26
+msgid ""
+"Copy this shortcode and paste it into your post, page, or text widget content"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:37 includes/admin/pm-admin-editor.php:62
+msgid "Change Image"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:51
+msgid "Drop your images here"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:86
+msgid "Pin Style"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:87
+msgid "Pin Type"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:88
+msgid "Popup Style"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:96
+msgid "Icon"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:100
+msgid "Area"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:104
+#: includes/admin/pm-admin-editor.php:291
+msgid "Image"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:111
+msgid "Size"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:113
+msgid "Small"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:114
+msgid "Medium"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:115
+msgid "Large"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:119
+#: includes/admin/pm-admin-editor.php:212
+msgid "Border Width"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:125
+#: includes/admin/pm-admin-editor.php:218
+#: includes/admin/pm-admin-editor.php:274
+#: includes/admin/pm-admin-editor.php:437
+msgid "Border Radius"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:133
+msgid "Color"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:139
+#: includes/admin/pm-admin-editor.php:238
+msgid "Border Color"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:145
+#: includes/admin/pm-admin-editor.php:226
+#: includes/admin/pm-admin-editor.php:457
+msgid "Background"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:153
+msgid "Color Hover"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:159
+#: includes/admin/pm-admin-editor.php:244
+msgid "Border Hover Color"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:165
+#: includes/admin/pm-admin-editor.php:232
+msgid "Background Hover"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:176
+msgid "Custom Text"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:180
+msgid "Font Size"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:186
+msgid "Text Color"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:192
+msgid "Text Hover Color"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:200
+#: includes/admin/pm-admin-editor.php:262
+#: includes/admin/pm-admin-editor.php:410
+msgid "Width"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:206
+#: includes/admin/pm-admin-editor.php:268
+msgid "Height"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:254
+#: includes/admin/pm-admin-editor.php:320
+msgid "Upload Image"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:287
+msgid "Text"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:295
+#: includes/admin/pm-admin-editor.php:358
+msgid "Link"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:299
+msgid "Youtube"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:304
+msgid "WooCommerce"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:315
+msgid "Content"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:327
+#: includes/admin/pm-admin-editor.php:343
+msgid "Link To"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:331
+#: includes/admin/pm-admin-editor.php:347
+msgid "Target"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:334
+#: includes/admin/pm-admin-editor.php:350
+msgid "New Window"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:370
+msgid "Enable Control"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:378
+msgid "Select product"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:385
+msgid "Enable Thumbnail"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:390
+msgid "Enable Title"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:395
+msgid "Enable Price"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:400
+msgid "Enable Button"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:416
+msgid "Position"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:418
+msgid "Top"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:419
+msgid "Right"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:420
+msgid "Bottom"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:421
+msgid "Left"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:425
+msgid "Animation"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:427
+msgid "Fade"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:428
+msgid "Zoom"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:429
+msgid "Slide Up"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:430
+msgid "Slide Down"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:431
+msgid "Slide Left"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:432
+msgid "Slide Right"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:433
+msgid "Rotate"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:445
+msgid "Title Color"
+msgstr ""
+
+#: includes/admin/pm-admin-editor.php:451
+msgid "Content Color"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: includes/class-pm-post-types.php:58 includes/class-pm-post-types.php:59
+msgid "Pin Maker"
+msgstr ""
+
+#: includes/class-pm-post-types.php:60
+msgid "All Items"
+msgstr ""
+
+#: includes/class-pm-post-types.php:61
+msgid "Edit Pin"
+msgstr ""
+
+#: includes/class-pm-post-types.php:62
+msgid "Add New Pin"
+msgstr ""
+
+#: includes/class-pm-post-types.php:86
+msgid "Collections"
+msgstr ""
+
+#: includes/class-pm-post-types.php:87 includes/class-pm-post-types.php:96
+msgid "Collection"
+msgstr ""
+
+#: includes/class-pm-post-types.php:88
+msgid "Search Collections"
+msgstr ""
+
+#: includes/class-pm-post-types.php:89
+msgid "All Collections"
+msgstr ""
+
+#: includes/class-pm-post-types.php:90
+msgid "Parent Collection"
+msgstr ""
+
+#: includes/class-pm-post-types.php:91
+msgid "Parent Collection:"
+msgstr ""
+
+#: includes/class-pm-post-types.php:92
+msgid "Edit Collection"
+msgstr ""
+
+#: includes/class-pm-post-types.php:93
+msgid "Update Collection"
+msgstr ""
+
+#: includes/class-pm-post-types.php:94
+msgid "Add New Collection"
+msgstr ""
+
+#: includes/class-pm-post-types.php:95
+msgid "New Collection Name"
+msgstr ""
+
+#: includes/pm-template-functions.php:142
+#: includes/pm-template-functions.php:245
+#: includes/pm-template-functions.php:347
+msgid "Detail"
+msgstr ""
+
+#: includes/pm-template-functions.php:144
+#: includes/pm-template-functions.php:146
+#: includes/pm-template-functions.php:247
+#: includes/pm-template-functions.php:249
+#: includes/pm-template-functions.php:349
+#: includes/pm-template-functions.php:351
+msgid "Buy Now"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wpaddon.net/pin-maker"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A simple and easy way to make a pin for images or woocommerce product."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WPAddon"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://wpaddon.net"
+msgstr ""

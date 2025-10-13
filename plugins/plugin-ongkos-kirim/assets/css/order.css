@@ -1,0 +1,48 @@
+#order_data .order_data_column ._billing_pok_district_field,
+#order_data .order_data_column ._shipping_pok_district_field {
+	float: right;
+	clear: right;
+}
+.pok-order-shipping-result {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.pok-order-shipping-result .loading {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -16px;
+	margin-top: -16px;
+}
+.pok-order-shipping-result .hidden {
+	display: none;
+}
+.pok-order-shipping-result .results {
+	width: 100%;
+	border: 0;
+}
+.pok-order-shipping-result .results table tbody td {
+	padding: 5px 10px;
+	cursor: pointer;
+	border: 0;
+}
+.pok-order-shipping-result .results table tbody td.cost {
+	width: 1%;
+	white-space: nowrap;
+}
+.pok-order-shipping-result .results table thead th {
+	padding: 10px 10px 5px;
+}
+.pok-order-shipping-result .results table tr:hover td {
+	background-color: #feecd4;
+}
+.pok-order-shipping-result .no-result p {
+	text-align: center;
+	padding-top: 40px;
+}
+.pok-switch-courier a {
+	cursor: pointer;
+}

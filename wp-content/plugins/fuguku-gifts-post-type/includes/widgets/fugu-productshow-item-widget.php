@@ -45,35 +45,31 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        // Check if Elementor Pro Query Control is available
-        if (class_exists('\ElementorPro\Modules\QueryControl\Module')) {
-            $this->add_control(
-                'product_id',
-                [
-                    'label' => __('Search Product', 'fuguku-gift'),
-                    'type' => \ElementorPro\Modules\QueryControl\Module::QUERY_CONTROL_ID,
-                    'autocomplete' => [
-                        'object' => \ElementorPro\Modules\QueryControl\Types\Posts::QUERY_OBJECT_POST,
-                        'query' => [
-                            'post_type' => 'product',
-                        ],
-                    ],
-                    'label_block' => true,
-                    'description' => __('Type to search for a product', 'fuguku-gift'),
-                ]
-            );
-        } else {
-            // Fallback: Manual product ID input
-            $this->add_control(
-                'product_id',
-                [
-                    'label' => __('Product ID', 'fuguku-gift'),
-                    'type' => \Elementor\Controls_Manager::NUMBER,
-                    'default' => 0,
-                    'description' => __('Enter the product ID manually (Elementor Pro required for product search)', 'fuguku-gift'),
-                ]
-            );
+        // Use simple select2 for product search (compatible with all Elementor versions)
+        $products = [];
+        if (function_exists('wc_get_products')) {
+            $wc_products = wc_get_products([
+                'limit' => 100,
+                'status' => 'publish',
+                'orderby' => 'title',
+                'order' => 'ASC',
+            ]);
+            foreach ($wc_products as $product) {
+                $products[$product->get_id()] = $product->get_name() . ' (#' . $product->get_id() . ')';
+            }
         }
+
+        $this->add_control(
+            'product_id',
+            [
+                'label' => __('Select Product', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::SELECT2,
+                'options' => $products,
+                'default' => '',
+                'label_block' => true,
+                'description' => __('Select a WooCommerce product to display', 'fuguku-gift'),
+            ]
+        );
 
         $this->add_control(
             'use_short_description',
@@ -503,15 +499,8 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        // Get product ID from settings
-        $product_id = 0;
-        if (isset($settings['product_id'])) {
-            if (is_array($settings['product_id']) && isset($settings['product_id']['id'])) {
-                $product_id = (int) $settings['product_id']['id'];
-            } else {
-                $product_id = (int) $settings['product_id'];
-            }
-        }
+        // Get product ID from settings (now it's direct from SELECT2)
+        $product_id = (int) ($settings['product_id'] ?? 0);
 
         // Check if product ID is valid
         if (!$product_id) {

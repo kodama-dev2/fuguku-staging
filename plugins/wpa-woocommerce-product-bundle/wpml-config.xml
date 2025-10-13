@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="px_bundle_options">
+			<key name="bundles_widget_title" />
+			<key name="bundles_promo_text" />
+			<key name="button_label" />
+		</key>
+	</admin-texts>
+</wpml-config>

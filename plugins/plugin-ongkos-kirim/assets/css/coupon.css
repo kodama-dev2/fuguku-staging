@@ -1,0 +1,78 @@
+.select2 {
+	/*width: 100% !important;*/
+}
+.select2-container {
+	margin: 1px 0;
+	font-size: 13px;
+}
+.select2-container .select2-selection--single,
+.select2-container .select2-selection--multiple {
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+	border: 1px solid #ddd;
+	border-radius: 0;
+	min-height: 28px;
+	width: 100%;
+}
+.select2-container .select2-selection--single li,
+.select2-container .select2-selection--multiple li {
+	margin-bottom: 0;
+}
+.select2-container .select2-selection--single li input,
+.select2-container .select2-selection--multiple li input {
+	margin-top: 1px !important;
+	min-height: 24px !important;
+	margin-top: 2px;
+}
+.select2-container.select2-container--focus .select2-selection--single,
+.select2-container.select2-container--focus .select2-selection--multiple {
+	border-color: #5b9dd9;
+	box-shadow: 0 0 2px rgba(30,140,190,.8);
+}
+.select2-dropdown {
+	border-color: #ddd;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field {
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+	border: 1px solid #ddd;
+	border-radius: 0;
+	min-height: 28px;
+}
+
+div.form-field {
+	padding: 5px 20px 5px 162px !important;
+	margin: 9px 0;
+	font-size: 12px;
+	line-height: 24px;
+}
+div.form-field:after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.pok-coupon-destination {
+	width: 90%;
+	float: left;
+}
+.pok-coupon-destination table {
+	width: 100%;
+	margin-bottom: 5px;
+	border-collapse: collapse;
+}
+.pok-coupon-destination table td {
+	width: 33%;
+}
+.pok-coupon-destination table td select {
+	width: 100%;
+}
+.pok-coupon-destination table tr.repeater {
+	display: none;
+}
+.pok-coupon-destination table .remove-manual {
+	display: inline-block;
+	padding-left: 10px;
+}
+.pok-coupon-destination table tr.base:nth-child(2) td:last-child {
+	display: none;
+}

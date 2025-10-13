@@ -1,0 +1,16 @@
+/*Main Settings Animation and Custom CSS Start*/.wp-megamenu-main-wrapper .wpmm-mega-menu-icon{
+	 	font-size:13px;
+	 }.wp-mega-sub-menu li .wp-mega-menu-link {
+    text-align: center !important;
+}
+.wpmm-mega-menu-href-title {
+	text-align: center;
+}
+.wpmm-custom-image {
+  	width: 70px;
+  	margin: auto;
+  	margin-bottom: 8px;
+}
+.wpmm-custom-image img {
+	padding: 0px;
+}/*Custom CSS End*/
