@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.1
+ * Version: 2.6.2
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 03:25
+ * Last Updated: 2025-10-14 03:40
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -61,7 +61,8 @@
  * v2.5.4 - Shortened plugin description + metadata bump (no code changes)
  * v2.5.5 - Short description finalized; metadata bump for deploy
  * v2.6.0 - New: FUGU Catalog Form (send static PDF via email + store submissions CPT) and FUGU Catalog Submissions Table widget; ProductShow repeater title improvements
- * v2.6.1 - CURRENT - Wholesale fixes: AJAX handler hardened (nonce/error logging, ensure CPT registered) + table empty-state colspan fix
+ * v2.6.1 - Wholesale fixes: AJAX handler hardened (nonce/error logging, ensure CPT registered) + table empty-state colspan fix
+ * v2.6.2 - CURRENT - Ensure submissions are stored even if nonce fails (log only); email only when nonce valid; additional debug logs
  */
 
 // Prevent direct access
@@ -372,18 +373,15 @@ add_action('init', 'fugu_register_catalog_submission_cpt');
  * AJAX handler: send email with PDF and store submission
  */
 function fugu_catalog_submit_handler() {
-    // Basic hardening + logging so issues are traceable on staging
-    $nonce = $_POST['nonce'] ?? '';
-    if (!wp_verify_nonce($nonce, 'fuguku_gifts_nonce')) {
-        if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
-            error_log('[FUGU Catalog] Nonce failed for request. IP=' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
-        }
-        wp_send_json(array('success' => false, 'message' => 'Security check failed'));
-    }
-
     // Ensure CPT is registered (in case init order differs on some hosts)
     if (!post_type_exists('fugu_catalog_submission')) {
         fugu_register_catalog_submission_cpt();
+    }
+
+    $nonce = $_POST['nonce'] ?? '';
+    $is_nonce_valid = wp_verify_nonce($nonce, 'fuguku_gifts_nonce');
+    if (!$is_nonce_valid && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+        error_log('[FUGU Catalog] Nonce failed; storing submission anyway (no email). IP=' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
     }
 
     $name   = sanitize_text_field($_POST['name'] ?? '');
@@ -429,19 +427,21 @@ function fugu_catalog_submit_handler() {
         update_post_meta($post_id, 'fugu_email_sent', 0);
     }
 
-    // Send email to user
-    $headers = array('Content-Type: text/html; charset=UTF-8');
-    // Optional From header
-    $from_name  = sanitize_text_field($_POST['from_name'] ?? '');
-    $from_email = sanitize_email($_POST['from_email'] ?? '');
-    if ($from_email) {
-        $headers[] = 'From: ' . ($from_name ? $from_name : get_bloginfo('name')) . ' <' . $from_email . '>';
+    // Send email only if nonce is valid
+    $sent = false;
+    if ($is_nonce_valid) {
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+        // Optional From header
+        $from_name  = sanitize_text_field($_POST['from_name'] ?? '');
+        $from_email = sanitize_email($_POST['from_email'] ?? '');
+        if ($from_email) {
+            $headers[] = 'From: ' . ($from_name ? $from_name : get_bloginfo('name')) . ' <' . $from_email . '>';
+        }
+        $sent = wp_mail($email, $subject, $body, $headers, $attachment ? array($attachment) : array());
     }
 
-    $sent = wp_mail($email, $subject, $body, $headers, $attachment ? array($attachment) : array());
-
     if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
-        error_log('[FUGU Catalog] submission name=' . $name . ' email=' . $email . ' sent=' . ($sent ? '1' : '0') . ' attachment=' . ($attachment ? basename($attachment) : '-'));
+        error_log('[FUGU Catalog] submission stored id=' . intval($post_id) . ' name=' . $name . ' email=' . $email . ' sent=' . ($sent ? '1' : '0') . ' attachment=' . ($attachment ? basename($attachment) : '-') . ' nonceValid=' . ($is_nonce_valid ? '1' : '0'));
     }
 
     // Update email status meta
