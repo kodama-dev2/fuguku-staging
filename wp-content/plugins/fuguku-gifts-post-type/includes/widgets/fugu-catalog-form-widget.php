@@ -200,6 +200,29 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
           $('.fugu-catalog-form').on('submit', function(e){
             e.preventDefault();
             var $f = $(this), $btn = $f.find('button'), $msg = $f.find('.fugu-msg');
+
+            // Capture values explicitly to avoid serialize() conflicts
+            var payload = {
+              action: 'fugu_catalog_submit',
+              nonce: $f.find('input[name="nonce"]').val() || '',
+              name: $f.find('input[name="name"]').val() || '',
+              email: $f.find('input[name="email"]').val() || '',
+              country: $f.find('input[name="country"]').val() || '',
+              phone: $f.find('input[name="phone"]').val() || '',
+              message: $f.find('textarea[name="message"]').val() || '',
+              pdf_id: $f.find('input[name="pdf_id"]').val() || '',
+              pdf_url: $f.find('input[name="pdf_url"]').val() || '',
+              email_subject: $f.find('input[name="email_subject"]').val() || '',
+              email_body: $f.find('input[name="email_body"]').val() || '',
+              from_name: $f.find('input[name="from_name"]').val() || '',
+              from_email: $f.find('input[name="from_email"]').val() || ''
+            };
+
+            if (!payload.name || !payload.email) {
+              $msg.text('Please fill name and email.');
+              return;
+            }
+
             $btn.prop('disabled', true).text('Sending...');
             // Immediately hide fields and show sending notice + optional direct link
             var preHtml = '<span>Sending email...</span>';
@@ -207,7 +230,7 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             var helperTextPre = $f.data('helper-text');
             var showDirectPre = $f.data('show-direct') === 'yes';
             var linkTextPre = $f.data('link-text');
-            var pdfUrlPre = $f.find('input[name="pdf_url"]').val();
+            var pdfUrlPre = payload.pdf_url;
             if (showHelperPre) {
               preHtml += ' <span style="color:#4b5563">' + helperTextPre + '</span>';
               if (showDirectPre && pdfUrlPre) {
@@ -217,13 +240,13 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             $f.find('.fugu-fields').slideUp(150);
             $msg.html(preHtml);
 
-            $.post('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', $f.serialize())
+            $.post('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', payload)
              .done(function(resp){
                var showHelper = $f.data('show-helper') === 'yes';
                var helperText = $f.data('helper-text');
                var showDirect = $f.data('show-direct') === 'yes';
                var linkText = $f.data('link-text');
-               var pdfUrl = $f.find('input[name="pdf_url"]').val();
+               var pdfUrl = payload.pdf_url;
                if(resp && resp.success){
                   var html = '<span>Thank you! Email has been sent.</span>';
                   if(showHelper){
