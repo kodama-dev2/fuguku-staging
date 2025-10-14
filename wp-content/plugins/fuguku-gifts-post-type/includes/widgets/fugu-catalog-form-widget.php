@@ -85,9 +85,16 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
         });
         </script>
         <style>
-        .fugu-catalog-form .fugu-field{margin-bottom:10px}
-        .fugu-catalog-form input{width:100%;padding:10px}
-        .fugu-catalog-form .fugu-btn{padding:10px 16px}
+        .fugu-catalog-form{max-width:640px}
+        .fugu-catalog-form .fugu-field{margin-bottom:14px}
+        .fugu-catalog-form input{width:100%;padding:14px 16px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;color:#111;font-size:16px;line-height:1.4;transition:border-color .2s, box-shadow .2s}
+        .fugu-catalog-form input::placeholder{color:#9ca3af}
+        .fugu-catalog-form input:focus{outline:none;border-color:#222;box-shadow:0 0 0 3px rgba(34,34,34,.08)}
+        .fugu-catalog-form .fugu-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:9999px;border:1px solid #111;background:#111;color:#fff;font-weight:600;letter-spacing:.2px;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:background .2s, transform .05s}
+        .fugu-catalog-form .fugu-btn:hover{background:#000}
+        .fugu-catalog-form .fugu-btn:focus{outline:none;box-shadow:0 0 0 3px rgba(34,34,34,.08)}
+        .fugu-catalog-form .fugu-btn:active{transform:translateY(1px)}
+        .fugu-catalog-form .fugu-msg{font-size:14px;color:#111}
         </style>
         <?php
     }
