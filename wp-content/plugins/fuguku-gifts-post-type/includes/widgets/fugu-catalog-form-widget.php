@@ -171,7 +171,12 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
         $btn = esc_html($s['button_text'] ?? 'Get Catalog');
         $nonce = wp_create_nonce('fuguku_gifts_nonce');
         ?>
-        <form class="fugu-catalog-form" method="post">
+        <form class="fugu-catalog-form" method="post"
+              data-show-helper="<?php echo esc_attr($s['show_helper'] ?? 'yes'); ?>"
+              data-helper-text="<?php echo esc_attr($s['helper_text'] ?? 'Don’t see our email? Please check your Spam/Promotions tab.'); ?>"
+              data-show-direct="<?php echo esc_attr($s['show_direct_link'] ?? 'yes'); ?>"
+              data-link-text="<?php echo esc_attr($s['direct_link_text'] ?? 'or click here to download the catalog'); ?>"
+        >
             <div class="fugu-field"><input type="text" name="name" placeholder="Your Name" required></div>
             <div class="fugu-field"><input type="email" name="email" placeholder="Your Email" required></div>
             <input type="hidden" name="action" value="fugu_catalog_submit">
@@ -185,19 +190,6 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             <button type="submit" class="fugu-btn"><?php echo $btn; ?></button>
             <div class="fugu-msg" style="margin-top:10px"></div>
         </form>
-        <?php
-        $show_helper = $s['show_helper'] ?? 'yes';
-        $helper_text = $s['helper_text'] ?? '';
-        $show_direct = $s['show_direct_link'] ?? 'yes';
-        $link_text  = $s['direct_link_text'] ?? '';
-        if ($show_helper === 'yes') : ?>
-            <div class="fugu-help" style="margin-top:10px;font-size:14px;color:#4b5563">
-                <?php echo wp_kses_post($helper_text ?: __('Don’t see our email? Please check your Spam/Promotions tab.', 'fuguku-gift')); ?>
-                <?php if ($show_direct === 'yes' && $pdf_url) : ?>
-                    &nbsp;<a href="<?php echo esc_url($pdf_url); ?>" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111"><?php echo esc_html($link_text ?: __('or click here to download the catalog', 'fuguku-gift')); ?></a>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
         <script>
         jQuery(function($){
           $('.fugu-catalog-form').on('submit', function(e){
@@ -206,11 +198,28 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             $btn.prop('disabled', true).text('Sending...');
             $.post('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', $f.serialize())
              .done(function(resp){
+               var showHelper = $f.data('show-helper') === 'yes';
+               var helperText = $f.data('helper-text');
+               var showDirect = $f.data('show-direct') === 'yes';
+               var linkText = $f.data('link-text');
+               var pdfUrl = $f.find('input[name="pdf_url"]').val();
                if(resp && resp.success){
-                  $msg.text('Success! Please check your email.');
+                  var html = '<span>Thank you! Email has been sent.</span>';
+                  if(showHelper){
+                     html += ' <span style="color:#4b5563">'+ helperText +'</span>';
+                     if(showDirect && pdfUrl){
+                        html += ' <a href="'+ pdfUrl +'" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111">'+ linkText +'</a>';
+                     }
+                  }
+                  $msg.html(html);
                   $f[0].reset();
                } else {
-                  $msg.text(resp && resp.message ? resp.message : 'Failed.');
+                  var fail = (resp && resp.message) ? resp.message : 'Email not sent.';
+                  var html = '<span>'+ fail +'</span>';
+                  if(showDirect && pdfUrl){
+                     html += ' <a href="'+ pdfUrl +'" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111">'+ linkText +'</a>';
+                  }
+                  $msg.html(html);
                }
              })
              .fail(function(){ $msg.text('Request failed.'); })
