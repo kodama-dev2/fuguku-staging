@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Catalog Form + Submissions Table included.
+ * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
  * Version: 2.6.1
  * Author: Fuguku Development Team
  * License: GPL v2 or later
