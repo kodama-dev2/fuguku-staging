@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.2
+ * Version: 2.6.3
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 03:40
+ * Last Updated: 2025-10-14 04:05
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -62,7 +62,8 @@
  * v2.5.5 - Short description finalized; metadata bump for deploy
  * v2.6.0 - New: FUGU Catalog Form (send static PDF via email + store submissions CPT) and FUGU Catalog Submissions Table widget; ProductShow repeater title improvements
  * v2.6.1 - Wholesale fixes: AJAX handler hardened (nonce/error logging, ensure CPT registered) + table empty-state colspan fix
- * v2.6.2 - CURRENT - Ensure submissions are stored even if nonce fails (log only); email only when nonce valid; additional debug logs
+ * v2.6.2 - Ensure submissions are stored even if nonce fails (log only); email only when nonce valid; additional debug logs
+ * v2.6.3 - CURRENT - Harden storage: wp_insert_post with WP_Error capture + logs; use draft status for nopriv; more diagnostics
  */
 
 // Prevent direct access
@@ -413,12 +414,20 @@ function fugu_catalog_submit_handler() {
     }
 
     // Store submission FIRST (regardless of email status)
-    $post_id = wp_insert_post(array(
-        'post_type' => 'fugu_catalog_submission',
-        'post_status' => 'publish',
-        'post_title' => $name,
-    ));
-    if ($post_id) {
+    // Insert as draft for nopriv to avoid caps edge-cases; will still be queried by widget
+    $new_post = array(
+        'post_type'   => 'fugu_catalog_submission',
+        'post_status' => is_user_logged_in() ? 'publish' : 'draft',
+        'post_title'  => $name,
+    );
+    $post_id = wp_insert_post($new_post, true); // capture WP_Error
+
+    if (is_wp_error($post_id)) {
+        if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+            error_log('[FUGU Catalog] wp_insert_post error: ' . $post_id->get_error_message());
+        }
+        // still return success=false but avoid blank UX
+    } elseif ($post_id) {
         update_post_meta($post_id, 'fugu_email', $email);
         if ($country) update_post_meta($post_id, 'fugu_country', $country);
         if ($phone) update_post_meta($post_id, 'fugu_phone', $phone);
