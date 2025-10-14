@@ -34,12 +34,98 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             'rows' => 5,
         ]);
 
+        $this->add_control('from_name', [
+            'label' => __('From Name (optional)', 'fuguku-gift'),
+            'type'  => \Elementor\Controls_Manager::TEXT,
+            'placeholder' => get_bloginfo('name'),
+        ]);
+
+        $this->add_control('from_email', [
+            'label' => __('From Email (optional)', 'fuguku-gift'),
+            'type'  => \Elementor\Controls_Manager::TEXT,
+            'placeholder' => 'no-reply@' . parse_url(home_url(), PHP_URL_HOST),
+            'description' => __('Gunakan alamat email domain Anda agar tidak masuk spam.', 'fuguku-gift'),
+        ]);
+
         $this->add_control('button_text', [
             'label' => __('Button Text', 'fuguku-gift'),
             'type' => \Elementor\Controls_Manager::TEXT,
             'default' => __('Get Catalog', 'fuguku-gift'),
         ]);
 
+        $this->end_controls_section();
+
+        // Style: Inputs
+        $this->start_controls_section('style_inputs', [
+            'label' => __('Inputs', 'fuguku-gift'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+        ]);
+        $this->add_control('input_text_color', [
+            'label' => __('Text Color', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form input' => 'color: {{VALUE}};' ],
+        ]);
+        $this->add_control('input_bg_color', [
+            'label' => __('Background', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form input' => 'background: {{VALUE}};' ],
+        ]);
+        $this->add_control('input_border_color', [
+            'label' => __('Border', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form input' => 'border-color: {{VALUE}};' ],
+        ]);
+        $this->add_control('input_radius', [
+            'label' => __('Border Radius', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px'],
+            'range' => ['px' => ['min'=>0,'max'=>40]],
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form input' => 'border-radius: {{SIZE}}{{UNIT}};' ],
+        ]);
+        $this->add_control('input_padding', [
+            'label' => __('Padding', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px','em'],
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
+        ]);
+        $this->add_group_control(\Elementor\Group_Control_Typography::get_type(), [
+            'name' => 'input_typo',
+            'selector' => '{{WRAPPER}} .fugu-catalog-form input',
+        ]);
+        $this->end_controls_section();
+
+        // Style: Button
+        $this->start_controls_section('style_button', [
+            'label' => __('Button', 'fuguku-gift'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+        ]);
+        $this->add_control('btn_text_color', [
+            'label' => __('Text Color', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form .fugu-btn' => 'color: {{VALUE}};' ],
+        ]);
+        $this->add_control('btn_bg_color', [
+            'label' => __('Background', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form .fugu-btn' => 'background: {{VALUE}}; border-color: {{VALUE}};' ],
+        ]);
+        $this->add_control('btn_radius', [
+            'label' => __('Border Radius', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px'],
+            'range' => ['px' => ['min'=>0,'max'=>60]],
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form .fugu-btn' => 'border-radius: {{SIZE}}{{UNIT}};' ],
+        ]);
+        $this->add_control('btn_padding', [
+            'label' => __('Padding', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px','em'],
+            'selectors' => [ '{{WRAPPER}} .fugu-catalog-form .fugu-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
+        ]);
+        $this->add_group_control(\Elementor\Group_Control_Typography::get_type(), [
+            'name' => 'btn_typo',
+            'selector' => '{{WRAPPER}} .fugu-catalog-form .fugu-btn',
+        ]);
         $this->end_controls_section();
     }
 
@@ -49,6 +135,8 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
         $pdf_url = esc_url($s['pdf_file']['url'] ?? '');
         $subject = esc_attr($s['email_subject'] ?? 'Your Catalog PDF');
         $body = wp_kses_post($s['email_body'] ?? '');
+        $from_name = esc_attr($s['from_name'] ?? '');
+        $from_email = esc_attr($s['from_email'] ?? '');
         $btn = esc_html($s['button_text'] ?? 'Get Catalog');
         $nonce = wp_create_nonce('fuguku_gifts_nonce');
         ?>
@@ -61,6 +149,8 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             <input type="hidden" name="pdf_url" value="<?php echo esc_url($pdf_url); ?>">
             <input type="hidden" name="email_subject" value="<?php echo $subject; ?>">
             <input type="hidden" name="email_body" value="<?php echo esc_attr($body); ?>">
+            <input type="hidden" name="from_name" value="<?php echo $from_name; ?>">
+            <input type="hidden" name="from_email" value="<?php echo $from_email; ?>">
             <button type="submit" class="fugu-btn"><?php echo $btn; ?></button>
             <div class="fugu-msg" style="margin-top:10px"></div>
         </form>

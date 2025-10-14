@@ -396,6 +396,13 @@ function fugu_catalog_submit_handler() {
 
     // Send email to user
     $headers = array('Content-Type: text/html; charset=UTF-8');
+    // Optional From header
+    $from_name  = sanitize_text_field($_POST['from_name'] ?? '');
+    $from_email = sanitize_email($_POST['from_email'] ?? '');
+    if ($from_email) {
+        $headers[] = 'From: ' . ($from_name ? $from_name : get_bloginfo('name')) . ' <' . $from_email . '>';
+    }
+
     $sent = wp_mail($email, $subject, $body, $headers, $attachment ? array($attachment) : array());
 
     // Store submission
