@@ -352,10 +352,16 @@ function fuguku_enqueue_advanced_scripts() {
 function fugu_register_catalog_submission_cpt() {
     register_post_type('fugu_catalog_submission', array(
         'label' => 'Catalog Submissions',
-        'public' => false,
+        'public' => true,                   // allow front-end WP_Query
+        'publicly_queryable' => false,      // but no single URLs
+        'exclude_from_search' => true,
         'show_ui' => true,
+        'show_in_nav_menus' => false,
+        'has_archive' => false,
+        'rewrite' => false,
         'supports' => array('title'),
         'capability_type' => 'post',
+        'map_meta_cap' => true,
         'menu_icon' => 'dashicons-email-alt',
     ));
 }
