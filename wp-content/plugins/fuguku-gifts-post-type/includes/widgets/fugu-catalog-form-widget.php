@@ -192,7 +192,7 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             <input type="hidden" name="email_body" value="<?php echo esc_attr($body); ?>">
             <input type="hidden" name="from_name" value="<?php echo $from_name; ?>">
             <input type="hidden" name="from_email" value="<?php echo $from_email; ?>">
-            <button type="submit" class="fugu-btn"><?php echo $btn; ?></button>
+            <button type="submit" class="fugu-btn"><?php echo esc_html__('submit', 'fuguku-gift'); ?></button>
             <div class="fugu-msg" style="margin-top:10px"></div>
         </form>
         <script>
@@ -238,7 +238,7 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
               }
             }
             $f.find('.fugu-fields').slideUp(150);
-            $msg.html(preHtml);
+            $msg.html('<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;color:#111">'+preHtml+'</div>');
 
             var ajaxUrl = '<?php echo esc_url( admin_url('admin-ajax.php', 'relative') ); ?>' || '/wp-admin/admin-ajax.php';
             $.post(ajaxUrl, payload)
@@ -256,7 +256,7 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
                         html += ' <a href="'+ pdfUrl +'" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111">'+ linkText +'</a>';
                      }
                   }
-                  $msg.html(html);
+                  $msg.html('<div style="background:#ecfdf5;border:1px solid #bbf7d0;border-radius:10px;padding:10px 12px;color:#065f46">'+html+'</div>');
                   $f[0].reset();
                } else {
                   // Still show a positive confirmation to avoid confusion
@@ -267,11 +267,11 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
                   if(showDirect && pdfUrl){
                      html += ' <a href="'+ pdfUrl +'" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111">'+ linkText +'</a>';
                   }
-                  $msg.html(html);
+                  $msg.html('<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:10px 12px;color:#7c2d12">'+html+'</div>');
                }
              })
              .fail(function(){ $msg.text('Request failed.'); })
-             .always(function(){ $btn.prop('disabled', false).text('<?php echo $btn; ?>'); });
+            .always(function(){ $btn.prop('disabled', false).text('<?php echo esc_js( __('submit','fuguku-gift') ); ?>'); });
           });
         });
         </script>

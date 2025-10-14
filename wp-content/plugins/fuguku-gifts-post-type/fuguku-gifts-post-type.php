@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.7
+ * Version: 2.6.8
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 05:10
+ * Last Updated: 2025-10-14 05:35
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -67,7 +67,8 @@
  * v2.6.4 - Admin: add Catalog Submissions list in wp-admin with Email/Status columns (no Elementor needed)
  * v2.6.5 - Form JS: explicit payload + client validation to ensure name/email posted correctly
  * v2.6.6 - Use relative admin-ajax URL to avoid mixed-content blocks; reliability fix
- * v2.6.7 - CURRENT - Storage hardening: fallback author, retry insert, and option-based fallback logging; admin page can show fallback entries
+ * v2.6.7 - Storage hardening: fallback author, retry insert, and option-based fallback logging; admin page can show fallback entries
+ * v2.6.8 - CURRENT - Admin table: add country/phone/message columns, rounded minimal style, delete row (CPT + fallback); Form: button label "submit" and improved confirmation text
  */
 
 // Prevent direct access
@@ -514,23 +515,35 @@ function fugu_catalog_admin_page_render() {
 
     echo '<div class="wrap">';
     echo '<h1>' . esc_html__('Catalog Submissions', 'fuguku-gift') . '</h1>';
-    echo '<table class="widefat fixed striped">';
+    echo '<style>.fugu-admin-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}.fugu-admin-card thead tr{background:#f9fafb}.fugu-admin-card th,.fugu-admin-card td{padding:12px 14px}.fugu-admin-card td{border-bottom:1px solid #f3f4f6}</style>';
+    echo '<table class="fugu-admin-card" style="width:100%">';
     echo '<thead><tr>';
     echo '<th>' . esc_html__('Name', 'fuguku-gift') . '</th>';
     echo '<th>' . esc_html__('Email', 'fuguku-gift') . '</th>';
     echo '<th>' . esc_html__('Date', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Country', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Phone', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Message', 'fuguku-gift') . '</th>';
     echo '<th>' . esc_html__('Status', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Actions', 'fuguku-gift') . '</th>';
     echo '</tr></thead><tbody>';
 
     if ($q->have_posts()) {
         while ($q->have_posts()) { $q->the_post();
             $email = get_post_meta(get_the_ID(), 'fugu_email', true);
+            $country = get_post_meta(get_the_ID(), 'fugu_country', true);
+            $phone = get_post_meta(get_the_ID(), 'fugu_phone', true);
+            $message = get_post_meta(get_the_ID(), 'fugu_message', true);
             $sent  = get_post_meta(get_the_ID(), 'fugu_email_sent', true);
             echo '<tr>';
             echo '<td>' . esc_html(get_the_title()) . '</td>';
             echo '<td>' . esc_html($email) . '</td>';
             echo '<td>' . esc_html(get_the_date('Y-m-d H:i')) . '</td>';
+            echo '<td>' . esc_html($country) . '</td>';
+            echo '<td>' . esc_html($phone) . '</td>';
+            echo '<td>' . esc_html($message) . '</td>';
             echo '<td>' . ($sent ? '<span style="color:#16a34a">Sent</span>' : '<span style="color:#dc2626">Failed</span>') . '</td>';
+            echo '<td><a href="' . esc_url( wp_nonce_url( admin_url('admin.php?page=fugu-catalog-submissions&fugu_delete=' . get_the_ID()), 'fugu_delete_' . get_the_ID() ) ) . '" class="button button-small" onclick="return confirm(\'Delete this row?\')">Delete</a></td>';
             echo '</tr>';
         }
         wp_reset_postdata();
@@ -539,11 +552,16 @@ function fugu_catalog_admin_page_render() {
     $fb = get_option('fugu_catalog_fallback_log', array());
     if (!empty($fb)) {
         foreach (array_reverse($fb) as $row) {
+            $idx = md5( ($row['time'] ?? '') . ($row['email'] ?? '') );
             echo '<tr>';
             echo '<td>' . esc_html($row['name'] ?? '-') . '</td>';
             echo '<td>' . esc_html($row['email'] ?? '-') . '</td>';
             echo '<td>' . esc_html($row['time'] ?? '-') . '</td>';
+            echo '<td>-</td>';
+            echo '<td>-</td>';
+            echo '<td>-</td>';
             echo '<td><span style="color:#dc2626">Stored (fallback)</span></td>';
+            echo '<td><a href="' . esc_url( wp_nonce_url( admin_url('admin.php?page=fugu-catalog-submissions&fugu_delete_fb=' . $idx), 'fugu_delete_fb_' . $idx ) ) . '" class="button button-small" onclick="return confirm(\'Delete this row?\')">Delete</a></td>';
             echo '</tr>';
         }
     }
@@ -552,6 +570,30 @@ function fugu_catalog_admin_page_render() {
     }
 
     echo '</tbody></table>';
+
+    // Handle delete actions
+    if (isset($_GET['fugu_delete']) && current_user_can('manage_options')) {
+        $del_id = intval($_GET['fugu_delete']);
+        if (wp_verify_nonce($_GET['_wpnonce'] ?? '', 'fugu_delete_' . $del_id)) {
+            wp_delete_post($del_id, true);
+            wp_safe_redirect(admin_url('admin.php?page=fugu-catalog-submissions'));
+            exit;
+        }
+    }
+    if (isset($_GET['fugu_delete_fb']) && current_user_can('manage_options')) {
+        $del_idx = sanitize_text_field($_GET['fugu_delete_fb']);
+        if (wp_verify_nonce($_GET['_wpnonce'] ?? '', 'fugu_delete_fb_' . $del_idx)) {
+            $fb = get_option('fugu_catalog_fallback_log', array());
+            $new = array();
+            foreach ($fb as $row) {
+                $idx = md5(($row['time'] ?? '') . ($row['email'] ?? ''));
+                if ($idx !== $del_idx) { $new[] = $row; }
+            }
+            update_option('fugu_catalog_fallback_log', $new);
+            wp_safe_redirect(admin_url('admin.php?page=fugu-catalog-submissions'));
+            exit;
+        }
+    }
     echo '</div>';
 }
 
