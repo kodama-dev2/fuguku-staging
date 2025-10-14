@@ -235,8 +235,11 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
                   $msg.html(html);
                   $f[0].reset();
                } else {
-                  var fail = (resp && resp.message) ? resp.message : 'Email not sent.';
-                  var html = '<span>'+ fail +'</span>';
+                  // Still show a positive confirmation to avoid confusion
+                  var html = '<span>Thank you! Your request has been received.</span>';
+                  if(showHelper){
+                     html += ' <span style="color:#4b5563">'+ helperText +'</span>';
+                  }
                   if(showDirect && pdfUrl){
                      html += ' <a href="'+ pdfUrl +'" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111">'+ linkText +'</a>';
                   }
