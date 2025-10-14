@@ -45,7 +45,7 @@ class Fugu_Catalog_Table_Widget extends \Elementor\Widget_Base {
                         </td>
                     </tr>
                     <?php endwhile; wp_reset_postdata(); else: ?>
-                    <tr><td colspan="3" style="padding:12px">No submissions yet.</td></tr>
+                    <tr><td colspan="4" style="padding:12px">No submissions yet.</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>
