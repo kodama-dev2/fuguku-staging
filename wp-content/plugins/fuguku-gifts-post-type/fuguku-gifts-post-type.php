@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.3
+ * Version: 2.6.4
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 04:05
+ * Last Updated: 2025-10-14 04:25
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -63,7 +63,8 @@
  * v2.6.0 - New: FUGU Catalog Form (send static PDF via email + store submissions CPT) and FUGU Catalog Submissions Table widget; ProductShow repeater title improvements
  * v2.6.1 - Wholesale fixes: AJAX handler hardened (nonce/error logging, ensure CPT registered) + table empty-state colspan fix
  * v2.6.2 - Ensure submissions are stored even if nonce fails (log only); email only when nonce valid; additional debug logs
- * v2.6.3 - CURRENT - Harden storage: wp_insert_post with WP_Error capture + logs; use draft status for nopriv; more diagnostics
+ * v2.6.3 - Harden storage: wp_insert_post with WP_Error capture + logs; use draft status for nopriv; more diagnostics
+ * v2.6.4 - CURRENT - Admin: add Catalog Submissions list in wp-admin with Email/Status columns (no Elementor needed)
  */
 
 // Prevent direct access
@@ -463,6 +464,69 @@ function fugu_catalog_submit_handler() {
     } else {
         wp_send_json(array('success' => false, 'message' => 'Email not sent'));
     }
+}
+
+/**
+ * Admin Menu: Catalog Submissions
+ */
+function fugu_catalog_admin_menu() {
+    add_menu_page(
+        __('Catalog Submissions', 'fuguku-gift'),
+        __('Catalog Submissions', 'fuguku-gift'),
+        'manage_options',
+        'fugu-catalog-submissions',
+        'fugu_catalog_admin_page_render',
+        'dashicons-email-alt2',
+        26
+    );
+}
+add_action('admin_menu', 'fugu_catalog_admin_menu');
+
+function fugu_catalog_admin_page_render() {
+    if (!current_user_can('manage_options')) {
+        wp_die(__('You do not have sufficient permissions to access this page.'));
+    }
+
+    $paged = max(1, intval($_GET['paged'] ?? 1));
+    $per_page = 20;
+    $args = array(
+        'post_type'      => 'fugu_catalog_submission',
+        'posts_per_page' => $per_page,
+        'paged'          => $paged,
+        'post_status'    => array('publish','pending','draft'),
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+    $q = new WP_Query($args);
+
+    echo '<div class="wrap">';
+    echo '<h1>' . esc_html__('Catalog Submissions', 'fuguku-gift') . '</h1>';
+    echo '<table class="widefat fixed striped">';
+    echo '<thead><tr>';
+    echo '<th>' . esc_html__('Name', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Email', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Date', 'fuguku-gift') . '</th>';
+    echo '<th>' . esc_html__('Status', 'fuguku-gift') . '</th>';
+    echo '</tr></thead><tbody>';
+
+    if ($q->have_posts()) {
+        while ($q->have_posts()) { $q->the_post();
+            $email = get_post_meta(get_the_ID(), 'fugu_email', true);
+            $sent  = get_post_meta(get_the_ID(), 'fugu_email_sent', true);
+            echo '<tr>';
+            echo '<td>' . esc_html(get_the_title()) . '</td>';
+            echo '<td>' . esc_html($email) . '</td>';
+            echo '<td>' . esc_html(get_the_date('Y-m-d H:i')) . '</td>';
+            echo '<td>' . ($sent ? '<span style="color:#16a34a">Sent</span>' : '<span style="color:#dc2626">Failed</span>') . '</td>';
+            echo '</tr>';
+        }
+        wp_reset_postdata();
+    } else {
+        echo '<tr><td colspan="4">' . esc_html__('No submissions yet.', 'fuguku-gift') . '</td></tr>';
+    }
+
+    echo '</tbody></table>';
+    echo '</div>';
 }
 
 /**
