@@ -809,7 +809,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             color: #888888;
             line-height: 1.5;
         }
-        /* Navigation - minimal clean icons only */
+        /* Navigation - hidden by default, show on item hover */
         .fugu-productshow-navigation {
             position: absolute;
             top: 50%;
@@ -821,6 +821,11 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             padding: 0 10px;
             z-index: 10;
             pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .fugu-productshow-item:hover .fugu-productshow-navigation {
+            opacity: 1;
         }
         .fugu-productshow-nav-btn {
             width: auto;
