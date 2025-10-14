@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget, FUGU IMAGES-ITEM widget (multiple images per item, gap control, width control, navigation, text field, object-fit), dan FUGU PRODUCTSHOW-ITEM widget (repeater dengan SELECT2 search semua products (limit -1), instant type-to-search tanpa scroll ribuan produk, category shown in brackets, navigation arrow HIDDEN default dan MUNCUL saat hover image area (opacity 0 to 1), minimal clean icons (no shadow/scale/background/outline), gradient overlay rgba white 0.9, truncate description 6 words, card size 300px match Images Item). Hybrid approach (LV-style archive + Elementor pages), clean CSS, simplified widget system untuk better performance. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-10-14 01:10, version 2.5.4
- * Version: 2.5.4
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget, FUGU IMAGES-ITEM widget (multiple images per item, gap control, width control, navigation, text field, object-fit), dan FUGU PRODUCTSHOW-ITEM widget (repeater dengan SELECT2 search semua products (limit -1), instant type-to-search tanpa scroll ribuan produk, category shown in brackets, navigation arrow HIDDEN default dan MUNCUL saat hover image area (opacity 0 to 1), minimal clean icons (no shadow/scale/background/outline), gradient overlay rgba white 0.9, truncate description 6 words, card size 300px match Images Item). Hybrid approach (LV-style archive + Elementor pages), clean CSS, simplified widget system untuk better performance. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-10-13 23:30, version 2.5.1
+ * Version: 2.5.2
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 01:10
+ * Last Updated: 2025-10-13 23:35
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -56,9 +56,7 @@
  * v2.4.9 - Enhanced FUGU PRODUCTSHOW-ITEM product selector: grouped by category dengan visual separators (--- CATEGORY NAME ---), load 500 products alphabetically, easier product discovery dengan category grouping di dropdown, filter by category/tag sebagai optional helper text, skip separator options di render
  * v2.5.0 - Optimized FUGU PRODUCTSHOW-ITEM: load ALL products (limit -1) dengan SELECT2 client-side instant search (type to filter ribuan produk tanpa scroll), category shown in [brackets], removed ALL navigation hover effects (no shadow/scale/background/outline), clean minimal arrow icons only
  * v2.5.1 - Enhanced FUGU PRODUCTSHOW-ITEM navigation UX: arrows HIDDEN by default (opacity 0), MUNCUL saat hover ke image area (opacity 1 transition), ultra clean minimal icons tanpa efek apapun, better UX dengan reveal on hover
- * v2.5.2 - FORCE REMOVED ALL OUTLINES: added !important to ALL border/outline properties, covered ALL pseudo-states (hover/focus/active/visited/link), removed appearance properties, FORCE transparent background dan border untuk FontAwesome icons
- * v2.5.3 - FIXED TAB STYLES ELEMENTOR: removed !important overrides dari CSS inline yang conflict dengan Elementor tab styles, kept essential layout CSS only, sekarang tab styles Elementor bisa berfungsi normal untuk customize colors, fonts, spacing, dll
- * v2.5.4 - CURRENT - Safe forward metadata bump (version + timestamp) untuk sinkronisasi Hostinger deploy; kode sama dengan 2.5.3
+ * v2.5.2 - CURRENT - FORCE REMOVED ALL OUTLINES: added !important to ALL border/outline properties, covered ALL pseudo-states (hover/focus/active/visited/link), removed appearance properties, FORCE transparent background dan border untuk FontAwesome icons
  */
 
 // Prevent direct access

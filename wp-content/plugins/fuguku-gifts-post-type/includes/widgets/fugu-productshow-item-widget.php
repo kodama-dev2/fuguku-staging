@@ -707,9 +707,8 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         </script>
         <?php endif; ?>
 
-        <!-- CSS moved to external file to allow Elementor tab styles to work properly -->
         <style>
-        /* Essential layout CSS only - no !important overrides */
+        /* Match FUGU Images Item styling exactly */
         .fugu-productshow-container {
             display: grid;
             gap: 30px;
@@ -729,6 +728,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             width: 100%;
             height: 300px;
             overflow: hidden;
+            border-radius: 0;
         }
         .fugu-productshow-image-container {
             position: absolute;
@@ -765,7 +765,51 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         .fugu-productshow-container[data-object-fit="fill"] .fugu-productshow-image img {
             object-fit: fill;
         }
-        /* Navigation reveal on hover */
+        /* Overlay with gradient - same as FUGU Images Item */
+        .fugu-productshow-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .fugu-productshow-content {
+            position: relative;
+            z-index: 3;
+        }
+        .fugu-productshow-content * {
+            pointer-events: auto;
+        }
+        .fugu-productshow-title {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.3;
+        }
+        .fugu-productshow-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .fugu-productshow-title a:hover {
+            text-decoration: underline;
+        }
+        .fugu-productshow-price {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            color: #666666;
+            line-height: 1.3;
+        }
+        .fugu-productshow-description {
+            margin: 0;
+            font-size: 14px;
+            color: #888888;
+            line-height: 1.5;
+        }
+        /* Navigation - hidden by default, show on item hover */
         .fugu-productshow-navigation {
             position: absolute;
             top: 50%;
@@ -784,62 +828,71 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             opacity: 1;
         }
         .fugu-productshow-nav-btn {
-            border: none;
-            background: transparent;
-            color: #ffffff;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            pointer-events: auto;
-            padding: 0;
-            margin: 0;
-            outline: none;
-            box-shadow: none;
-            text-shadow: none;
-            transition: none;
-            border-radius: 0;
-            border-width: 0;
-            border-style: none;
-            border-color: transparent;
-            text-decoration: none;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+            width: auto !important;
+            height: auto !important;
+            border: none !important;
+            background: transparent !important;
+            color: #ffffff !important;
+            font-size: 24px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            outline: none !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            transition: none !important;
+            border-radius: 0 !important;
+            border-width: 0 !important;
+            border-style: none !important;
+            border-color: transparent !important;
+            text-decoration: none !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
         }
         .fugu-productshow-nav-btn:hover,
         .fugu-productshow-nav-btn:focus,
         .fugu-productshow-nav-btn:active,
         .fugu-productshow-nav-btn:visited,
         .fugu-productshow-nav-btn:link {
-            background: transparent;
-            color: #ffffff;
-            outline: none;
-            box-shadow: none;
-            text-shadow: none;
-            transform: none;
-            border: none;
-            border-radius: 0;
-            border-width: 0;
-            border-style: none;
-            border-color: transparent;
-            text-decoration: none;
+            background: transparent !important;
+            color: #ffffff !important;
+            outline: none !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            transform: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            border-width: 0 !important;
+            border-style: none !important;
+            border-color: transparent !important;
+            text-decoration: none !important;
         }
         .fugu-productshow-nav-btn i {
-            border: none;
-            outline: none;
-            box-shadow: none;
-            background: transparent;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+        .fugu-productshow-notice {
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            text-align: center;
+            border-radius: 4px;
         }
         @media (max-width: 768px) {
             .fugu-productshow-container {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr) !important;
             }
         }
         @media (max-width: 480px) {
             .fugu-productshow-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
         }
         </style>
