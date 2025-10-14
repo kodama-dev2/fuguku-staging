@@ -118,48 +118,31 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         );
 
         // Step 2: Manual product selection
-        // Build product list grouped by category for easier filtering
-        $all_products = ['' => __('Select Product', 'fuguku-gift')];
+        // SELECT2 has built-in client-side search - fast even with 1000+ products
+        $all_products = ['' => __('Type to search product...', 'fuguku-gift')];
         if (function_exists('wc_get_products')) {
-            // Get all products
             $wc_products = wc_get_products([
-                'limit' => 500,
+                'limit' => -1, // Load ALL products (SELECT2 search handles it efficiently)
                 'status' => 'publish',
                 'orderby' => 'title',
                 'order' => 'ASC',
             ]);
-            
-            // Group products by category
-            $grouped = [];
             foreach ($wc_products as $product) {
                 $product_cats = wp_get_post_terms($product->get_id(), 'product_cat', ['fields' => 'names']);
-                $cat_label = !empty($product_cats) ? $product_cats[0] : 'Uncategorized';
-                
-                if (!isset($grouped[$cat_label])) {
-                    $grouped[$cat_label] = [];
-                }
-                $grouped[$cat_label][$product->get_id()] = $product->get_name() . ' (#' . $product->get_id() . ')';
-            }
-            
-            // Build grouped options with separators
-            ksort($grouped);
-            foreach ($grouped as $cat_name => $products) {
-                $all_products['_cat_' . sanitize_title($cat_name)] = '--- ' . strtoupper($cat_name) . ' ---';
-                foreach ($products as $pid => $pname) {
-                    $all_products[$pid] = '  ' . $pname;
-                }
+                $cat_label = !empty($product_cats) ? ' [' . $product_cats[0] . ']' : '';
+                $all_products[$product->get_id()] = $product->get_name() . $cat_label . ' (#' . $product->get_id() . ')';
             }
         }
 
         $repeater->add_control(
             'product_id',
             [
-                'label' => __('Select Product', 'fuguku-gift'),
+                'label' => __('Search Product', 'fuguku-gift'),
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'options' => $all_products,
                 'default' => '',
                 'label_block' => true,
-                'description' => __('Products grouped by category. Use "Filter By" above to help narrow down your search.', 'fuguku-gift'),
+                'description' => __('Type to search product name instantly (SELECT2 built-in search). Category shown in [brackets].', 'fuguku-gift'),
             ]
         );
 
@@ -826,7 +809,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             color: #888888;
             line-height: 1.5;
         }
-        /* Navigation - clean line icons without background */
+        /* Navigation - minimal clean icons only */
         .fugu-productshow-navigation {
             position: absolute;
             top: 50%;
@@ -850,21 +833,23 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: color 0.3s ease, transform 0.3s ease;
             pointer-events: auto;
-            padding: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            padding: 0;
+            margin: 0;
             outline: none !important;
             box-shadow: none !important;
+            text-shadow: none !important;
+            transition: none !important;
         }
         .fugu-productshow-nav-btn:hover,
         .fugu-productshow-nav-btn:focus,
         .fugu-productshow-nav-btn:active {
             background: transparent !important;
-            color: #ffffff;
-            transform: scale(1.2);
+            color: #ffffff !important;
             outline: none !important;
             box-shadow: none !important;
+            text-shadow: none !important;
+            transform: none !important;
         }
         .fugu-productshow-notice {
             padding: 20px;
