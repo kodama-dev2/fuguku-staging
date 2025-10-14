@@ -117,19 +117,37 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        // Step 2: Manual product selection from filtered results
-        // Note: In real implementation, this would dynamically filter based on above selection
-        // For now, we show all products (user can search)
+        // Step 2: Manual product selection
+        // Build product list grouped by category for easier filtering
         $all_products = ['' => __('Select Product', 'fuguku-gift')];
         if (function_exists('wc_get_products')) {
+            // Get all products
             $wc_products = wc_get_products([
-                'limit' => 200,
+                'limit' => 500,
                 'status' => 'publish',
                 'orderby' => 'title',
                 'order' => 'ASC',
             ]);
+            
+            // Group products by category
+            $grouped = [];
             foreach ($wc_products as $product) {
-                $all_products[$product->get_id()] = $product->get_name() . ' (#' . $product->get_id() . ')';
+                $product_cats = wp_get_post_terms($product->get_id(), 'product_cat', ['fields' => 'names']);
+                $cat_label = !empty($product_cats) ? $product_cats[0] : 'Uncategorized';
+                
+                if (!isset($grouped[$cat_label])) {
+                    $grouped[$cat_label] = [];
+                }
+                $grouped[$cat_label][$product->get_id()] = $product->get_name() . ' (#' . $product->get_id() . ')';
+            }
+            
+            // Build grouped options with separators
+            ksort($grouped);
+            foreach ($grouped as $cat_name => $products) {
+                $all_products['_cat_' . sanitize_title($cat_name)] = '--- ' . strtoupper($cat_name) . ' ---';
+                foreach ($products as $pid => $pname) {
+                    $all_products[$pid] = '  ' . $pname;
+                }
             }
         }
 
@@ -141,7 +159,7 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 'options' => $all_products,
                 'default' => '',
                 'label_block' => true,
-                'description' => __('Type to search for product (filtered by category/tag above)', 'fuguku-gift'),
+                'description' => __('Products grouped by category. Use "Filter By" above to help narrow down your search.', 'fuguku-gift'),
             ]
         );
 
@@ -579,7 +597,9 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
         <div class="fugu-productshow-container" data-columns="<?php echo esc_attr($columns); ?>" data-object-fit="<?php echo esc_attr($object_fit); ?>">
             <?php foreach ($items as $item_index => $item) : 
                 $product_id = (int) ($item['product_id'] ?? 0);
-                if (!$product_id) continue;
+                
+                // Skip if empty or separator (starts with _cat_)
+                if (!$product_id || strpos((string)$product_id, '_cat_') === 0) continue;
                 
                 $product = wc_get_product($product_id);
                 if (!$product) continue;

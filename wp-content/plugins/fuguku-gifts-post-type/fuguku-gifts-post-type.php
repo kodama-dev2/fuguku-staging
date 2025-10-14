@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
- * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget, FUGU IMAGES-ITEM widget (multiple images per item, gap control, width control, navigation, text field, object-fit), dan FUGU PRODUCTSHOW-ITEM widget (repeater dengan filter category/tag kemudian manual select product dari hasil filter, 200 products load untuk search, line icon navigation tanpa background, gradient overlay rgba white 0.9, truncate description 6 words working, card size 300px match Images Item, UX 2-step: filter dulu baru pick product). Hybrid approach (LV-style archive + Elementor pages), clean CSS, simplified widget system untuk better performance. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-10-13 22:45, version 2.4.8
- * Version: 2.4.8
+ * Description: Custom post type untuk gifts/hadiah di website Fuguku dengan meta fields lengkap dan layout Louis Vuitton inspired. Features: Post type registration, custom taxonomies (categories & tags), meta fields (price, brand, availability, featured), responsive grid layout, admin interface, Elementor compatibility dengan GIFT SOLO widget, FUGU IMAGES-ITEM widget (multiple images per item, gap control, width control, navigation, text field, object-fit), dan FUGU PRODUCTSHOW-ITEM widget (repeater dengan product selector grouped by category untuk easy search, 500 products load dengan visual grouping separator, filter by category/tag optional helper, line icon navigation tanpa background, gradient overlay rgba white 0.9, truncate description 6 words, card size 300px match Images Item). Hybrid approach (LV-style archive + Elementor pages), clean CSS, simplified widget system untuk better performance. Fixed product revamp layout: removed scroll bar internal, image gaps, border radius, zoom hover effects, multiple lightbox issue dengan simple modal, updated button styling (black color, smaller size), pill shape buttons dengan text center, dan enhanced layout spacing dengan padding besar pada kolom kanan dan price styling tipis. This plugin is updated on 2025-10-13 23:00, version 2.4.9
+ * Version: 2.4.9
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-13 22:45
+ * Last Updated: 2025-10-13 23:00
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -52,7 +52,8 @@
  * v2.4.5 - Revamped FUGU PRODUCTSHOW-ITEM widget: changed to repeater (multiple products like Images Item), line icon navigation without background, truncate description to 5-6 words, card size matching Images Item, improved UX dengan clean navigation styling
  * v2.4.6 - Optimized FUGU PRODUCTSHOW-ITEM widget: changed dari repeater ke query by category/tag, auto-load semua products dari taxonomy yang dipilih, added orderby/order/limit controls, optimized performance untuk load banyak produk tanpa berat di editor
  * v2.4.7 - Fixed FUGU PRODUCTSHOW-ITEM widget: kombinasi repeater + query (bisa add multiple queries), fixed navigation background hitam saat active/hover/focus dengan !important, fixed gradient overlay match Images Item (rgba white 0.9), fixed description truncate dengan preg_split agar terlihat, overlay opacity default 100%
- * v2.4.8 - CURRENT - Corrected FUGU PRODUCTSHOW-ITEM UX logic: 2-step process (filter by category/tag dulu, kemudian manual select product dari filtered dropdown), load 200 products untuk search, repeater untuk add multiple products dari berbagai filter, clean UX sesuai request user
+ * v2.4.8 - Corrected FUGU PRODUCTSHOW-ITEM UX logic: 2-step process (filter by category/tag dulu, kemudian manual select product dari filtered dropdown), load 200 products untuk search, repeater untuk add multiple products dari berbagai filter, clean UX sesuai request user
+ * v2.4.9 - CURRENT - Enhanced FUGU PRODUCTSHOW-ITEM product selector: grouped by category dengan visual separators (--- CATEGORY NAME ---), load 500 products alphabetically, easier product discovery dengan category grouping di dropdown, filter by category/tag sebagai optional helper text, skip separator options di render
  */
 
 // Prevent direct access
