@@ -7,7 +7,7 @@
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 01:30
+ * Last Updated: 2025-10-14 01:35
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
