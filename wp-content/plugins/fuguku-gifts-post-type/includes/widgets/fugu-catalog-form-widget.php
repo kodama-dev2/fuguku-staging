@@ -177,8 +177,13 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
               data-show-direct="<?php echo esc_attr($s['show_direct_link'] ?? 'yes'); ?>"
               data-link-text="<?php echo esc_attr($s['direct_link_text'] ?? 'or click here to download the catalog'); ?>"
         >
-            <div class="fugu-field"><input type="text" name="name" placeholder="Your Name" required></div>
-            <div class="fugu-field"><input type="email" name="email" placeholder="Your Email" required></div>
+            <div class="fugu-fields">
+                <div class="fugu-field"><input type="text" name="name" placeholder="Your Name" required></div>
+                <div class="fugu-field"><input type="email" name="email" placeholder="Your Email" required></div>
+                <div class="fugu-field"><input type="text" name="country" placeholder="Country"></div>
+                <div class="fugu-field"><input type="tel" name="phone" placeholder="Phone Number"></div>
+                <div class="fugu-field"><textarea name="message" placeholder="Message" rows="3" style="width:100%;padding:14px 16px;border:1px solid #e5e7eb;border-radius:12px;"></textarea></div>
+            </div>
             <input type="hidden" name="action" value="fugu_catalog_submit">
             <input type="hidden" name="nonce" value="<?php echo esc_attr($nonce); ?>">
             <input type="hidden" name="pdf_id" value="<?php echo esc_attr($pdf_id); ?>">
@@ -196,6 +201,22 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             e.preventDefault();
             var $f = $(this), $btn = $f.find('button'), $msg = $f.find('.fugu-msg');
             $btn.prop('disabled', true).text('Sending...');
+            // Immediately hide fields and show sending notice + optional direct link
+            var preHtml = '<span>Sending email...</span>';
+            var showHelperPre = $f.data('show-helper') === 'yes';
+            var helperTextPre = $f.data('helper-text');
+            var showDirectPre = $f.data('show-direct') === 'yes';
+            var linkTextPre = $f.data('link-text');
+            var pdfUrlPre = $f.find('input[name="pdf_url"]').val();
+            if (showHelperPre) {
+              preHtml += ' <span style="color:#4b5563">' + helperTextPre + '</span>';
+              if (showDirectPre && pdfUrlPre) {
+                preHtml += ' <a href="'+ pdfUrlPre +'" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111">'+ linkTextPre +'</a>';
+              }
+            }
+            $f.find('.fugu-fields').slideUp(150);
+            $msg.html(preHtml);
+
             $.post('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', $f.serialize())
              .done(function(resp){
                var showHelper = $f.data('show-helper') === 'yes';
