@@ -38,6 +38,30 @@ alwaysApply: true
 
 ---
 
+## 🔖 PLUGIN VERSION & DESCRIPTION POLICY (MANDATORY)
+
+Tujuan: Memastikan setiap deploy via Hostinger dapat diverifikasi dengan jelas oleh user melalui versi plugin di wp-admin.
+
+WAJIB dilakukan SETIAP KALI push perubahan pada plugin mana pun (tanpa kecuali):
+
+- [ ] Bump `Version` di header plugin (misal: dari 2.6.1 → 2.6.2)
+- [ ] Update `Last Updated` (format `YYYY-MM-DD HH:MM`, 24 jam, server time)
+- [ ] Perbarui `Description` (ringkas namun eksplisit tentang perubahan baru)
+- [ ] Tambah entri baru di `Version History` dengan ringkasan perubahan
+- [ ] Commit message WAJIB menyebut versi baru, contoh:
+  - `feat(plugin:gifts): v2.6.2 – ...`
+  - `fix(plugin:gifts): v2.6.2 – ...`
+- [ ] Setelah push ke `masterstaging`, lakukan verifikasi Hostinger:
+  - Buka wp-admin → Plugins → pastikan versi di layar = versi commit terbaru
+  - Jika tidak berubah, asumsikan deploy belum ter-update; ulangi/cek pipeline
+
+Catatan Operasional Hostinger:
+- Dashboard Hostinger kadang tidak memberi sinyal jelas apakah deploy yang tampil adalah commit terbaru. Karena itu, versi di header plugin dan pesan commit HARUS identik, agar user bisa membandingkan: versi di Plugins page == versi di commit terbaru.
+- Jika versi di Plugins tidak sesuai, JANGAN klaim selesai.
+
+Konsekuensi (Zero Tolerance):
+- Melupakan bump versi atau timestamp = gagal proses QA. Perbaiki segera lalu redeploy.
+
 ## Project Overview
 - **Project**: Fuguku.com WordPress Revamp
 - **WordPress Version**: 6.4.5
