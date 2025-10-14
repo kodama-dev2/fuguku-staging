@@ -240,7 +240,8 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             $f.find('.fugu-fields').slideUp(150);
             $msg.html(preHtml);
 
-            $.post('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', payload)
+            var ajaxUrl = '<?php echo esc_url( admin_url('admin-ajax.php', 'relative') ); ?>' || '/wp-admin/admin-ajax.php';
+            $.post(ajaxUrl, payload)
              .done(function(resp){
                var showHelper = $f.data('show-helper') === 'yes';
                var helperText = $f.data('helper-text');

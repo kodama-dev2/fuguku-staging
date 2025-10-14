@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.5
+ * Version: 2.6.6
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 04:40
+ * Last Updated: 2025-10-14 04:55
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -65,7 +65,8 @@
  * v2.6.2 - Ensure submissions are stored even if nonce fails (log only); email only when nonce valid; additional debug logs
  * v2.6.3 - Harden storage: wp_insert_post with WP_Error capture + logs; use draft status for nopriv; more diagnostics
  * v2.6.4 - Admin: add Catalog Submissions list in wp-admin with Email/Status columns (no Elementor needed)
- * v2.6.5 - CURRENT - Form JS: explicit payload + client validation to ensure name/email posted correctly
+ * v2.6.5 - Form JS: explicit payload + client validation to ensure name/email posted correctly
+ * v2.6.6 - CURRENT - Use relative admin-ajax URL to avoid mixed-content blocks; reliability fix
  */
 
 // Prevent direct access
