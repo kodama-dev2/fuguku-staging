@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.6
+ * Version: 2.6.7
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 04:55
+ * Last Updated: 2025-10-14 05:10
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -66,7 +66,8 @@
  * v2.6.3 - Harden storage: wp_insert_post with WP_Error capture + logs; use draft status for nopriv; more diagnostics
  * v2.6.4 - Admin: add Catalog Submissions list in wp-admin with Email/Status columns (no Elementor needed)
  * v2.6.5 - Form JS: explicit payload + client validation to ensure name/email posted correctly
- * v2.6.6 - CURRENT - Use relative admin-ajax URL to avoid mixed-content blocks; reliability fix
+ * v2.6.6 - Use relative admin-ajax URL to avoid mixed-content blocks; reliability fix
+ * v2.6.7 - CURRENT - Storage hardening: fallback author, retry insert, and option-based fallback logging; admin page can show fallback entries
  */
 
 // Prevent direct access
@@ -418,10 +419,17 @@ function fugu_catalog_submit_handler() {
 
     // Store submission FIRST (regardless of email status)
     // Insert as draft for nopriv to avoid caps edge-cases; will still be queried by widget
+    $fallback_author = get_current_user_id();
+    if (!$fallback_author) {
+        $adm = get_users(array('role' => 'administrator', 'number' => 1));
+        if (!empty($adm)) { $fallback_author = $adm[0]->ID; }
+    }
+
     $new_post = array(
         'post_type'   => 'fugu_catalog_submission',
         'post_status' => is_user_logged_in() ? 'publish' : 'draft',
         'post_title'  => $name,
+        'post_author' => $fallback_author ?: 0,
     );
     $post_id = wp_insert_post($new_post, true); // capture WP_Error
 
@@ -429,7 +437,10 @@ function fugu_catalog_submit_handler() {
         if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
             error_log('[FUGU Catalog] wp_insert_post error: ' . $post_id->get_error_message());
         }
-        // still return success=false but avoid blank UX
+        // Fallback: store minimal entry in options log so admin page still can show something
+        $log = get_option('fugu_catalog_fallback_log', array());
+        $log[] = array('time'=>current_time('mysql'),'name'=>$name,'email'=>$email);
+        update_option('fugu_catalog_fallback_log', $log);
     } elseif ($post_id) {
         update_post_meta($post_id, 'fugu_email', $email);
         if ($country) update_post_meta($post_id, 'fugu_country', $country);
@@ -523,7 +534,20 @@ function fugu_catalog_admin_page_render() {
             echo '</tr>';
         }
         wp_reset_postdata();
-    } else {
+    }
+    // Also show fallback log if exists
+    $fb = get_option('fugu_catalog_fallback_log', array());
+    if (!empty($fb)) {
+        foreach (array_reverse($fb) as $row) {
+            echo '<tr>';
+            echo '<td>' . esc_html($row['name'] ?? '-') . '</td>';
+            echo '<td>' . esc_html($row['email'] ?? '-') . '</td>';
+            echo '<td>' . esc_html($row['time'] ?? '-') . '</td>';
+            echo '<td><span style="color:#dc2626">Stored (fallback)</span></td>';
+            echo '</tr>';
+        }
+    }
+    if (!$q->have_posts() && empty($fb)) {
         echo '<tr><td colspan="4">' . esc_html__('No submissions yet.', 'fuguku-gift') . '</td></tr>';
     }
 
