@@ -14,7 +14,8 @@ class Fugu_Catalog_Table_Widget extends \Elementor\Widget_Base {
             'post_type' => 'fugu_catalog_submission',
             'posts_per_page' => $per_page,
             'paged' => $paged,
-            'post_status' => 'publish',
+            // Show all statuses because front-end inserts may become draft/pending if user is not logged in
+            'post_status' => ['publish','pending','draft'],
             'orderby' => 'date',
             'order' => 'DESC',
         ];
