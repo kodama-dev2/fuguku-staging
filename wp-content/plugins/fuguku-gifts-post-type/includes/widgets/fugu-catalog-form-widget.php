@@ -127,6 +127,37 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             'selector' => '{{WRAPPER}} .fugu-catalog-form .fugu-btn',
         ]);
         $this->end_controls_section();
+
+        // Helper options
+        $this->start_controls_section('helper_opts', [
+            'label' => __('Helper/Download', 'fuguku-gift'),
+            'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+        ]);
+        $this->add_control('show_helper', [
+            'label' => __('Show Helper Text', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'default' => 'yes',
+        ]);
+        $this->add_control('helper_text', [
+            'label' => __('Helper Text', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::TEXTAREA,
+            'rows' => 2,
+            'default' => __('Don’t see our email? Please check your Spam/Promotions tab.', 'fuguku-gift'),
+            'condition' => [ 'show_helper' => 'yes' ],
+        ]);
+        $this->add_control('show_direct_link', [
+            'label' => __('Show Direct Download Link', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'default' => 'yes',
+            'condition' => [ 'show_helper' => 'yes' ],
+        ]);
+        $this->add_control('direct_link_text', [
+            'label' => __('Direct Link Text', 'fuguku-gift'),
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'default' => __('or click here to download the catalog', 'fuguku-gift'),
+            'condition' => [ 'show_helper' => 'yes', 'show_direct_link' => 'yes' ],
+        ]);
+        $this->end_controls_section();
     }
 
     protected function render() {
@@ -154,6 +185,19 @@ class Fugu_Catalog_Form_Widget extends \Elementor\Widget_Base {
             <button type="submit" class="fugu-btn"><?php echo $btn; ?></button>
             <div class="fugu-msg" style="margin-top:10px"></div>
         </form>
+        <?php
+        $show_helper = $s['show_helper'] ?? 'yes';
+        $helper_text = $s['helper_text'] ?? '';
+        $show_direct = $s['show_direct_link'] ?? 'yes';
+        $link_text  = $s['direct_link_text'] ?? '';
+        if ($show_helper === 'yes') : ?>
+            <div class="fugu-help" style="margin-top:10px;font-size:14px;color:#4b5563">
+                <?php echo wp_kses_post($helper_text ?: __('Don’t see our email? Please check your Spam/Promotions tab.', 'fuguku-gift')); ?>
+                <?php if ($show_direct === 'yes' && $pdf_url) : ?>
+                    &nbsp;<a href="<?php echo esc_url($pdf_url); ?>" target="_blank" rel="nofollow noopener" style="text-decoration:underline;color:#111"><?php echo esc_html($link_text ?: __('or click here to download the catalog', 'fuguku-gift')); ?></a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
         <script>
         jQuery(function($){
           $('.fugu-catalog-form').on('submit', function(e){
