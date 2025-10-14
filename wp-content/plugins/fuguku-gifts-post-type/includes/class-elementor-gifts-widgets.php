@@ -45,11 +45,15 @@ class Fuguku_Elementor_Gifts_Widgets {
         require_once(__DIR__ . '/widgets/gift-solo-widget.php');
         require_once(__DIR__ . '/widgets/fugu-images-item-widget.php');
         require_once(__DIR__ . '/widgets/fugu-productshow-item-widget.php');
+        require_once(__DIR__ . '/widgets/fugu-catalog-form-widget.php');
+        require_once(__DIR__ . '/widgets/fugu-catalog-table-widget.php');
 
         // Register widgets
         $widgets_manager->register(new \Fuguku_Gift_Solo_Widget());
         $widgets_manager->register(new \Fugu_Images_Item_Widget());
         $widgets_manager->register(new \Fugu_ProductShow_Item_Widget());
+        $widgets_manager->register(new \Fugu_Catalog_Form_Widget());
+        $widgets_manager->register(new \Fugu_Catalog_Table_Widget());
     }
 }
 

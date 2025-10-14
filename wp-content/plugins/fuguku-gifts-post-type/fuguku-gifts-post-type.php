@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih.
- * Version: 2.5.6
+ * Version: 2.6.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 01:50
+ * Last Updated: 2025-10-14 02:05
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -60,7 +60,7 @@
  * v2.5.3 - FIXED TAB STYLES ELEMENTOR: removed !important overrides dari CSS inline yang conflict dengan Elementor tab styles, kept essential layout CSS only, sekarang tab styles Elementor bisa berfungsi normal untuk customize colors, fonts, spacing, etc
  * v2.5.4 - Shortened plugin description + metadata bump (no code changes)
  * v2.5.5 - Short description finalized; metadata bump for deploy
- * v2.5.6 - CURRENT - ProductShow repeater: added panel title + title_field like Images Item; prep for Style tab compatibility
+ * v2.6.0 - CURRENT - New: FUGU Catalog Form (send static PDF via email + store submissions CPT) and FUGU Catalog Submissions Table widget; ProductShow repeater title improvements
  */
 
 // Prevent direct access
@@ -307,6 +307,10 @@ function fuguku_advanced_features_integration() {
 
     // Enqueue scripts and styles
     add_action('wp_enqueue_scripts', 'fuguku_enqueue_advanced_scripts');
+
+    // Register AJAX for catalog form submit (public + admin)
+    add_action('wp_ajax_fugu_catalog_submit', 'fugu_catalog_submit_handler');
+    add_action('wp_ajax_nopriv_fugu_catalog_submit', 'fugu_catalog_submit_handler');
 }
 add_action('plugins_loaded', 'fuguku_advanced_features_integration');
 
@@ -340,6 +344,76 @@ function fuguku_enqueue_advanced_scripts() {
         array(),
         '1.0.0'
     );
+}
+
+/**
+ * Simple Catalog Submission storage CPT
+ */
+function fugu_register_catalog_submission_cpt() {
+    register_post_type('fugu_catalog_submission', array(
+        'label' => 'Catalog Submissions',
+        'public' => false,
+        'show_ui' => true,
+        'supports' => array('title'),
+        'capability_type' => 'post',
+        'menu_icon' => 'dashicons-email-alt',
+    ));
+}
+add_action('init', 'fugu_register_catalog_submission_cpt');
+
+/**
+ * AJAX handler: send email with PDF and store submission
+ */
+function fugu_catalog_submit_handler() {
+    if (!wp_verify_nonce($_POST['nonce'] ?? '', 'fuguku_gifts_nonce')) {
+        wp_send_json(array('success' => false, 'message' => 'Security check failed'));
+    }
+
+    $name   = sanitize_text_field($_POST['name'] ?? '');
+    $email  = sanitize_email($_POST['email'] ?? '');
+    $pdf_id = intval($_POST['pdf_id'] ?? 0);
+    $pdf_url= esc_url_raw($_POST['pdf_url'] ?? '');
+    $subject= sanitize_text_field($_POST['email_subject'] ?? 'Your Catalog PDF');
+    $body   = wp_kses_post($_POST['email_body'] ?? '');
+
+    if (empty($name) || empty($email)) {
+        wp_send_json(array('success' => false, 'message' => 'Name and Email are required'));
+    }
+
+    // Resolve attachment path
+    $attachment = '';
+    if ($pdf_id) {
+        $path = get_attached_file($pdf_id);
+        if ($path && file_exists($path)) $attachment = $path;
+    }
+    if (!$attachment && $pdf_url) {
+        // Try to convert URL under uploads to absolute path
+        $uploads = wp_get_upload_dir();
+        if (strpos($pdf_url, $uploads['baseurl']) === 0) {
+            $attachment = str_replace($uploads['baseurl'], $uploads['basedir'], $pdf_url);
+        }
+    }
+
+    // Send email to user
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    $sent = wp_mail($email, $subject, $body, $headers, $attachment ? array($attachment) : array());
+
+    // Store submission
+    $post_id = wp_insert_post(array(
+        'post_type' => 'fugu_catalog_submission',
+        'post_status' => 'publish',
+        'post_title' => $name,
+    ));
+    if ($post_id) {
+        update_post_meta($post_id, 'fugu_email', $email);
+        update_post_meta($post_id, 'fugu_attachment', $attachment);
+    }
+
+    if ($sent) {
+        wp_send_json(array('success' => true));
+    } else {
+        wp_send_json(array('success' => false, 'message' => 'Email not sent'));
+    }
 }
 
 /**
