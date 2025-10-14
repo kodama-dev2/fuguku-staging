@@ -27,6 +27,7 @@ class Fugu_Catalog_Table_Widget extends \Elementor\Widget_Base {
                         <th style="text-align:left;border-bottom:1px solid #e5e7eb;padding:12px 14px;font-weight:600;color:#111">Name</th>
                         <th style="text-align:left;border-bottom:1px solid #e5e7eb;padding:12px 14px;font-weight:600;color:#111">Email</th>
                         <th style="text-align:left;border-bottom:1px solid #e5e7eb;padding:12px 14px;font-weight:600;color:#111">Date</th>
+                        <th style="text-align:left;border-bottom:1px solid #e5e7eb;padding:12px 14px;font-weight:600;color:#111">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,10 @@ class Fugu_Catalog_Table_Widget extends \Elementor\Widget_Base {
                         <td style="border-bottom:1px solid #f3f4f6;padding:12px 14px"><?php the_title(); ?></td>
                         <td style="border-bottom:1px solid #f3f4f6;padding:12px 14px"><?php echo esc_html($email); ?></td>
                         <td style="border-bottom:1px solid #f3f4f6;padding:12px 14px"><?php echo esc_html(get_the_date('Y-m-d H:i')); ?></td>
+                        <td style="border-bottom:1px solid #f3f4f6;padding:12px 14px">
+                            <?php $sent = get_post_meta(get_the_ID(), 'fugu_email_sent', true);
+                            echo $sent ? '<span style="color:#16a34a">Sent</span>' : '<span style="color:#dc2626">Failed</span>'; ?>
+                        </td>
                     </tr>
                     <?php endwhile; wp_reset_postdata(); else: ?>
                     <tr><td colspan="3" style="padding:12px">No submissions yet.</td></tr>

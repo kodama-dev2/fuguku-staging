@@ -371,6 +371,9 @@ function fugu_catalog_submit_handler() {
 
     $name   = sanitize_text_field($_POST['name'] ?? '');
     $email  = sanitize_email($_POST['email'] ?? '');
+    $country= sanitize_text_field($_POST['country'] ?? '');
+    $phone  = sanitize_text_field($_POST['phone'] ?? '');
+    $message= sanitize_textarea_field($_POST['message'] ?? '');
     $pdf_id = intval($_POST['pdf_id'] ?? 0);
     $pdf_url= esc_url_raw($_POST['pdf_url'] ?? '');
     $subject= sanitize_text_field($_POST['email_subject'] ?? 'Your Catalog PDF');
@@ -394,6 +397,21 @@ function fugu_catalog_submit_handler() {
         }
     }
 
+    // Store submission FIRST (regardless of email status)
+    $post_id = wp_insert_post(array(
+        'post_type' => 'fugu_catalog_submission',
+        'post_status' => 'publish',
+        'post_title' => $name,
+    ));
+    if ($post_id) {
+        update_post_meta($post_id, 'fugu_email', $email);
+        if ($country) update_post_meta($post_id, 'fugu_country', $country);
+        if ($phone) update_post_meta($post_id, 'fugu_phone', $phone);
+        if ($message) update_post_meta($post_id, 'fugu_message', $message);
+        update_post_meta($post_id, 'fugu_attachment', $attachment);
+        update_post_meta($post_id, 'fugu_email_sent', 0);
+    }
+
     // Send email to user
     $headers = array('Content-Type: text/html; charset=UTF-8');
     // Optional From header
@@ -405,15 +423,9 @@ function fugu_catalog_submit_handler() {
 
     $sent = wp_mail($email, $subject, $body, $headers, $attachment ? array($attachment) : array());
 
-    // Store submission
-    $post_id = wp_insert_post(array(
-        'post_type' => 'fugu_catalog_submission',
-        'post_status' => 'publish',
-        'post_title' => $name,
-    ));
+    // Update email status meta
     if ($post_id) {
-        update_post_meta($post_id, 'fugu_email', $email);
-        update_post_meta($post_id, 'fugu_attachment', $attachment);
+        update_post_meta($post_id, 'fugu_email_sent', $sent ? 1 : 0);
     }
 
     if ($sent) {
