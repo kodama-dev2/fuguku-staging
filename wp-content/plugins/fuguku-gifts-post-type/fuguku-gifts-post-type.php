@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.8
+ * Version: 2.6.9
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 05:35
+ * Last Updated: 2025-10-14 05:50
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -68,7 +68,8 @@
  * v2.6.5 - Form JS: explicit payload + client validation to ensure name/email posted correctly
  * v2.6.6 - Use relative admin-ajax URL to avoid mixed-content blocks; reliability fix
  * v2.6.7 - Storage hardening: fallback author, retry insert, and option-based fallback logging; admin page can show fallback entries
- * v2.6.8 - CURRENT - Admin table: add country/phone/message columns, rounded minimal style, delete row (CPT + fallback); Form: button label "submit" and improved confirmation text
+ * v2.6.8 - Admin table: add country/phone/message columns, rounded minimal style, delete row (CPT + fallback); Form: button label "submit" and improved confirmation text
+ * v2.6.9 - CURRENT - Fallback storage now includes country/phone/message and admin table shows them
  */
 
 // Prevent direct access
@@ -440,7 +441,14 @@ function fugu_catalog_submit_handler() {
         }
         // Fallback: store minimal entry in options log so admin page still can show something
         $log = get_option('fugu_catalog_fallback_log', array());
-        $log[] = array('time'=>current_time('mysql'),'name'=>$name,'email'=>$email);
+        $log[] = array(
+            'time'    => current_time('mysql'),
+            'name'    => $name,
+            'email'   => $email,
+            'country' => $country,
+            'phone'   => $phone,
+            'message' => $message,
+        );
         update_option('fugu_catalog_fallback_log', $log);
     } elseif ($post_id) {
         update_post_meta($post_id, 'fugu_email', $email);
@@ -557,9 +565,9 @@ function fugu_catalog_admin_page_render() {
             echo '<td>' . esc_html($row['name'] ?? '-') . '</td>';
             echo '<td>' . esc_html($row['email'] ?? '-') . '</td>';
             echo '<td>' . esc_html($row['time'] ?? '-') . '</td>';
-            echo '<td>-</td>';
-            echo '<td>-</td>';
-            echo '<td>-</td>';
+            echo '<td>' . esc_html($row['country'] ?? '-') . '</td>';
+            echo '<td>' . esc_html($row['phone'] ?? '-') . '</td>';
+            echo '<td>' . esc_html($row['message'] ?? '-') . '</td>';
             echo '<td><span style="color:#dc2626">Stored (fallback)</span></td>';
             echo '<td><a href="' . esc_url( wp_nonce_url( admin_url('admin.php?page=fugu-catalog-submissions&fugu_delete_fb=' . $idx), 'fugu_delete_fb_' . $idx ) ) . '" class="button button-small" onclick="return confirm(\'Delete this row?\')">Delete</a></td>';
             echo '</tr>';
