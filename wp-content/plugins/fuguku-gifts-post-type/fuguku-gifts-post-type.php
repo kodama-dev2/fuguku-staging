@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih.
- * Version: 2.5.5
+ * Version: 2.5.6
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 01:42
+ * Last Updated: 2025-10-14 01:50
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -59,7 +59,8 @@
  * v2.5.2 - FORCE REMOVED ALL OUTLINES: added !important to ALL border/outline properties, covered ALL pseudo-states (hover/focus/active/visited/link), removed appearance properties, FORCE transparent background dan border untuk FontAwesome icons
  * v2.5.3 - FIXED TAB STYLES ELEMENTOR: removed !important overrides dari CSS inline yang conflict dengan Elementor tab styles, kept essential layout CSS only, sekarang tab styles Elementor bisa berfungsi normal untuk customize colors, fonts, spacing, etc
  * v2.5.4 - Shortened plugin description + metadata bump (no code changes)
- * v2.5.5 - CURRENT - Short description finalized; metadata bump for deploy
+ * v2.5.5 - Short description finalized; metadata bump for deploy
+ * v2.5.6 - CURRENT - ProductShow repeater: added panel title + title_field like Images Item; prep for Style tab compatibility
  */
 
 // Prevent direct access

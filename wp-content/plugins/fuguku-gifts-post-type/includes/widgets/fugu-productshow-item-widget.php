@@ -76,6 +76,18 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
 
         $repeater = new \Elementor\Repeater();
 
+        // Optional title like FUGU Images Item (used for repeater item caption only)
+        $repeater->add_control(
+            'title',
+            [
+                'label' => __('Item Title (for panel only)', 'fuguku-gift'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => __('Product', 'fuguku-gift'),
+                'label_block' => true,
+                'description' => __('Only affects the repeater item label in the editor. Front-end title uses product name.', 'fuguku-gift'),
+            ]
+        );
+
         // Step 1: Filter by category or tag
         $repeater->add_control(
             'filter_type',
@@ -165,12 +177,14 @@ class Fugu_ProductShow_Item_Widget extends \Elementor\Widget_Base {
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
+                        'title' => __('Product 1', 'fuguku-gift'),
                         'filter_type' => 'none',
                         'product_id' => '',
                         'sort_order' => 1,
                     ],
                 ],
-                'title_field' => 'Product #{{{ sort_order }}}',
+                // Match FUGU Images Item: show editable title in the panel
+                'title_field' => '{{{ title }}}',
             ]
         );
 
