@@ -5,9 +5,9 @@
      - Filter elementor/query/query_args + woocommerce_shortcode_products_query
        supaya produk outofstock tidak ikut di-query (OOS tidak masuk HTML slider).
 
-  2) JS: wp-content/themes/claue-child/js/new-available-slick.js
+  2) JS: wp-content/themes/claue-child/js/new-available-slick.js (v1.0.1)
      - unslick → hapus slide OOS dari DOM → slick( opts ) lagi
-       (jaga-jaga jika masih ada OOS di markup).
+     - juga listen `elementor/frontend/init` + delayed run (Slick sering init setelah load)
 
   Langkah Anda:
   - Hapus / nonaktifkan script jQuery lama di widget HTML Elementor (biarkan kosong atau hapus widget).

@@ -82,7 +82,7 @@ add_action('wp_enqueue_scripts', function () {
 		'claue-new-available-slick',
 		get_stylesheet_directory_uri() . '/js/new-available-slick.js',
 		['jquery'],
-		'1.0.0',
+		'1.0.1',
 		true
 	);
 }, 9999);
