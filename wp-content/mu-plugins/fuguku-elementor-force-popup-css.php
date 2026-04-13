@@ -1,18 +1,52 @@
 <?php
 /**
- * Plugin Name: Fuguku — force Elementor CSS for country popup
- * Description: Memuat CSS file template Elementor (elementor_library) untuk popup di frontend. Mengatasi popup yang tampil “polos” di publish padahal di editor/preview benar — biasanya karena CSS post tidak ikut di-enqueue sampai kondisi tertentu.
- * Version: 1.0.0
+ * Plugin Name: Fuguku — force Elementor CSS for templates (popup / off-canvas / theme parts)
+ * Description: Memuat file CSS template Elementor (elementor_library) di frontend. Mengatasi tampilan “polos” saat publish (popup negara, off-canvas menu, dll.) padahal di editor benar — biasanya CSS post tidak di-enqueue sampai kondisi tertentu / optimasi asset.
+ * Version: 1.1.0
  *
- * Ganti ID lewat filter: add_filter( 'fuguku_forced_elementor_css_post_id', fn() => 10504 );
+ * Tambah/ubah ID lewat filter:
+ *   add_filter( 'fuguku_forced_elementor_css_post_ids', function ( $ids ) {
+ *       return array_merge( $ids, [ 12345 ] );
+ *   } );
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** Post ID template Elementor: Popup “select-country-list” (elementor_library). */
-const FUGUKU_ELEMENTOR_COUNTRY_POPUP_POST_ID = 10504;
+/** Default: popup negara + off-canvas menu (sesuaikan jika duplikat template). */
+const FUGUKU_ELEMENTOR_DEFAULT_FORCED_CSS_IDS = [
+	10504, // select-country-list (popup)
+	10626, // off-canvas / menu (elementor_library)
+];
+
+/**
+ * @return int[]
+ */
+function fuguku_forced_elementor_css_post_ids(): array {
+	$defaults = FUGUKU_ELEMENTOR_DEFAULT_FORCED_CSS_IDS;
+	/** @deprecated Gunakan fuguku_forced_elementor_css_post_ids */
+	$legacy = (int) apply_filters( 'fuguku_forced_elementor_css_post_id', 0 );
+	if ( $legacy > 0 ) {
+		$defaults = array_merge( $defaults, [ $legacy ] );
+	}
+
+	$ids = apply_filters(
+		'fuguku_forced_elementor_css_post_ids',
+		$defaults
+	);
+	if ( ! is_array( $ids ) ) {
+		return [];
+	}
+	$out = [];
+	foreach ( $ids as $id ) {
+		$id = (int) $id;
+		if ( $id > 0 ) {
+			$out[] = $id;
+		}
+	}
+	return array_values( array_unique( $out ) );
+}
 
 add_action(
 	'elementor/frontend/after_enqueue_styles',
@@ -27,17 +61,14 @@ add_action(
 			return;
 		}
 
-		$post_id = (int) apply_filters( 'fuguku_forced_elementor_css_post_id', FUGUKU_ELEMENTOR_COUNTRY_POPUP_POST_ID );
-		if ( $post_id < 1 ) {
-			return;
-		}
-
-		try {
-			\Elementor\Core\Files\CSS\Post::create( $post_id )->enqueue();
-		} catch ( \Throwable $e ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-				error_log( 'fuguku-elementor-force-popup-css: ' . $e->getMessage() );
+		foreach ( fuguku_forced_elementor_css_post_ids() as $post_id ) {
+			try {
+				\Elementor\Core\Files\CSS\Post::create( $post_id )->enqueue();
+			} catch ( \Throwable $e ) {
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+					error_log( 'fuguku-elementor-force-css post ' . $post_id . ': ' . $e->getMessage() );
+				}
 			}
 		}
 	},
