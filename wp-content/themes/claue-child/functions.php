@@ -75,14 +75,22 @@ add_action('wp_enqueue_scripts', function() {
 }, 20);
 
 /**
- * Load New Collections Slick fix after theme/Elementor scripts (late footer order).
+ * New Collections: Slick + OOS cleanup — hanya di halaman depan.
+ * Script ini cuma menyentuh node di bawah .new-available (bukan popup Elementor).
+ * Memuatnya hanya di front page mengurangi bebas konflik di halaman lain.
  */
 add_action('wp_enqueue_scripts', function () {
+	if ( is_admin() || ! is_front_page() ) {
+		return;
+	}
+	if ( ! apply_filters( 'fuguku_enqueue_new_available_slick', true ) ) {
+		return;
+	}
 	wp_enqueue_script(
 		'claue-new-available-slick',
 		get_stylesheet_directory_uri() . '/js/new-available-slick.js',
 		['jquery'],
-		'1.0.1',
+		'1.0.2',
 		true
 	);
 }, 9999);
