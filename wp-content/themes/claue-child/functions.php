@@ -71,7 +71,7 @@ add_action('wp_enqueue_scripts', function() {
 	wp_enqueue_style('claue-parent-style', get_template_directory_uri() . '/style.css', [], null);
 	
 	// Child theme styles
-	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.0');
+	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.1');
 }, 20);
 
 /**

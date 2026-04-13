@@ -5,7 +5,7 @@
  Author:       Fuguku Team
  Author URI:   https://fuguku.com/
  Template:     claue
- Version:      1.0.0
+ Version:      1.0.1
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Text Domain:  claue-child
@@ -112,5 +112,42 @@
 
 .product-image-carousel .carousel-slide img[src=""] {
 	display: none;
+}
+
+/* ========================================
+   Elementor Pro — popup / lightbox (tema sering memecah overlay + kolom)
+   Hanya memakai selector di bawah .elementor-popup-modal
+   ======================================== */
+body .elementor-popup-modal.dialog-type-lightbox,
+body .elementor-popup-modal {
+	position: fixed !important;
+	inset: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	margin: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	flex-direction: row !important;
+	padding: 20px !important;
+	box-sizing: border-box !important;
+	z-index: 9999999 !important;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+
+body .elementor-popup-modal .dialog-widget-content {
+	position: relative !important;
+	width: 100% !important;
+	max-width: min(1100px, 100%) !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	float: none !important;
+}
+
+body .elementor-popup-modal .dialog-message.dialog-lightbox-message {
+	width: 100% !important;
+	max-width: 100% !important;
 }
 
