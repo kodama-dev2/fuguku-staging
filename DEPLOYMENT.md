@@ -3,37 +3,29 @@
 ## Version: 2.4.0
 ## Last Updated: 2025-01-28 01:00
 
-### 🚨 DEPLOYMENT ISSUE FIX - Divergent Branches
+### 🚨 DEPLOYMENT ISSUE FIX - Divergent Branches (Hostinger Git)
 
 #### Problem:
-```
-pull: hint: You have divergent branches and need to specify how to reconcile them.
-fatal: Need to specify how to reconcile divergent branches.
-Deployment failed
-```
+Hostinger menjalankan `git pull`. Setelah **force-push** atau commit lokal di server, branch **divergen**; Git meminta cara reconcile (`pull.rebase` / merge / ff-only) dan deploy **gagal** dengan pesan seperti:
+`Need to specify how to reconcile divergent branches`.
 
-#### Solution:
+#### Penyebab:
+- History di disk server **tidak sama** dengan `origin` (bukan karena repo GitHub rusak).
+- `git pull` saja tidak cukup tanpa strategi, dan untuk staging biasanya Anda **ingin disk = GitHub**, bukan merge commit di server.
 
-**Option 1: Auto Deployment Script**
-1. Use the provided `deploy.sh` script:
-```bash
-chmod +x deploy.sh
-./deploy.sh
-```
+#### Solusi yang benar untuk staging (satu kali lewat SSH Hostinger):
 
-**Option 2: Manual Git Configuration**
-1. Configure git on the staging server:
-```bash
-git config pull.rebase false
-git config pull.ff false
-```
+1. Buka **SSH** Hostinger (hPanel → Advanced → SSH), login.
+2. Masuk ke folder **yang sama** dengan repo deploy (contoh: `domains/fuguku.com/public_html/revampstaging2025` — sesuaikan path Anda).
+3. Jalankan perintah di file ini bagian **Quick Fix Commands** di bawah: **`git fetch origin` lalu `git reset --hard origin/masterstaging`**.
+4. Jalankan lagi **Deploy** dari panel Hostinger (atau push kosong untuk trigger), atau biarkan cron deploy berikutnya.
 
-**Option 3: Reset to Remote (Recommended for Staging)**
-1. Reset staging to match remote exactly:
-```bash
-git fetch origin masterstaging
-git reset --hard origin/masterstaging
-```
+Setelah server sudah **reset ke `origin/masterstaging`**, pull berikutnya sering sudah bisa **fast-forward**. Jika masih error, set default pull di repo server: `git config pull.ff only` (hanya terima fast-forward) **atau** ubah skrip deploy Hostinger agar tidak memakai `pull` mentah, melainkan `fetch` + `reset --hard` (mirror deploy).
+
+#### Opsi lain (kurang disarankan untuk “mirror” staging):
+
+- `git config pull.rebase false` lalu `git pull` — bisa membuat merge commit di server dan kotor.
+- Script `deploy.sh` di repo — hanya jika Hostinger memang menjalankan script itu (banyak panel tidak).
 
 ### 🔧 Deployment Configuration
 
@@ -80,14 +72,18 @@ cp .gitconfig-deployment ~/.gitconfig
 - 50671ff5: v2.3.0: Update project rules after reset
 - 55d04383: v2.3.0: Cloned layout 4 structure for revamp
 
-### 🚀 Quick Fix Commands
+### 🚀 Quick Fix Commands (SSH — salin setelah `cd` ke folder repo di server)
 
-**For Hostinger Deployment Console:**
 ```bash
-# Quick fix for divergent branches
-git config pull.rebase false
-git fetch origin masterstaging
+git fetch origin
 git reset --hard origin/masterstaging
+git status
+```
+
+Opsional agar `git pull` tidak error di Git baru (setelah history sudah rapi):
+
+```bash
+git config pull.ff only
 ```
 
 **Verify Deployment:**
