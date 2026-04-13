@@ -3,11 +3,11 @@
  * Plugin Name: Fuguku Gifts Post Type
  * Plugin URI: https://fuguku.com/
  * Description: Fuguku Gifts CPT + Elementor widgets (Images Item & ProductShow). Meta lengkap (price, brand, availability, featured), auto ambil gallery, SELECT2 instant search, judul/harga/deskripsi otomatis, panah minimal (tanpa background/outline/shadow), overlay gradasi, truncate deskripsi, CSS bersih. Tambahan v2.6.1: Wholesale Catalog (form kirim PDF via email + simpan submission sebagai CPT) dan widget Tabel Submissions untuk dashboard/Elementor.
- * Version: 2.6.9
+ * Version: 2.7.0
  * Author: Fuguku Development Team
  * License: GPL v2 or later
  * Text Domain: fuguku-gift
- * Last Updated: 2025-10-14 05:50
+ * Last Updated: 2026-04-13 12:00
  *
  * Version History:
  * v1.0.0 - Initial plugin creation with basic post type
@@ -69,13 +69,16 @@
  * v2.6.6 - Use relative admin-ajax URL to avoid mixed-content blocks; reliability fix
  * v2.6.7 - Storage hardening: fallback author, retry insert, and option-based fallback logging; admin page can show fallback entries
  * v2.6.8 - Admin table: add country/phone/message columns, rounded minimal style, delete row (CPT + fallback); Form: button label "submit" and improved confirmation text
- * v2.6.9 - CURRENT - Fallback storage now includes country/phone/message and admin table shows them
+ * v2.6.9 - Fallback storage now includes country/phone/message and admin table shows them
+ * v2.7.0 - CURRENT - Shortcode [fuguku_visitor_country] for visitor country name/code (WooCommerce GeoIP + Cloudflare); include class-visitor-country-shortcode.php
  */
 
 // Prevent direct access
 if (!defined('ABSPATH')) {
     exit;
 }
+
+require_once __DIR__ . '/includes/class-visitor-country-shortcode.php';
 
 /**
  * Register Gifts Post Type
