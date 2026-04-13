@@ -102,13 +102,6 @@
 		setTimeout(run, 0);
 	}
 
-	// Elementor sering init Slick setelah window load — tangkap event ini juga.
-	$(window).on('elementor/frontend/init', function () {
-		scheduleRun();
-		setTimeout(scheduleRun, 300);
-		setTimeout(scheduleRun, 800);
-	});
-
 	if (document.readyState === 'complete') {
 		scheduleRun();
 	} else {

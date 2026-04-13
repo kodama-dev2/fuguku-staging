@@ -5,7 +5,7 @@
  Author:       Fuguku Team
  Author URI:   https://fuguku.com/
  Template:     claue
- Version:      1.0.2
+ Version:      1.0.0
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Text Domain:  claue-child
@@ -47,23 +47,6 @@
 /* Optional: hide dots if not needed */
 .product-image-carousel .slick-dots {
 	display: none;
-}
-
-/* Quantity controls: ensure clicks are not blocked in staging */
-.quantity {
-	position: relative;
-}
-.quantity .tc,
-.quantity .tc a {
-	pointer-events: auto !important;
-	z-index: 10;
-}
-.quantity .tc a {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 28px;
-	min-height: 28px;
 }
 
 /* Completely disable flip back image */
@@ -113,3 +96,4 @@
 .product-image-carousel .carousel-slide img[src=""] {
 	display: none;
 }
+

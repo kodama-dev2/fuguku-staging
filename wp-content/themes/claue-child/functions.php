@@ -9,8 +9,7 @@
 defined('ABSPATH') || exit;
 
 /**
- * Exclude out-of-stock products from Elementor product queries so sliders never receive OOS slides.
- * (Client-side slickFilter is unreliable for width calculation.)
+ * Exclude out-of-stock from WooCommerce shortcode queries only (bukan filter Elementor).
  *
  * @param array<string,mixed> $args Query args.
  * @return array<string,mixed>
@@ -26,27 +25,6 @@ function fuguku_meta_query_exclude_outofstock(array $args): array {
 	];
 	return $args;
 }
-
-/**
- * Elementor Pro (and similar) product loop query.
- *
- * @param array<string,mixed> $args
- * @param mixed               $widget
- */
-add_filter('elementor/query/query_args', function ($args, $widget) {
-	if (is_admin()) {
-		return $args;
-	}
-	if (! apply_filters('fuguku_exclude_oos_from_elementor_queries', true, $args, $widget)) {
-		return $args;
-	}
-	$pt = $args['post_type'] ?? null;
-	$is_product = ($pt === 'product') || (is_array($pt) && in_array('product', $pt, true));
-	if (! $is_product) {
-		return $args;
-	}
-	return fuguku_meta_query_exclude_outofstock($args);
-}, 20, 2);
 
 /**
  * WooCommerce [products] shortcode and similar.
@@ -71,7 +49,7 @@ add_action('wp_enqueue_scripts', function() {
 	wp_enqueue_style('claue-parent-style', get_template_directory_uri() . '/style.css', [], null);
 	
 	// Child theme styles
-	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.2');
+	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.0');
 }, 20);
 
 /**
@@ -90,7 +68,7 @@ add_action('wp_enqueue_scripts', function () {
 		'claue-new-available-slick',
 		get_stylesheet_directory_uri() . '/js/new-available-slick.js',
 		['jquery'],
-		'1.0.2',
+		'1.0.3',
 		true
 	);
 }, 9999);
