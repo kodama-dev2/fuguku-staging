@@ -102,6 +102,81 @@ Harus **clean** dan commit sama dengan GitHub `masterstaging`.
 
 ---
 
+## Blok siap tempel (copy-paste)
+
+### 1) Di Mac — kirim kode ke GitHub (jalankan di folder project lokal Anda)
+
+Ganti path kalau project Anda tidak di sini.
+
+```bash
+cd /Users/gemadipada/cursor-repos/wp/revampstaging2025
+git status
+git add -A
+git commit -m "pesan commit Anda"
+git push origin masterstaging
+```
+
+Kalau tidak ada perubahan baru, cukup:
+
+```bash
+cd /Users/gemadipada/cursor-repos/wp/revampstaging2025
+git push origin masterstaging
+```
+
+---
+
+### 2) Masuk server Hostinger (Terminal Mac — ini baru SSH)
+
+```bash
+ssh -p 65002 u719516980@145.223.110.206
+```
+
+(Password: dari hPanel, jangan dipaste ke chat.)
+
+---
+
+### 3) Setelah prompt berubah (Anda sudah di server) — deploy = samakan dengan GitHub
+
+Satu blok ini saja (tempel per baris atau sekaligus):
+
+```bash
+cd ~/domains/fuguku.com/public_html/revampstaging2025
+git fetch origin
+git reset --hard origin/masterstaging
+git log -1 --oneline
+exit
+```
+
+Kalau file `deploy-staging.sh` sudah ada di server (setelah pull commit yang menyertakan skrip):
+
+```bash
+cd ~/domains/fuguku.com/public_html/revampstaging2025
+./deploy-staging.sh
+exit
+```
+
+---
+
+### 4) Setup sekali (hanya jika belum pernah) — masih di dalam SSH, folder repo yang sama
+
+```bash
+cd ~/domains/fuguku.com/public_html/revampstaging2025
+git config pull.ff only
+git config --get pull.ff
+```
+
+---
+
+### 5) Hostinger hPanel — field “Custom deploy command” (kalau ada)
+
+Satu baris:
+
+```bash
+cd ~/domains/fuguku.com/public_html/revampstaging2025 && ./deploy-staging.sh
+```
+
+---
+
 ## Catatan
 
 - Jangan edit file langsung di server lalu expect `git pull` — itu sumber divergen.  
