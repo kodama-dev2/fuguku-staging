@@ -5,9 +5,7 @@ use Automattic\WooCommerce\StoreApi\SchemaController;
 use Automattic\WooCommerce\StoreApi\Routes\RouteInterface;
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
 use Automattic\WooCommerce\StoreApi\Exceptions\InvalidCartException;
-use Automattic\WooCommerce\StoreApi\Schemas\v1\AbstractSchema;
-use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFields;
-use Automattic\WooCommerce\Blocks\Package;
+use Automattic\WooCommerce\StoreApi\Schemas\V1\AbstractSchema;
 use WP_Error;
 
 /**

@@ -32,12 +32,20 @@ class WC_Product_Download implements ArrayAccess {
 	);
 
 	/**
+	 * Extra data array.
+	 *
+	 * @since 10.6.0
+	 * @var array
+	 */
+	protected $extra_data = array();
+
+	/**
 	 * Returns all data for this object.
 	 *
 	 * @return array
 	 */
 	public function get_data() {
-		return $this->data;
+		return array_merge( $this->extra_data, $this->data );
 	}
 
 	/**
@@ -255,7 +263,7 @@ class WC_Product_Download implements ArrayAccess {
 				/* translators: %1$s is the downloadable file path, %2$s is an opening link tag, %3%s is a closing link tag. */
 				__( 'The downloadable file %s cannot be used as it does not exist on the server, or is not located within an approved directory. Please contact a site administrator for help. %2$sLearn more.%3$s', 'woocommerce' ),
 				'<code>' . $download_file . '</code>',
-				'<a href="https://woo.com/document/approved-download-directories">',
+				'<a href="https://woocommerce.com/document/approved-download-directories">',
 				'</a>'
 			)
 		);
@@ -266,6 +274,17 @@ class WC_Product_Download implements ArrayAccess {
 	| Setters
 	|--------------------------------------------------------------------------
 	*/
+
+	/**
+	 * Set extra data by key.
+	 *
+	 * @since 10.6.0
+	 * @param string $key   Extra data key.
+	 * @param mixed  $value Extra data value.
+	 */
+	public function set_extra_data( string $key, $value ): void {
+		$this->extra_data[ $key ] = $value;
+	}
 
 	/**
 	 * Set ID.
@@ -333,6 +352,27 @@ class WC_Product_Download implements ArrayAccess {
 	*/
 
 	/**
+	 * Get all extra data.
+	 *
+	 * @since 10.6.0
+	 * @return array
+	 */
+	public function get_all_extra_data() {
+		return $this->extra_data;
+	}
+
+	/**
+	 * Get extra data by key.
+	 *
+	 * @since 10.6.0
+	 * @param string $key Extra data key.
+	 * @return mixed
+	 */
+	public function get_extra_data( string $key ) {
+		return $this->extra_data[ $key ] ?? null;
+	}
+
+	/**
 	 * Get id.
 	 *
 	 * @return string
@@ -398,6 +438,9 @@ class WC_Product_Download implements ArrayAccess {
 				if ( is_callable( array( $this, "get_$offset" ) ) ) {
 					return $this->{"get_$offset"}();
 				}
+				if ( isset( $this->extra_data[ $offset ] ) ) {
+					return $this->extra_data[ $offset ];
+				}
 				break;
 		}
 		return '';
@@ -415,7 +458,9 @@ class WC_Product_Download implements ArrayAccess {
 			default:
 				if ( is_callable( array( $this, "set_$offset" ) ) ) {
 					$this->{"set_$offset"}( $value );
+					break;
 				}
+				$this->extra_data[ $offset ] = $value;
 				break;
 		}
 	}
@@ -436,6 +481,6 @@ class WC_Product_Download implements ArrayAccess {
 	 */
 	#[\ReturnTypeWillChange]
 	public function offsetExists( $offset ) {
-		return in_array( $offset, array_keys( $this->data ), true );
+		return in_array( $offset, array_merge( array_keys( $this->data ), array_keys( $this->extra_data ) ), true );
 	}
 }

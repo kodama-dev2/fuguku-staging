@@ -37,8 +37,8 @@ Thumbs.db
 # Node modules (jika ada)
 node_modules/
 
-# Composer (jika ada)
-vendor/
+# Composer — hanya root repo (vendor di dalam plugin WooCommerce harus ikut Git)
+/vendor/
 
 # Environment files
 .env
@@ -70,6 +70,7 @@ wp-admin/
 wp-includes/
 wp-content/plugins/*
 !wp-content/plugins/fuguku-gifts-post-type/
+!wp-content/plugins/woocommerce/
 wp-content/srplugin_backups/
 wp-content/themes/twentytwentyfive/
 

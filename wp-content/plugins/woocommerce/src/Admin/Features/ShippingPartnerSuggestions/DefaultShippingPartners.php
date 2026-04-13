@@ -59,28 +59,28 @@ class DefaultShippingPartners {
 						array(
 							'icon'        => $check_icon,
 							'description' => __(
-								'Print labels from Royal Mail, Parcel Force, DPD, and many more',
+								'Discounted labels from top global carriers',
 								'woocommerce'
 							),
 						),
 						array(
 							'icon'        => $check_icon,
 							'description' => __(
-								'Shop for the best rates, in real-time',
+								'Sync all your selling channels in one place',
 								'woocommerce'
 							),
 						),
 						array(
 							'icon'        => $check_icon,
-							'description' => __( 'Connect selling channels easily', 'woocommerce' ),
+							'description' => __( 'Advanced automated workflows and customs', 'woocommerce' ),
 						),
 						array(
 							'icon'        => $check_icon,
-							'description' => __( 'Advance automated workflows', 'woocommerce' ),
+							'description' => __( 'Instantly send tracking to your customers', 'woocommerce' ),
 						),
 						array(
 							'icon'        => $check_icon,
-							'description' => __( '30-days free trial', 'woocommerce' ),
+							'description' => __( '30-day free trial', 'woocommerce' ),
 						),
 					),
 				),
@@ -114,7 +114,7 @@ class DefaultShippingPartners {
 					'image'    => $asset_base_url . 'envia-column.svg',
 					'features' => $column_layout_features,
 				),
-				'learn_more_link'   => 'https://woo.com/products/envia-shipping-and-fulfillment/',
+				'learn_more_link'   => 'https://woocommerce.com/products/envia-shipping-and-fulfillment/',
 				'is_visible'        => array(
 					self::get_rules_for_countries( array( 'CL', 'AR', 'PE', 'BR', 'UY', 'GT' ) ),
 				),
@@ -157,53 +157,9 @@ class DefaultShippingPartners {
 						),
 					),
 				),
-				'learn_more_link'   => 'https://woo.com/products/easyship-shipping-rates/',
+				'learn_more_link'   => 'https://woocommerce.com/products/easyship-shipping-rates/',
 				'is_visible'        => array(
 					self::get_rules_for_countries( array( 'SG', 'HK', 'AU', 'NZ' ) ),
-				),
-				'available_layouts' => array( 'row', 'column' ),
-			),
-			array(
-				'id'                => 'sendcloud-shipping',
-				'name'              => 'Sendcloud',
-				'slug'              => 'sendcloud-shipping',
-				'description'       => __( 'All-in-one shipping tool:', 'woocommerce' ),
-				'layout_column'     => array(
-					'image'    => $asset_base_url . 'sendcloud-column.svg',
-					'features' => $column_layout_features,
-				),
-				'layout_row'        => array(
-					'image'    => $asset_base_url . 'sendcloud-row.svg',
-					'features' => array(
-						array(
-							'icon'        => $check_icon,
-							'description' => __( 'Print labels from 80+ carriers', 'woocommerce' ),
-						),
-						array(
-							'icon'        => $check_icon,
-							'description' => __(
-								'Process orders in just a few clicks',
-								'woocommerce'
-							),
-						),
-						array(
-							'icon'        => $check_icon,
-							'description' => __( 'Customize checkout options', 'woocommerce' ),
-						),
-
-						array(
-							'icon'        => $check_icon,
-							'description' => __( 'Self-service tracking & returns', 'woocommerce' ),
-						),
-						array(
-							'icon'        => $check_icon,
-							'description' => __( 'Start with a free plan', 'woocommerce' ),
-						),
-					),
-				),
-				'learn_more_link'   => 'https://wordpress.org/plugins/sendcloud-shipping/',
-				'is_visible'        => array(
-					self::get_rules_for_countries( array( 'NL', 'AT', 'BE', 'FR', 'DE', 'ES', 'GB', 'IT' ) ),
 				),
 				'available_layouts' => array( 'row', 'column' ),
 			),
@@ -257,11 +213,10 @@ class DefaultShippingPartners {
 				'available_layouts' => array( 'row', 'column' ),
 			),
 			array(
-				'id'                => 'woocommerce-services',
+				'id'                => 'woocommerce-shipping',
 				'name'              => 'WooCommerce Shipping',
-				'slug'              => 'woocommerce-services',
+				'slug'              => 'woocommerce-shipping',
 				'description'       => __( 'Save time and money by printing your shipping labels right from your computer with WooCommerce Shipping. Try WooCommerce Shipping for free.', 'woocommerce' ),
-				'dependencies'      => array( 'jetpack' ),
 				'layout_column'     => array(
 					'image'    => $asset_base_url . 'wcs-column.svg',
 					'features' => array(
@@ -278,13 +233,22 @@ class DefaultShippingPartners {
 						array(
 							'icon'        => $asset_base_url . 'discount.svg',
 							'title'       => __( 'Discounted rates', 'woocommerce' ),
-							'description' => __( 'Access discounted shipping rates with DHL and USPS.', 'woocommerce' ),
+							'description' => __( 'Access discounted shipping rates with USPS, UPS, and DHL.', 'woocommerce' ),
 						),
 					),
 				),
-				'learn_more_link'   => 'https://woo.com/products/shipping/',
+				'learn_more_link'   => 'https://woocommerce.com/products/shipping/',
 				'is_visible'        => array(
 					self::get_rules_for_countries( array( 'US' ) ),
+					(object) array(
+						'type'    => 'not',
+						'operand' => array(
+							(object) array(
+								'type'    => 'plugins_activated',
+								'plugins' => array( 'woocommerce-shipping' ),
+							),
+						),
+					),
 				),
 				'available_layouts' => array( 'column' ),
 			),
@@ -298,19 +262,10 @@ class DefaultShippingPartners {
 	 * @return object Rules to match.
 	 */
 	public static function get_rules_for_countries( $countries ) {
-		$rules = array();
-
-		foreach ( $countries as $country ) {
-			$rules[] = (object) array(
-				'type'      => 'base_location_country',
-				'value'     => $country,
-				'operation' => '=',
-			);
-		}
-
 		return (object) array(
-			'type'     => 'or',
-			'operands' => $rules,
+			'type'      => 'base_location_country',
+			'operation' => 'in',
+			'value'     => $countries,
 		);
 	}
 }

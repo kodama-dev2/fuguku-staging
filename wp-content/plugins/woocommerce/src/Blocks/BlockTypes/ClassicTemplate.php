@@ -2,6 +2,9 @@
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 use Automattic\WooCommerce\Blocks\Templates\ProductAttributeTemplate;
+use Automattic\WooCommerce\Blocks\Templates\ProductCatalogTemplate;
+use Automattic\WooCommerce\Blocks\Templates\ProductCategoryTemplate;
+use Automattic\WooCommerce\Blocks\Templates\ProductTagTemplate;
 use Automattic\WooCommerce\Blocks\Templates\ProductSearchResultsTemplate;
 use Automattic\WooCommerce\Blocks\Templates\OrderConfirmationTemplate;
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
@@ -26,7 +29,7 @@ class ClassicTemplate extends AbstractDynamicBlock {
 	 *
 	 * @var string
 	 */
-	protected $api_version = '2';
+	protected $api_version = '3';
 
 	/**
 	 * Initialize this block.
@@ -35,6 +38,26 @@ class ClassicTemplate extends AbstractDynamicBlock {
 		parent::initialize();
 		add_filter( 'render_block', array( $this, 'add_alignment_class_to_wrapper' ), 10, 2 );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
+	}
+
+	/**
+	 * Extra data passed through from server to client for block.
+	 *
+	 * @param array $attributes  Any attributes that currently are available from the block.
+	 *                           Note, this will be empty in the editor context when the block is
+	 *                           not in the post content on editor load.
+	 */
+	protected function enqueue_data( array $attributes = array() ) {
+		parent::enqueue_data( $attributes );
+
+		// Disable client-side navigation so that interactivity powered
+		// components fall back to full page reload.
+		wp_interactivity_config(
+			'core/router',
+			array(
+				'clientNavigationDisabled' => true,
+			)
+		);
 	}
 
 	/**
@@ -61,6 +84,54 @@ class ClassicTemplate extends AbstractDynamicBlock {
 	}
 
 	/**
+	 * Enqueue assets specific to this block.
+	 *
+	 * @param array    $attributes Block attributes.
+	 * @param string   $content Block content.
+	 * @param WP_Block $block Block instance.
+	 */
+	protected function enqueue_assets( $attributes, $content, $block ) {
+		parent::enqueue_assets( $attributes, $content, $block );
+
+		if ( is_product() ) {
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_legacy_assets' ], 20 );
+		}
+	}
+
+	/**
+	 * Enqueue legacy assets when this block is used as we don't enqueue them for block themes anymore.
+	 *
+	 * Note: This enqueue logic is intentionally duplicated in ProductImageGallery.php
+	 * to keep legacy blocks independent and allow for separate deprecation paths.
+	 *
+	 * @see https://github.com/woocommerce/woocommerce/pull/60223
+	 */
+	public function enqueue_legacy_assets() {
+		// Legacy script dependencies for backward compatibility.
+		if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
+			wp_enqueue_script( 'wc-zoom' );
+		}
+
+		if ( current_theme_supports( 'wc-product-gallery-slider' ) ) {
+			wp_enqueue_script( 'wc-flexslider' );
+		}
+
+		if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
+			wp_enqueue_script( 'wc-photoswipe-ui-default' );
+			wp_enqueue_style( 'photoswipe-default-skin' );
+			add_action(
+				'wp_footer',
+				function () {
+					wc_get_template( 'single-product/photoswipe.php' );
+				}
+			);
+		}
+
+		wp_enqueue_script( 'wc-single-product' );
+	}
+
+
+	/**
 	 * Render method for the Classic Template block. This method will determine which template to render.
 	 *
 	 * @param array    $attributes Block attributes.
@@ -84,19 +155,23 @@ class ClassicTemplate extends AbstractDynamicBlock {
 			$frontend_scripts::load_scripts();
 		}
 
-		if ( OrderConfirmationTemplate::get_slug() === $attributes['template'] ) {
+		if ( OrderConfirmationTemplate::SLUG === $attributes['template'] ) {
 			return $this->render_order_received();
 		}
 
 		if ( is_product() ) {
+			add_filter( 'woocommerce_single_product_zoom_enabled', '__return_true' );
+			add_filter( 'woocommerce_single_product_photoswipe_enabled', '__return_true' );
+			add_filter( 'woocommerce_single_product_flexslider_enabled', '__return_true' );
+
 			return $this->render_single_product();
 		}
 
 		$valid             = false;
 		$archive_templates = array(
-			'archive-product',
-			'taxonomy-product_cat',
-			'taxonomy-product_tag',
+			ProductCatalogTemplate::SLUG,
+			ProductCategoryTemplate::SLUG,
+			ProductTagTemplate::SLUG,
 			ProductAttributeTemplate::SLUG,
 			ProductSearchResultsTemplate::SLUG,
 		);
@@ -115,15 +190,14 @@ class ClassicTemplate extends AbstractDynamicBlock {
 
 		if ( $valid ) {
 			// Set this so that our product filters can detect if it's a PHP template.
-			$this->asset_data_registry->add( 'isRenderingPhpTemplate', true, true );
+			$this->asset_data_registry->add( 'isRenderingPhpTemplate', true );
 
 			// Set this so filter blocks being used as widgets know when to render.
-			$this->asset_data_registry->add( 'hasFilterableProducts', true, true );
+			$this->asset_data_registry->add( 'hasFilterableProducts', true );
 
 			$this->asset_data_registry->add(
 				'pageUrl',
-				html_entity_decode( get_pagenum_link() ),
-				''
+				html_entity_decode( get_pagenum_link() )
 			);
 
 			return $this->render_archive_product();
@@ -148,7 +222,7 @@ class ClassicTemplate extends AbstractDynamicBlock {
 
 		echo '<div class="wp-block-group">';
 
-		echo sprintf(
+		printf(
 			'<%1$s %2$s>%3$s</%1$s>',
 			'h1',
 			get_block_wrapper_attributes(), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -372,14 +446,5 @@ class ClassicTemplate extends AbstractDynamicBlock {
 		// If there is a tag, and it has a class already, add the class attribute.
 		$pattern_get_class = '/(?<=class=\"|\')[^"|\']+(?=\"|\')/';
 		return preg_replace( $pattern_get_class, '$0 ' . $align_class_and_style['class'], $content, 1 );
-	}
-
-	/**
-	 * Get the frontend style handle for this block type.
-	 *
-	 * @return null
-	 */
-	protected function get_block_type_style() {
-		return null;
 	}
 }

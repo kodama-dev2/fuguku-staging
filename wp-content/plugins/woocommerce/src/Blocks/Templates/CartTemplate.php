@@ -1,21 +1,36 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\Templates;
 
-use Automattic\WooCommerce\Blocks\Utils\BlockTemplateMigrationUtils;
-
 /**
  * CartTemplate class.
  *
  * @internal
  */
 class CartTemplate extends AbstractPageTemplate {
+
 	/**
-	 * Template slug.
+	 * The slug of the template.
+	 *
+	 * @var string
+	 */
+	const SLUG = 'page-cart';
+
+	/**
+	 * Returns the title of the template.
 	 *
 	 * @return string
 	 */
-	public static function get_slug() {
-		return 'page-cart';
+	public function get_template_title() {
+		return _x( 'Page: Cart', 'Template name', 'woocommerce' );
+	}
+
+	/**
+	 * Returns the description of the template.
+	 *
+	 * @return string
+	 */
+	public function get_template_description() {
+		return __( 'The Cart template displays the items selected by the user for purchase, including quantities, prices, and discounts. It allows users to review their choices before proceeding to checkout.', 'woocommerce' );
 	}
 
 	/**
@@ -34,11 +49,6 @@ class CartTemplate extends AbstractPageTemplate {
 	 * @return boolean
 	 */
 	protected function is_active_template() {
-
-		if ( ! BlockTemplateMigrationUtils::has_migrated_page( 'cart' ) ) {
-			return false;
-		}
-
 		global $post;
 		$placeholder = $this->get_placeholder_page();
 		return null !== $placeholder && $post instanceof \WP_Post && $placeholder->post_name === $post->post_name;
@@ -55,7 +65,7 @@ class CartTemplate extends AbstractPageTemplate {
 	 */
 	public function page_template_hierarchy( $templates ) {
 		if ( $this->is_active_template() ) {
-			array_unshift( $templates, $this->get_slug() );
+			array_unshift( $templates, self::SLUG );
 			array_unshift( $templates, 'cart' );
 		}
 		return $templates;

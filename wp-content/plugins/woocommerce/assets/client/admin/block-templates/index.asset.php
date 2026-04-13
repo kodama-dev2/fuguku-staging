@@ -1,1 +1,1 @@
-<?php return array('dependencies' => array('react', 'wp-block-editor', 'wp-blocks', 'wp-core-data', 'wp-data', 'wp-element'), 'version' => '46c97f247be9997a0dce');
+<?php return array('dependencies' => array('wc-settings', 'wp-block-editor', 'wp-blocks', 'wp-core-data', 'wp-data', 'wp-element'), 'version' => 'b3e63b3af3204f8c7929');

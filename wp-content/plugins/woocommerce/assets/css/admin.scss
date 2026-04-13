@@ -20,6 +20,7 @@
 
 $font-sf-pro-text: helveticaneue-light, "Helvetica Neue Light",
 "Helvetica Neue", sans-serif;
+$font-sf-pro-display: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 .wc-addons-wrap {
 	.marketplace-header {
@@ -216,7 +217,7 @@ $font-sf-pro-text: helveticaneue-light, "Helvetica Neue Light",
 
 	/**
 	 * Marketplace related variables
- 	 */
+	 */
 	$font-sf-pro-display: sans-serif;
 
 	h1.search-form-title {
@@ -969,7 +970,7 @@ $font-sf-pro-text: helveticaneue-light, "Helvetica Neue Light",
 		filter: brightness(50%);
 	}
 	.woocommerce-add-variation-price-container {
-		width: 15%;
+		width: auto;
 		display: flex;
 		justify-content: flex-end;
 		> button {
@@ -994,7 +995,7 @@ $font-sf-pro-text: helveticaneue-light, "Helvetica Neue Light",
 			margin-top: 20px;
 			> button {
 				margin-left: 16px;
-				width: 88px;
+				width: auto;
 				display: unset;
 			}
 		}
@@ -1237,6 +1238,17 @@ table.wc_status_table {
 
 		&.run-tool {
 			text-align: right;
+
+			.run-tool-status {
+				font-size: 90%;
+				margin-right: 0.5em;
+				display: inline-block;
+				opacity: 80%;
+
+				.dashicons.spin {
+					animation: rotation 2s infinite linear;
+				}
+			}
 		}
 
 		strong.name {
@@ -1844,7 +1856,7 @@ ul.wc_coupon_list_block {
 }
 
 #order_data {
-	padding: 23px 24px 12px;
+	padding: 24px;
 
 	h2 {
 		margin: 0;
@@ -1878,6 +1890,20 @@ ul.wc_coupon_list_block {
 		font-weight: normal;
 		line-height: 1.6em;
 		font-size: 16px;
+	}
+
+	.order_data_header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	@media screen and (max-width: 1280px) {
+		.order_data_header {
+			flex-direction: column;
+			gap: 24px;
+		}
 	}
 
 	.order_data_column_container {
@@ -1972,11 +1998,11 @@ ul.wc_coupon_list_block {
 				width: 100%;
 			}
 			input.date-picker {
-				width: 50%;
+				width: 40%;
 			}
 			input.hour,
 			input.minute {
-				width: 3.5em;
+				width: 4em;
 			}
 		}
 
@@ -2177,6 +2203,10 @@ ul.wc_coupon_list_block {
 			}
 		}
 
+		.cost-total {
+			opacity: 50%;
+		}
+
 		.refunded-total {
 			color: $red;
 		}
@@ -2227,6 +2257,25 @@ ul.wc_coupon_list_block {
 		.button-primary {
 			float: none;
 			margin-right: 0;
+		}
+	}
+}
+
+#woocommerce-order-items .woocommerce_order_items_wrapper, .wc-order-preview-table-wrapper {
+	small.refunded {
+		display: block;
+		color: red;
+		white-space: nowrap;
+		margin-top: 0.5em;
+
+		&::before {
+			@include icon_dashicons("\f171");
+			position: relative;
+			top: auto;
+			left: auto;
+			margin: -1px 4px 0 0;
+			vertical-align: middle;
+			line-height: 1em;
 		}
 	}
 }
@@ -2378,12 +2427,19 @@ ul.wc_coupon_list_block {
 				text-align: center;
 			}
 
+			.item_cost_of_goods {
+				.view {
+					opacity: 50%;
+				}
+			}
+
 			.cost,
 			.tax,
 			.quantity,
 			.line_cost,
 			.line_tax,
 			.tax_class,
+			.item_cost_of_goods,
 			.item_cost {
 				text-align: right;
 
@@ -2653,23 +2709,6 @@ ul.wc_coupon_list_block {
 					visibility: visible;
 				}
 			}
-
-			small.refunded {
-				display: block;
-				color: $red;
-				white-space: nowrap;
-				margin-top: 0.5em;
-
-				&::before {
-					@include icon_dashicons("\f171");
-					position: relative;
-					top: auto;
-					left: auto;
-					margin: -1px 4px 0 0;
-					vertical-align: middle;
-					line-height: 1em;
-				}
-			}
 		}
 	}
 
@@ -2687,12 +2726,13 @@ ul.wc_coupon_list_block {
 			color: #ccc;
 			display: inline-block;
 			cursor: pointer;
-			padding: 0 0 0.5em;
-			margin: 0 0 0 12px;
+			padding: 0;
+			margin: 0 0 6px 12px;
 			vertical-align: middle;
 			text-decoration: none;
 			line-height: 16px;
 			width: 16px;
+			height: 16px;
 			overflow: hidden;
 
 			&::before {
@@ -2733,11 +2773,14 @@ ul.wc_coupon_list_block {
 	}
 
 	tbody tr .wc-order-edit-line-item-actions {
-		visibility: hidden;
+		opacity: 0;
 	}
 
-	tbody tr:hover .wc-order-edit-line-item-actions {
-		visibility: visible;
+	tbody tr:focus-within,
+	tbody tr:hover {
+		.wc-order-edit-line-item-actions {
+			opacity: 1;
+		}
 	}
 
 	.wc-order-totals .wc-order-edit-line-item-actions {
@@ -2772,6 +2815,21 @@ ul.wc_coupon_list_block {
 
 	h3 small {
 		color: #999;
+	}
+}
+
+#order_custom #postcustomstuff {
+	.add-custom-field {
+		padding: 12px 8px 8px;
+	}
+
+	.submit {
+		border: 0 none;
+		float: none;
+	}
+
+	.select2-container {
+		margin: 8px;
 	}
 }
 
@@ -2944,9 +3002,9 @@ ul.wc_coupon_list_block {
 		display: none;
 	}
 
-	select.search-filter {
-		margin-right: 4px;
-		margin-bottom: 3px;
+	select#order-search-filter {
+		margin: 0 4px 0 0;
+		float: left;
 	}
 
 	.tablenav {
@@ -3047,6 +3105,10 @@ ul.wc_coupon_list_block {
 
 		.column-order_number {
 			width: 20ch;
+
+			.small-screen-only {
+				display: none;
+			}
 		}
 
 		.column-order_total {
@@ -3132,10 +3194,10 @@ ul.wc_coupon_list_block {
 	}
 }
 
-.order-status {
+.order-status, .fulfillment-status {
 	display: inline-flex;
 	line-height: 2.5em;
-	color: #777;
+	color: #454545;
 	background: #e5e5e5;
 	border-radius: 4px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -3146,27 +3208,27 @@ ul.wc_coupon_list_block {
 
 	&.status-completed {
 		background: #c8d7e1;
-		color: #2e4453;
+		color: #003d66;
 	}
 
 	&.status-on-hold {
 		background: #f8dda7;
-		color: #94660c;
+		color: #573B00;
 	}
 
 	&.status-failed {
 		background: #eba3a3;
-		color: #761919;
+		color: #570000;
 	}
 
 	&.status-processing {
 		background: #c6e1c6;
-		color: #5b841b;
+		color: #2c4700;
 	}
 
 	&.status-trash {
 		background: #eba3a3;
-		color: #761919;
+		color: #550202;
 	}
 
 	> span {
@@ -3344,6 +3406,10 @@ ul.wc_coupon_list_block {
 }
 
 @media screen and (max-width: 782px) {
+	.woocommerce_page_wc-orders #order-search-filter {
+		display: none;
+	}
+
 	.wc-order-preview footer {
 		.wc-action-button-group .wc-action-button-group__items {
 			display: flex;
@@ -3364,33 +3430,81 @@ ul.wc_coupon_list_block {
 		}
 	}
 
+	.woocommerce_page_wc-orders .wc-orders-list-table.wp-list-table,
 	.post-type-shop_order .wp-list-table {
-		td.check-column {
+		.check-column {
 			width: 1em;
+			vertical-align: top;
+		}
+
+		thead th.column-order_number {
+			width: 100%;
 		}
 
 		td.column-order_number {
-			padding-left: 0;
-			padding-bottom: 0.5em;
-		}
+			.toggle-row {
+				height: 20px;
+			}
 
-		td.column-order_status,
-		td.column-order_date {
-			display: inline-block !important;
-			padding: 0 1em 1em 1em !important;
-
-			&::before {
-				display: none !important;
+			.order-preview {
+				margin-top: 13px;
 			}
 		}
 
-		td.column-order_date {
-			padding-left: 0 !important;
+		td.column-order_total,
+		td.column-wc_actions {
+			text-align: left;
 		}
 
-		td.column-order_status {
-			float: right;
+		td.column-wc_actions {
+			min-height: 2.0em !important;
 		}
+
+		tr:not(.is-expanded) {
+			td.column-order_number {
+				vertical-align: top;
+
+				a.order-view {
+					display: inline-block;
+					vertical-align: top;
+					width: calc( 50% - 40px - 4px );
+					margin-right: 4px;
+				}
+
+				.small-screen-only {
+					display: inline-block;
+					vertical-align: top;
+
+					&.order_date {
+						width: calc( 20% - 4px );
+						margin-right: 4px;
+					}
+
+					&.order_status {
+						width: 30%;
+						text-align: right;
+					}
+				}
+
+				@media screen and (max-width: 400px) {
+					a.order-view {
+						display: block;
+						width: calc( 100% - 40px );
+					}
+
+					.small-screen-only {
+						&.order_date {
+							width: calc( 40% - 4px );
+						}
+
+						&.order_status {
+							width: calc( 60% - 40px);
+						}
+					}
+				}
+			}
+		}
+
 	}
 }
 
@@ -3572,6 +3686,10 @@ table.wp-list-table {
 	.column-product_type {
 		width: 48px;
 		text-align: left !important;
+
+		a:focus {
+			box-shadow: none;
+		}
 	}
 
 	.column-customer_message,
@@ -3619,7 +3737,15 @@ table.wp-list-table {
 		width: 10%;
 	}
 
+	.column-global_unique_id {
+		width: 20ch;
+	}
+
 	.column-price {
+		width: 10ch;
+	}
+
+	.column-cogs_value {
 		width: 10ch;
 	}
 
@@ -3820,6 +3946,7 @@ table.wc_input_table {
 		background-color: #fefbcc;
 	}
 
+	.item_cost_of_goods,
 	.item_cost,
 	.cost {
 		text-align: right;
@@ -4142,7 +4269,6 @@ table.wc_shipping {
 .wc-backbone-modal-add-shipping-method,
 .wc-backbone-modal-shipping-method-settings,
 .wc-shipping-class-modal {
-	font-family: $font-sf-pro-text;
 	font-size: 13px;
 	font-weight: 400;
 	line-height: 16px;
@@ -4217,7 +4343,7 @@ table.wc_shipping {
 	}
 
 	.wc-shipping-method-add-class-costs {
-		margin-top: -24px;
+		margin-top: -16px;
 		text-decoration: none;
 		color: #3858E9;
 		font-size: 12px;
@@ -4253,8 +4379,8 @@ table.wc_shipping {
 		}
 	}
 
-	.wc-shipping-zone-method-input-help-text-container {
-		min-height: 40px;
+	.wc-shipping-legacy-local-pickup-help-text-container {
+		margin: 1.5em 0;
 	}
 
 	.wc-shipping-zone-method-input-help-text {
@@ -4305,7 +4431,7 @@ table.wc_shipping {
 				margin: 6px 0;
 				padding: 12px;
 				font-size: 13px;
-    			line-height: 16px;
+				line-height: 16px;
 
 				&:not([type="checkbox"]) {
 					width: 100%;
@@ -4345,6 +4471,10 @@ table.wc_shipping {
 					&.wc-shipping-currency-position-right_space {
 						padding-left: 12px;
 					}
+					&.wc-shipping-invalid-price {
+						border: 2px solid var( --wc-red, #a00);
+					}
+
 				}
 			}
 		}
@@ -4376,6 +4506,12 @@ table.wc_shipping {
 		font-weight: 400;
 		line-height: 16px;
 		color: #757575;
+		&.wc-shipping-invalid-price-message {
+			color: var( --wc-red, #a00);
+			display: block;
+			margin-top: 6px;
+			margin-bottom: -24px
+		}
 	}
 
 	.wc-backbone-modal-back-inactive {
@@ -4440,7 +4576,7 @@ table {
 
 		input {
 			font-size: 13px;
-    		line-height: 16px;
+			line-height: 16px;
 		}
 	}
 
@@ -4457,8 +4593,8 @@ table {
 	display: flex;
 	align-items: center;
 
-	.page-title-action {
-		margin: 0 12px;
+	.page-title-action, .page-title-action:active {
+		margin: 7px 0 0 10px;
 	}
 }
 
@@ -4482,12 +4618,23 @@ table {
 	line-height: 17px;
 }
 
-#wc-shipping-zone-region-picker-root .woocommerce-tree-select-control .components-base-control {
-	padding: 2px 8px;
-	border-radius: 4px;
+#wc-shipping-zone-region-picker-root .woocommerce-tree-select-control {
 
-	.woocommerce-tree-select-control__control-input {
+	.components-base-control {
+		padding: 2px 8px;
+		border-radius: 4px;
+
+		.woocommerce-tree-select-control__control-input {
+			font-size: 14px;
+		}
+	}
+
+	.woocommerce-tree-select-control__option {
 		font-size: 14px;
+
+		.components-checkbox-control__label {
+			min-height: 52px;
+		}
 	}
 }
 
@@ -4948,6 +5095,19 @@ img.help_tip {
 		}
 	}
 
+	.wc-admin-header {
+		small {
+			margin-right: 0.5em;
+		}
+		a {
+			color: #1d2327;
+			text-decoration: none;
+		}
+		a:hover {
+			color: var(--wp-admin-theme-color, #3858e9);
+		}
+	}
+
 	#template div {
 		margin: 0;
 
@@ -4966,10 +5126,25 @@ img.help_tip {
 		background: #dfdfdf !important;
 	}
 
+	.settings-panel {
+		ul.advice {
+			list-style: square;
+			list-style-position: inside;
+		}
+	}
+
 	table.form-table {
 		margin: 0;
+		&.wc-shipping-zone-settings {
+			margin-top: 8px;
+		}
 		position: relative;
 		table-layout: fixed;
+
+		.forminp {
+			display: block;
+			position: relative;
+		}
 
 		.forminp-radio ul {
 			margin: 0;
@@ -5101,6 +5276,40 @@ img.help_tip {
 			float: none;
 		}
 
+		label:has(input:disabled) {
+			cursor: not-allowed;
+			> input:disabled {
+				opacity: 0.7;
+				cursor: not-allowed;
+				pointer-events: none;
+			}
+			&[disabled-tooltip] {
+				position: relative;
+			}
+			&[disabled-tooltip]::before {
+				pointer-events: none;
+				content: attr(disabled-tooltip);
+				position: absolute;
+				top: -6px;
+				left: 6px;
+				transform: translateX(-50%) translateY(-100%);
+				background: black;
+				text-align: center;
+				color: #fff;
+				padding: 6px;
+				font-size: 12px;
+				min-width: 80px;
+				max-width: 200px;
+				border-radius: 5px;
+				pointer-events: none;
+				opacity:0;
+			}
+			&[disabled-tooltip]:hover::before,
+			&[disabled-tooltip]:focus::before {
+				opacity:1
+			}
+		}
+
 		fieldset {
 			margin-top: 4px;
 
@@ -5111,6 +5320,10 @@ img.help_tip {
 
 			p.description {
 				margin-bottom: 8px;
+
+				&.is-error, span.is-error {
+					color: $red;
+				}
 			}
 
 			&:first-child {
@@ -5178,6 +5391,13 @@ img.help_tip {
 		.wc_payment_gateways_wrapper,
 		.wc_emails_wrapper {
 			padding: 0 15px 10px 0;
+		}
+
+		legend {
+			font-weight: 700;
+			line-height: 1.4;
+			padding: 5px 0 0;
+			margin: 0 0 8px !important;
 		}
 	}
 
@@ -5469,14 +5689,22 @@ img.help_tip {
 		}
 
 		label:first-child {
-			margin-right: 1em;
+			margin-right: 1.4em;
 			border-right: 1px solid #dfdfdf;
 		}
 
 		input,
 		select {
-			margin-top: -3px 0 0;
+			margin-top: -2px;
 			vertical-align: middle;
+		}
+
+		label.has-checkbox {
+			margin-right: 15px;
+		}
+
+		label.has-checkbox > input[type="checkbox"] {
+			margin-right: 3px;
 		}
 
 		select {
@@ -5552,6 +5780,43 @@ img.help_tip {
 				input {
 					width: auto;
 				}
+			}
+		}
+	}
+}
+
+#usage_restriction_coupon_data.woocommerce_options_panel {
+	.options_group {
+
+		border-bottom: 0px;
+
+		.hr-section {
+			display: flex;
+			flex-basis: 100%;
+			align-items: center;
+			font-size: 10.5px;
+			letter-spacing: 1px;
+			font-weight: 300;
+			text-transform: uppercase;
+			position: relative;
+			top: 8px;
+			padding-bottom: 10px;
+
+			&:before, &:after {
+				content: "";
+				flex-grow: 1;
+				background: #eee;
+				height: 1px;
+				font-size: 0px;
+				line-height: 0px;
+			}
+
+			&:before {
+				margin: 0 16px 0 0;
+			}
+
+			&:after {
+				margin: 0 0 0 16px;
 			}
 		}
 	}
@@ -5680,6 +5945,24 @@ img.help_tip {
 
 	.wc-settings-row-woocommerce_custom_orders_table_data_sync_enabled td.forminp {
 		padding-top: 0;
+	}
+
+	#email_notification_settings-description {
+		margin-top: 16px;
+	}
+
+	.learn-more-link {
+		margin: 0 0 0 10px;
+
+		&::before {
+			@include iconbeforedashicons("\f348");
+			vertical-align: middle;
+			font-size: 1.1em;
+		}
+
+		a {
+			margin: 0 0 0 4px;
+		}
 	}
 }
 
@@ -5862,6 +6145,17 @@ img.help_tip {
 		/* Warning asterisk (indicates if there is a problem with a downloadable file). */
 		span.disabled {
 			color: var(--wc-red);
+		}
+	}
+}
+
+.woocommerce_variation .woocommerce_variable_attributes .dimensions_field.form-row {
+	.wrap {
+		display: flex;
+		gap: 12px;
+
+		input {
+			width: 33.33%;
 		}
 	}
 }
@@ -6439,8 +6733,8 @@ img.help_tip {
 
 	.upload_image_button {
 		display: block;
-		width: 64px;
-		height: 64px;
+		width: 128px;
+		height: 128px;
 		float: left;
 		margin-right: 20px;
 		position: relative;
@@ -6461,8 +6755,8 @@ img.help_tip {
 			right: 0;
 			bottom: 0;
 			text-align: center;
-			line-height: 64px;
-			font-size: 64px;
+			line-height: 128px;
+			font-size: 128px;
 			font-weight: 400;
 			-webkit-font-smoothing: antialiased;
 		}
@@ -6567,6 +6861,12 @@ img.help_tip {
 	&.form-row-full {
 		clear: both;
 	}
+}
+
+.form-flex-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /**
@@ -7039,10 +7339,10 @@ img.ui-datepicker-trigger {
 
 				&:hover {
 					box-shadow: inset 0 -1px 0 0 #dfdfdf,
-						inset 300px 0 0 rgba(156, 93, 144, 0.1);
-					border-right: 5px solid #9c5d90 !important;
+						inset 300px 0 0 #f7edf7;
+					border-right: 5px solid var(--wc-primary) !important;
 					padding-left: 1.5em;
-					color: #9c5d90;
+					color: var(--wc-primary);
 				}
 			}
 		}
@@ -7291,6 +7591,7 @@ table.bar_chart {
 	}
 }
 
+.woocommerce-customer-stock-notifications .woocommerce-BlankState,
 .woocommerce_page_wc-orders .woocommerce-BlankState,
 .post-type-product .woocommerce-BlankState,
 .post-type-shop_order .woocommerce-BlankState {
@@ -7507,10 +7808,6 @@ table.bar_chart {
 
 			.is-expanded td:not(.hidden) {
 				overflow: visible;
-			}
-
-			.toggle-row {
-				top: -15px;
 			}
 		}
 	}
@@ -7804,6 +8101,7 @@ table.bar_chart {
 
 	.select2-selection--single {
 		height: 40px;
+		margin-bottom: 0;
 
 		.select2-selection__rendered {
 			line-height: 40px;
@@ -7972,12 +8270,260 @@ table.bar_chart {
 	#woocommerce-product-data {
 		.hndle {
 			display: block;
-			line-height: 24px;
+			line-height: 28px;
 
 			.type_box {
 				display: inline;
 				line-height: inherit;
 				vertical-align: baseline;
+			}
+		}
+	}
+}
+
+/**
+ * WP 7.0+ compatibility.
+ * WP 7.0 increased default form element sizing from 30px to 40px min-height.
+ */
+.wc-wp-version-gte-70 {
+	// Select2 single: match WP 7.0 native select height (40px).
+	.select2-container {
+		.select2-selection--single {
+			height: 40px; // Match WP 7.0 native select height.
+			border-radius: 2px; // Match WP 7.0 native select border-radius.
+
+			.select2-selection__rendered {
+				line-height: 38px;
+			}
+
+			.select2-selection__arrow {
+				height: 38px;
+			}
+		}
+
+		.select2-selection--multiple {
+			min-height: 40px;
+			height: 38px;
+
+			.select2-selection__rendered li {
+				margin-top: 0; // Prevent extra spacing inside multi-select.
+			}
+		}
+
+		.select2-search--inline .select2-search__field {
+			min-height: 38px;
+		}
+	}
+
+	// Table action icon buttons: prevent WP 7.0 min-height from stretching them.
+	.widefat {
+		.column-wc_actions {
+			a.button {
+				min-height: 0 !important;
+				line-height: 1 !important;
+
+				&::after {
+					line-height: 1.85;
+					margin-top: 0;
+				}
+			}
+		}
+	}
+
+	// Order preview action buttons.
+	.wc-order-preview footer {
+		.button.button-large {
+			min-height: 0;
+		}
+	}
+
+	// Action button groups.
+	.wc-action-button-group .wc-action-button {
+		min-height: 0 !important;
+	}
+
+	// Order actions: select + button overflow container due to WP 7.0 select margins.
+	.order_actions {
+		#actions select {
+			width: calc(100% - 32px);
+		}
+
+		// Move to trash: make sure it aligns better vertically with 7.0's increased button height.
+		#delete-action {
+			line-height: 35px;
+		}
+	}
+
+	// Order actions reload button: icon line-height must match WP 7.0 button height.
+	.button.wc-reload {
+		&::after {
+			line-height: 40px;
+		}
+	}
+
+	// Order actions button margin causes overflow with WP 7.0 sizing.
+	#poststuff #woocommerce-order-actions .inside button {
+		margin: 0;
+	}
+
+	// Order date hour/minute inputs: WP 7.0 padding pushes stepper controls inward.
+	#order_data .order_data_column .form-field-wide {
+		input.hour,
+		input.minute {
+			padding-right: 0;
+		}
+	}
+
+	// Publish box: WP 7.0 flex-row breaks layout when #duplicate-action is present.
+	// Revert to block + float to stack copy/trash links on the left, button on the right.
+	#major-publishing-actions {
+		display: block;
+		overflow: hidden;
+
+		#delete-action {
+			float: left;
+		}
+	}
+
+	// Product data panel labels: vertically center with taller WP 7.0 inputs.
+	.woocommerce_options_panel p.form-field label,
+	.woocommerce_options_panel fieldset.form-field label,
+	.woocommerce_options_panel fieldset.form-field legend {
+		padding-top: 8px;
+	}
+
+	// Help tips: vertically center with taller WP 7.0 inputs.
+	.woocommerce_options_panel .form-field .woocommerce-help-tip {
+		margin-top: 12px;
+	}
+
+	// Search box select: match WP 7.0 compact search-box sizing (32px).
+	.search-box select {
+		min-height: 32px;
+		line-height: 2.14285714; /* 30px for 32px height */
+		padding: 0 24px 0 8px;
+	}
+
+	// Short inputs are wider to compensate for WP 7.0 increased padding.
+	.woocommerce_options_panel {
+		.short,
+		input[type="text"].short,
+		input[type="number"].short,
+		input[type="email"].short,
+		input[type="password"].short {
+			width: 55%;
+		}
+
+		input[type="number"] {
+			padding-right: 0; // Keep stepper controls flush right.
+		}
+
+		.dimensions_field .wrap {
+			width: 55%; // Wider to compensate for increased padding.
+			border-radius: 2px; // Match WP 7.0 input border-radius.
+		}
+	}
+
+	// Variable product selects need more height to accommodate WP 7.0 padding.
+	#variable_product_options .form-row select {
+		height: 50px;
+	}
+
+	// Variable product low stock row: clear preceding floats to prevent vertical stretching.
+	#variable_product_options .form-row[class*="variable_low_stock_amount"] {
+		clear: both;
+	}
+
+	#poststuff #woocommerce-order-notes .inside button {
+		margin: 0 1px 1px;
+	}
+
+	@media screen and (max-width: 850px), screen and (min-width: 931px) {
+		#woocommerce-order-downloads .buttons button {
+			margin: 0;
+		}
+	}
+
+	// 782px breakpoint, when the admin sidebar is hidden.
+	@media screen and (max-width: 782px) {
+		// Make buttons match the now taller selects.
+		#poststuff #woocommerce-order-actions .inside button {
+			height: 42px;
+
+			&::after {
+				line-height: 40px;
+			}
+		}
+
+		#poststuff #woocommerce-order-notes .inside button {
+			line-height: 40px;
+		}
+	}
+
+	// Action button rows wrap/stack at ~1200px viewports.
+	@media screen and (max-width: 1200px) {
+		// Order items meta box: reduce button padding to prevent wrapping prematurely.
+		#woocommerce-order-items .wc-order-data-row {
+			.button {
+				padding-left: 8px;
+				padding-right: 8px;
+			}
+		}
+
+		// Refund action buttons: switch to flex layout so long labels wrap gracefully.
+		#woocommerce-order-items .refund-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px;
+			align-items: center;
+
+			.button,
+			.cancel-action {
+				float: none;
+			}
+
+			.button {
+				margin: 0;
+				font-size: 12px;
+			}
+
+			.cancel-action {
+				margin-right: auto;
+				order: -1;
+			}
+
+			.clear {
+				display: none;
+			}
+		}
+	}
+
+	// Tablenav: WP 7.0 tablenav uses compact 32px sizing for native selects.
+	// Match Select2 to 32px here (not the global 40px).
+	&.woocommerce_page_wc-customer-stock-notifications .tablenav,
+	&.woocommerce_page_wc-orders .tablenav,
+	&.post-type-product .tablenav,
+	&.post-type-shop_order .tablenav {
+		.select2-container {
+			margin-top: 0; // Align with other tablenav elements.
+		}
+
+		.select2-container .select2-selection--single {
+			height: 32px; // WP 7.0 tablenav uses compact 32px, not 40px.
+
+			.select2-selection__rendered {
+				line-height: 30px;
+			}
+
+			.select2-selection__arrow {
+				height: 30px;
+			}
+		}
+
+		// Current page in pagination gets smaller than surrounding buttons at 782px breakpoint.
+		@media screen and (max-width: 782px) {
+			#current-page-selector {
+				height: 44px;
 			}
 		}
 	}
@@ -8023,6 +8569,7 @@ table.bar_chart {
 	}
 }
 
+.woocommerce_page_wc-customer-stock-notifications .tablenav,
 .woocommerce_page_wc-orders .tablenav,
 .post-type-product .tablenav,
 .post-type-shop_order .tablenav {
@@ -8048,7 +8595,7 @@ table.bar_chart {
 .woocommerce-exporter-wrapper,
 .woocommerce-importer-wrapper {
 	text-align: center;
-	max-width: 700px;
+	max-width: 710px;
 	margin: 40px auto;
 
 	.error {
@@ -8647,3 +9194,349 @@ table.bar_chart {
 		}
 	}
 }
+
+html:has(#status-table-templates){
+	scroll-padding-top: 80px;
+}
+
+// Fix for Safari bug: https://bugs.webkit.org/show_bug.cgi?id=280063.
+.woocommerce-admin-page #postbox-container-2 {
+	clear: left;
+}
+
+body.woocommerce_page_wc-settings {
+	.woocommerce-layout {
+		.woocommerce-store-alerts {
+			margin-top: 5px;
+		}
+	}
+
+	#wpcontent {
+		background: #f0f0f1;
+	}
+	#wpbody-content {
+		background: #fff;
+		padding-bottom: 0px;
+	}
+
+	p.submit {
+		margin-bottom: 0;
+	}
+
+	.wc-settings-marketplace-link {
+		padding-top: 16px;
+		border-top: 1px solid #c3c4c7;
+		color: #50575e;
+
+		a img {
+			margin-right: 4px;
+			vertical-align: text-bottom;
+		}
+	}
+
+	.woocommerce-layout__primary {
+		@media screen and (max-width: 782px) {
+			padding-top: 0 !important;
+		}
+	}
+
+	.woocommerce-layout__header-heading {
+		padding: 0 0 0 30px;
+		font-weight: 600;
+		font-size: 16px;
+		color: #070707;
+	}
+
+	#wpbody .woocommerce-layout,
+	.woocommerce-layout__notice-list-hide + .wrap {
+		padding: 0;
+	}
+
+	#mainform {
+		nav {
+			margin: 0 -30px 24px -30px;
+		}
+		padding: 0 30px 40px;
+		background: #f0f0f1;
+
+		.subsubsub {
+			margin-bottom: 0;
+			li {
+				color: #2271b1;
+				&:first-child a{
+					padding: 0;
+				}
+				a {
+					margin: 0 4px 0 4px;
+				}
+				&:first-child {
+					a {
+						margin-left: 0;
+					}
+				}
+				&:last-child {
+					a {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.wrap {
+		padding: 0;
+	}
+
+	.nav-tab-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		padding-left: 30px;
+		padding-right: 24px;
+		gap: 24px;
+
+		/*
+		 * Hides the ::after clearfix from nav-tab-wrapper to avoid the list
+		 * of tasks breaking into two lines in some cases.
+		 * The clearfix is added by WordPress core in
+		 * https://github.com/WordPress/wordpress-develop/blob/512f8052f00932bfab512e40400d80f62c9e6854/src/wp-admin/css/common.css#L2378-L2383
+		 * but it is not needed in our implementation because we use display: flex;
+		 * @see https://github.com/woocommerce/woocommerce/pull/39600
+		 */
+		&:not(.wp-clearfix)::after {
+			display: none;
+		}
+
+		a {
+			float: none;
+			font-family: $font-sf-pro-display;
+			margin-left: 0;
+			border: 0;
+			background: none;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 20px;
+			color: #505050;
+			padding: 0 0 10px 0;
+			text-decoration: none;
+			&:focus, &:hover, &:active {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+		margin: 0;
+		background: #FFF;
+		border-bottom: 1px solid #EBEBEB;
+
+		.nav-tab-active, .nav-tab-active:focus, .nav-tab-active:focus:active, .nav-tab-active:hover {
+			border-bottom: 2px solid var(--wp-admin-theme-color, #3858e9);
+			color: #070707;
+		}
+
+		.nav-tab:hover,
+		.nav-tab:focus {
+			color: var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
+		}
+
+		@media screen and (max-width: 500px) {
+			overflow: auto;
+			flex-wrap: nowrap;
+			a {
+				font-size: 16px;
+			}
+		}
+	}
+
+	.woocommerce-embedded-layout__primary {
+		background-color: #f0f0f1;
+		padding: 0 30px;
+		.woocommerce-dismissable-list {
+			margin-bottom: 0;
+		}
+	}
+}
+
+/**
+  * WooCommerce > Notifications > Stock notifications > Add/Edit elements.
+  */
+.woocommerce-customer-stock-notifications #poststuff .notification-data {
+	padding: 34px 32px;
+
+	&--create {
+		.notification-data__product-data {
+			margin-top: 20px;
+		}
+
+		.or_relation_label {
+			padding: 14px 0;
+			display: block;
+			text-align: center;
+			color: #777;
+			width: 80%;
+		}
+
+		.select2-container,
+		.or_relation_label__input {
+			width: 80% !important;
+		}
+
+		.notification-data__form-field .notification-data__form-field {
+			margin-top: 40px;
+		}
+	}
+
+	&__row {
+		display: block;
+		margin-bottom: 2em;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&--columns {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			.notification-data__form-field,
+			.notification-data__meta-column {
+				width: 50%;
+			}
+
+			.notification-data__meta-column:last-child,
+			.notification-data__form-field:last-child {
+				width: 50%;
+			}
+		}
+
+		@media screen and (max-width: 782px) {
+			margin-bottom: 0px;
+
+			&--columns {
+
+				.notification-data__meta-column {
+					width: 50% !important;
+				}
+
+				.notification-data__form-field {
+					width: 100% !important;
+				}
+			}
+
+			.notification-data__form-field {
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	&__header-column {
+		width: 70%;
+		overflow: hidden;
+	}
+
+	&__header {
+		margin: 0;
+		font-size: 21px;
+		font-weight: 300;
+		line-height: 1.2;
+		text-shadow: 1px 1px 1px #fff;
+		padding: 0;
+
+		@media screen and (max-width: 782px) {
+			margin-bottom: 20px;
+		}
+	}
+
+	&__customer-data {
+		font-size: 17px;
+		margin-top: 0;
+		margin-bottom: 15px;
+	}
+
+	&__form-field {
+		clear: both;
+
+		label,
+		input:not([type=checkbox]),
+		select,
+		textarea {
+			width: 100%;
+		}
+
+		label {
+			color: #333;
+			font-weight: bold;
+			display: block;
+			padding: 0 0 15px;
+
+			a {
+				float: right;
+				margin-left: 10px;
+			}
+		}
+
+		.form-field__actions {
+			margin-bottom: 20px;
+
+			a {
+				display: block;
+				padding: 2px 0;
+			}
+		}
+	}
+
+	&__meta {
+		margin-top: 50px;
+
+		&-column :last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__meta-data {
+		margin-bottom: 25px;
+
+		label {
+			font-size: 13px;
+			color: #777;
+			display: block;
+			margin-bottom: 13px;
+		}
+
+		span {
+			display: block;
+
+			a {
+				margin-left: 10px;
+			}
+		}
+	}
+}
+
+/**
+ * Hide screen meta links on Advanced Keys settings page.
+ */
+body.woocommerce_page_wc-settings-advanced-keys,
+body.woocommerce_page_wc-settings-advanced-webhooks,
+body.woocommerce-admin-page__extensions,
+body.woocommerce-admin-launch-your-store,
+body.woocommerce-admin-full-screen {
+	#screen-meta-links {
+		display:none;
+	}
+}
+
+/**
+ * Fixes for offline payment methods pages rendered in legacy mode (not Reactified).
+ */
+body.woocommerce-settings-payments-section_legacy {
+	.woocommerce-layout__header {
+		border-bottom: 1px solid #ebebeb;
+	}
+
+	#wpbody-content {
+		background: #f0f0f1;
+	}
+}
+
+

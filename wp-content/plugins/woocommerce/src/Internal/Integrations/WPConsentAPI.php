@@ -31,19 +31,20 @@ class WPConsentAPI {
 	 */
 	public function register() {
 		add_action(
-			'plugins_loaded',
+			'init',
 			function() {
-				$this->on_plugins_loaded();
-			}
+				$this->on_init();
+			},
+			20 // After OrderAttributionController.
 		);
 	}
 
 	/**
-	 * Register our hooks on plugins_loaded.
+	 * Register our hooks on init.
 	 *
 	 * @return void
 	 */
-	protected function on_plugins_loaded() {
+	protected function on_init() {
 		// Include integration to WP Consent Level API if available.
 		if ( ! $this->is_wp_consent_api_active() ) {
 			return;
@@ -61,7 +62,7 @@ class WPConsentAPI {
 		/**
 		 * Modify the "allowTracking" flag consent if the user has consented to marketing.
 		 *
-		 * Wp-consent-api will initialize the modules on "plugins_loaded" with priority 9,
+		 * Wp-consent-api will initialize the modules on "init" with priority 9,
 		 * So this code needs to be run after that.
 		 */
 		add_filter(
@@ -104,7 +105,7 @@ class WPConsentAPI {
 			'wp-consent-api-integration',
 			sprintf(
 				'window.wc_order_attribution.params.consentCategory = %s;',
-				wp_json_encode( self::$consent_category )
+				wp_json_encode( self::$consent_category, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES )
 			),
 			'before'
 		);

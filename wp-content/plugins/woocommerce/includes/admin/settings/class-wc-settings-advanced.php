@@ -5,6 +5,9 @@
  * @package  WooCommerce\Admin
  */
 
+use Automattic\WooCommerce\Internal\Features\FeaturesController;
+use Automattic\WooCommerce\Utilities\FeaturesUtil;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -31,18 +34,37 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 	}
 
 	/**
+	 * Setting page icon.
+	 *
+	 * @var string
+	 */
+	public $icon = 'more';
+
+	/**
 	 * Get own sections.
 	 *
 	 * @return array
 	 */
 	protected function get_own_sections() {
-		return array(
-			''                => __( 'Page setup', 'woocommerce' ),
-			'keys'            => __( 'REST API', 'woocommerce' ),
-			'webhooks'        => __( 'Webhooks', 'woocommerce' ),
-			'legacy_api'      => __( 'Legacy API', 'woocommerce' ),
-			'woocommerce_com' => __( 'Woo.com', 'woocommerce' ),
+		$sections = array(
+			''     => __( 'Page setup', 'woocommerce' ),
+			'keys' => __( 'REST API keys', 'woocommerce' ),
 		);
+
+		$features_controller = wc_get_container()->get( FeaturesController::class );
+		if ( $features_controller->feature_is_enabled( 'rest_api_caching' ) ) {
+			$sections['rest_api_caching'] = __( 'REST API caching', 'woocommerce' );
+		}
+
+		$sections['webhooks']        = __( 'Webhooks', 'woocommerce' );
+		$sections['legacy_api']      = __( 'Legacy API', 'woocommerce' );
+		$sections['woocommerce_com'] = __( 'WooCommerce.com', 'woocommerce' );
+
+		if ( FeaturesUtil::feature_is_enabled( 'blueprint' ) ) {
+			$sections['blueprint'] = __( 'Blueprint (beta)', 'woocommerce' );
+		}
+
+		return $sections;
 	}
 
 	/**
@@ -153,7 +175,7 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 					'checkboxgroup'   => 'start',
 					'show_if_checked' => 'option',
 					/* Translators: %s Docs URL. */
-					'desc_tip'        => sprintf( __( 'Force SSL (HTTPS) on the checkout pages (<a href="%s" target="_blank">an SSL Certificate is required</a>).', 'woocommerce' ), 'https://woo.com/document/ssl-and-https/#section-3' ),
+					'desc_tip'        => sprintf( __( 'Force SSL (HTTPS) on the checkout pages (<a href="%s" target="_blank">an SSL Certificate is required</a>).', 'woocommerce' ), 'https://woocommerce.com/document/ssl-and-https/#section-3' ),
 				),
 
 				'unforce_ssl_checkout' => array(
@@ -322,12 +344,12 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 	}
 
 	/**
-	 * Get settings for the Woo.com section.
+	 * Get settings for the WooCommerce.com section.
 	 *
 	 * @return array
 	 */
 	protected function get_settings_for_woocommerce_com_section() {
-		$tracking_info_text = sprintf( '<a href="%s" target="_blank">%s</a>', 'https://woo.com/usage-tracking', esc_html__( 'Woo.com Usage Tracking Documentation', 'woocommerce' ) );
+		$tracking_info_text = sprintf( '<a href="%s" target="_blank">%s</a>', 'https://woocommerce.com/usage-tracking', esc_html__( 'WooCommerce.com Usage Tracking Documentation', 'woocommerce' ) );
 
 		$settings =
 			array(
@@ -335,7 +357,7 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 					'title' => esc_html__( 'Usage Tracking', 'woocommerce' ),
 					'type'  => 'title',
 					'id'    => 'tracking_options',
-					'desc'  => __( 'Gathering usage data allows us to make WooCommerce better — your store will be considered as we evaluate new features, judge the quality of an update, or determine if an improvement makes sense.', 'woocommerce' ),
+					'desc'  => __( 'Gathering usage data allows us to tailor your store setup experience, offer more relevant content, and help make WooCommerce better for everyone.', 'woocommerce' ),
 				),
 				array(
 					'title'         => __( 'Enable tracking', 'woocommerce' ),
@@ -346,7 +368,7 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 					'type'          => 'checkbox',
 					'checkboxgroup' => 'start',
 					'default'       => 'no',
-					'autoload'      => false,
+					'autoload'      => true,
 				),
 				array(
 					'type' => 'sectionend',
@@ -361,7 +383,7 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 				array(
 					'title'         => __( 'Show Suggestions', 'woocommerce' ),
 					'desc'          => __( 'Display suggestions within WooCommerce', 'woocommerce' ),
-					'desc_tip'      => esc_html__( 'Leave this box unchecked if you do not want to pull suggested extensions from Woo.com. You will see a static list of extensions instead.', 'woocommerce' ),
+					'desc_tip'      => esc_html__( 'Leave this box unchecked if you do not want to pull suggested extensions from WooCommerce.com.', 'woocommerce' ),
 					'id'            => 'woocommerce_show_marketplace_suggestions',
 					'type'          => 'checkbox',
 					'checkboxgroup' => 'start',
@@ -383,26 +405,20 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 	 * @return array
 	 */
 	protected function get_settings_for_legacy_api_section() {
-		$enable_legacy_api_setting = array(
-			'title'   => __( 'Legacy API', 'woocommerce' ),
-			'desc'    => __( 'Enable the legacy REST API', 'woocommerce' ),
-			'id'      => 'woocommerce_api_enabled',
-			'type'    => 'checkbox',
-			'default' => 'no',
-		);
+		$legacy_api_setting_desc =
+			'yes' === get_option( 'woocommerce_api_enabled' ) ?
+			__( 'The legacy REST API is enabled', 'woocommerce' ) :
+			__( 'The legacy REST API is NOT enabled', 'woocommerce' );
 
-		if ( ! is_plugin_active( 'woocommerce-legacy-rest-api/woocommerce-legacy-rest-api.php' ) ) {
-			$enable_legacy_api_setting['desc_tip'] = sprintf(
-			// translators: Placeholders are URLs.
-				__(
-					'⚠️ <b>️The Legacy REST API will be removed in WooCommerce 9.0.</b> <a target="_blank" href="%1$s">A separate WooCommerce extension is available</a> to keep it enabled. You can check Legacy REST API usages in <b><a target="_blank" href="%2$s">the WooCommerce log files</a></b> (file names start with <code>legacy_rest_api_usages</code>). <b><a target="_blank" href="%3$s">Learn more about this change.</a></b>',
-					'woocommerce'
-				),
+		$legacy_api_setting_tip =
+			WC()->legacy_rest_api_is_available() ?
+			__( 'ℹ️️ The WooCommerce Legacy REST API extension is installed and active.', 'woocommerce' ) :
+			sprintf(
+				/* translators: placeholders are URLs */
+				__( '⚠️ The WooCommerce Legacy REST API has been moved to <a target=”_blank” href="%1$s">a dedicated extension</a>. <b><a target=”_blank” href="%2$s">Learn more about this change</a></b>', 'woocommerce' ),
 				'https://wordpress.org/plugins/woocommerce-legacy-rest-api/',
-				admin_url( 'admin.php?page=wc-status&tab=logs' ),
-				'https://developer.woo.com/2023/10/03/the-legacy-rest-api-will-move-to-a-dedicated-extension-in-woocommerce-9-0/'
+				'https://developer.woocommerce.com/2023/10/03/the-legacy-rest-api-will-move-to-a-dedicated-extension-in-woocommerce-9-0/'
 			);
-		}
 
 		$settings =
 			array(
@@ -412,7 +428,15 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 					'desc'  => '',
 					'id'    => 'legacy_api_options',
 				),
-				$enable_legacy_api_setting,
+				array(
+					'title'    => __( 'Legacy API', 'woocommerce' ),
+					'desc'     => $legacy_api_setting_desc,
+					'id'       => 'woocommerce_api_enabled',
+					'type'     => 'checkbox',
+					'default'  => 'no',
+					'disabled' => true,
+					'desc_tip' => $legacy_api_setting_tip,
+				),
 				array(
 					'type' => 'sectionend',
 					'id'   => 'legacy_api_options',
@@ -420,6 +444,90 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 			);
 
 		return apply_filters( 'woocommerce_settings_rest_api', $settings );
+	}
+
+	/**
+	 * Get settings for the REST API caching section.
+	 *
+	 * @return array
+	 */
+	protected function get_settings_for_rest_api_caching_section() {
+		$has_object_cache = wp_using_ext_object_cache();
+
+		$settings = array(
+			array(
+				'title' => __( 'REST API response cache', 'woocommerce' ),
+				'type'  => 'title',
+				'desc'  => __( 'These settings control backend caching and cache control headers for REST API responses.', 'woocommerce' ),
+				'id'    => 'rest_api_cache_options',
+			),
+		);
+
+		if ( ! $has_object_cache ) {
+			$settings[] = array(
+				'type'        => 'notice',
+				'id'          => 'rest_api_cache_warning',
+				'notice_type' => 'warning',
+				'text'        => sprintf(
+					/* translators: %1$s and %2$s are opening and closing <a> tags */
+					__( 'Backend caching requires a WordPress object cache plugin (Redis, Memcached, etc.) to be installed and active. %1$sLearn more about object caching%2$s.', 'woocommerce' ),
+					'<a href="https://developer.wordpress.org/reference/classes/wp_object_cache/" target="_blank">',
+					'</a>'
+				),
+			);
+		}
+
+		$backend_caching_setting = array(
+			'title'       => __( 'Enable backend caching', 'woocommerce' ),
+			'desc'        => __( 'Cache REST API responses on the server', 'woocommerce' ),
+			'id'          => 'woocommerce_rest_api_enable_backend_caching',
+			'type'        => 'checkbox',
+			'default'     => 'no',
+			'disabled'    => ! $has_object_cache,
+			'fixed_value' => $has_object_cache ? null : 'no',
+			'desc_tip'    => __( 'Enables responses for REST API endpoints configured as cacheable. Requires an external object cache.<br/>This setting should be enabled only if no other plugins that handle caching are active.', 'woocommerce' ),
+		);
+
+		$settings[] = $backend_caching_setting;
+
+		$settings[] = array(
+			'title'    => __( 'Enable cache control headers', 'woocommerce' ),
+			'desc'     => __( 'Send cache control headers and support 304 Not Modified responses', 'woocommerce' ),
+			'id'       => 'woocommerce_rest_api_enable_cache_headers',
+			'type'     => 'checkbox',
+			'default'  => 'yes',
+			'desc_tip' => __( 'Enables including ETag and Cache-Control headers, and returning 304 Not Modified responses, for REST API endpoints configured as cacheable.', 'woocommerce' ),
+		);
+
+		$settings[] = array(
+			'type' => 'sectionend',
+			'id'   => 'rest_api_cache_options',
+		);
+
+		/**
+		 * Filter REST API cache settings.
+		 *
+		 * @since 10.5.0
+		 * @param array $settings REST API cache settings.
+		 */
+		return apply_filters( 'woocommerce_rest_api_cache_settings', $settings );
+	}
+
+	/**
+	 * Get settings for the Blueprint section.
+	 *
+	 * @return array
+	 */
+	protected function get_settings_for_blueprint_section() {
+		$settings =
+			array(
+				array(
+					'id'   => 'wc_settings_blueprint_slotfill',
+					'type' => 'slotfill_placeholder',
+				),
+			);
+
+		return $settings;
 	}
 
 	/**
@@ -453,7 +561,11 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 	 * Output the settings.
 	 */
 	public function output() {
-		global $current_section;
+		global $current_section, $hide_save_button;
+
+		if ( 'blueprint' === $current_section ) {
+			$hide_save_button = true;
+		}
 
 		if ( 'webhooks' === $current_section ) {
 			WC_Admin_Webhooks::page_output();
@@ -470,6 +582,9 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 	public function save() {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		global $current_section;
+
+		$prev_value = 'yes' === get_option( 'woocommerce_allow_tracking', 'no' ) ? 'yes' : 'no';
+		$new_value  = isset( $_POST['woocommerce_allow_tracking'] ) && ( 'yes' === $_POST['woocommerce_allow_tracking'] || '1' === $_POST['woocommerce_allow_tracking'] ) ? 'yes' : 'no';
 
 		if ( apply_filters( 'woocommerce_rest_api_valid_to_save', ! in_array( $current_section, array( 'keys', 'webhooks' ), true ) ) ) {
 			// Prevent the T&Cs and checkout page from being set to the same page.
@@ -490,8 +605,16 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 				}
 			}
 
+			if ( class_exists( 'WC_Tracks' ) && 'no' === $new_value && 'yes' === $prev_value ) {
+				WC_Tracks::track_woocommerce_allow_tracking_toggled( $prev_value, $new_value, 'settings' );
+			}
+
 			$this->save_settings_for_current_section();
 			$this->do_update_options_action();
+
+			if ( class_exists( 'WC_Tracks' ) && 'yes' === $new_value && 'no' === $prev_value ) {
+				WC_Tracks::track_woocommerce_allow_tracking_toggled( $prev_value, $new_value, 'settings' );
+			}
 		}
 		// phpcs:enable
 	}

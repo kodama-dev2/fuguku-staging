@@ -20,6 +20,15 @@ class CartSelectShippingRate extends AbstractCartRoute {
 	 * @return string
 	 */
 	public function get_path() {
+		return self::get_path_regex();
+	}
+
+	/**
+	 * Get the path of this rest route.
+	 *
+	 * @return string
+	 */
+	public static function get_path_regex() {
 		return '/cart/select-shipping-rate';
 	}
 
@@ -29,27 +38,27 @@ class CartSelectShippingRate extends AbstractCartRoute {
 	 * @return array An array of endpoints.
 	 */
 	public function get_args() {
-		return [
-			[
+		return array(
+			array(
 				'methods'             => \WP_REST_Server::CREATABLE,
-				'callback'            => [ $this, 'get_response' ],
+				'callback'            => array( $this, 'get_response' ),
 				'permission_callback' => '__return_true',
-				'args'                => [
+				'args'                => array(
 					'package_id' => array(
 						'description' => __( 'The ID of the package being shipped. Leave blank to apply to all packages.', 'woocommerce' ),
-						'type'        => [ 'integer', 'string', 'null' ],
+						'type'        => array( 'integer', 'string', 'null' ),
 						'required'    => false,
 					),
-					'rate_id'    => [
+					'rate_id'    => array(
 						'description' => __( 'The chosen rate ID for the package.', 'woocommerce' ),
 						'type'        => 'string',
 						'required'    => true,
-					],
-				],
-			],
-			'schema'      => [ $this->schema, 'get_public_item_schema' ],
-			'allow_batch' => [ 'v1' => true ],
-		];
+					),
+				),
+			),
+			'schema'      => array( $this->schema, 'get_public_item_schema' ),
+			'allow_batch' => array( 'v1' => true ),
+		);
 	}
 
 	/**
@@ -61,11 +70,11 @@ class CartSelectShippingRate extends AbstractCartRoute {
 	 */
 	protected function get_route_post_response( \WP_REST_Request $request ) {
 		if ( ! wc_shipping_enabled() ) {
-			throw new RouteException( 'woocommerce_rest_shipping_disabled', __( 'Shipping is disabled.', 'woocommerce' ), 404 );
+			throw new RouteException( 'woocommerce_rest_shipping_disabled', esc_html__( 'Shipping is disabled.', 'woocommerce' ), 404 );
 		}
 
 		if ( ! isset( $request['rate_id'] ) ) {
-			throw new RouteException( 'woocommerce_rest_cart_missing_rate_id', __( 'Invalid Rate ID.', 'woocommerce' ), 400 );
+			throw new RouteException( 'woocommerce_rest_cart_missing_rate_id', esc_html__( 'Invalid Rate ID.', 'woocommerce' ), 400 );
 		}
 
 		$cart       = $this->cart_controller->get_cart_instance();
@@ -81,7 +90,7 @@ class CartSelectShippingRate extends AbstractCartRoute {
 				}
 			}
 		} catch ( \WC_Rest_Exception $e ) {
-			throw new RouteException( $e->getErrorCode(), $e->getMessage(), $e->getCode() );
+			throw new RouteException( $e->getErrorCode(), $e->getMessage(), $e->getCode() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		/**
@@ -98,7 +107,6 @@ class CartSelectShippingRate extends AbstractCartRoute {
 		 */
 		do_action( 'woocommerce_store_api_cart_select_shipping_rate', $package_id, $rate_id, $request );
 
-		$cart->calculate_shipping();
 		$cart->calculate_totals();
 
 		return rest_ensure_response( $this->cart_schema->get_item_response( $cart ) );

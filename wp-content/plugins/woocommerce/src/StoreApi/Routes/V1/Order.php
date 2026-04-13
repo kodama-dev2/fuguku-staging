@@ -2,7 +2,7 @@
 namespace Automattic\WooCommerce\StoreApi\Routes\V1;
 
 use Automattic\WooCommerce\StoreApi\SchemaController;
-use Automattic\WooCommerce\StoreApi\Schemas\v1\AbstractSchema;
+use Automattic\WooCommerce\StoreApi\Schemas\V1\AbstractSchema;
 use Automattic\WooCommerce\StoreApi\Utilities\OrderController;
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
 use Automattic\WooCommerce\StoreApi\Utilities\OrderAuthorizationTrait;
@@ -51,6 +51,15 @@ class Order extends AbstractRoute {
 	 * @return string
 	 */
 	public function get_path() {
+		return self::get_path_regex();
+	}
+
+	/**
+	 * Get the path of this rest route.
+	 *
+	 * @return string
+	 */
+	public static function get_path_regex() {
 		return '/order/(?P<id>[\d]+)';
 	}
 

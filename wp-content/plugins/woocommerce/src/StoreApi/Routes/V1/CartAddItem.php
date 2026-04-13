@@ -20,6 +20,15 @@ class CartAddItem extends AbstractCartRoute {
 	 * @return string
 	 */
 	public function get_path() {
+		return self::get_path_regex();
+	}
+
+	/**
+	 * Get the path of this rest route.
+	 *
+	 * @return string
+	 */
+	public static function get_path_regex() {
 		return '/cart/add-item';
 	}
 
@@ -43,7 +52,7 @@ class CartAddItem extends AbstractCartRoute {
 					],
 					'quantity'  => [
 						'description' => __( 'Quantity of this item to add to the cart.', 'woocommerce' ),
-						'type'        => 'integer',
+						'type'        => 'number',
 						'context'     => [ 'view', 'edit' ],
 						'arg_options' => [
 							'sanitize_callback' => 'wc_stock_amount',
@@ -86,10 +95,8 @@ class CartAddItem extends AbstractCartRoute {
 	protected function get_route_post_response( \WP_REST_Request $request ) {
 		// Do not allow key to be specified during creation.
 		if ( ! empty( $request['key'] ) ) {
-			throw new RouteException( 'woocommerce_rest_cart_item_exists', __( 'Cannot create an existing cart item.', 'woocommerce' ), 400 );
+			throw new RouteException( 'woocommerce_rest_cart_item_exists', esc_html__( 'Cannot create an existing cart item.', 'woocommerce' ), 400 );
 		}
-
-		$cart = $this->cart_controller->get_cart_instance();
 
 		/**
 		 * Filters cart item data sent via the API before it is passed to the cart controller.
@@ -117,9 +124,26 @@ class CartAddItem extends AbstractCartRoute {
 			$request
 		);
 
-		$this->cart_controller->add_to_cart( $add_to_cart_data );
+		$item_id   = $this->cart_controller->add_to_cart( $add_to_cart_data );
+		$cart      = $this->cart_controller->get_cart_instance();
+		$cart_item = $cart->get_cart_item( $item_id );
 
-		$response = rest_ensure_response( $this->schema->get_item_response( $cart ) );
+		if ( ! empty( $cart_item ) ) {
+			$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
+			$quantity   = $add_to_cart_data['quantity'] ?? $cart_item['quantity'];
+
+			/**
+			 * Fires when an item is added to the cart from a user request.
+			 *
+			 * @param int       $product_id Product ID (variation ID for variable products).
+			 * @param int|float $quantity   Quantity added to the cart.
+			 *
+			 * @since 10.6.0
+			 */
+			do_action( 'internal_woocommerce_cart_item_added_from_user_request', $product_id, $quantity );
+		}
+
+		$response = rest_ensure_response( $this->schema->get_item_response( $this->cart_controller->get_cart_for_response() ) );
 		$response->set_status( 201 );
 		return $response;
 	}

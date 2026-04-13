@@ -30,6 +30,15 @@ class Batch extends AbstractRoute implements RouteInterface {
 	 * @return string
 	 */
 	public function get_path() {
+		return self::get_path_regex();
+	}
+
+	/**
+	 * Get the path of this rest route.
+	 *
+	 * @return string
+	 */
+	public static function get_path_regex() {
 		return '/batch';
 	}
 
@@ -58,7 +67,14 @@ class Batch extends AbstractRoute implements RouteInterface {
 						'properties' => array(
 							'method'  => array(
 								'type'    => 'string',
-								'enum'    => array( 'POST', 'PUT', 'PATCH', 'DELETE' ),
+								/**
+								 * Filters the allowed methods for store API batch requests.
+								 *
+								 * @since 9.8.0
+								 *
+								 * @param string[] $methods Allowed methods.
+								 */
+								'enum'    => apply_filters( '__experimental_woocommerce_store_api_batch_request_methods', array( 'POST', 'PUT', 'PATCH', 'DELETE' ) ),
 								'default' => 'POST',
 							),
 							'path'    => array(
@@ -101,7 +117,8 @@ class Batch extends AbstractRoute implements RouteInterface {
 	public function get_response( WP_REST_Request $request ) {
 		try {
 			foreach ( $request['requests'] as $args ) {
-				if ( ! stristr( $args['path'], 'wc/store' ) ) {
+				$parsed_path = wp_parse_url( $args['path'], PHP_URL_PATH );
+				if ( ! $parsed_path || strpos( $parsed_path, '/wc/store' ) !== 0 ) {
 					throw new RouteException( 'woocommerce_rest_invalid_path', __( 'Invalid path provided.', 'woocommerce' ), 400 );
 				}
 			}
@@ -119,7 +136,6 @@ class Batch extends AbstractRoute implements RouteInterface {
 		$nonce = wp_create_nonce( 'wc_store_api' );
 
 		$response->header( 'Nonce', $nonce );
-		$response->header( 'X-WC-Store-API-Nonce', $nonce );
 		$response->header( 'Nonce-Timestamp', time() );
 		$response->header( 'User-ID', get_current_user_id() );
 

@@ -2,6 +2,7 @@
 
 namespace Automattic\WooCommerce\Internal\DataStores\Orders;
 
+use Automattic\WooCommerce\Internal\Utilities\DatabaseUtil;
 use Exception;
 
 /**
@@ -27,9 +28,19 @@ class OrdersTableSearchQuery {
 	/**
 	 * Limits the search to a specific field.
 	 *
-	 * @var string
+	 * @var string[]
 	 */
 	private $search_filters;
+
+	/**
+	 * Alias used for the derived table that holds FTS product hits.
+	 */
+	private const PRODUCTS_JOIN_ALIAS = 'fts_items';
+
+	/**
+	 * Alias used for the derived table that holds FTS customer/address hits.
+	 */
+	private const CUSTOMERS_JOIN_ALIAS = 'fts_addresses';
 
 	/**
 	 * Creates the JOIN and WHERE clauses needed to execute a search of orders.
@@ -40,8 +51,8 @@ class OrdersTableSearchQuery {
 	 */
 	public function __construct( OrdersTableQuery $query ) {
 		$this->query          = $query;
-		$this->search_term    = urldecode( $query->get( 's' ) );
-		$this->search_filters = $this->sanitize_search_filters( urldecode( $query->get( 'search_filter' ) ) );
+		$this->search_term    = $query->get( 's' );
+		$this->search_filters = $this->sanitize_search_filters( $query->get( 'search_filter' ) ?? '' );
 	}
 
 	/**
@@ -51,18 +62,19 @@ class OrdersTableSearchQuery {
 	 *
 	 * @return array Array of search filters.
 	 */
-	private function sanitize_search_filters( string $search_filter ) : array {
-		$available_filters = array(
+	private function sanitize_search_filters( string $search_filter ): array {
+		$core_filters = array(
 			'order_id',
+			'transaction_id',
 			'customer_email',
 			'customers', // customers also searches in meta.
 			'products',
 		);
 
 		if ( 'all' === $search_filter || '' === $search_filter ) {
-			return $available_filters;
+			return $core_filters;
 		} else {
-			return array_intersect( $available_filters, array( $search_filter ) );
+			return array( $search_filter );
 		}
 	}
 
@@ -111,15 +123,120 @@ class OrdersTableSearchQuery {
 	 *
 	 * @return string JOIN clause.
 	 */
-	private function generate_join_for_search_filter( $search_filter ) : string {
+	private function generate_join_for_search_filter( $search_filter ): string {
+		$join = '';
+
 		if ( 'products' === $search_filter ) {
-			$orders_table = $this->query->get_table_name( 'orders' );
-			$items_table  = $this->query->get_table_name( 'items' );
-			return "
-				LEFT JOIN $items_table AS search_query_items ON search_query_items.order_id = $orders_table.id
-			";
+			$join = $this->maybe_get_join_for_products();
 		}
-		return '';
+
+		if ( 'customers' === $search_filter ) {
+			$join = $this->maybe_get_join_for_customers();
+		}
+		/**
+		 * Filter to support adding a custom order search filter.
+		 * Provide a JOIN clause for a new search filter. This should be used along with `woocommerce_hpos_admin_search_filters`
+		 * to declare a new custom filter, and `woocommerce_hpos_generate_where_for_search_filter` to generate the WHERE
+		 * clause.
+		 *
+		 * Hardcoded JOINS (products) cannot be modified using this filter for consistency.
+		 *
+		 * @since 8.9.0
+		 *
+		 * @param string $join The JOIN clause.
+		 * @param string $search_term The search term.
+		 * @param string $search_filter The search filter. Use this to bail early if this is not filter you are interested in.
+		 * @param OrdersTableQuery $query The order query object.
+		 */
+		return apply_filters(
+			'woocommerce_hpos_generate_join_for_search_filter',
+			$join,
+			$this->search_term,
+			$search_filter,
+			$this->query
+		);
+	}
+
+	/**
+	 * Returns a prepared JOIN fragment for products when FTS is enabled.
+	 *
+	 * @since 10.1.0
+	 * @return string JOIN clause or empty string if FTS disabled.
+	 */
+	private function maybe_get_join_for_products(): string {
+		global $wpdb;
+
+		$db_util      = wc_get_container()->get( DatabaseUtil::class );
+		$items_table  = $this->query->get_table_name( 'items' );
+		$orders_table = $this->query->get_table_name( 'orders' );
+
+		$fts_enabled = get_option( CustomOrdersTableController::HPOS_FTS_INDEX_OPTION ) === 'yes'
+			&& get_option( CustomOrdersTableController::HPOS_FTS_ORDER_ITEM_INDEX_CREATED_OPTION ) === 'yes';
+
+		if ( ! $fts_enabled ) {
+			return '';
+		}
+
+		$search_pattern = $wpdb->esc_like( $db_util->sanitise_boolean_fts_search_term( $this->search_term ) );
+
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->prepare(
+			"LEFT JOIN (
+				SELECT DISTINCT order_id
+				FROM $items_table
+				WHERE MATCH ( order_item_name ) AGAINST ( %s IN BOOLEAN MODE )
+			) AS " . self::PRODUCTS_JOIN_ALIAS . ' ON ' . self::PRODUCTS_JOIN_ALIAS . ".order_id = $orders_table.id",
+			$search_pattern
+		);
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared
+	}
+
+	/**
+	 * Returns a prepared JOIN fragment for customers/addresses when FTS is enabled.
+	 *
+	 * @since 10.1.0
+	 * @return string JOIN clause or empty string if FTS disabled.
+	 */
+	private function maybe_get_join_for_customers(): string {
+		global $wpdb;
+
+		$db_util       = wc_get_container()->get( DatabaseUtil::class );
+		$address_table = $this->query->get_table_name( 'addresses' );
+		$orders_table  = $this->query->get_table_name( 'orders' );
+
+		$fts_enabled = get_option( CustomOrdersTableController::HPOS_FTS_INDEX_OPTION ) === 'yes'
+			&& get_option( CustomOrdersTableController::HPOS_FTS_ADDRESS_INDEX_CREATED_OPTION ) === 'yes';
+
+		if ( ! $fts_enabled ) {
+			return '';
+		}
+
+		$search_pattern = $wpdb->esc_like( $db_util->sanitise_boolean_fts_search_term( $this->search_term ) );
+
+		// Support for phone was added in 9.4.
+		$maybe_phone_field = '';
+		if ( version_compare( get_option( 'woocommerce_db_version' ), '9.4.0', '>=' ) ) {
+			$maybe_phone_field = ', phone';
+		}
+
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->prepare(
+			"LEFT JOIN (
+				SELECT DISTINCT order_id
+				FROM $address_table
+				WHERE MATCH (
+					first_name, last_name, company,
+					address_1,  address_2, city,  state,
+					postcode,   country,   email  $maybe_phone_field
+				) AGAINST ( %s IN BOOLEAN MODE )
+			) AS " . self::CUSTOMERS_JOIN_ALIAS . ' ON ' . self::CUSTOMERS_JOIN_ALIAS . ".order_id = $orders_table.id",
+			$search_pattern
+		);
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared
 	}
 
 	/**
@@ -140,15 +257,15 @@ class OrdersTableSearchQuery {
 		}
 
 		foreach ( $this->search_filters as $search_filter ) {
-			$search_where = $this->generate_where_for_search_filter( $search_filter );
-			if ( ! empty( $search_where ) ) {
+			$search_where = trim( $this->generate_where_for_search_filter( $search_filter ) );
+			if ( strlen( $search_where ) > 0 ) {
 				$where[] = $search_where;
 			}
 		}
 
 		$where_statement = implode( ' OR ', $where );
 
-		return " ( $where_statement ) ";
+		return ( strlen( $where_statement ) > 0 ) ? " ( $where_statement ) " : '';
 	}
 
 	/**
@@ -158,38 +275,115 @@ class OrdersTableSearchQuery {
 	 *
 	 * @return string WHERE clause.
 	 */
-	private function generate_where_for_search_filter( string $search_filter ) : string {
+	private function generate_where_for_search_filter( string $search_filter ): string {
 		global $wpdb;
 
 		$order_table = $this->query->get_table_name( 'orders' );
 
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $order_table is hardcoded.
 		if ( 'customer_email' === $search_filter ) {
 			return $wpdb->prepare(
-				"`$order_table`.billing_email LIKE %s", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $order_table is hardcoded.
+				"`$order_table`.billing_email LIKE %s",
 				$wpdb->esc_like( $this->search_term ) . '%'
 			);
 		}
 
 		if ( 'order_id' === $search_filter && is_numeric( $this->search_term ) ) {
 			return $wpdb->prepare(
-				"`$order_table`.id = %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $order_table is hardcoded.
+				"`$order_table`.id = %d",
 				absint( $this->search_term )
 			);
 		}
 
-		if ( 'products' === $search_filter ) {
+		if ( 'transaction_id' === $search_filter ) {
 			return $wpdb->prepare(
-				'search_query_items.order_item_name LIKE %s',
+				"`$order_table`.transaction_id LIKE %s",
 				'%' . $wpdb->esc_like( $this->search_term ) . '%'
 			);
 		}
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
-		if ( 'customers' === $search_filter ) {
-			$meta_sub_query = $this->generate_where_for_meta_table();
-			return "`$order_table`.id IN ( $meta_sub_query ) ";
+		if ( 'products' === $search_filter ) {
+			return $this->get_where_for_products();
 		}
 
-		return '';
+		if ( 'customers' === $search_filter ) {
+			return $this->get_where_for_customers();
+		}
+
+		/**
+		 * Filter to support adding a custom order search filter.
+		 * Provide a WHERE clause for a custom search filter via this filter. This should be used with the
+		 * `woocommerce_hpos_admin_search_filters` to declare a new custom filter, and optionally also with the
+		 * `woocommerce_hpos_generate_join_for_search_filter` filter if a join is also needed.
+		 *
+		 * Hardcoded filters (products, customers, ID and email) cannot be modified using this filter for consistency.
+		 *
+		 * @since 8.9.0
+		 *
+		 * @param string $where WHERE clause to add to the search query.
+		 * @param string $search_term The search term.
+		 * @param string $search_filter Name of the search filter. Use this to bail early if this is not the filter you are looking for.
+		 * @param OrdersTableQuery $query The order query object.
+		 */
+		return apply_filters(
+			'woocommerce_hpos_generate_where_for_search_filter',
+			'',
+			$this->search_term,
+			$search_filter,
+			$this->query
+		);
+	}
+
+	/**
+	 * Helper function to generate the WHERE clause for products search. Uses FTS when available.
+	 *
+	 * @return string|null WHERE clause for products search.
+	 */
+	private function get_where_for_products() {
+		global $wpdb;
+		$db_util      = wc_get_container()->get( DatabaseUtil::class );
+		$items_table  = $this->query->get_table_name( 'items' );
+		$orders_table = $this->query->get_table_name( 'orders' );
+		$fts_enabled  = get_option( CustomOrdersTableController::HPOS_FTS_INDEX_OPTION ) === 'yes' && get_option( CustomOrdersTableController::HPOS_FTS_ORDER_ITEM_INDEX_CREATED_OPTION ) === 'yes';
+
+		if ( $fts_enabled ) {
+			return self::PRODUCTS_JOIN_ALIAS . '.order_id IS NOT NULL';
+		}
+
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $orders_table and $items_table are hardcoded.
+		return $wpdb->prepare(
+			"
+$orders_table.id in (
+	SELECT order_id FROM $items_table search_query_items WHERE
+	search_query_items.order_item_name LIKE %s
+)
+",
+			'%' . $wpdb->esc_like( $this->search_term ) . '%'
+		);
+		// phpcs:enable
+	}
+
+	/**
+	 * Helper function to generate the WHERE clause for customers search. Uses FTS when available.
+	 *
+	 * @return string|null WHERE clause for customers search.
+	 */
+	private function get_where_for_customers() {
+		global $wpdb;
+		$order_table   = $this->query->get_table_name( 'orders' );
+		$address_table = $this->query->get_table_name( 'addresses' );
+
+		$db_util = wc_get_container()->get( DatabaseUtil::class );
+
+		$fts_enabled = get_option( CustomOrdersTableController::HPOS_FTS_INDEX_OPTION ) === 'yes' && get_option( CustomOrdersTableController::HPOS_FTS_ADDRESS_INDEX_CREATED_OPTION ) === 'yes';
+
+		if ( $fts_enabled ) {
+			return self::CUSTOMERS_JOIN_ALIAS . '.order_id IS NOT NULL';
+		}
+
+		$meta_sub_query = $this->generate_where_for_meta_table();
+		return "`$order_table`.id IN ( $meta_sub_query ) ";
 	}
 
 	/**

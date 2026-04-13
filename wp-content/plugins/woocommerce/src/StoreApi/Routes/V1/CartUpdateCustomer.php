@@ -2,7 +2,6 @@
 namespace Automattic\WooCommerce\StoreApi\Routes\V1;
 
 use Automattic\WooCommerce\StoreApi\Utilities\DraftOrderTrait;
-use Automattic\WooCommerce\StoreApi\Utilities\ValidationUtils;
 
 /**
  * CartUpdateCustomer class.
@@ -25,6 +24,15 @@ class CartUpdateCustomer extends AbstractCartRoute {
 	 * @return string
 	 */
 	public function get_path() {
+		return self::get_path_regex();
+	}
+
+	/**
+	 * Get the path of this rest route.
+	 *
+	 * @return string
+	 */
+	public static function get_path_regex() {
 		return '/cart/update-customer';
 	}
 
@@ -34,31 +42,31 @@ class CartUpdateCustomer extends AbstractCartRoute {
 	 * @return array An array of endpoints.
 	 */
 	public function get_args() {
-		return [
-			[
+		return array(
+			array(
 				'methods'             => \WP_REST_Server::CREATABLE,
-				'callback'            => [ $this, 'get_response' ],
+				'callback'            => array( $this, 'get_response' ),
 				'permission_callback' => '__return_true',
-				'args'                => [
-					'billing_address'  => [
+				'args'                => array(
+					'billing_address'  => array(
 						'description'       => __( 'Billing address.', 'woocommerce' ),
 						'type'              => 'object',
-						'context'           => [ 'view', 'edit' ],
+						'context'           => array( 'view', 'edit' ),
 						'properties'        => $this->schema->billing_address_schema->get_properties(),
 						'sanitize_callback' => null,
-					],
-					'shipping_address' => [
+					),
+					'shipping_address' => array(
 						'description'       => __( 'Shipping address.', 'woocommerce' ),
 						'type'              => 'object',
-						'context'           => [ 'view', 'edit' ],
+						'context'           => array( 'view', 'edit' ),
 						'properties'        => $this->schema->shipping_address_schema->get_properties(),
 						'sanitize_callback' => null,
-					],
-				],
-			],
-			'schema'      => [ $this->schema, 'get_public_item_schema' ],
-			'allow_batch' => [ 'v1' => true ],
-		];
+					),
+				),
+			),
+			'schema'      => array( $this->schema, 'get_public_item_schema' ),
+			'allow_batch' => array( 'v1' => true ),
+		);
 	}
 
 	/**
@@ -102,11 +110,11 @@ class CartUpdateCustomer extends AbstractCartRoute {
 				'rest_invalid_param',
 				/* translators: %s: List of invalid parameters. */
 				sprintf( __( 'Invalid parameter(s): %s', 'woocommerce' ), implode( ', ', array_keys( $invalid_params ) ) ),
-				[
+				array(
 					'status'  => 400,
 					'params'  => $invalid_params,
 					'details' => $invalid_details,
-				]
+				)
 			);
 		}
 
@@ -123,23 +131,9 @@ class CartUpdateCustomer extends AbstractCartRoute {
 		$cart     = $this->cart_controller->get_cart_instance();
 		$customer = wc()->customer;
 
-		// Get data from request object and merge with customer object, then sanitize.
-		$billing  = $this->schema->billing_address_schema->sanitize_callback(
-			wp_parse_args(
-				$request['billing_address'] ?? [],
-				$this->get_customer_billing_address( $customer )
-			),
-			$request,
-			'billing_address'
-		);
-		$shipping = $this->schema->billing_address_schema->sanitize_callback(
-			wp_parse_args(
-				$request['shipping_address'] ?? [],
-				$this->get_customer_shipping_address( $customer )
-			),
-			$request,
-			'shipping_address'
-		);
+		// Get data from request object and merge with customer object.
+		$billing  = wp_parse_args( $request['billing_address'] ?? array(), $this->get_customer_billing_address( $customer ) );
+		$shipping = wp_parse_args( $request['shipping_address'] ?? array(), $this->get_customer_shipping_address( $customer ) );
 
 		// If the cart does not need shipping, shipping address is forced to match billing address unless defined.
 		if ( ! $cart->needs_shipping() && ! isset( $request['shipping_address'] ) ) {
@@ -190,10 +184,10 @@ class CartUpdateCustomer extends AbstractCartRoute {
 
 		// We save them one by one, and we add the group prefix.
 		foreach ( $additional_shipping_values as $key => $value ) {
-			$this->additional_fields_controller->persist_field_for_customer( "/shipping/{$key}", $value, $customer );
+			$this->additional_fields_controller->persist_field_for_customer( $key, $value, $customer, 'shipping' );
 		}
 		foreach ( $additional_billing_values as $key => $value ) {
-			$this->additional_fields_controller->persist_field_for_customer( "/billing/{$key}", $value, $customer );
+			$this->additional_fields_controller->persist_field_for_customer( $key, $value, $customer, 'billing' );
 		}
 
 		wc_do_deprecated_action(
@@ -231,48 +225,22 @@ class CartUpdateCustomer extends AbstractCartRoute {
 	 * @return array
 	 */
 	protected function get_customer_billing_address( \WC_Customer $customer ) {
-		$validation_util = new ValidationUtils();
-		$billing_country = $customer->get_billing_country();
-		$billing_state   = $customer->get_billing_state();
+		$additional_fields = $this->additional_fields_controller->get_all_fields_from_object( $customer, 'billing' );
 
-		$additional_fields = $this->additional_fields_controller->get_all_fields_from_customer( $customer );
-
-		$additional_fields = array_reduce(
-			array_keys( $additional_fields ),
-			function( $carry, $key ) use ( $additional_fields ) {
-				if ( 0 === strpos( $key, '/billing/' ) ) {
-					$value         = $additional_fields[ $key ];
-					$key           = str_replace( '/billing/', '', $key );
-					$carry[ $key ] = $value;
-				}
-				return $carry;
-			},
-			array()
-		);
-
-		/**
-		 * There's a bug in WooCommerce core in which not having a state ("") would result in us validating against the store's state.
-		 * This resets the state to an empty string if it doesn't match the country.
-		 *
-		 * @todo Removing this handling once we fix the issue with the state value always being the store one.
-		 */
-		if ( ! $validation_util->validate_state( $billing_state, $billing_country ) ) {
-			$billing_state = '';
-		}
 		return array_merge(
-			[
+			array(
 				'first_name' => $customer->get_billing_first_name(),
 				'last_name'  => $customer->get_billing_last_name(),
 				'company'    => $customer->get_billing_company(),
 				'address_1'  => $customer->get_billing_address_1(),
 				'address_2'  => $customer->get_billing_address_2(),
 				'city'       => $customer->get_billing_city(),
-				'state'      => $billing_state,
+				'state'      => $customer->get_billing_state(),
 				'postcode'   => $customer->get_billing_postcode(),
-				'country'    => $billing_country,
+				'country'    => $customer->get_billing_country(),
 				'phone'      => $customer->get_billing_phone(),
 				'email'      => $customer->get_billing_email(),
-			],
+			),
 			$additional_fields
 		);
 	}
@@ -284,22 +252,10 @@ class CartUpdateCustomer extends AbstractCartRoute {
 	 * @return array
 	 */
 	protected function get_customer_shipping_address( \WC_Customer $customer ) {
-		$additional_fields = $this->additional_fields_controller->get_all_fields_from_customer( $customer );
+		$additional_fields = $this->additional_fields_controller->get_all_fields_from_object( $customer, 'shipping' );
 
-		$additional_fields = array_reduce(
-			array_keys( $additional_fields ),
-			function( $carry, $key ) use ( $additional_fields ) {
-				if ( 0 === strpos( $key, '/shipping/' ) ) {
-					$value         = $additional_fields[ $key ];
-					$key           = str_replace( '/shipping/', '', $key );
-					$carry[ $key ] = $value;
-				}
-				return $carry;
-			},
-			array()
-		);
 		return array_merge(
-			[
+			array(
 				'first_name' => $customer->get_shipping_first_name(),
 				'last_name'  => $customer->get_shipping_last_name(),
 				'company'    => $customer->get_shipping_company(),
@@ -310,7 +266,7 @@ class CartUpdateCustomer extends AbstractCartRoute {
 				'postcode'   => $customer->get_shipping_postcode(),
 				'country'    => $customer->get_shipping_country(),
 				'phone'      => $customer->get_shipping_phone(),
-			],
+			),
 			$additional_fields
 		);
 	}
