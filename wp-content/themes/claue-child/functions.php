@@ -9,6 +9,61 @@
 defined('ABSPATH') || exit;
 
 /**
+ * Exclude out-of-stock products from Elementor product queries so sliders never receive OOS slides.
+ * (Client-side slickFilter is unreliable for width calculation.)
+ *
+ * @param array<string,mixed> $args Query args.
+ * @return array<string,mixed>
+ */
+function fuguku_meta_query_exclude_outofstock(array $args): array {
+	if (! isset($args['meta_query']) || ! is_array($args['meta_query'])) {
+		$args['meta_query'] = [];
+	}
+	$args['meta_query'][] = [
+		'key'     => '_stock_status',
+		'value'   => 'outofstock',
+		'compare' => '!=',
+	];
+	return $args;
+}
+
+/**
+ * Elementor Pro (and similar) product loop query.
+ *
+ * @param array<string,mixed> $args
+ * @param mixed               $widget
+ */
+add_filter('elementor/query/query_args', function ($args, $widget) {
+	if (is_admin()) {
+		return $args;
+	}
+	if (! apply_filters('fuguku_exclude_oos_from_elementor_queries', true, $args, $widget)) {
+		return $args;
+	}
+	$pt = $args['post_type'] ?? null;
+	$is_product = ($pt === 'product') || (is_array($pt) && in_array('product', $pt, true));
+	if (! $is_product) {
+		return $args;
+	}
+	return fuguku_meta_query_exclude_outofstock($args);
+}, 20, 2);
+
+/**
+ * WooCommerce [products] shortcode and similar.
+ *
+ * @param array<string,mixed> $query_args
+ */
+add_filter('woocommerce_shortcode_products_query', function ($query_args) {
+	if (is_admin()) {
+		return $query_args;
+	}
+	if (! apply_filters('fuguku_exclude_oos_from_shortcode_queries', true, $query_args)) {
+		return $query_args;
+	}
+	return fuguku_meta_query_exclude_outofstock($query_args);
+}, 20, 1);
+
+/**
  * Enqueue parent and child theme styles
  */
 add_action('wp_enqueue_scripts', function() {
@@ -18,6 +73,19 @@ add_action('wp_enqueue_scripts', function() {
 	// Child theme styles
 	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.0');
 }, 20);
+
+/**
+ * Load New Collections Slick fix after theme/Elementor scripts (late footer order).
+ */
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_script(
+		'claue-new-available-slick',
+		get_stylesheet_directory_uri() . '/js/new-available-slick.js',
+		['jquery'],
+		'1.0.0',
+		true
+	);
+}, 9999);
 
 /**
  * Force disable Claue flip image to use our carousel

@@ -1,0 +1,18 @@
+<!--
+  PERBAIKAN DIPINDAH KE CHILD THEME (lebih andal daripada snippet Elementor):
+
+  1) PHP: wp-content/themes/claue-child/functions.php
+     - Filter elementor/query/query_args + woocommerce_shortcode_products_query
+       supaya produk outofstock tidak ikut di-query (OOS tidak masuk HTML slider).
+
+  2) JS: wp-content/themes/claue-child/js/new-available-slick.js
+     - unslick → hapus slide OOS dari DOM → slick( opts ) lagi
+       (jaga-jaga jika masih ada OOS di markup).
+
+  Langkah Anda:
+  - Hapus / nonaktifkan script jQuery lama di widget HTML Elementor (biarkan kosong atau hapus widget).
+  - Deploy child theme, hard refresh / clear cache.
+
+  Jika OOS masih muncul di satu widget saja: di Elementor → Products widget → Query →
+  cari opsi sembunyikan out of stock (nama bervariasi per versi Elementor Pro).
+-->
