@@ -1,18 +1,18 @@
 <!--
-  PERBAIKAN DIPINDAH KE CHILD THEME (lebih andal daripada snippet Elementor):
+  OOS di New Collections — cara yang benar (tanpa script jQuery di Elementor):
 
   1) PHP: wp-content/themes/claue-child/functions.php
-     - Filter elementor/query/query_args + woocommerce_shortcode_products_query
-       supaya produk outofstock tidak ikut di-query (OOS tidak masuk HTML slider).
+     - elementor/query/query_args: meta _stock_status != outofstock untuk query produk Elementor.
+       Default: hanya halaman depan (is_front_page). Ubah lewat filter fuguku_elementor_oos_exclude_require_front_page.
+     - woocommerce_shortcode_products_query: sama untuk shortcode [products].
 
-  2) JS: wp-content/themes/claue-child/js/new-available-slick.js (v1.0.1)
-     - unslick → hapus slide OOS dari DOM → slick( opts ) lagi
-     - juga listen `elementor/frontend/init` + delayed run (Slick sering init setelah load)
+  2) JS new-available-slick.js: default TIDAK di-enqueue. Hanya jika masih perlu rebuild Slick:
+     add_filter( 'fuguku_enqueue_new_available_slick', '__return_true' );
 
-  Langkah Anda:
-  - Hapus / nonaktifkan script jQuery lama di widget HTML Elementor (biarkan kosong atau hapus widget).
-  - Deploy child theme, hard refresh / clear cache.
+  3) Di Elementor (opsional): widget Products → Query → stok / hide out of stock jika ada.
 
-  Jika OOS masih muncul di satu widget saja: di Elementor → Products widget → Query →
-  cari opsi sembunyikan out of stock (nama bervariasi per versi Elementor Pro).
+  4) Hapus widget HTML yang berisi script slickFilter lama.
+
+  CSS ID new-collections-home / class card-home tidak perlu di PHP — penyaringan di query sudah cukup
+  selama widget itu memakai query produk WooCommerce standar.
 -->

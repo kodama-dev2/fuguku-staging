@@ -9,7 +9,7 @@
 defined('ABSPATH') || exit;
 
 /**
- * Exclude out-of-stock from WooCommerce shortcode queries only (bukan filter Elementor).
+ * Exclude out-of-stock products at query level (bukan lewat JS di browser).
  *
  * @param array<string,mixed> $args Query args.
  * @return array<string,mixed>
@@ -25,6 +25,34 @@ function fuguku_meta_query_exclude_outofstock(array $args): array {
 	];
 	return $args;
 }
+
+/**
+ * Elementor: sembunyikan OOS dari loop produk (widget Products, Loop Grid, dll.).
+ * Default: hanya di halaman depan (#new-collections-home / blok home). Ubah lewat filter.
+ *
+ * Matikan sepenuhnya: add_filter( 'fuguku_exclude_oos_from_elementor_queries', '__return_false' );
+ * Terapkan di seluruh situs (bukan hanya front page): add_filter( 'fuguku_elementor_oos_exclude_require_front_page', '__return_false' );
+ *
+ * @param array<string,mixed> $args
+ * @param mixed               $widget
+ */
+add_filter('elementor/query/query_args', function ($args, $widget) {
+	if (is_admin()) {
+		return $args;
+	}
+	if (! apply_filters('fuguku_exclude_oos_from_elementor_queries', true, $args, $widget)) {
+		return $args;
+	}
+	if (apply_filters('fuguku_elementor_oos_exclude_require_front_page', true) && ! is_front_page()) {
+		return $args;
+	}
+	$pt = $args['post_type'] ?? null;
+	$is_product = ($pt === 'product') || (is_array($pt) && in_array('product', $pt, true));
+	if (! $is_product) {
+		return $args;
+	}
+	return fuguku_meta_query_exclude_outofstock($args);
+}, 20, 2);
 
 /**
  * WooCommerce [products] shortcode and similar.
@@ -53,15 +81,14 @@ add_action('wp_enqueue_scripts', function() {
 }, 20);
 
 /**
- * New Collections: Slick + OOS cleanup — hanya di halaman depan.
- * Script ini cuma menyentuh node di bawah .new-available (bukan popup Elementor).
- * Memuatnya hanya di front page mengurangi bebas konflik di halaman lain.
+ * Opsi: JS rebuild Slick setelah OOS dihapus dari DOM — default OFF bila query PHP sudah mengecualikan OOS.
+ * Aktifkan: add_filter( 'fuguku_enqueue_new_available_slick', '__return_true' );
  */
 add_action('wp_enqueue_scripts', function () {
 	if ( is_admin() || ! is_front_page() ) {
 		return;
 	}
-	if ( ! apply_filters( 'fuguku_enqueue_new_available_slick', true ) ) {
+	if ( ! apply_filters( 'fuguku_enqueue_new_available_slick', false ) ) {
 		return;
 	}
 	wp_enqueue_script(
