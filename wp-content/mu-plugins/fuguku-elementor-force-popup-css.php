@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Fuguku — force Elementor CSS for templates (popup / off-canvas / theme parts)
  * Description: Memuat file CSS template Elementor (elementor_library) di frontend. Mengatasi tampilan “polos” saat publish (popup negara, off-canvas menu, dll.) padahal di editor benar — biasanya CSS post tidak di-enqueue sampai kondisi tertentu / optimasi asset.
- * Version: 1.1.0
+ * Version: 1.2.0
  *
  * Tambah/ubah ID lewat filter:
  *   add_filter( 'fuguku_forced_elementor_css_post_ids', function ( $ids ) {
@@ -14,10 +14,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** Default: popup negara + off-canvas menu (sesuaikan jika duplikat template). */
+/** Default: template Elementor (popup / theme parts) yang CSS-nya dipaksa di frontend. */
 const FUGUKU_ELEMENTOR_DEFAULT_FORCED_CSS_IDS = [
-	10504, // select-country-list (popup)
-	10626, // off-canvas / menu (elementor_library)
+	10504, // select-country-list
+	10626, // off-canvas menu
+	10670,
+	10678,
+	11972,
+	11974,
+	11976,
+	11978,
+	11980,
+	12030,
 ];
 
 /**
