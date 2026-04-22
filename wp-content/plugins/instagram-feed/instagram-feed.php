@@ -115,7 +115,20 @@ if ( function_exists( 'sb_instagram_feed_init' ) ) {
 		    define( 'SBI_BUILDER_URL', SBI_PLUGIN_URL . 'admin/builder/' );
 		}
 
-		require SBI_PLUGIN_DIR . 'vendor/autoload.php';
+		$autoload_file = SBI_PLUGIN_DIR . 'vendor/autoload.php';
+		if ( ! file_exists( $autoload_file ) ) {
+			if ( is_admin() ) {
+				add_action(
+					'admin_notices',
+					static function () {
+						echo '<div class="notice notice-error"><p><strong>Smash Balloon Instagram Feed:</strong> Missing <code>vendor/autoload.php</code>. Reinstall the plugin package completely to restore functionality.</p></div>';
+					}
+				);
+			}
+			return;
+		}
+
+		require $autoload_file;
 		require_once trailingslashit( SBI_PLUGIN_DIR ) . 'inc/if-functions.php';
 		require_once trailingslashit( SBI_PLUGIN_DIR ) . 'inc/class-sb-instagram-api-connect.php';
 		require_once trailingslashit( SBI_PLUGIN_DIR ) . 'inc/class-sb-instagram-cache.php';
