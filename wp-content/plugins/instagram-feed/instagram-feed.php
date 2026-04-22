@@ -371,7 +371,11 @@ if ( function_exists( 'sb_instagram_feed_init' ) ) {
 
 	function sbi_activation_plugin_redirect() {
 
-		if( !sbi_current_user_can( 'manage_instagram_feed_options' ) ){
+		$can_manage_instagram_feed = function_exists( 'sbi_current_user_can' )
+			? sbi_current_user_can( 'manage_instagram_feed_options' )
+			: current_user_can( 'manage_options' );
+
+		if ( ! $can_manage_instagram_feed ) {
 			return false;
 		}
 
