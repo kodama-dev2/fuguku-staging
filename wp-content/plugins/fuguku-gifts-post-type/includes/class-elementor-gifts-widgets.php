@@ -47,6 +47,7 @@ class Fuguku_Elementor_Gifts_Widgets {
         require_once(__DIR__ . '/widgets/fugu-productshow-item-widget.php');
         require_once(__DIR__ . '/widgets/fugu-catalog-form-widget.php');
         require_once(__DIR__ . '/widgets/fugu-catalog-table-widget.php');
+        require_once(__DIR__ . '/widgets/fugu-wp-login-redirect-widget.php');
 
         // Register widgets
         $widgets_manager->register(new \Fuguku_Gift_Solo_Widget());
@@ -54,6 +55,7 @@ class Fuguku_Elementor_Gifts_Widgets {
         $widgets_manager->register(new \Fugu_ProductShow_Item_Widget());
         $widgets_manager->register(new \Fugu_Catalog_Form_Widget());
         $widgets_manager->register(new \Fugu_Catalog_Table_Widget());
+        $widgets_manager->register(new \Fugu_WP_Login_Redirect_Widget());
     }
 }
 
