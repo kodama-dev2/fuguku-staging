@@ -20,6 +20,7 @@ const FUGUKU_ELEMENTOR_DEFAULT_FORCED_CSS_IDS = [
 	10626, // off-canvas menu
 	10670,
 	10678,
+	11104, // call-us popup
 	11972,
 	11974,
 	11976,
