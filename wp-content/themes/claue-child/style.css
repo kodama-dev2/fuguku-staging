@@ -5,7 +5,7 @@
  Author:       Fuguku Team
  Author URI:   https://fuguku.com/
  Template:     claue
- Version:      1.0.4
+ Version:      1.1.0
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Text Domain:  claue-child
@@ -153,6 +153,81 @@
 
 .new-available .slick-list {
 	width: 100% !important;
+}
+
+@media (max-width: 767px) {
+	.fuguku-services-grid > .e-con-inner {
+		align-items: stretch !important;
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: nowrap !important;
+		gap: 0 !important;
+		justify-content: flex-start !important;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		width: 100% !important;
+	}
+
+	.fuguku-services-grid > .e-con-inner::-webkit-scrollbar {
+		display: none;
+	}
+
+	.fuguku-services-grid > .e-con-inner > .e-con {
+		box-sizing: border-box;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+		min-width: 100% !important;
+		scroll-snap-align: start;
+		width: 100% !important;
+	}
+
+	.fuguku-services-grid > .e-con-inner > .e-con .elementor-widget-heading,
+	.fuguku-services-grid > .e-con-inner > .e-con .elementor-heading-title {
+		left: 0 !important;
+		max-width: 100% !important;
+		right: 0 !important;
+		text-align: center !important;
+		width: 100% !important;
+	}
+
+	.fuguku-services-dots {
+		display: flex;
+		gap: 8px;
+		justify-content: center;
+		margin-top: 16px;
+	}
+
+	.fuguku-services-dots button {
+		background: #d0d0d0;
+		border: 0;
+		border-radius: 50%;
+		cursor: pointer;
+		height: 8px;
+		padding: 0;
+		width: 8px;
+	}
+
+	.fuguku-services-dots button.is-active {
+		background: #111;
+	}
+
+	.fuguku-about-accordion .elementor-widget-heading,
+	.fuguku-footer-accordion .elementor-widget-heading {
+		border-bottom: 1px solid #111;
+		box-sizing: border-box;
+		cursor: pointer;
+		padding-bottom: 8px;
+		width: 100%;
+	}
+
+	.fuguku-about-accordion:not(.is-open) > .e-con-inner > :not(.elementor-widget-heading),
+	.fuguku-about-accordion:not(.is-open) > :not(.elementor-widget-heading):not(.e-con-inner),
+	.fuguku-footer-accordion:not(.is-open) > .e-con-inner > :not(.elementor-widget-heading),
+	.fuguku-footer-accordion:not(.is-open) > :not(.elementor-widget-heading):not(.e-con-inner) {
+		display: none !important;
+	}
 }
 
 .woocommerce form button.show-password-input.display-password::before {

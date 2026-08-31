@@ -77,8 +77,21 @@ add_action('wp_enqueue_scripts', function() {
 	wp_enqueue_style('claue-parent-style', get_template_directory_uri() . '/style.css', [], null);
 	
 	// Child theme styles
-	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.4');
+	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.1.0');
 }, 20);
+
+add_action('wp_enqueue_scripts', function () {
+	if ( is_admin() ) {
+		return;
+	}
+	wp_enqueue_script(
+		'claue-fuguku-about-accordion',
+		get_stylesheet_directory_uri() . '/js/fuguku-about-accordion.js',
+		[],
+		'1.1.0',
+		true
+	);
+}, 9997);
 
 add_action('wp_enqueue_scripts', function () {
 	if ( is_admin() || ! is_front_page() ) {
@@ -89,6 +102,13 @@ add_action('wp_enqueue_scripts', function () {
 		get_stylesheet_directory_uri() . '/js/new-collections-slick-fix.js',
 		['jquery'],
 		'1.0.5',
+		true
+	);
+	wp_enqueue_script(
+		'claue-fuguku-services-grid-slider',
+		get_stylesheet_directory_uri() . '/js/fuguku-services-grid-slider.js',
+		[],
+		'1.0.7',
 		true
 	);
 }, 9998);
