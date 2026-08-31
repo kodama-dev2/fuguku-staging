@@ -1,5 +1,7 @@
 # Fuguku Staging — Deployment
 
+**Alur kerja live → lalu Git/staging:** lihat [WORKFLOW-LIVE-THEN-STAGING.md](WORKFLOW-LIVE-THEN-STAGING.md) (keputusan 31 Agustus 2026).
+
 **Repo:** https://github.com/kodama-dev2/fuguku-staging.git  
 **Branch deploy:** `masterstaging`  
 **Staging:** https://revampstaging2025.fuguku.com/  

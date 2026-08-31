@@ -77,8 +77,21 @@ add_action('wp_enqueue_scripts', function() {
 	wp_enqueue_style('claue-parent-style', get_template_directory_uri() . '/style.css', [], null);
 	
 	// Child theme styles
-	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.0');
+	wp_enqueue_style('claue-child-style', get_stylesheet_uri(), ['claue-parent-style'], '1.0.4');
 }, 20);
+
+add_action('wp_enqueue_scripts', function () {
+	if ( is_admin() || ! is_front_page() ) {
+		return;
+	}
+	wp_enqueue_script(
+		'claue-new-collections-slick-fix',
+		get_stylesheet_directory_uri() . '/js/new-collections-slick-fix.js',
+		['jquery'],
+		'1.0.5',
+		true
+	);
+}, 9998);
 
 /**
  * Opsi: JS rebuild Slick setelah OOS dihapus dari DOM — default OFF bila query PHP sudah mengecualikan OOS.

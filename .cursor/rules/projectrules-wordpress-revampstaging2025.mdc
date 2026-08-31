@@ -205,8 +205,8 @@ Konsekuensi (Zero Tolerance):
 ## Git Workflow
 - **Branch**: masterstaging only
 - **Commit Messages**: Descriptive and follow conventional commits
-- **Push Strategy**: Local → Git → Staging → Production
-- **File Tracking**: Exclude sensitive files (wp-config.php, .env)
+- **Push Strategy**: Live beres → user “sudah benar” → commit file kerja + push `masterstaging` (tanpa ditanya). Detail: `WORKFLOW-LIVE-THEN-STAGING.md`
+- **File Tracking**: Exclude sensitive files (wp-config.php, .env). Jangan `git add -A` jika working tree vendor kotor.
 
 ## Environment Configuration
 - **Local**: Development environment

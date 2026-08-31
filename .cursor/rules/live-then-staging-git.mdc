@@ -1,0 +1,12 @@
+---
+description: Live dulu; user bilang sudah benar = commit+push masterstaging
+alwaysApply: true
+---
+
+# Live then staging Git
+
+Kerja kode di live (`public_html` / SSH). Staging hanya lewat Git `masterstaging` → Hostinger path `revampstaging2025`.
+
+Jika user bilang **sudah benar** (atau “oke sudah benar”, “commit ke staging”): langsung commit file kerja saja lalu `git push origin masterstaging`. Jangan `git add -A`. Jangan commit vendor, uploads, wp-config.
+
+Detail: `WORKFLOW-LIVE-THEN-STAGING.md`.

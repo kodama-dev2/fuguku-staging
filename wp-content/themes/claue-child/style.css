@@ -5,7 +5,7 @@
  Author:       Fuguku Team
  Author URI:   https://fuguku.com/
  Template:     claue
- Version:      1.0.0
+ Version:      1.0.4
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Text Domain:  claue-child
@@ -143,6 +143,16 @@
 	position: relative;
 	top: 2px;
 	width: 20px;
+}
+
+/* New Collections: .jas-row is flex; Slick .slick-list shrinks and cards pile left */
+#new-collections-home .new-available .products.jas-carousel.slick-slider,
+.new-available .products.jas-carousel.slick-slider {
+	display: block !important;
+}
+
+.new-available .slick-list {
+	width: 100% !important;
 }
 
 .woocommerce form button.show-password-input.display-password::before {
