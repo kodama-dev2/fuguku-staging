@@ -279,6 +279,33 @@ add_filter('body_class', function($classes){
     return $classes;
 }, 99);
 
+/**
+ * Elementor Pro Site Logo: PHP 8 warning if caption_source has no options.
+ */
+add_action('elementor/element/before_section_end', function ($element, $section_id, $args) {
+	if (! is_object($element) || ! method_exists($element, 'get_name') || $element->get_name() !== 'site-logo') {
+		return;
+	}
+	if (! class_exists('\Elementor\Plugin') || ! isset(\Elementor\Plugin::$instance->controls_manager)) {
+		return;
+	}
+	$stack_name = method_exists($element, 'get_unique_name') ? $element->get_unique_name() : $element->get_name();
+	$control_data = \Elementor\Plugin::$instance->controls_manager->get_control_from_stack($stack_name, 'caption_source');
+	if (is_wp_error($control_data) || ! is_array($control_data) || (isset($control_data['options']) && is_array($control_data['options']))) {
+		return;
+	}
+	$control_data['options'] = [
+		'' => esc_html__('None', 'elementor'),
+		'attachment' => esc_html__('Attachment Caption', 'elementor'),
+	];
+	if (! isset($control_data['default'])) {
+		$control_data['default'] = '';
+	}
+	if (method_exists($element, 'update_control')) {
+		$element->update_control('caption_source', $control_data);
+	}
+}, 10, 3);
+
 // Fallback JS: bind + / - even if parent script fails to load
 add_action('wp_footer', function() {
     ?>
